@@ -1,0 +1,35 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+/* left top: #4cafb3
+right top: 004e6a
+right down: 114044
+fetf down: 131d34 */
+
+:root {
+  color-scheme: light dark;
+  color: rgba(255, 255, 255, 0.87);
+  background-color: blue;
+  height: 100vh;
+  /* background-color: #242424; */
+  /* background-color: blue; */
+  /* background: linear-gradient(to bottom right, blue, white); */
+  background: linear-gradient(
+    to bottom right,
+    #4cafb3,
+    #004e6a,
+    #114044,
+    #131d34
+  );
+}
+
+body {
+  /* background: linear-gradient(
+    to bottom right,
+    #4cafb3,
+    #004e6a,
+    #114044,
+    #131d34
+  ); */
+}
