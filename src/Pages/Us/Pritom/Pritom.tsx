@@ -1,6 +1,5 @@
-import "./App.css";
-import aradhyaImage from "./assets/FontPage/aradhya.jpeg";
-function App() {
+import aradhyaImage from "../../../assets/FontPage/aradhya.jpeg";
+const Pritom = () => {
   return (
     <div>
       <img
@@ -10,6 +9,6 @@ function App() {
       />
     </div>
   );
-}
+};
 
-export default App;
+export default Pritom;
