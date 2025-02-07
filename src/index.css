@@ -10,10 +10,8 @@ fetf down: 131d34 */
 :root {
   color-scheme: light dark;
   color: rgba(255, 255, 255, 0.87);
-
-  /* background-color: blue; */
-  /* background: linear-gradient(to bottom right, blue, white); */
-  height: 100vh;
+  /* height: 100%;
+  min-height: 100vh;
   background: linear-gradient(
     to bottom right,
     #4cafb3,
@@ -21,7 +19,41 @@ fetf down: 131d34 */
     #114044,
     #131d34
   );
+  background-attachment: fixed;
+  background-size: cover;
+  margin: 0;
+  padding: 0; */
+
+  min-height: 100vh;
+  background: linear-gradient(
+    to bottom right,
+    #4cafb3,
+    #004e6a,
+    #114044,
+    #131d34
+  );
+  background-attachment: fixed;
+  background-size: cover;
 }
+
+/* html,
+body {
+  color-scheme: light dark;
+  color: rgba(255, 255, 255, 0.87);
+  height: 100%;
+  min-height: 100vh;
+  background: linear-gradient(
+    to bottom right,
+    #4cafb3,
+    #004e6a,
+    #114044,
+    #131d34
+  );
+  background-attachment: fixed; 
+  background-size: cover;
+  margin: 0;
+  padding: 0;
+} */
 
 .bgColor {
   background-color: #dcffff;

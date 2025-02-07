@@ -1,7 +1,7 @@
 import { createBrowserRouter } from "react-router";
-import Main from "../Layout/Main";
+import Main from "../Layout/MainLayout";
 import Home from "../Pages/Home/Home";
-import Pritom from "../Pages/Us/Pritom/Pritom";
+import PritomLayout from "../Layout/PritomLayout";
 
 export const router = createBrowserRouter([
   {
@@ -16,10 +16,16 @@ export const router = createBrowserRouter([
         path: "/home",
         element: <Home />,
       },
-      {
-        path: "/pritom",
-        element: <Pritom />,
-      },
+    ],
+  },
+  {
+    path: "pritom",
+    element: <PritomLayout />,
+    children: [
+      // {
+      //   path: "p",
+      //   element: <Pritom />,
+      // },
     ],
   },
 ]);

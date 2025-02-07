@@ -1,5 +1,6 @@
 import { Outlet } from "react-router";
 import DesktopHeader from "../Pages/Shared/Header/DesktopHeader";
+import Footer from "../Pages/Shared/Footer/Footer";
 
 const Main = () => {
   return (
@@ -10,7 +11,12 @@ const Main = () => {
       <div className=" md:hidden">
         <DesktopHeader />
       </div>
-      <Outlet />
+      <div className="max-w-6xl mx-auto px-10">
+        <Outlet />
+      </div>
+      <div>
+        <Footer />
+      </div>
     </div>
   );
 };

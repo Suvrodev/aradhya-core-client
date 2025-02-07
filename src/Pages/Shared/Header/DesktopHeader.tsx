@@ -1,4 +1,4 @@
-import { useLocation } from "react-router";
+import { Link, useLocation } from "react-router";
 import headerImage from "../../../assets/Logo/Header_1.png";
 import headerText from "../../../assets/Logo/Header_2.png";
 import { useEffect, useState } from "react";
@@ -12,22 +12,25 @@ const DesktopHeader = () => {
   }, [path]);
   console.log("Remove: ", remove);
   return (
-    <div
-      className={`bgColor flex  items-center justify-between px-10 ${
-        remove ? "hidden" : "block"
-      }`}
-    >
-      <div className="flex items-center  w-[33%]">
-        <img src={headerImage} alt="" className="w-[95px] h-[80px] " />
-        <img src={headerText} alt="" className="w-[200px] h-[90px]" />
-      </div>
-      <div className="flex gap-4 items-center justify-center  w-[33%]">
-        <p className="text-black">Home</p>
-        <p className="text-black">Home</p>
-        <p className="text-black">Home</p>
-      </div>
-      <div className="  w-[33%] flex items-center justify-end">
-        <button className="btn btn-primary text-white ">Login</button>
+    <div className={`bgColor  ${remove ? "hidden" : "block"}`}>
+      <div className="flex  items-center justify-between  max-w-6xl  mx-auto bg-yellow-300">
+        <div className="flex items-center  w-[33%]">
+          <Link to={"/home"}>
+            {" "}
+            <img src={headerImage} alt="" className="w-[95px] h-[80px] " />
+          </Link>
+          <Link to={"/home"}>
+            <img src={headerText} alt="" className="w-[200px] h-[90px]" />
+          </Link>
+        </div>
+        <div className="flex gap-4 items-center justify-center  w-[33%]">
+          <p className="text-black">Home</p>
+          <p className="text-black">Home</p>
+          <p className="text-black">Home</p>
+        </div>
+        <div className="  w-[33%] flex items-center justify-end">
+          <button className="btn btn-primary text-white ">Login</button>
+        </div>
       </div>
     </div>
   );
