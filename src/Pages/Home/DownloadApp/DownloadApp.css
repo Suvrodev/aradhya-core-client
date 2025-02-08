@@ -1,0 +1,10 @@
+.gradient-bg-App {
+  background: linear-gradient(
+    to right,
+    #054148,
+    #12937a,
+    #18b07f,
+    #14a777,
+    #074c3c
+  );
+}

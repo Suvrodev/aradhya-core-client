@@ -11,7 +11,7 @@ const Main = () => {
       <div className=" md:hidden">
         <DesktopHeader />
       </div>
-      <div className="max-w-6xl mx-auto px-10">
+      <div className="">
         <Outlet />
       </div>
       <div>

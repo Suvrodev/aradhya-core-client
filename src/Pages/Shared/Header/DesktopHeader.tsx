@@ -1,19 +1,10 @@
-import { Link, useLocation } from "react-router";
+import { Link } from "react-router";
 import headerImage from "../../../assets/Logo/Header_1.png";
 import headerText from "../../../assets/Logo/Header_2.png";
-import { useEffect, useState } from "react";
 const DesktopHeader = () => {
-  const path = useLocation()?.pathname;
-  const [remove, setRemove] = useState(false);
-  useEffect(() => {
-    if (path === "/pritom") {
-      setRemove(true);
-    }
-  }, [path]);
-  console.log("Remove: ", remove);
   return (
-    <div className={`bgColor  ${remove ? "hidden" : "block"}`}>
-      <div className="flex  items-center justify-between  max-w-6xl  mx-auto bg-yellow-300">
+    <div className={`bgColor `}>
+      <div className="flex  items-center justify-between  max-w-[92rem]  mx-auto bg-yellow-300">
         <div className="flex items-center  w-[33%]">
           <Link to={"/home"}>
             {" "}

@@ -1,0 +1,50 @@
+[
+  {
+    "name": "Faisal Azam Siddiqui",
+    "role": "Full Stack Web Development with MERN Batch 1",
+    "quote": "ওস্তাদ-এর MERN কোর্স ছিল ডেভেলপমেন্টের জন্য অনেক ফ্রুটফুল।...",
+    "initials": "FA"
+  },
+  {
+    "name": "Shafayet Rana",
+    "role": "UX/UI Batch 6",
+    "quote": "Ostad এর বিশ্বাসযোগ্য ডি...",
+    "initials": "SR"
+  },
+  {
+    "name": "Abu Hasan",
+    "role": "UX/UI Batch 17",
+    "quote": "ক্লাস মাল্টিমিডিয়া হেজান...",
+    "initials": "AH"
+  },
+  {
+    "name": "Jahid Hossain",
+    "role": "Full Stack Web Development with MERN Batch 2",
+    "quote": "এই কোর্সটি হচ্ছে আমার লা...",
+    "initials": "JH"
+  },
+  {
+    "name": "Md Ashfaque Ul Hoque",
+    "role": "UX/UI Batch 6",
+    "quote": "সাজানো (গাইডলাইন সহ...)...",
+    "initials": "MH"
+  },
+  {
+    "name": "MD Galib Hasan",
+    "role": "Data Science Certificate Program Batch 09",
+    "quote": "Even though I come...",
+    "initials": "MG"
+  },
+  {
+    "name": "ARM Salahuddin",
+    "role": "Data Science Certificate Program Batch 19",
+    "quote": "The Data Science program delivered...",
+    "initials": "AS"
+  },
+  {
+    "name": "Nayem Islam",
+    "role": "Full Stack Web Development with MERN Batch 2",
+    "quote": "MERN নিয়ে আমার...",
+    "initials": "NI"
+  }
+]

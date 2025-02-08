@@ -13,7 +13,7 @@ const Banner = () => {
       .catch((err) => console.error("Error fetching images:", err));
   }, []);
 
-  console.log("Images: ", images);
+  //   console.log("Images: ", images);
 
   const [currentIndex, setCurrentIndex] = useState(0);
   const startX = useRef(null);
