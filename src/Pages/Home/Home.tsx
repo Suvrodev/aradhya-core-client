@@ -3,13 +3,12 @@ import DownloadApp from "./DownloadApp/DownloadApp";
 import Faq from "./Faq/Faq";
 import OurCourses from "./OurCourses/OurCourses";
 import Ostad from "./Review/Ostad/Ostad";
-import Review from "./Review/Review";
 
 const Home = () => {
   return (
-    <div>
+    <div className="w-full md:w-[70rem] mx-auto">
       <h1>This is Home Page</h1>
-      <div className="max-w-[82rem] mx-auto px-0 md:px-10">
+      <div className="">
         <Banner />
       </div>
       <div className="max-w-[82rem] mx-auto px-0 md:px-10">
