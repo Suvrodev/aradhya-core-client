@@ -9,7 +9,7 @@ import { useRegistrationMutation } from "../../../redux/api/features/auth/authAp
 import { sonarId } from "../../../utils/Fucntion/sonarId";
 import { useTitle } from "../../../Component/hook/useTitle";
 const Registration = () => {
-  useTitle("Login");
+  useTitle("Registration");
   const [addRegister] = useRegistrationMutation();
   const navigate = useNavigate();
   const options = {
@@ -39,6 +39,7 @@ const Registration = () => {
     event.preventDefault();
     const Form = event.target as HTMLFormElement;
     const name = Form.namee.value;
+    const phone = Form.phone.value;
     const email = Form.email.value;
     const password = Form.password.value;
     const confirmPassword = Form.confirmPassword.value;
@@ -49,7 +50,7 @@ const Registration = () => {
       return;
     }
 
-    const formData = { name, email, password };
+    const formData = { name, phone, email, password };
     console.log("Form Data: ", formData);
     toast.loading("Creating User", { id: sonarId });
     const res = await addRegister(formData).unwrap();
@@ -76,6 +77,20 @@ const Registration = () => {
                 placeholder=" Name"
                 className="input input-bordered bg-gray-700 text-white"
                 name="namee"
+                required
+              />
+            </div>
+            <div className="form-control  ">
+              <label className="label">
+                <span className="label-text font-bold  text-white">
+                  Phone Number
+                </span>
+              </label>
+              <input
+                type="number"
+                placeholder="Phone Number"
+                className="input input-bordered bg-gray-700 text-white"
+                name="phone"
                 required
               />
             </div>
