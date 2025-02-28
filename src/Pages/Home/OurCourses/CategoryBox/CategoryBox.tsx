@@ -1,5 +1,7 @@
+import { useDispatch } from "react-redux";
 import { TCategory } from "../../../../utils/types/globalTypes";
 import { BookOpen, Code, Gamepad2, Paintbrush } from "lucide-react";
+import { selectCategory } from "../../../../redux/features/selectCategorySlice";
 interface Iprops {
   category: TCategory;
 }
@@ -21,9 +23,19 @@ const getCategoryIcon = (name: string) => {
 };
 
 const CategoryBox = ({ category }: Iprops) => {
-  const { name } = category;
+  const dispatch = useDispatch();
+
+  const { name, id } = category;
+
+  const handleCategory = (id: string) => {
+    console.log("Category id: ", id);
+    dispatch(selectCategory(id));
+  };
   return (
-    <div className="group bg-gradient-to-b from-gray-100 to-white shadow-md hover:shadow-lg border border-gray-200 rounded-2xl p-6 transition-all duration-300 cursor-pointer hover:scale-105">
+    <div
+      className="group bg-gradient-to-b from-gray-100 to-white shadow-md hover:shadow-lg border border-gray-200 rounded-2xl p-6 transition-all duration-300 cursor-pointer hover:scale-105"
+      onClick={() => handleCategory(id)}
+    >
       <div className="flex flex-col items-center text-center space-y-3">
         {/* Dynamic Icon */}
         <div className="p-4 bg-white rounded-full shadow-md">

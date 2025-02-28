@@ -7,8 +7,11 @@ import { Swiper, SwiperSlide } from "swiper/react";
 import { Navigation } from "swiper/modules";
 import "swiper/css";
 import "swiper/css/navigation";
+import { useAppSelector } from "../../../redux/hook";
 
 const OurCourses = () => {
+  const { categoryId } = useAppSelector((state) => state.selectCategory);
+  console.log("Select Category in Parent div: ", categoryId);
   const [categories, setCategories] = useState<TCategory[]>([]);
   const scrollRef = useRef<HTMLDivElement>(null);
   useEffect(() => {
