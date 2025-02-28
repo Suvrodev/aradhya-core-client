@@ -2,6 +2,7 @@ import { createBrowserRouter } from "react-router";
 import Main from "../Layout/MainLayout";
 import Home from "../Pages/Home/Home";
 import PritomLayout from "../Layout/PritomLayout";
+import Login from "../Pages/UserInterAction/Login/Login";
 
 export const router = createBrowserRouter([
   {
@@ -17,6 +18,10 @@ export const router = createBrowserRouter([
         element: <Home />,
       },
     ],
+  },
+  {
+    path: "login",
+    element: <Login />,
   },
   {
     path: "pritom",
