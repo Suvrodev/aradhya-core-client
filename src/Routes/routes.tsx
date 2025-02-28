@@ -3,6 +3,7 @@ import Main from "../Layout/MainLayout";
 import Home from "../Pages/Home/Home";
 import PritomLayout from "../Layout/PritomLayout";
 import Login from "../Pages/UserInterAction/Login/Login";
+import Registration from "../Pages/UserInterAction/Registration/Registration";
 
 export const router = createBrowserRouter([
   {
@@ -22,6 +23,10 @@ export const router = createBrowserRouter([
   {
     path: "login",
     element: <Login />,
+  },
+  {
+    path: "registration",
+    element: <Registration />,
   },
   {
     path: "pritom",
