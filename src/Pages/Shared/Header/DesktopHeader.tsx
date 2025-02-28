@@ -20,7 +20,10 @@ const DesktopHeader = () => {
           <p className="text-black">Home</p>
         </div>
         <div className="  w-[33%] flex items-center justify-end">
-          <button className="btn btn-primary text-white ">Login</button>
+          <Link to={"/login"}>
+            {" "}
+            <button className="btn btn-primary text-white ">Login</button>
+          </Link>
         </div>
       </div>
     </div>
