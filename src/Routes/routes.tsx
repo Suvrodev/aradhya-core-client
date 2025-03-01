@@ -7,6 +7,9 @@ import AboutUs from "../Pages/ForAll/AboutUs/AboutUs";
 import Blog from "../Pages/ForAll/Blog/Blog";
 import Contact from "../Pages/ForAll/Contact/Contact";
 import Home from "../Pages/ForAll/Home/Home";
+import AdminProtectedRoute from "./ProtectedRoute/AdminProtectedRoute";
+import AdminDashboardHome from "../Pages/AdminDashboard/AdminDashboardHome";
+import AdminDashboard from "../Pages/AdminDashboard/AdminDashboard";
 
 export const router = createBrowserRouter([
   {
@@ -32,6 +35,34 @@ export const router = createBrowserRouter([
       {
         path: "/contact",
         element: <Contact />,
+      },
+    ],
+  },
+  {
+    path: "admin-dashboard",
+    element: (
+      <AdminProtectedRoute>
+        <AdminDashboard />
+      </AdminProtectedRoute>
+    ),
+    children: [
+      {
+        index: true,
+        element: (
+          <AdminProtectedRoute>
+            {" "}
+            <AdminDashboardHome />{" "}
+          </AdminProtectedRoute>
+        ),
+      },
+      {
+        path: "admin-home",
+        element: (
+          <AdminProtectedRoute>
+            {" "}
+            <AdminDashboardHome />,
+          </AdminProtectedRoute>
+        ),
       },
     ],
   },
