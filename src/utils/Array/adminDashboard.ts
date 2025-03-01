@@ -8,19 +8,39 @@ export const adminDashboards = [
     path: "/admin-dashboard/user-profile",
   },
   {
-    text: "Add Book",
+    text: "All Student",
     path: "/admin-dashboard/admin-add-book",
   },
   {
-    text: "Book Management",
+    text: "Assign Student",
     path: "/admin-dashboard/book-management",
   },
   {
-    text: "User Management",
+    text: "Add Service",
     path: "/admin-dashboard/user-management",
   },
   {
-    text: "Order Management",
+    text: "Services",
+    path: "/admin-dashboard/order-management",
+  },
+  {
+    text: "Add Course",
+    path: "/admin-dashboard/user-management",
+  },
+  {
+    text: "Courses",
+    path: "/admin-dashboard/order-management",
+  },
+  {
+    text: "Schedule",
+    path: "/admin-dashboard/user-management",
+  },
+  {
+    text: "Needed Software",
+    path: "/admin-dashboard/order-management",
+  },
+  {
+    text: "Blog",
     path: "/admin-dashboard/order-management",
   },
   // {

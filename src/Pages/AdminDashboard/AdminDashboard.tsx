@@ -24,77 +24,77 @@ const AdminDashboard = () => {
   const [sidebarOpen, setSidebarOpen] = useState(false);
 
   return (
-    <div className="flex h-screen bg-gray-900 text-white">
-      {/* Sidebar */}
-      <aside
-        className={`fixed top-0 left-0 h-full w-64 bg-gray-800 p-5 flex flex-col transform transition-transform duration-300 ease-in-out ${
-          sidebarOpen ? "translate-x-0" : "-translate-x-full"
-        } sm:relative sm:translate-x-0`}
-      >
-        <button
-          className="absolute top-4 right-4 text-white sm:hidden"
-          onClick={() => setSidebarOpen(false)}
-        >
-          <FaTimes size={24} />
-        </button>
-        <h2 className="text-lg font-bold mb-5">Admin Dashboard</h2>
-        <nav className="flex-1">
-          <ul>
-            <li className="mb-3 bg-blue-600 p-2 rounded">Dashboard Home</li>
-            <li className="mb-3 p-2 hover:bg-gray-700 rounded">My Profile</li>
-            <li className="mb-3 p-2 hover:bg-gray-700 rounded">Add Book</li>
-            <li className="mb-3 p-2 hover:bg-gray-700 rounded">
-              Book Management
-            </li>
-            <li className="mb-3 p-2 hover:bg-gray-700 rounded">
-              User Management
-            </li>
-            <li className="mb-3 p-2 hover:bg-gray-700 rounded">
-              Order Management
-            </li>
-          </ul>
-        </nav>
-        <button className="bg-red-600 p-2 rounded flex items-center justify-center">
-          <FaSignOutAlt className="mr-2" /> Logout
-        </button>
-      </aside>
-
-      {/* Main Content */}
-      <main className="flex-1 p-10 sm:pl-72">
-        {/* Mobile menu button */}
-        <button
-          className="sm:hidden mb-5 text-white"
-          onClick={() => setSidebarOpen(true)}
-        >
-          <FaBars size={24} />
-        </button>
-        <h1 className="text-3xl font-bold text-teal-400">Admin Dashboard</h1>
-        <p className="text-gray-400">
-          Manage Boundless Reads Book Shop with ease and efficiency.
+    <div>
+      {/* Dashboard Header */}
+      <div className="text-xl font-bold text-center bg-gradient-to-br from-gray-800 via-gray-900 to-black py-4 px-4 flex text-white">
+        <div className="w-[33%] flex justify-start">
+          {/* Menu Icon */}
+          <label className="md:hidden" htmlFor="my-drawer-2">
+            <MenuIcon className="cursor-pointer lg:hidden text-white" />
+          </label>
+        </div>
+        <p className="w-[33%] text-white hidden md:block">
+          This is Boundless Reads Book Shop
         </p>
-        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-5 mt-5">
-          <div className="bg-gray-800 p-5 rounded flex items-center space-x-3">
-            <FaUser className="text-teal-400 text-2xl" />
-            <span className="text-lg font-semibold">User Profile</span>
-          </div>
-          <div className="bg-gray-800 p-5 rounded flex items-center space-x-3">
-            <FaBook className="text-green-400 text-2xl" />
-            <span className="text-lg font-semibold">Add Book</span>
-          </div>
-          <div className="bg-gray-800 p-5 rounded flex items-center space-x-3">
-            <FaClipboardList className="text-blue-400 text-2xl" />
-            <span className="text-lg font-semibold">Books Management</span>
-          </div>
-          <div className="bg-gray-800 p-5 rounded flex items-center space-x-3">
-            <FaUsers className="text-purple-400 text-2xl" />
-            <span className="text-lg font-semibold">User Management</span>
-          </div>
-          <div className="bg-gray-800 p-5 rounded flex items-center space-x-3">
-            <FaClipboardList className="text-yellow-400 text-2xl" />
-            <span className="text-lg font-semibold">Order Management</span>
+        <div className="w-[33%] flex justify-center text-[12px] md:text-[16px] ">
+          <p>{user?.email}</p>
+          <span>({user?.role})</span>
+        </div>
+      </div>
+
+      {/* Start Drawer */}
+      <div className="drawer lg:drawer-open">
+        <input id="my-drawer-2" type="checkbox" className="drawer-toggle" />
+        <div className="drawer-content">
+          {/* Page content here */}
+          <div className=" ">
+            <Outlet />
           </div>
         </div>
-      </main>
+        <div className="drawer-side">
+          <label
+            htmlFor="my-drawer-2"
+            aria-label="close sidebar"
+            className="drawer-overlay"
+          ></label>
+          <ul className="menu bg-gradient-to-b from-gray-800 to-gray-900 text-gray-200 min-h-full w-80 p-4">
+            {/* Sidebar content */}
+            <div className="flex gap-x-4 items-center mb-6">
+              <div className="bg-white text-black p-1 rounded-full">
+                <Link to={"/"}>
+                  <WestIcon />
+                </Link>
+              </div>
+              <h1 className="text-xl font-bold text-white">Admin Dashboard</h1>
+            </div>
+
+            <div className="flex flex-col gap-4 my-4">
+              {adminDashboards.map((data, idx) => (
+                <Link
+                  key={idx}
+                  to={data?.path}
+                  className={`dashboardLink text-lg font-medium py-2 px-4 rounded-lg ${
+                    location === data?.path
+                      ? "bg-blue-600 text-white"
+                      : "hover:bg-gray-700 text-gray-300"
+                  }`}
+                >
+                  {data?.text}
+                </Link>
+              ))}
+
+              <div>
+                <button
+                  className="btn btn-error text-white relative left-4 py-2 px-4 rounded-md mt-4"
+                  onClick={() => dispatch(logout())}
+                >
+                  Logout
+                </button>
+              </div>
+            </div>
+          </ul>
+        </div>
+      </div>
     </div>
   );
 };
