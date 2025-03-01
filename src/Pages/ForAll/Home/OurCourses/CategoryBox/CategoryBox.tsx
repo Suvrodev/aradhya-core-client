@@ -1,7 +1,7 @@
 import { useDispatch } from "react-redux";
-import { TCategory } from "../../../../utils/types/globalTypes";
 import { BookOpen, Code, Gamepad2, Paintbrush } from "lucide-react";
-import { selectCategory } from "../../../../redux/features/selectCategorySlice";
+import { TCategory } from "../../../../../utils/types/globalTypes";
+import { selectCategory } from "../../../../../redux/features/selectCategorySlice";
 interface Iprops {
   category: TCategory;
 }

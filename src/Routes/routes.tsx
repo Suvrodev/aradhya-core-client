@@ -1,12 +1,12 @@
 import { createBrowserRouter } from "react-router";
 import Main from "../Layout/MainLayout";
-import Home from "../Pages/Home/Home";
 import PritomLayout from "../Layout/PritomLayout";
 import Login from "../Pages/UserInterAction/Login/Login";
 import Registration from "../Pages/UserInterAction/Registration/Registration";
-import AboutUs from "../Pages/AboutUs/AboutUs";
-import Blog from "../Pages/Blog/Blog";
-import Contact from "../Pages/Contact/Contact";
+import AboutUs from "../Pages/ForAll/AboutUs/AboutUs";
+import Blog from "../Pages/ForAll/Blog/Blog";
+import Contact from "../Pages/ForAll/Contact/Contact";
+import Home from "../Pages/ForAll/Home/Home";
 
 export const router = createBrowserRouter([
   {

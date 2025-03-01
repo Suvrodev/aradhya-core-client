@@ -1,5 +1,5 @@
 import { useLottie } from "lottie-react";
-import FQ from "../../../assets/Lottie/questionLottie.json";
+import FQ from "../../../../assets/Lottie/questionLottie.json";
 const Faq = () => {
   const options = {
     animationData: FQ,
