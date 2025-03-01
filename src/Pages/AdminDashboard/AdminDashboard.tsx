@@ -5,23 +5,12 @@ import { useAppDispatch, useAppSelector } from "../../redux/hook";
 import { Link, Outlet, useLocation } from "react-router";
 import { adminDashboards } from "../../utils/Array/adminDashboard";
 import { logout } from "../../redux/api/features/auth/authSlice";
-import {
-  FaUser,
-  FaUsers,
-  FaBook,
-  FaClipboardList,
-  FaSignOutAlt,
-  FaBars,
-  FaTimes,
-} from "react-icons/fa";
-import { useState } from "react";
 
 const AdminDashboard = () => {
   useTitle("Admin Dashboard");
   const { user } = useAppSelector((state) => state.auth);
   const dispatch = useAppDispatch();
   const location = useLocation()?.pathname;
-  const [sidebarOpen, setSidebarOpen] = useState(false);
 
   return (
     <div>
