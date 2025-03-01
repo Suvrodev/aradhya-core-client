@@ -10,6 +10,8 @@ import Home from "../Pages/ForAll/Home/Home";
 import AdminProtectedRoute from "./ProtectedRoute/AdminProtectedRoute";
 import AdminDashboardHome from "../Pages/AdminDashboard/AdminDashboardHome";
 import AdminDashboard from "../Pages/AdminDashboard/AdminDashboard";
+import AdminProfile from "../Pages/AdminDashboard/AdminProfile/AdminProfile";
+import AdminService from "../Pages/AdminDashboard/AdminService/AdminService";
 
 export const router = createBrowserRouter([
   {
@@ -61,6 +63,24 @@ export const router = createBrowserRouter([
           <AdminProtectedRoute>
             {" "}
             <AdminDashboardHome />,
+          </AdminProtectedRoute>
+        ),
+      },
+      {
+        path: "admin-profile",
+        element: (
+          <AdminProtectedRoute>
+            {" "}
+            <AdminProfile />
+          </AdminProtectedRoute>
+        ),
+      },
+      {
+        path: "admin-service",
+        element: (
+          <AdminProtectedRoute>
+            {" "}
+            <AdminService />
           </AdminProtectedRoute>
         ),
       },

@@ -1,6 +1,6 @@
 import axios from "axios";
 import { useEffect, useRef, useState } from "react";
-import { TBanner } from "../../../utils/types/globalTypes";
+import { TBanner } from "../../../../utils/types/globalTypes";
 
 const Banner = () => {
   const [images, setImages] = useState([]);

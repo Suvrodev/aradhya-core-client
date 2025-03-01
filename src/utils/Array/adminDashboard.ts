@@ -4,8 +4,8 @@ export const adminDashboards = [
     path: "/admin-dashboard",
   },
   {
-    text: "My Profile",
-    path: "/admin-dashboard/user-profile",
+    text: "Admin Profile",
+    path: "/admin-dashboard/admin-profile",
   },
   {
     text: "All Student",
@@ -16,13 +16,10 @@ export const adminDashboards = [
     path: "/admin-dashboard/book-management",
   },
   {
-    text: "Add Service",
-    path: "/admin-dashboard/user-management",
+    text: "Service",
+    path: "/admin-dashboard/admin-service",
   },
-  {
-    text: "Services",
-    path: "/admin-dashboard/order-management",
-  },
+
   {
     text: "Add Course",
     path: "/admin-dashboard/user-management",

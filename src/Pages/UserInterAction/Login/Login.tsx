@@ -30,7 +30,7 @@ const Login = () => {
   // console.log(loc)
   // const toGo = loc.state?.from?.pathname || "/";
   // console.log("joidergtjeoibghjeroigjoieri", toGo);
-  const toGo = "/";
+  // const toGo = "/";
   const [showPassword, setShowPassword] = useState(false);
   const handleShowPassword = () => {
     setShowPassword(!showPassword);

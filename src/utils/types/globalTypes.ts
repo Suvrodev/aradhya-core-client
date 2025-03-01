@@ -8,6 +8,13 @@ export type TUser = {
   exp: number;
 };
 
+export type TService = {
+  _id: string;
+  serviceId: string;
+  name: string;
+  image: string;
+};
+
 export type TBanner = {
   id: number;
   image: string;
