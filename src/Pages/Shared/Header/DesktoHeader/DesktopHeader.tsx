@@ -1,10 +1,20 @@
-import { Link } from "react-router";
+import { Link, useLocation } from "react-router";
 import headerImage from "../../../../assets/Logo/Header_1.png";
 import headerText from "../../../../assets/Logo/Header_2.png";
+import { headerArray } from "../../../../utils/Array/headerArray";
+import { useAppSelector } from "../../../../redux/hook";
+import { useDispatch } from "react-redux";
+import DashboradButton from "../DashboardButton/DashboradButton";
+import { logout } from "../../../../redux/api/features/auth/authSlice";
 const DesktopHeader = () => {
+  const { token } = useAppSelector((state) => state.auth);
+  const dispatch = useDispatch();
+
+  const path = useLocation()?.pathname;
+  console.log("Path: ", path);
   return (
     <div className={`bgColor `}>
-      <div className="flex  items-center justify-between  max-w-[82rem]  mx-auto bg-yellow-300">
+      <div className="flex  items-center justify-between  max-w-[82rem]  mx-auto shadow-lg ">
         <div className="flex items-center  w-[33%]">
           <Link to={"/home"}>
             {" "}
@@ -15,15 +25,37 @@ const DesktopHeader = () => {
           </Link>
         </div>
         <div className="flex gap-4 items-center justify-center  w-[33%]">
-          <p className="text-black">Home</p>
-          <p className="text-black">Home</p>
-          <p className="text-black">Home</p>
+          {headerArray.map((data, idx) => (
+            <Link
+              to={`${data?.path}`}
+              key={idx}
+              className={`text-black font-bold cursor-pointer ${
+                data?.path == path ? "text-blue-500" : ""
+              }`}
+            >
+              {data?.text}
+            </Link>
+          ))}
         </div>
         <div className="  w-[33%] flex items-center justify-end">
-          <Link to={"/login"}>
-            {" "}
-            <button className="btn btn-primary text-white ">Login</button>
-          </Link>
+          {token ? (
+            <div className="flex items-center gap-2">
+              <div className="flex flex-row-reverse items-center">
+                <DashboradButton />
+              </div>
+              <button
+                className="btn btn-error text-white"
+                onClick={() => dispatch(logout())}
+              >
+                Logout
+              </button>
+            </div>
+          ) : (
+            <Link to={"/login"}>
+              {" "}
+              <button className="btn btn-primary text-white ">Login</button>
+            </Link>
+          )}
         </div>
       </div>
     </div>

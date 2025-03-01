@@ -1,5 +1,6 @@
 import { useLottie } from "lottie-react";
-import RegAnim from "../../../../public/Reg_Lottie.json";
+// import RegAnim from "../../../../public/Reg_Lottie.json";
+import registrationAniamtion from "../../../assets/Lottie/Reg_Lottie.json";
 import { ChangeEvent, FormEvent, useState } from "react";
 import { Link, useNavigate } from "react-router";
 import { toast } from "sonner";
@@ -13,7 +14,7 @@ const Registration = () => {
   const [addRegister] = useRegistrationMutation();
   const navigate = useNavigate();
   const options = {
-    animationData: RegAnim,
+    animationData: registrationAniamtion,
     loop: true,
   };
 

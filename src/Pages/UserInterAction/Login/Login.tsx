@@ -1,5 +1,5 @@
 import { useLottie } from "lottie-react";
-import LoginAnim from "../../../../public/Login_Lottie.json";
+import loginAnimation from "../../../assets/Lottie/Login_Lottie.json";
 import { Link, useNavigate } from "react-router";
 import { FormEvent, useState } from "react";
 import { toast } from "sonner";
@@ -18,7 +18,7 @@ const Login = () => {
   const dispatch = useAppDispatch();
   const [login] = useLoginMutation();
   const options = {
-    animationData: LoginAnim,
+    animationData: loginAnimation,
     loop: true,
   };
 

@@ -3,10 +3,10 @@ import { useEffect, useRef, useState } from "react";
 import CategoryBox from "./CategoryBox/CategoryBox";
 import { TCategory } from "../../../utils/types/globalTypes";
 import { ChevronLeft, ChevronRight } from "lucide-react";
-import { Swiper, SwiperSlide } from "swiper/react";
-import { Navigation } from "swiper/modules";
-import "swiper/css";
-import "swiper/css/navigation";
+// import { Swiper, SwiperSlide } from "swiper/react";
+// import { Navigation } from "swiper/modules";
+// import "swiper/css";
+// import "swiper/css/navigation";
 import { useAppSelector } from "../../../redux/hook";
 
 const OurCourses = () => {

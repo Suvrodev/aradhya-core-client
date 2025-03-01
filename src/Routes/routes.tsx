@@ -4,6 +4,9 @@ import Home from "../Pages/Home/Home";
 import PritomLayout from "../Layout/PritomLayout";
 import Login from "../Pages/UserInterAction/Login/Login";
 import Registration from "../Pages/UserInterAction/Registration/Registration";
+import AboutUs from "../Pages/AboutUs/AboutUs";
+import Blog from "../Pages/Blog/Blog";
+import Contact from "../Pages/Contact/Contact";
 
 export const router = createBrowserRouter([
   {
@@ -17,6 +20,18 @@ export const router = createBrowserRouter([
       {
         path: "/home",
         element: <Home />,
+      },
+      {
+        path: "/about-us",
+        element: <AboutUs />,
+      },
+      {
+        path: "/blog",
+        element: <Blog />,
+      },
+      {
+        path: "/contact",
+        element: <Contact />,
       },
     ],
   },
