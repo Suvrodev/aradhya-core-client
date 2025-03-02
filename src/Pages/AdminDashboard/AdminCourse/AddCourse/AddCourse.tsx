@@ -1,7 +1,9 @@
-import { FormEvent, useState } from "react";
+import { ChangeEvent, FormEvent, useState } from "react";
 import { useGetAllServiceQuery } from "../../../../redux/api/features/Service/serviceManagementApi";
 import { TService } from "../../../../utils/types/globalTypes";
 import TextEditor from "../../AdminBlog/TextEditor/TextEditor";
+import { toast } from "sonner";
+import { sonarId } from "../../../../utils/Fucntion/sonarId";
 
 const AddCourse = () => {
   const { data } = useGetAllServiceQuery(undefined);
@@ -13,12 +15,28 @@ const AddCourse = () => {
   );
   const [refService, setRefService] = useState<string>("");
   const [refServiceId, setRefServiceId] = useState<string>("");
+  const [selectedService, setSelectedService] = useState<string>("");
+  const [courseStatus, setCourseStatus] = useState<string>("OnGoing");
+  const [courseExists, setCourseExists] = useState<boolean>(true);
+  const handleCourseStatus = (event: React.ChangeEvent<HTMLSelectElement>) => {
+    setCourseStatus(event.target.value);
+  };
+
+  const handleCourseExists = (event: ChangeEvent<HTMLSelectElement>) => {
+    const res = event.target.value;
+    if (res == "true") {
+      setCourseExists(true);
+    } else {
+      setCourseExists(false);
+    }
+  };
 
   const handleService = (event: React.ChangeEvent<HTMLSelectElement>) => {
-    const [serviceId, _id] = event.target.value.split(",");
+    const [serviceId, _id, name] = event.target.value.split(",");
 
     setRefService(_id);
     setRefServiceId(serviceId);
+    setSelectedService(name); // Set selected service name
   };
 
   console.log("ref Service:", refService);
@@ -27,6 +45,51 @@ const AddCourse = () => {
   const handleAddCourse = (event: FormEvent<HTMLFormElement>) => {
     event.preventDefault();
     console.log("Add Course");
+    const Form = event.target as HTMLFormElement;
+
+    if (!refService) {
+      toast.error("Select Service", { id: sonarId });
+      return;
+    }
+
+    const courseId = Form.courseId.value;
+    const courseTitle = Form.courseTitle.value;
+    const courseImage = Form.courseImage.value;
+    const courseDescription = Form.courseDescription.value;
+    const coursePrice = Form.coursePrice.value;
+    const courseDiscount = Form.courseDiscount?.value;
+    const courseDiscountReason = Form.courseDiscountReason?.value;
+    // const courseCoupon = Form.courseCoupon?.value;
+    // const courseCouponStatus = Form.courseCouponStatus?.checked;
+    const courseYoutubeVideo = Form.courseYoutubeVideo?.value;
+    const courseClassNumber = Form.courseClassNumber.value;
+    const courseStartDate = Form.courseStartDate.value;
+
+    const courseDuration = Form.courseDuration.value;
+    const courseProjectNumber = Form.courseProjectNumber.value;
+    const courseReview = Form.courseReview?.value;
+
+    const formData = {
+      refService,
+      refServiceId,
+      courseId,
+      courseTitle,
+      courseImage,
+      courseDescription,
+      coursePrice: Number(coursePrice),
+      courseDiscount: Number(courseDiscount),
+      courseDiscountReason,
+      courseYoutubeVideo,
+      courseClassNumber: Number(courseClassNumber),
+      courseStartDate,
+      courseDuration,
+      courseProjectNumber: Number(courseProjectNumber),
+      courseReview,
+      computerConfiguration,
+      courseStatus,
+      courseExists,
+    };
+    console.log("Form Data: ", formData);
   };
 
   return (
@@ -37,38 +100,44 @@ const AddCourse = () => {
         </h2>
         <form onSubmit={handleAddCourse}>
           <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
-            {/* Course Title */}
+            {/* Course id */}
             <div>
               <label className="block font-medium mb-2 text-gray-300">
                 Course Id
               </label>
               <input
                 type="text"
-                name="courseTitle"
+                name="courseId"
                 className="w-full p-3 bg-gray-700 border border-gray-600 rounded-lg text-white placeholder-gray-400 focus:outline-none focus:ring-2 focus:ring-blue-500 transition-all"
-                placeholder="Enter course title"
+                placeholder="Enter course id"
                 required
               />
             </div>
-            {/* Course Title */}
+            {/* Service id */}
             <div>
               <label className="block font-medium mb-2 text-gray-300">
                 Service id
               </label>
 
+              {/* Under Servuice */}
               <select
                 onChange={handleService}
-                name=""
-                id=""
+                value={
+                  selectedService
+                    ? `${refServiceId},${refService},${selectedService}`
+                    : ""
+                }
                 className="w-full p-3 bg-gray-700 border border-gray-600 rounded-lg text-white placeholder-gray-400 focus:outline-none focus:ring-2 focus:ring-blue-500 transition-all"
               >
                 <option value="" disabled>
                   Select one
                 </option>
                 {services?.map((data: TService, idx: number) => (
-                  <option value={`${data?.serviceId},${data?._id}`} key={idx}>
-                    {" "}
-                    {data?.name}{" "}
+                  <option
+                    value={`${data?.serviceId},${data?._id},${data?.name}`}
+                    key={idx}
+                  >
+                    {data?.name}
                   </option>
                 ))}
               </select>
@@ -166,6 +235,7 @@ const AddCourse = () => {
                 type="date"
                 name="courseStartDate"
                 className="w-full p-3 bg-gray-700 border border-gray-600 rounded-lg text-white placeholder-gray-400 focus:outline-none focus:ring-2 focus:ring-blue-500 transition-all"
+                required
               />
             </div>
 
@@ -193,6 +263,7 @@ const AddCourse = () => {
                 name="courseProjectNumber"
                 className="w-full p-3 bg-gray-700 border border-gray-600 rounded-lg text-white placeholder-gray-400 focus:outline-none focus:ring-2 focus:ring-blue-500 transition-all"
                 placeholder="Enter number of projects"
+                required
               />
             </div>
 
@@ -217,6 +288,7 @@ const AddCourse = () => {
               </label>
               <select
                 name="courseStatus"
+                onChange={handleCourseStatus}
                 className="w-full p-3 bg-gray-700 border border-gray-600 rounded-lg text-white focus:outline-none focus:ring-2 focus:ring-blue-500 transition-all"
               >
                 <option value="onGoing" className="bg-gray-800">
@@ -235,6 +307,7 @@ const AddCourse = () => {
               </label>
               <select
                 name="courseExists"
+                onChange={handleCourseExists}
                 className="w-full p-3 bg-gray-700 border border-gray-600 rounded-lg text-white focus:outline-none focus:ring-2 focus:ring-blue-500 transition-all"
               >
                 <option value="true" className="bg-gray-800">
@@ -252,8 +325,8 @@ const AddCourse = () => {
                 Youtube Video Link
               </label>
               <input
-                type="url"
-                name="courseDescription"
+                type="text"
+                name="courseYoutubeVideo"
                 className="w-full p-3 bg-gray-700 border border-gray-600 rounded-lg text-white placeholder-gray-400 focus:outline-none focus:ring-2 focus:ring-blue-500 transition-all"
                 placeholder="Enter course description"
               ></input>
