@@ -22,9 +22,9 @@ const blogManagementApi = baseApi.injectEndpoints({
       providesTags: ["service"],
     }),
     getSpecificBlog: builder.query({
-      query: () => {
+      query: (id) => {
         return {
-          url: `/blog`,
+          url: `/blog/${id}`,
           method: "GET",
         };
       },
@@ -43,7 +43,7 @@ const blogManagementApi = baseApi.injectEndpoints({
     updateBlog: builder.mutation({
       query: ({ id, updateData }) => {
         return {
-          url: `/blog/${id}`,
+          url: `/blog/update/${id}`,
           method: "PATCH",
           body: updateData,
         };

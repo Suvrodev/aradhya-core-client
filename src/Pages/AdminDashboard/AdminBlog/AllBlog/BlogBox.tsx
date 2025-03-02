@@ -1,4 +1,4 @@
-import { useLocation, useNavigate } from "react-router";
+import { Link, useLocation, useNavigate } from "react-router";
 import { useDeleteBlogMutation } from "../../../../redux/api/features/Blog/blogManagementApi";
 import { TBlog } from "../../../../utils/types/globalTypes";
 
@@ -39,7 +39,7 @@ const BlogBox = ({ blog, admin = false }: IProps) => {
     try {
       const res = await deleteBlog(id).unwrap();
       console.log("Res: ", res);
-      if (res?.status) {
+      if (res?.success) {
         toast.success(res?.message, { id: sonarId });
       }
     } catch {
@@ -100,9 +100,12 @@ const BlogBox = ({ blog, admin = false }: IProps) => {
       {/* Action Buttons */}
       {admin && (
         <div className="absolute top-2 right-2 flex space-x-2">
-          <button className="w-[40px] h-[40px] flex items-center justify-center bg-green-500 rounded-full shadow-md hover:bg-green-600 transition-colors">
+          <Link
+            to={`/admin-dashboard/update-blog/${_id}`}
+            className="w-[40px] h-[40px] flex items-center justify-center bg-green-500 rounded-full shadow-md hover:bg-green-600 transition-colors"
+          >
             <CodeXml />
-          </button>
+          </Link>
           <button
             onClick={() => handleDelete(_id)}
             className="w-[40px] h-[40px] flex items-center justify-center bg-red-500 rounded-full shadow-md hover:bg-red-600 transition-colors"

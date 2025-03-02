@@ -6,7 +6,7 @@ import BlogBox from "./BlogBox";
 const AllBlog = () => {
   const { data, isLoading } = useGetALlBlogQuery(undefined);
   const blogDatas = data?.data;
-  console.log(blogDatas);
+  // console.log(blogDatas);
   if (isLoading) {
     return <LoadingPage />;
   }

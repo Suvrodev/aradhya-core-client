@@ -3,6 +3,7 @@ import { blogCategories } from "../../../../utils/Array/blogCategoryArray";
 import { useAddBlogMutation } from "../../../../redux/api/features/Blog/blogManagementApi";
 import { toast } from "sonner";
 import TextEditor from "../TextEditor/TextEditor";
+import { sonarId } from "../../../../utils/Fucntion/sonarId";
 
 const AddBlog = () => {
   const [addBlog] = useAddBlogMutation();
@@ -29,11 +30,11 @@ const AddBlog = () => {
     const writer = Form.writer.value;
     const formData = { title, content, image, category, writer };
     console.log("Form Data: ", formData);
-    toast.loading("Inserting Blog");
+    toast.loading("Inserting Blog", { id: sonarId });
     const res = await addBlog(formData).unwrap();
     console.log("Res: ", res);
     if (res?.success) {
-      toast.success("Blog Added Successfully");
+      toast.success("Blog Added Successfully", { id: sonarId });
     }
   };
 

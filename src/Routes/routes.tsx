@@ -106,7 +106,7 @@ export const router = createBrowserRouter([
         ),
       },
       {
-        path: "admin-update-blog/:id",
+        path: "update-blog/:id",
         element: (
           <AdminProtectedRoute>
             {" "}
