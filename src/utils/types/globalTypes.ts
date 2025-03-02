@@ -37,3 +37,12 @@ export type TCategory = {
   id: string;
   name: string;
 };
+
+export type TCourseBox = {
+  _id: string;
+  courseId: string;
+  courseTitle: string;
+  courseImage: string;
+  courseClassNumber: number;
+  courseProjectNumber: number;
+};

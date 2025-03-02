@@ -23,7 +23,12 @@ const AdminDashboard = () => {
           </label>
         </div>
         <p className="w-[33%] text-white hidden md:block">
-          This is Boundless Reads Book Shop
+          {" "}
+          Welcome to{" "}
+          <span className="font-bold text-2xl text-blue-500">
+            Aradhya Core
+          </span>{" "}
+          🖥️{" "}
         </p>
         <div className="w-[33%] flex justify-center text-[12px] md:text-[16px] ">
           <p>{user?.email}</p>

@@ -26,7 +26,7 @@ export const adminDashboards = [
   },
   {
     text: "Courses",
-    path: "/admin-dashboard/order-management",
+    path: "/admin-dashboard/all-course",
   },
   {
     text: "Schedule",

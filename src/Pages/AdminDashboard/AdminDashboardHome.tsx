@@ -10,7 +10,8 @@ const AdminDashboardHome = () => {
             Admin Dashboard
           </h1>
           <p className="text-lg text-gray-300">
-            Manage Boundless Reads Book Shop with ease and efficiency.
+            Manage <span className="text-blue-500 font-bold">Aradhya Core</span>{" "}
+            with ease and efficiency.
           </p>
         </div>
 
