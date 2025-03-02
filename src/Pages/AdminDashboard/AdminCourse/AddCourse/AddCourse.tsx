@@ -92,9 +92,12 @@ const AddCourse = () => {
       courseExists,
     };
     console.log("Form Data: ", formData);
-
-    const res = await addCourse(formData);
+    toast.loading("Adding Course", { id: sonarId });
+    const res = await addCourse(formData).unwrap();
     console.log("Res: ", res);
+    if (res?.success) {
+      toast.success("Added Course", { id: sonarId });
+    }
   };
 
   return (
