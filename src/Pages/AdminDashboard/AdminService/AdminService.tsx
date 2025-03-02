@@ -15,8 +15,12 @@ const AdminService = () => {
   // eslint-disable-next-line @typescript-eslint/no-explicit-any
   const onSubmit = async (data: any) => {
     console.log(data);
+    const formattedData = {
+      ...data,
+      order: Number(data.order), // Convert order to number
+    };
     toast.loading("Inserting Service", { id: sonarId });
-    const res = await addService(data).unwrap();
+    const res = await addService(formattedData).unwrap();
     console.log("Res: ", res);
     if (res?.success) {
       toast.success("Service Added Successfully", { id: sonarId });
@@ -62,6 +66,20 @@ const AdminService = () => {
               {errors.name && (
                 <p className="text-red-500 text-sm">
                   {String(errors.name.message)}
+                </p>
+              )}
+            </div>
+            {/* Order */}
+            <div className="">
+              <label className="block mb-2 text-sm font-medium">Order</label>
+              <input
+                type="number"
+                {...register("order", { required: "Order Number is required" })}
+                className="w-full px-4 py-2 bg-gray-700 text-white rounded-lg focus:outline-none focus:ring focus:ring-teal-500"
+              />
+              {errors.order && (
+                <p className="text-red-500 text-sm">
+                  {String(errors.order.message)}
                 </p>
               )}
             </div>

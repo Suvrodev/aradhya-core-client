@@ -13,6 +13,7 @@ export type TService = {
   serviceId: string;
   name: string;
   image: string;
+  order: number;
 };
 
 export type TBanner = {

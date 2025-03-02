@@ -28,7 +28,8 @@ const MobileHeader = () => {
       </div>
       <div
         className={`absolute  w-full transition-all duration-700 ${
-          isOpen ? "top-[66px]" : "-top-[400px] "
+          // isOpen ? "top-[66px] left-0" : "-top-[400px] "
+          isOpen ? "top-[66px] right-0" : "top-[66px]  right-[400px]"
         }`}
       >
         <MobileHeaderOption handleClick={handleClick} />

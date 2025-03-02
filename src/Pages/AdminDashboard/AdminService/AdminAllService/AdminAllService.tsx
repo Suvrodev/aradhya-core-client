@@ -30,8 +30,15 @@ const AdminAllService = () => {
       <div className="grid grid-cols-1 md:grid-cols-3 gap-4">
         {serviceData?.map((data: TService, idx: number) => (
           <div key={idx} className="border border-1 p-4 rounded-md relative">
-            <p className="font-bold">{data?.serviceId}</p>
-            <p>{data?.name}</p>
+            <p className="font-bold">
+              Order: <span> {data?.order}</span>{" "}
+            </p>
+            <p className="">
+              {" "}
+              <span>Service id: </span>{" "}
+              <span className="font-bold"> {data?.serviceId}</span>
+            </p>
+            <p className="text-xl font-bold">{data?.name}</p>
 
             <div className="absolute top-0 right-0">
               <p className="btn bg-green-500 hover:bg-green-600 text-white">

@@ -11,7 +11,7 @@ const DesktopHeader = () => {
   const dispatch = useDispatch();
 
   const path = useLocation()?.pathname;
-  console.log("Path: ", path);
+  // console.log("Path: ", path);
   return (
     <div className={`bgColor `}>
       <div className="flex  items-center justify-between  max-w-[82rem]  mx-auto shadow-lg ">
