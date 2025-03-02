@@ -54,8 +54,9 @@ const UpdateCourse = () => {
       setSelectedService(serviceNameSelect?.name);
       setRefService(serviceNameSelect?._id);
       setRefServiceId(serviceNameSelect?.serviceId);
+      setComputerConfiguration(specificCourse?.computerConfiguration);
     }
-  }, [CourseData, serviceData, serviceNameSelect]);
+  }, [CourseData, serviceData, serviceNameSelect, specificCourse]);
   console.log("So service name", selectedService);
 
   const [courseStatus, setCourseStatus] = useState<string>("onGoing");
@@ -160,7 +161,7 @@ const UpdateCourse = () => {
                 type="text"
                 name="courseId"
                 defaultValue={specificCourse?.courseId}
-                className="w-full p-3 bg-gray-700 border border-gray-600 rounded-lg text-white placeholder-gray-400 focus:outline-none focus:ring-2 focus:ring-blue-500 transition-all"
+                className="w-full p-3 bg-blue-700 border border-gray-600 rounded-lg text-white placeholder-gray-400 focus:outline-none focus:ring-2 focus:ring-blue-500 transition-all"
                 placeholder="Enter course id"
                 required
                 disabled
