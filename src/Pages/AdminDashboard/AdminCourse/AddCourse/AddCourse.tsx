@@ -1,6 +1,25 @@
-import { FormEvent } from "react";
+import { FormEvent, useState } from "react";
+import { useGetAllServiceQuery } from "../../../../redux/api/features/Service/serviceManagementApi";
+import { TService } from "../../../../utils/types/globalTypes";
 
 const AddCourse = () => {
+  const { data } = useGetAllServiceQuery(undefined);
+  const services = data?.data;
+  // console.log("Services: ", services);
+
+  const [refService, setRefService] = useState<string>("");
+  const [refServiceId, setRefServiceId] = useState<string>("");
+
+  const handleService = (event: React.ChangeEvent<HTMLSelectElement>) => {
+    const [serviceId, _id] = event.target.value.split(",");
+
+    setRefService(_id);
+    setRefServiceId(serviceId);
+  };
+
+  console.log("ref Service:", refService);
+  console.log("Service id:", refServiceId);
+
   const handleAddCourse = (event: FormEvent<HTMLFormElement>) => {
     event.preventDefault();
     console.log("Add Course");
@@ -10,7 +29,7 @@ const AddCourse = () => {
     <div className="flex justify-center items-center min-h-screen bg-gradient-to-br from-gray-900 to-black p-6">
       <div className="w-full max-w-3xl bg-gray-800 bg-opacity-50 backdrop-blur-lg shadow-2xl rounded-2xl p-8 border border-gray-700">
         <h2 className="text-3xl font-bold text-white mb-6 text-center">
-          Course Input
+          Add Course
         </h2>
         <form onSubmit={handleAddCourse}>
           <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
@@ -32,13 +51,23 @@ const AddCourse = () => {
               <label className="block font-medium mb-2 text-gray-300">
                 Service id
               </label>
-              <input
-                type="text"
-                name="courseTitle"
+
+              <select
+                onChange={handleService}
+                name=""
+                id=""
                 className="w-full p-3 bg-gray-700 border border-gray-600 rounded-lg text-white placeholder-gray-400 focus:outline-none focus:ring-2 focus:ring-blue-500 transition-all"
-                placeholder="Enter course title"
-                required
-              />
+              >
+                <option value="" disabled>
+                  Select one
+                </option>
+                {services?.map((data: TService, idx: number) => (
+                  <option value={`${data?.serviceId},${data?._id}`} key={idx}>
+                    {" "}
+                    {data?.name}{" "}
+                  </option>
+                ))}
+              </select>
             </div>
             {/* Course Title */}
             <div>
