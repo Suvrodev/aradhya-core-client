@@ -12,8 +12,8 @@ import AdminDashboardHome from "../Pages/AdminDashboard/AdminDashboardHome";
 import AdminDashboard from "../Pages/AdminDashboard/AdminDashboard";
 import AdminProfile from "../Pages/AdminDashboard/AdminProfile/AdminProfile";
 import AdminService from "../Pages/AdminDashboard/AdminService/AdminService";
-import AddBlog from "../Pages/AdminDashboard/AdminBlog/AddBlog";
-import AllBlog from "../Pages/AdminDashboard/AdminBlog/AllBlog";
+import AddBlog from "../Pages/AdminDashboard/AdminBlog/AddBlog/AddBlog";
+import AllBlog from "../Pages/AdminDashboard/AdminBlog/AllBlog/AllBlog";
 import UpdateBlog from "../Pages/AdminDashboard/AdminBlog/UpdateBlog";
 
 export const router = createBrowserRouter([
