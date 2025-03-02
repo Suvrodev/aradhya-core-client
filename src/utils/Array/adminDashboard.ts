@@ -22,7 +22,7 @@ export const adminDashboards = [
 
   {
     text: "Add Course",
-    path: "/admin-dashboard/user-management",
+    path: "/admin-dashboard/add-course",
   },
   {
     text: "Courses",

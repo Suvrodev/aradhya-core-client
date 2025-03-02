@@ -15,6 +15,7 @@ import AdminService from "../Pages/AdminDashboard/AdminService/AdminService";
 import AddBlog from "../Pages/AdminDashboard/AdminBlog/AddBlog/AddBlog";
 import AllBlog from "../Pages/AdminDashboard/AdminBlog/AllBlog/AllBlog";
 import UpdateBlog from "../Pages/AdminDashboard/AdminBlog/UpdateBlog";
+import AddCourse from "../Pages/AdminDashboard/AdminCourse/AddCourse/AddCourse";
 
 export const router = createBrowserRouter([
   {
@@ -84,6 +85,15 @@ export const router = createBrowserRouter([
           <AdminProtectedRoute>
             {" "}
             <AdminService />
+          </AdminProtectedRoute>
+        ),
+      },
+      {
+        path: "add-course",
+        element: (
+          <AdminProtectedRoute>
+            {" "}
+            <AddCourse />
           </AdminProtectedRoute>
         ),
       },
