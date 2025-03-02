@@ -10,7 +10,6 @@ interface IProps {
 const CourseBox = ({ course }: IProps) => {
   const [deleteCourse] = useDeleteCourseMutation();
   const {
-    _id,
     courseId,
     courseTitle,
     courseImage,
@@ -57,7 +56,7 @@ const CourseBox = ({ course }: IProps) => {
       <div className="absolute top-2 right-2 flex space-x-2">
         {/* Update Button */}
         <Link
-          to={`/admin-dashboard/update-blog/${_id}`}
+          to={`/admin-dashboard/update-course/${courseId}`}
           className="w-[40px] h-[40px] flex items-center justify-center bg-green-500 rounded-full shadow-md hover:bg-green-600 transition-colors"
         >
           <CodeXml />

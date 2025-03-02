@@ -16,6 +16,7 @@ import AllBlog from "../Pages/AdminDashboard/AdminBlog/AllBlog/AllBlog";
 import UpdateBlog from "../Pages/AdminDashboard/AdminBlog/UpdateBlog";
 import AddCourse from "../Pages/AdminDashboard/AdminCourse/AddCourse/AddCourse";
 import AllCourses from "../Pages/AdminDashboard/AdminCourse/AllCourses/AllCourses";
+import UpdateCourse from "../Pages/AdminDashboard/AdminCourse/UpdateCourse/UpdateCourse";
 
 export const router = createBrowserRouter([
   {
@@ -103,6 +104,15 @@ export const router = createBrowserRouter([
           <AdminProtectedRoute>
             {" "}
             <AllCourses />
+          </AdminProtectedRoute>
+        ),
+      },
+      {
+        path: "update-course/:id",
+        element: (
+          <AdminProtectedRoute>
+            {" "}
+            <UpdateCourse />
           </AdminProtectedRoute>
         ),
       },
