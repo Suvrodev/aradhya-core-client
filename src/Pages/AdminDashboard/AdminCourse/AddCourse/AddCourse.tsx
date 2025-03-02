@@ -4,8 +4,10 @@ import { TService } from "../../../../utils/types/globalTypes";
 import TextEditor from "../../AdminBlog/TextEditor/TextEditor";
 import { toast } from "sonner";
 import { sonarId } from "../../../../utils/Fucntion/sonarId";
+import { useAddCourseMutation } from "../../../../redux/api/features/Course/courseManagementApi";
 
 const AddCourse = () => {
+  const [addCourse] = useAddCourseMutation();
   const { data } = useGetAllServiceQuery(undefined);
   const services = data?.data;
   // console.log("Services: ", services);
@@ -16,7 +18,7 @@ const AddCourse = () => {
   const [refService, setRefService] = useState<string>("");
   const [refServiceId, setRefServiceId] = useState<string>("");
   const [selectedService, setSelectedService] = useState<string>("");
-  const [courseStatus, setCourseStatus] = useState<string>("OnGoing");
+  const [courseStatus, setCourseStatus] = useState<string>("onGoing");
   const [courseExists, setCourseExists] = useState<boolean>(true);
   const handleCourseStatus = (event: React.ChangeEvent<HTMLSelectElement>) => {
     setCourseStatus(event.target.value);
@@ -39,10 +41,10 @@ const AddCourse = () => {
     setSelectedService(name); // Set selected service name
   };
 
-  console.log("ref Service:", refService);
-  console.log("Service id:", refServiceId);
+  // console.log("ref Service:", refService);
+  // console.log("Service id:", refServiceId);
 
-  const handleAddCourse = (event: FormEvent<HTMLFormElement>) => {
+  const handleAddCourse = async (event: FormEvent<HTMLFormElement>) => {
     event.preventDefault();
     console.log("Add Course");
     const Form = event.target as HTMLFormElement;
@@ -90,6 +92,9 @@ const AddCourse = () => {
       courseExists,
     };
     console.log("Form Data: ", formData);
+
+    const res = await addCourse(formData);
+    console.log("Res: ", res);
   };
 
   return (

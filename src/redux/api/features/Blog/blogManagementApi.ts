@@ -10,7 +10,7 @@ const blogManagementApi = baseApi.injectEndpoints({
           body: data,
         };
       },
-      invalidatesTags: ["service"],
+      invalidatesTags: ["blog"],
     }),
     getALlBlog: builder.query({
       query: () => {
@@ -28,7 +28,7 @@ const blogManagementApi = baseApi.injectEndpoints({
           method: "GET",
         };
       },
-      providesTags: ["service"],
+      providesTags: ["blog"],
     }),
 
     deleteBlog: builder.mutation({
@@ -38,7 +38,7 @@ const blogManagementApi = baseApi.injectEndpoints({
           method: "DELETE",
         };
       },
-      invalidatesTags: ["service"],
+      invalidatesTags: ["blog"],
     }),
     updateBlog: builder.mutation({
       query: ({ id, updateData }) => {
@@ -48,7 +48,7 @@ const blogManagementApi = baseApi.injectEndpoints({
           body: updateData,
         };
       },
-      invalidatesTags: ["service"],
+      invalidatesTags: ["blog"],
     }),
   }),
 });
