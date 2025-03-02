@@ -16,6 +16,11 @@ export type TService = {
   order: number;
 };
 
+export type TBanner = {
+  id: number;
+  image: string;
+};
+
 export type TBlog = {
   _id: string;
   title: string;

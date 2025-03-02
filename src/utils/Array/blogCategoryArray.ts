@@ -1,4 +1,4 @@
-export const blogTypes = [
+export const blogCategories = [
   "Frontend Development",
   "Backend Development",
   "Full-Stack Development",

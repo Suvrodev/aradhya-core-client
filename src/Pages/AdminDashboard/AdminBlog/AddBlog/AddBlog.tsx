@@ -1,34 +1,36 @@
-import { useRef, useState } from "react";
-import JoditEditor from "jodit-react";
-import { blogTypes } from "../../../../utils/Array/blogTypeArray";
+import { ChangeEvent, useState } from "react";
+import { blogCategories } from "../../../../utils/Array/blogCategoryArray";
 import { useAddBlogMutation } from "../../../../redux/api/features/Blog/blogManagementApi";
 import { toast } from "sonner";
+import TextEditor from "../TextEditor/TextEditor";
 
 const AddBlog = () => {
   const [addBlog] = useAddBlogMutation();
-  const editor = useRef(null);
-  const [blog, setBlog] = useState({
-    title: "",
-    content: "",
-    image: "",
-    category: "",
-    writer: "",
-  });
+  const [category, setCategory] = useState("");
 
-  // Handle input changes
-  const handleChange = (
-    e: React.ChangeEvent<HTMLInputElement | HTMLSelectElement>
-  ) => {
-    setBlog({ ...blog, [e.target.name]: e.target.value });
+  const [content, setContent] = useState<string>(
+    " <p>Welcome to Blog Text Editor!</p>"
+  );
+  // console.log("Content: ", content);
+
+  const handleCategory = (e: ChangeEvent<HTMLSelectElement>) => {
+    const data = e.target.value;
+    setCategory(data);
+    // console.log("Data: ", data);
   };
 
   // Handle form submission
-  const handleSubmit = async (e: React.FormEvent) => {
-    e.preventDefault();
-    console.log("Blog Data:", blog);
-    setBlog({ title: "", content: "", image: "", category: "", writer: "" });
+  const handleSubmit = async (event: React.FormEvent) => {
+    event.preventDefault();
+    console.log("Blog Data:");
+    const Form = event.target as HTMLFormElement;
+    const title = Form.titlee.value;
+    const image = Form.image.value;
+    const writer = Form.writer.value;
+    const formData = { title, content, image, category, writer };
+    console.log("Form Data: ", formData);
     toast.loading("Inserting Blog");
-    const res = await addBlog(blog).unwrap();
+    const res = await addBlog(formData).unwrap();
     console.log("Res: ", res);
     if (res?.success) {
       toast.success("Blog Added Successfully");
@@ -47,9 +49,7 @@ const AddBlog = () => {
           <label className="text-sm font-medium text-white">Title</label>
           <input
             type="text"
-            name="title"
-            value={blog.title}
-            onChange={handleChange}
+            name="titlee"
             placeholder="Enter blog title"
             className="w-full px-4 py-2 bg-gray-700 text-white rounded-lg focus:outline-none focus:ring focus:ring-teal-500"
             required
@@ -59,12 +59,7 @@ const AddBlog = () => {
         {/* Jodit Editor for Content */}
         <div className="space-y-2">
           <label className="text-sm font-medium text-white">Content</label>
-          <JoditEditor
-            ref={editor}
-            value={blog.content}
-            onChange={(newContent) => setBlog({ ...blog, content: newContent })}
-            className="border text-black border-gray-300 rounded-lg overflow-hidden focus:ring-2 focus:ring-blue-500 focus:border-transparent transition-all"
-          />
+          <TextEditor content={content} setContent={setContent} />
         </div>
 
         {/* Image URL */}
@@ -73,8 +68,6 @@ const AddBlog = () => {
           <input
             type="text"
             name="image"
-            value={blog.image}
-            onChange={handleChange}
             placeholder="Enter image URL"
             className="w-full px-4 py-2 bg-gray-700 text-white rounded-lg focus:outline-none focus:ring focus:ring-teal-500"
             required
@@ -86,15 +79,17 @@ const AddBlog = () => {
           <label className="text-sm font-medium text-white">Category</label>
           <select
             name="category"
-            value={blog.category}
-            onChange={handleChange}
-            className="w-full px-4 py-2 bg-gray-700 text-white rounded-lg focus:outline-none focus:ring focus:ring-teal-500"
+            value={category}
+            onChange={handleCategory}
             required
+            className="w-full h-[65px] px-4 py-2 bg-gray-700 text-white rounded-lg focus:outline-none focus:ring focus:ring-teal-500"
           >
-            <option value="">Select Category</option>
-            {blogTypes.map((type, index) => (
-              <option key={index} value={type}>
-                {type}
+            <option value="" disabled>
+              Select Category
+            </option>
+            {blogCategories.map((data, idx) => (
+              <option key={idx} value={data}>
+                {data}
               </option>
             ))}
           </select>
@@ -106,8 +101,6 @@ const AddBlog = () => {
           <input
             type="text"
             name="writer"
-            value={blog.writer}
-            onChange={handleChange}
             placeholder="Enter writer's name"
             className="w-full px-4 py-2 bg-gray-700 text-white rounded-lg focus:outline-none focus:ring focus:ring-teal-500"
             required
