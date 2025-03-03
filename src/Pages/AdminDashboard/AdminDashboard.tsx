@@ -1,3 +1,4 @@
+import "./AdminDashboard.css";
 import MenuIcon from "@mui/icons-material/Menu";
 import WestIcon from "@mui/icons-material/West";
 import { useTitle } from "../../Component/hook/useTitle";
@@ -13,7 +14,7 @@ const AdminDashboard = () => {
   const location = useLocation()?.pathname;
 
   return (
-    <div>
+    <div className="adminDashboardBG">
       {/* Dashboard Header */}
       <div className="text-xl font-bold text-center bg-gradient-to-br from-gray-800 via-gray-900 to-black py-4 px-4 flex text-white">
         <div className="w-[33%] flex justify-start">

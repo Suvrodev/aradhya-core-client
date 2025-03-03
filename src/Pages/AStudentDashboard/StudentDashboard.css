@@ -1,0 +1,120 @@
+.userDashboardBG {
+  position: relative;
+  /* background-color: #f9f8ff; */
+  /* background: linear-gradient(to bottom, #e4f2fc, #86c4f2); */
+  /* background: linear-gradient(to bottom, #e4f2fc, #9eb5c0); */
+  /* background: linear-gradient(to bottom, #9eb5c0, #cbd7dd); */
+  background: linear-gradient(to bottom, #cbd7dd, #9eb5c0);
+  height: 100vh;
+  max-width: 100vw;
+  overflow: hidden;
+}
+
+.userDashboardBG::before {
+  content: "";
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-image: url("../../assets/bg/bgPattern.png");
+  background-size: cover;
+  background-position: center;
+  background-repeat: no-repeat;
+  opacity: 0.06; /* Adjust opacity of background image */
+  z-index: 0;
+}
+
+.userDashboardBG > * {
+  position: relative;
+  z-index: 1;
+}
+
+.box1 {
+  position: absolute;
+  height: 30.77%;
+  width: 17.91%;
+  top: -9.63%;
+  right: 89.76%;
+  bottom: 78.85%;
+  left: -7.66%;
+  border-radius: 50%;
+  background-color: #12b76a;
+  filter: blur(50.42px);
+  opacity: 0.1;
+}
+
+.box2 {
+  position: absolute;
+  height: 30.77%;
+  width: 17.91%;
+  top: -9.63%;
+  right: 89.76%;
+  bottom: 78.85%;
+  left: -7.66%;
+  border-radius: 50%;
+  background-color: #12b76a;
+  filter: blur(50.42px);
+  opacity: 0.1;
+}
+.box3 {
+  position: absolute;
+  height: 30.77%;
+  width: 17.91%;
+  top: -9.63%;
+  right: 89.76%;
+  bottom: 78.85%;
+  left: -7.66%;
+  border-radius: 50%;
+  background-color: #12b76a;
+  filter: blur(50.42px);
+  opacity: 0.1;
+}
+
+.box4 {
+  width: 300px;
+  height: 200px;
+  background-color: rgba(68, 120, 255, 0.2);
+  position: absolute;
+  top: -50px;
+  right: -120px;
+  transform: rotate(50deg);
+  filter: blur(50.42px);
+}
+.box5 {
+  position: absolute;
+  height: 22.83%;
+  width: 18.93%;
+  top: -11.72%;
+  right: 37.68%;
+  bottom: 88.89%;
+  left: 43.39%;
+  border-radius: 50%;
+  background-color: #12b76a;
+  filter: blur(50px);
+  opacity: 0.2;
+}
+.box6 {
+  height: 33.74%;
+  width: 18.57%;
+  top: 30.3%;
+  right: 21.88%;
+  bottom: 35.96%;
+  left: 59.55%;
+  background-color: #12b76a;
+  filter: blur(119px);
+  opacity: 0.35;
+}
+.box7 {
+  height: 61.33%;
+  width: 10.55%;
+  top: 87.88%;
+  right: 24.57%;
+  bottom: -49.21%;
+  left: 64.88%;
+  background-color: #4478ff;
+  filter: blur(50.42px);
+  transform: rotate(90deg);
+  transform-origin: 0 0;
+  opacity: 0.15;
+}

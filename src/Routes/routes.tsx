@@ -19,6 +19,9 @@ import AllCourses from "../Pages/AdminDashboard/AdminCourse/AllCourses/AllCourse
 import UpdateCourse from "../Pages/AdminDashboard/AdminCourse/UpdateCourse/UpdateCourse";
 import AdminBatch from "../Pages/AdminDashboard/AdminBatch/AdminBatch/AdminBatch";
 import AdminCourseCurriculum from "../Pages/AdminDashboard/AdminCourseCurriculum/AdminCourseCurriculum";
+import StudentDashboard from "../Pages/AStudentDashboard/StudentDashboard";
+import UserProtectedRoute from "./ProtectedRoute/UserProtectedRoute";
+import StudentDashboardHome from "../Pages/AStudentDashboard/StudentDashboardHome";
 
 export const router = createBrowserRouter([
   {
@@ -62,6 +65,116 @@ export const router = createBrowserRouter([
             {" "}
             <AdminDashboardHome />{" "}
           </AdminProtectedRoute>
+        ),
+      },
+      {
+        path: "admin-home",
+        element: (
+          <AdminProtectedRoute>
+            {" "}
+            <AdminDashboardHome />,
+          </AdminProtectedRoute>
+        ),
+      },
+      {
+        path: "admin-profile",
+        element: (
+          <AdminProtectedRoute>
+            {" "}
+            <AdminProfile />
+          </AdminProtectedRoute>
+        ),
+      },
+      {
+        path: "admin-service",
+        element: (
+          <AdminProtectedRoute>
+            {" "}
+            <AdminService />
+          </AdminProtectedRoute>
+        ),
+      },
+      {
+        path: "add-course",
+        element: (
+          <AdminProtectedRoute>
+            {" "}
+            <AddCourse />
+          </AdminProtectedRoute>
+        ),
+      },
+      {
+        path: "all-course",
+        element: (
+          <AdminProtectedRoute>
+            {" "}
+            <AllCourses />
+          </AdminProtectedRoute>
+        ),
+      },
+      {
+        path: "update-course/:id",
+        element: (
+          <AdminProtectedRoute>
+            {" "}
+            <UpdateCourse />
+          </AdminProtectedRoute>
+        ),
+      },
+      {
+        path: "course-courriculum",
+        element: (
+          <AdminProtectedRoute>
+            {" "}
+            <AdminCourseCurriculum />
+          </AdminProtectedRoute>
+        ),
+      },
+      {
+        path: "admin-batch",
+        element: (
+          <AdminProtectedRoute>
+            {" "}
+            <AdminBatch />
+          </AdminProtectedRoute>
+        ),
+      },
+      {
+        path: "admin-all-blog",
+        element: (
+          <AdminProtectedRoute>
+            {" "}
+            <AllBlog />
+          </AdminProtectedRoute>
+        ),
+      },
+      {
+        path: "update-blog/:id",
+        element: (
+          <AdminProtectedRoute>
+            {" "}
+            <UpdateBlog />
+          </AdminProtectedRoute>
+        ),
+      },
+    ],
+  },
+
+  {
+    path: "user-dashboard",
+    element: (
+      <UserProtectedRoute>
+        <StudentDashboard />
+      </UserProtectedRoute>
+    ),
+    children: [
+      {
+        index: true,
+        element: (
+          <UserProtectedRoute>
+            {" "}
+            <StudentDashboardHome />{" "}
+          </UserProtectedRoute>
         ),
       },
       {
