@@ -65,6 +65,14 @@ const AllBatch = () => {
                 <span className="ml-2"> {data?.end}</span>
               </p>
             </div>
+            <div className="mt-4 flex justify-between">
+              <p>
+                <span className="bg-white py-1 px-2 shadow-md text-black rounded-md">
+                  Batch Status
+                </span>{" "}
+                <span className="ml-2"> {data?.batchStatus}</span>
+              </p>
+            </div>
 
             <div className="absolute top-2 right-2">
               <div onClick={() => handleDelete(data?.batchId)}>
