@@ -18,6 +18,7 @@ import AddCourse from "../Pages/AdminDashboard/AdminCourse/AddCourse/AddCourse";
 import AllCourses from "../Pages/AdminDashboard/AdminCourse/AllCourses/AllCourses";
 import UpdateCourse from "../Pages/AdminDashboard/AdminCourse/UpdateCourse/UpdateCourse";
 import AdminBatch from "../Pages/AdminDashboard/AdminBatch/AdminBatch/AdminBatch";
+import AdminCourseCurriculum from "../Pages/AdminDashboard/AdminCourseCurriculum/AdminCourseCurriculum";
 
 export const router = createBrowserRouter([
   {
@@ -114,6 +115,15 @@ export const router = createBrowserRouter([
           <AdminProtectedRoute>
             {" "}
             <UpdateCourse />
+          </AdminProtectedRoute>
+        ),
+      },
+      {
+        path: "course-courriculum",
+        element: (
+          <AdminProtectedRoute>
+            {" "}
+            <AdminCourseCurriculum />
           </AdminProtectedRoute>
         ),
       },

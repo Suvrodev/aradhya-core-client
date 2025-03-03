@@ -30,7 +30,7 @@ export const adminDashboards = [
   },
   {
     text: "Course Curriculum",
-    path: "/admin-dashboard/user-management",
+    path: "/admin-dashboard/course-courriculum",
   },
   {
     text: "Needed Software",
