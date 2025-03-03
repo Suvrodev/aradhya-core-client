@@ -20,8 +20,8 @@ import UpdateCourse from "../Pages/AdminDashboard/AdminCourse/UpdateCourse/Updat
 import AdminBatch from "../Pages/AdminDashboard/AdminBatch/AdminBatch/AdminBatch";
 import AdminCourseCurriculum from "../Pages/AdminDashboard/AdminCourseCurriculum/AdminCourseCurriculum";
 import StudentDashboard from "../Pages/AStudentDashboard/StudentDashboard";
-import UserProtectedRoute from "./ProtectedRoute/UserProtectedRoute";
 import StudentDashboardHome from "../Pages/AStudentDashboard/StudentDashboardHome";
+import StudentProtectedRoute from "./ProtectedRoute/StudentProtectedRoute";
 
 export const router = createBrowserRouter([
   {
@@ -161,20 +161,20 @@ export const router = createBrowserRouter([
   },
 
   {
-    path: "user-dashboard",
+    path: "student-dashboard",
     element: (
-      <UserProtectedRoute>
+      <StudentProtectedRoute>
         <StudentDashboard />
-      </UserProtectedRoute>
+      </StudentProtectedRoute>
     ),
     children: [
       {
         index: true,
         element: (
-          <UserProtectedRoute>
+          <StudentProtectedRoute>
             {" "}
             <StudentDashboardHome />{" "}
-          </UserProtectedRoute>
+          </StudentProtectedRoute>
         ),
       },
       {

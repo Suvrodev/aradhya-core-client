@@ -1,8 +1,9 @@
+import StudentDesktopHeader from "./Shared/StudentHeader/StudentDesktopHeader/StudentDesktopHeader";
 import "./StudentDashboard.css";
 const StudentDashboard = () => {
   return (
     <div className="userDashboardBG text-black">
-      <h1 className="text-2xl font-bold mt-10 ml-10">Student Dashboard</h1>
+      <StudentDesktopHeader />
 
       <div className="box1"></div>
       <div className="box2"></div>

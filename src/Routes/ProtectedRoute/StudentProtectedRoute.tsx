@@ -8,10 +8,10 @@ import { logout } from "../../redux/api/features/auth/authSlice";
 interface IProps {
   children: ReactNode;
 }
-const UserProtectedRoute = ({ children }: IProps) => {
+const StudentProtectedRoute = ({ children }: IProps) => {
   const { token } = useAppSelector((state) => state.auth);
   const dispatch = useDispatch();
-  console.log("Token in Student Protected Route: ", token);
+  // console.log("Token in Student Protected Route: ", token);
 
   const location = useLocation();
   // eslint-disable-next-line @typescript-eslint/no-explicit-any
@@ -19,10 +19,10 @@ const UserProtectedRoute = ({ children }: IProps) => {
   if (token) {
     user = verifyToken(token);
   }
-  console.log("Token User: ", user);
+  // console.log("Token User: ", user);
 
   useEffect(() => {
-    if (!token || user?.role !== "user") {
+    if (!token || user?.role !== "student") {
       dispatch(logout());
     }
   }, [token, user?.role, dispatch]);
@@ -36,7 +36,7 @@ const UserProtectedRoute = ({ children }: IProps) => {
       ></Navigate>
     );
   }
-  if (user?.role !== "user") {
+  if (user?.role !== "student") {
     return (
       <Navigate
         to={"/login"}
@@ -48,4 +48,4 @@ const UserProtectedRoute = ({ children }: IProps) => {
   return children;
 };
 
-export default UserProtectedRoute;
+export default StudentProtectedRoute;

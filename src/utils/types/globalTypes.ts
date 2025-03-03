@@ -2,6 +2,7 @@ export type TUser = {
   _id: string;
   name: string;
   email: string;
+  image: string;
   role: "user" | "admin";
   isBlocked: boolean;
   iat: number;
