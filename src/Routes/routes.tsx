@@ -17,6 +17,7 @@ import UpdateBlog from "../Pages/AdminDashboard/AdminBlog/UpdateBlog";
 import AddCourse from "../Pages/AdminDashboard/AdminCourse/AddCourse/AddCourse";
 import AllCourses from "../Pages/AdminDashboard/AdminCourse/AllCourses/AllCourses";
 import UpdateCourse from "../Pages/AdminDashboard/AdminCourse/UpdateCourse/UpdateCourse";
+import AdminBatch from "../Pages/AdminDashboard/AdminBatch/AdminBatch/AdminBatch";
 
 export const router = createBrowserRouter([
   {
@@ -113,6 +114,15 @@ export const router = createBrowserRouter([
           <AdminProtectedRoute>
             {" "}
             <UpdateCourse />
+          </AdminProtectedRoute>
+        ),
+      },
+      {
+        path: "admin-batch",
+        element: (
+          <AdminProtectedRoute>
+            {" "}
+            <AdminBatch />
           </AdminProtectedRoute>
         ),
       },

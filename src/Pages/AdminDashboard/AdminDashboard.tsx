@@ -62,12 +62,12 @@ const AdminDashboard = () => {
               <h1 className="text-xl font-bold text-white">Admin Dashboard</h1>
             </div>
 
-            <div className="flex flex-col gap-4 my-4">
+            <div className="flex flex-col gap-4 my-4 ">
               {adminDashboards.map((data, idx) => (
                 <Link
                   key={idx}
                   to={data?.path}
-                  className={`dashboardLink text-lg font-medium py-2 px-4 rounded-lg ${
+                  className={`dashboardLink font-medium py-2 px-4 rounded-lg ${
                     location === data?.path
                       ? "bg-blue-600 text-white"
                       : "hover:bg-gray-700 text-gray-300"

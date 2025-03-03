@@ -33,6 +33,14 @@ export type TBlog = {
   __v: number;
 };
 
+export type TBatch = {
+  batchId: string;
+  batchName: string;
+  batchStatus: string;
+  start: string;
+  end?: string;
+};
+
 export type TCategory = {
   id: string;
   name: string;

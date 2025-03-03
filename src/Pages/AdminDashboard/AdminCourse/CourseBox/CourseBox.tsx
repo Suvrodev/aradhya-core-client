@@ -26,7 +26,7 @@ const CourseBox = ({ course }: IProps) => {
   return (
     <div className="max-w-sm bg-white rounded-2xl overflow-hidden shadow-2xl hover:shadow-3xl transition-shadow duration-300 transform  cursor-pointer border border-[#2A3A57] relative">
       <img
-        className="w-full h-48 object-cover"
+        className="w-full h-[250px] object-cover"
         src={courseImage}
         alt={courseTitle}
       />

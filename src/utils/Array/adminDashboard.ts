@@ -29,12 +29,16 @@ export const adminDashboards = [
     path: "/admin-dashboard/all-course",
   },
   {
-    text: "Schedule",
+    text: "Course Curriculum",
     path: "/admin-dashboard/user-management",
   },
   {
     text: "Needed Software",
     path: "/admin-dashboard/order-management",
+  },
+  {
+    text: "Batch",
+    path: "/admin-dashboard/admin-batch",
   },
   {
     text: "Add Blog",
