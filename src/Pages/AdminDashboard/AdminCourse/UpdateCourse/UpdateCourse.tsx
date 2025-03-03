@@ -150,8 +150,14 @@ const UpdateCourse = () => {
         <h2 className="text-3xl font-bold text-white mb-6 text-center">
           Update Course
         </h2>
+
+        <img
+          src={specificCourse?.courseImage}
+          className="w-full md:w-[300px] mx-auto h-[300px] rounded-md"
+          alt=""
+        />
         <form onSubmit={handleAddCourse}>
-          <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
+          <div className="grid grid-cols-1 md:grid-cols-2 gap-6 mt-4">
             {/* Course id */}
             <div>
               <label className="block font-medium mb-2 text-gray-300">
