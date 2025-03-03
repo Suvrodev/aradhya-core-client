@@ -1,10 +1,27 @@
-import { useGetAllBatchQuery } from "../../../../redux/api/features/Batch/batchManagementApi";
+import {
+  useDeleteBatchMutation,
+  useGetAllBatchQuery,
+} from "../../../../redux/api/features/Batch/batchManagementApi";
 import { TBatch } from "../../../../utils/types/globalTypes";
+import DeleteComponent from "../../../../Component/DeleteComponent/DeleteComponent";
+import { toast } from "sonner";
+import { sonarId } from "../../../../utils/Fucntion/sonarId";
 
 const AllBatch = () => {
   const { data, isLoading } = useGetAllBatchQuery(undefined);
+  const [deleteBatch] = useDeleteBatchMutation();
   const batchData = data?.data;
   //   console.log("Batch: ", batchData);
+
+  const handleDelete = async (id: string) => {
+    console.log("Delete: ", id);
+    toast.loading("Deleting batch", { id: sonarId });
+    const res = await deleteBatch(id).unwrap();
+    console.log("res: ", res);
+    if (res?.status) {
+      toast.success("Batch deleted", { id: sonarId });
+    }
+  };
 
   if (isLoading) {
     return <p>Loading Batch...</p>;
@@ -14,7 +31,7 @@ const AllBatch = () => {
       <h1 className="text-xl font-bold">All Batch</h1>
       <div className="flex flex-col gap-4">
         {batchData?.map((data: TBatch, idx: number) => (
-          <div key={idx} className="border py-4 px-2 rounded-md ">
+          <div key={idx} className="border py-4 px-2 rounded-md relative ">
             <h1>
               {" "}
               <span className="bg-white py-1 px-2 shadow-md text-black rounded-md">
@@ -47,6 +64,12 @@ const AllBatch = () => {
                 </span>{" "}
                 <span className="ml-2"> {data?.end}</span>
               </p>
+            </div>
+
+            <div className="absolute top-2 right-2">
+              <div onClick={() => handleDelete(data?.batchId)}>
+                <DeleteComponent />
+              </div>
             </div>
           </div>
         ))}
