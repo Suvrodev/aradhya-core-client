@@ -1,6 +1,6 @@
 import { jwtDecode } from "jwt-decode";
-import { TUser } from "../types/globalTypes";
+import { TStudent } from "../types/globalTypes";
 
-export const verifyToken = (token: string): TUser => {
+export const verifyToken = (token: string): TStudent => {
   return jwtDecode(token);
 };

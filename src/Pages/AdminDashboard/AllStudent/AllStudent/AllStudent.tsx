@@ -1,12 +1,17 @@
 import { Trash2 } from "lucide-react";
 import LoadingPage from "../../../../Component/LoadingPage/LoadingPage";
-import { useGetAllStudentQuery } from "../../../../redux/api/features/Student/studentManagementApi";
+import {
+  useDeleteStudentMutation,
+  useGetAllStudentQuery,
+} from "../../../../redux/api/features/Student/studentManagementApi";
 import { TStudent } from "../../../../utils/types/globalTypes";
 import { UserPlus } from "lucide-react";
 import { useState } from "react";
+import { toast } from "sonner";
+import { sonarId } from "../../../../utils/Fucntion/sonarId";
 
 const AllStudent = () => {
-  //   const [allStudents, isLoading] = useGetAllStudentQuery(undefined);
+  const [deleteStudent] = useDeleteStudentMutation();
   const [searchTerm, setSearchTerm] = useState("");
   const { data, isLoading } = useGetAllStudentQuery(
     searchTerm ? { search: searchTerm } : undefined
@@ -16,6 +21,14 @@ const AllStudent = () => {
   console.log("Search Team: ", searchTerm);
   const handleAssign = (data: TStudent) => {
     console.log("Handle Assign Student: ", data);
+  };
+
+  const handleDelete = async (id: string) => {
+    toast.loading("Deleting", { id: sonarId });
+    const res = await deleteStudent(id).unwrap();
+    if (res?.success) {
+      toast.success("Student deleted successfully", { id: sonarId });
+    }
   };
 
   if (isLoading) {
@@ -78,7 +91,10 @@ const AllStudent = () => {
                   </button>
                 </td>
                 <td className="py-3 px-4">
-                  <button className="btn btn-error text-white flex items-center justify-center">
+                  <button
+                    className="btn btn-error text-white flex items-center justify-center"
+                    onClick={() => handleDelete(data?.studentId)}
+                  >
                     <Trash2 />
                   </button>
                 </td>

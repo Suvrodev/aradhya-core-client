@@ -13,7 +13,7 @@ import { StartFromTop } from "../../../Component/hook/StartFromTop";
 import { verifyToken } from "../../../utils/Fucntion/verifyToken";
 import { setUser } from "../../../redux/api/features/auth/authSlice";
 import { useTitle } from "../../../Component/hook/useTitle";
-import { TUser } from "../../../utils/types/globalTypes";
+import { TStudent } from "../../../utils/types/globalTypes";
 const Login = () => {
   useTitle("Login");
   const dispatch = useAppDispatch();
@@ -48,7 +48,7 @@ const Login = () => {
     const res = await login(formData).unwrap();
     console.log("Res: ", res);
     const token = res?.data?.token;
-    const user: TUser = verifyToken(token);
+    const user: TStudent = verifyToken(token);
     if (res?.success) {
       console.log("User: ", user);
       toast.success("Login successfully", { id: sonarId });
