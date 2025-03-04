@@ -9,7 +9,7 @@ export const adminDashboards = [
   },
   {
     text: "All Student",
-    path: "/admin-dashboard/admin-add-book",
+    path: "/admin-dashboard/all-student",
   },
   {
     text: "Assign Student",

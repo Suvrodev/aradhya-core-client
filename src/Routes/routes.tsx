@@ -22,6 +22,7 @@ import AdminCourseCurriculum from "../Pages/AdminDashboard/AdminCourseCurriculum
 import StudentDashboard from "../Pages/AStudentDashboard/StudentDashboard";
 import StudentDashboardHome from "../Pages/AStudentDashboard/StudentDashboardHome";
 import StudentProtectedRoute from "./ProtectedRoute/StudentProtectedRoute";
+import AllStudent from "../Pages/AdminDashboard/AllStudent/AllStudent/AllStudent";
 
 export const router = createBrowserRouter([
   {
@@ -82,6 +83,14 @@ export const router = createBrowserRouter([
           <AdminProtectedRoute>
             {" "}
             <AdminProfile />
+          </AdminProtectedRoute>
+        ),
+      },
+      {
+        path: "all-student",
+        element: (
+          <AdminProtectedRoute>
+            <AllStudent />
           </AdminProtectedRoute>
         ),
       },
