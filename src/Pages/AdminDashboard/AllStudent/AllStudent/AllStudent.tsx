@@ -5,10 +5,10 @@ import {
   useGetAllStudentQuery,
 } from "../../../../redux/api/features/Student/studentManagementApi";
 import { TStudent } from "../../../../utils/types/globalTypes";
-import { UserPlus } from "lucide-react";
 import { useState } from "react";
 import { toast } from "sonner";
 import { sonarId } from "../../../../utils/Fucntion/sonarId";
+import AssignStudent from "../AssignStudent/AssignStudent";
 
 const AllStudent = () => {
   const [deleteStudent] = useDeleteStudentMutation();
@@ -19,9 +19,6 @@ const AllStudent = () => {
   const allStudents = data?.data;
   //   console.log("All Students: ", allStudents);
   console.log("Search Team: ", searchTerm);
-  const handleAssign = (data: TStudent) => {
-    console.log("Handle Assign Student: ", data);
-  };
 
   const handleDelete = async (id: string) => {
     toast.loading("Deleting", { id: sonarId });
@@ -83,11 +80,8 @@ const AllStudent = () => {
                 <td className="py-3 px-4">{data?.phone}</td>
                 <td className="py-3 px-4">{data?.role}</td>
                 <td className="py-3 px-4">
-                  <button
-                    className="px-4 py-2 bg-teal-500 text-white rounded-lg hover:bg-teal-600 transition-all duration-300"
-                    onClick={() => handleAssign(data)}
-                  >
-                    <UserPlus />
+                  <button className="px-4 py-2 bg-teal-500 text-white rounded-lg hover:bg-teal-600 transition-all duration-300">
+                    <AssignStudent student={data} />
                   </button>
                 </td>
                 <td className="py-3 px-4">
