@@ -5,6 +5,7 @@ export type TUser = {
   image: string;
   role: "user" | "admin";
   isBlocked: boolean;
+  studentId: string;
   iat: number;
   exp: number;
 };
