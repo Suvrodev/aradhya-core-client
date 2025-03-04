@@ -21,11 +21,12 @@ const AdminCourseCurriculum = () => {
     event.preventDefault();
     const Form = event.target as HTMLFormElement;
     const title = Form.titlee.value;
+    const order = Form.order.value;
     if (!courseId) {
       toast.error("Select Course", { id: sonarId });
       return;
     }
-    const formData = { title, courseId };
+    const formData = { title, courseId, order };
     toast.loading("Curriculum Adding", { id: sonarId });
     const res = await addCurriculum(formData).unwrap();
     if (res?.success) {
@@ -70,6 +71,18 @@ const AdminCourseCurriculum = () => {
                     </option>
                   ))}
                 </select>
+              </div>
+
+              <div>
+                <h1 className="block mb-4 text-sm font-medium">Order</h1>
+                <input
+                  type="text"
+                  name="order"
+                  id=""
+                  className="w-full px-4 py-2 bg-gray-700 text-white rounded-lg focus:outline-none focus:ring focus:ring-teal-500 "
+                  placeholder="Curriculum name"
+                  required
+                />
               </div>
             </div>
             <button className="btn btn-primary text-white mt-4">

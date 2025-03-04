@@ -81,3 +81,10 @@ export type TCourse = {
   updatedAt: string;
   __v: number;
 };
+
+export type TCurriculum = {
+  _id: string;
+  title: string;
+  courseId: string;
+  order: number;
+};
