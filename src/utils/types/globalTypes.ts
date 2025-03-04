@@ -22,6 +22,8 @@ export type TService = {
 export type TBanner = {
   id: number;
   image: string;
+  title: string;
+  motto: string;
 };
 
 export type TBlog = {

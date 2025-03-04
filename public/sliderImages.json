@@ -1,26 +1,38 @@
 [
   {
     "id": 1,
+    "title": "বাংলাদেশ শিখবে লাইভে",
+    "motto": "স্কিল শেখার মাধ্যমে বদলে ফেলুন নিজের ভবিষ্যৎ",
     "image": "https://i.ibb.co/fCmfDPM/tailwind.jpg"
   },
   {
     "id": 2,
+    "title": "বাংলাদেশ শিখবে লাইভে",
+    "motto": "স্কিল শেখার মাধ্যমে বদলে ফেলুন নিজের ভবিষ্যৎ",
     "image": "https://i.ibb.co/R6JJ1pQ/daisyui.png"
   },
   {
     "id": 3,
+    "title": "বাংলাদেশ শিখবে লাইভে",
+    "motto": "স্কিল শেখার মাধ্যমে বদলে ফেলুন নিজের ভবিষ্যৎ",
     "image": "https://i.ibb.co/1nTK2zm/java.jpg"
   },
   {
     "id": 4,
+    "title": "বাংলাদেশ শিখবে লাইভে",
+    "motto": "স্কিল শেখার মাধ্যমে বদলে ফেলুন নিজের ভবিষ্যৎ",
     "image": "https://i.ibb.co/qxJdQ30/React.jpg"
   },
   {
     "id": 5,
+    "title": "বাংলাদেশ শিখবে লাইভে",
+    "motto": "স্কিল শেখার মাধ্যমে বদলে ফেলুন নিজের ভবিষ্যৎ",
     "image": "https://i.ibb.co/9qCTFg8/JS.jpg"
   },
   {
     "id": 6,
+    "title": "বাংলাদেশ শিখবে লাইভে",
+    "motto": "স্কিল শেখার মাধ্যমে বদলে ফেলুন নিজের ভবিষ্যৎ",
     "image": "https://i.ibb.co/sH02c5Z/cpp.jpg"
   }
 ]

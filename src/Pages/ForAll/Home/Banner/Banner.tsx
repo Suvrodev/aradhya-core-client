@@ -1,14 +1,16 @@
+import "./Banner.css";
 import axios from "axios";
 import { useEffect, useRef, useState } from "react";
 import { TBanner } from "../../../../utils/types/globalTypes";
+import BannerContent from "./BannerContent/BannerContent";
 
 const Banner = () => {
-  const [images, setImages] = useState([]);
+  const [bannerData, setBannerData] = useState([]);
   useEffect(() => {
     axios
       .get("/sliderImages.json")
       .then((res) => {
-        setImages(res.data);
+        setBannerData(res.data);
       })
       .catch((err) => console.error("Error fetching images:", err));
   }, []);
@@ -20,11 +22,11 @@ const Banner = () => {
 
   useEffect(() => {
     const interval = setInterval(() => {
-      setCurrentIndex((prevIndex) => (prevIndex + 1) % images.length);
+      setCurrentIndex((prevIndex) => (prevIndex + 1) % bannerData.length);
     }, 3000); // Change the interval time as needed
 
     return () => clearInterval(interval);
-  }, [images.length, currentIndex]); // Reset interval when currentIndex changes
+  }, [bannerData.length, currentIndex]); // Reset interval when currentIndex changes
 
   // eslint-disable-next-line @typescript-eslint/no-explicit-any
   const handleStart = (e: any) => {
@@ -41,12 +43,12 @@ const Banner = () => {
     if (deltaX > 50) {
       // Swipe right
       setCurrentIndex((prevIndex) =>
-        prevIndex === 0 ? images.length - 1 : prevIndex - 1
+        prevIndex === 0 ? bannerData.length - 1 : prevIndex - 1
       );
       startX.current = null;
     } else if (deltaX < -50) {
       // Swipe left
-      setCurrentIndex((prevIndex) => (prevIndex + 1) % images.length);
+      setCurrentIndex((prevIndex) => (prevIndex + 1) % bannerData.length);
       startX.current = null;
     }
   };
@@ -57,7 +59,7 @@ const Banner = () => {
 
   return (
     <div
-      className="relative w-full h-[200px] md:h-[500px] overflow-hidden "
+      className="relative w-full h-[460px] md:h-[400px] overflow-hidden rounded-lg border-[4px] border-yellow-400  innerShadw"
       onMouseDown={handleStart}
       onMouseMove={handleMove}
       onMouseUp={handleEnd}
@@ -66,7 +68,7 @@ const Banner = () => {
       onTouchMove={handleMove}
       onTouchEnd={handleEnd}
     >
-      {images.map((image: TBanner, index: number) => (
+      {bannerData.map((banner: TBanner, index: number) => (
         <div
           key={index}
           style={{
@@ -78,21 +80,17 @@ const Banner = () => {
             transition: "transform 0.5s ease",
             transform: `translateX(-${currentIndex * 100}%)`,
           }}
-          className="flex items-center justify-center"
+          className=" "
         >
-          <img
-            src={image?.image}
-            alt={`Image ${index}`}
-            className={`w-full h-full   rounded-xl`}
-          />
+          <BannerContent banner={banner} />
         </div>
       ))}
 
-      <div className="absolute bottom-4 left-1/2 transform -translate-x-1/2 flex gap-4 rounded-xl">
-        {images.map((_, index) => (
+      <div className="absolute bottom-1/2 md:bottom-3 left-1/2 transform -translate-x-1/2 flex gap-4 rounded-xl ">
+        {bannerData.map((_, index) => (
           <p
             key={index}
-            className={`w-[10px] h-[10px] bg-white rounded-full transition-width duration-500 ease-in-out ${
+            className={`w-[10px] h-[5px] bg-yellow-900 rounded-full transition-width duration-500 ease-in-out  ${
               currentIndex === index ? "w-[35px]" : "w-[10px]"
             } `}
           ></p>

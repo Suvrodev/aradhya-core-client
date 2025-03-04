@@ -1,3 +1,4 @@
+import "./Home.css";
 import Banner from "./Banner/Banner";
 import DownloadApp from "./DownloadApp/DownloadApp";
 import Faq from "./Faq/Faq";
@@ -6,12 +7,11 @@ import Ostad from "./Review/Ostad/Ostad";
 
 const Home = () => {
   return (
-    <div className="w-full md:w-[70rem] mx-auto">
-      <h1>This is Home Page</h1>
-      <div className="">
+    <div className="mainContainer">
+      <div className="container banner">
         <Banner />
       </div>
-      <div className="max-w-[82rem] mx-auto px-0 md:px-10">
+      <div className="container ourCourse">
         <OurCourses />
       </div>
       <div className="max-w-[82rem] mx-auto px-0 md:px-10">

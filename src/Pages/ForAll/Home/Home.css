@@ -1,0 +1,24 @@
+.mainContainer {
+  overflow: hidden;
+}
+.container {
+  width: 82rem;
+  margin: 0 auto;
+  padding: 0;
+}
+
+.banner {
+  margin-top: 50px;
+}
+
+@media (max-width: 576px) {
+  .container {
+    width: 100%;
+    margin-left: auto;
+    margin-right: auto;
+    padding: 0 12px;
+  }
+  .banner {
+    margin-top: 30px;
+  }
+}

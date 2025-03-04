@@ -38,7 +38,7 @@ const AssignStudent = ({ student }: IProps) => {
 
   const { data: batchFetch } = useGetAllBatchQuery(undefined);
   const allBatch = batchFetch?.data;
-  console.log("All Batch: ", allBatch);
+  // console.log("All Batch: ", allBatch);
 
   const [courseId, setCourseId] = useState("");
   const handleCourseId = (event: ChangeEvent<HTMLSelectElement>) => {
