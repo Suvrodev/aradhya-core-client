@@ -1,4 +1,4 @@
-export type TUser = {
+export type TStudent = {
   _id: string;
   name: string;
   email: string;
@@ -6,6 +6,7 @@ export type TUser = {
   role: "user" | "admin";
   isBlocked: boolean;
   studentId: string;
+  phone: string;
   iat: number;
   exp: number;
 };
