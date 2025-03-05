@@ -55,6 +55,10 @@ body {
   padding: 0;
 } */
 
+.primaryBgColor {
+  background-color: #004e6a;
+}
+
 .bgColor {
   background-color: #dcffff;
 }

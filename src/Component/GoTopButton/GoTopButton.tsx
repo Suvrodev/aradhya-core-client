@@ -23,13 +23,13 @@ const GoTopButton = () => {
   return (
     <div>
       {backToTopButton && (
-        <button
-          className="btn bg-[#0A7CFF] fixed bottom-[30px] right-[50px] hover:bg-[#0A7CFF] border-0"
+        <div
+          className="px-[15px] py-[12px] rounded-md primaryBgColor fixed bottom-[30px] right-[50px] cursor-pointer "
           onClick={scrollUp}
         >
           {" "}
           <ArrowUpwardIcon className="text-[#FFFFFF]" />
-        </button>
+        </div>
       )}
     </div>
   );

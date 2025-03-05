@@ -46,7 +46,7 @@ const OurCourses = () => {
         Our All Courses
       </h1>
 
-      <div className="relative px-14">
+      <div className="relative px-12">
         {" "}
         {/* Extra padding for buttons */}
         {/* Scrollable Container */}
@@ -66,13 +66,13 @@ const OurCourses = () => {
         {/* Left & Right Navigation Buttons (Placed Outside) */}
         <button
           onClick={scrollLeft}
-          className="absolute left-0 top-1/2 -translate-y-1/2 p-3 bg-blue-600 rounded-full shadow-md hover:bg-gray-200 z-10"
+          className="absolute left-0 top-1/2 -translate-y-1/2 p-1 bg-blue-600 rounded-full shadow-md hover:bg-gray-200 z-10"
         >
           <ChevronLeft size={30} className="text-white" />
         </button>
         <button
           onClick={scrollRight}
-          className="absolute right-0 top-1/2 -translate-y-1/2 p-3 bg-blue-600 rounded-full shadow-md hover:bg-gray-200 z-10"
+          className="absolute right-0 top-1/2 -translate-y-1/2 p-0 bg-blue-600 rounded-full shadow-md hover:bg-gray-200 z-10"
         >
           <ChevronRight size={30} className="text-white" />
         </button>
