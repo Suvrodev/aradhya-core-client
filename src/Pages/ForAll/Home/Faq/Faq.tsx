@@ -31,18 +31,18 @@ const Faq = () => {
       </h1>
 
       <div className="flex flex-col md:flex-row items-center bgColor rounded-md mb-10 ">
-        <div className="clientQsn w-full md:w-1/2 p-2 md:m-10">
+        <div className="flex flex-col gap-2 w-full md:w-1/2 p-2 md:m-10">
           {questions.map((_question, idx) => (
             <div
               key={idx}
-              className="collapse collapse-arrow border-0 bg-[#464444] mb-1"
+              className="collapse collapse-arrow border-0 bg-[#D1E6EC] mb-1 shadow-md shadow-[#7BA9BE]"
             >
               <input type="checkbox" />
-              <div className="collapse-title text-xl font-medium">
+              <div className="collapse-title text-xl  text-black opacity-60 font-semibold">
                 {questions[idx]}
               </div>
               <div className="collapse-content">
-                <p className="text-[#4CBD90]"> {answers[idx]} </p>
+                <p className="text-green-600"> {answers[idx]} </p>
               </div>
             </div>
           ))}

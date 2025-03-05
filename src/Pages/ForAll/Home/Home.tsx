@@ -11,18 +11,20 @@ const Home = () => {
       <div className="container banner">
         <Banner />
       </div>
-      <div className="container ourCourse">
+      <div className="container banner">
         <OurCourses />
       </div>
       <div className="max-w-[82rem] mx-auto px-0 md:px-10">
         <Faq />
       </div>
       {/* <div className="myColor">Div</div> */}
-      <div className="max-w-[82rem] mx-auto px-0 md:px-10">
+      <div className="max-w-[82rem] mx-auto px-0 md:px-10 hidden">
         <DownloadApp />
       </div>
       {/* <Review /> */}
-      <Ostad />
+      <div className="hidden">
+        <Ostad />
+      </div>
     </div>
   );
 };

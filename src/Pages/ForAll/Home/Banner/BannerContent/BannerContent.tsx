@@ -5,8 +5,8 @@ interface IProps {
   banner: TBanner;
 }
 const BannerContent = ({ banner }: IProps) => {
-  console.log("Banner: ", banner);
-  const { title, motto, image } = banner;
+  // console.log("Banner: ", banner);
+  // const { title, motto, image } = banner;
   return (
     <div className="flex flex-col-reverse md:flex-row items-center gap-6 md:gap-0 bg-white  p-[9px] md:p-6 rounded-lg shadow-lg h-full innerShadw">
       <div className="w-full md:w-1/2 text-center md:text-left  h-full  ">
@@ -22,7 +22,7 @@ const BannerContent = ({ banner }: IProps) => {
       </div>
       <div className="w-full md:w-1/2 flex justify-center md:mt-0 h-full ">
         <img
-          src="https://i.ibb.co.com/BhdXd41/Graphics-Design.jpg"
+          src={banner?.image}
           alt="Graphics Design"
           className="w-full md:w-full rounded-lg shadow-lg"
         />
