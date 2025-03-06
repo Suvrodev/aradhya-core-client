@@ -7,3 +7,33 @@
   -ms-overflow-style: none; /* IE এবং Edge এর জন্য */
   scrollbar-width: none; /* Firefox এর জন্য */
 }
+
+/* Background */
+.courseBackground {
+  position: relative;
+  background: linear-gradient(to bottom, #cbd7dd, #9eb5c0);
+  height: auto;
+  max-width: 100vw;
+  overflow: hidden;
+}
+
+.courseBackground::before {
+  content: "";
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  /* background-image: url("../../assets/bg/bgPattern.png"); */
+  background-image: url("../../../../assets/bg/bgPattern.png");
+  background-size: cover;
+  background-position: center;
+  background-repeat: no-repeat;
+  opacity: 0.3;
+  z-index: 0;
+}
+
+.courseBackground > * {
+  position: relative;
+  z-index: 1;
+}

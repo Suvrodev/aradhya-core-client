@@ -3,11 +3,11 @@ import type { PayloadAction } from "@reduxjs/toolkit";
 
 // Define a type for the slice state
 interface CounterState {
-  categoryId: string;
+  serviceId: string;
 }
 
 const initialState: CounterState = {
-  categoryId: "0",
+  serviceId: "0",
 };
 
 export const selectCategorySlice = createSlice({
@@ -16,7 +16,7 @@ export const selectCategorySlice = createSlice({
   initialState,
   reducers: {
     selectCategory: (state, action: PayloadAction<string>) => {
-      state.categoryId = action.payload;
+      state.serviceId = action.payload;
     },
   },
 });

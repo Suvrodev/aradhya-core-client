@@ -24,7 +24,7 @@ const GoTopButton = () => {
     <div>
       {backToTopButton && (
         <div
-          className="px-[15px] py-[12px] rounded-md primaryBgColor fixed bottom-[30px] right-[50px] cursor-pointer "
+          className="px-[15px] py-[12px] rounded-md primaryBgColor fixed bottom-[30px] left-[50px] cursor-pointer "
           onClick={scrollUp}
         >
           {" "}

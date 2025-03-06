@@ -47,8 +47,10 @@ export type TBatch = {
 };
 
 export type TCategory = {
-  id: string;
+  _id: string;
   name: string;
+  order: number;
+  serviceId: string;
 };
 
 export type TCourseBox = {

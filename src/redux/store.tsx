@@ -1,5 +1,5 @@
 import { configureStore } from "@reduxjs/toolkit";
-import selectCategoryReducer from "./features/selectCategorySlice";
+import selectServiceReducer from "./api/features/Service/selectServiceSlice";
 import authReducer from "./api/features/auth/authSlice";
 import {
   persistStore,
@@ -25,7 +25,7 @@ export const store = configureStore({
   reducer: {
     auth: persistedAuthReducer,
     [baseApi.reducerPath]: baseApi.reducer,
-    selectCategory: selectCategoryReducer,
+    selectService: selectServiceReducer,
   },
   middleware: (getDefaultMiddleware) =>
     getDefaultMiddleware({

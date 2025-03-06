@@ -67,6 +67,7 @@ export const {
   useAddCourseMutation,
   useGetAllCourseQuery,
   useGetSpecificCourseQuery,
+  useGetCourseUnderServiceQuery,
   useDeleteCourseMutation,
   useUpdateCourseMutation,
 } = courseManagementApi;
