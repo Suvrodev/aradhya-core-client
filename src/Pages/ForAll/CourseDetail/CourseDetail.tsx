@@ -2,7 +2,7 @@ import "./CourseDetail.css";
 import { useParams } from "react-router";
 import { useGetSpecificCourseQuery } from "../../../redux/api/features/Course/courseManagementApi";
 import { useTitle } from "../../../Component/hook/useTitle";
-import { FaStar, FaPlayCircle } from "react-icons/fa";
+// import { FaStar, FaPlayCircle } from "react-icons/fa";
 import LoadingPage from "../../../Component/LoadingPage/LoadingPage";
 import { TCourse } from "../../../utils/types/globalTypes";
 import ReactPlayer from "react-player/youtube";

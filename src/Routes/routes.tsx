@@ -24,6 +24,7 @@ import StudentDashboardHome from "../Pages/AStudentDashboard/StudentDashboardHom
 import StudentProtectedRoute from "./ProtectedRoute/StudentProtectedRoute";
 import AllStudent from "../Pages/AdminDashboard/AllStudent/AllStudent/AllStudent";
 import CourseDetail from "../Pages/ForAll/CourseDetail/CourseDetail";
+import BuyCourse from "../Pages/ForAll/BuyCourse/BuyCourse";
 
 export const router = createBrowserRouter([
   {
@@ -53,6 +54,10 @@ export const router = createBrowserRouter([
       {
         path: "contact",
         element: <Contact />,
+      },
+      {
+        path: "buy-course",
+        element: <BuyCourse />,
       },
     ],
   },
