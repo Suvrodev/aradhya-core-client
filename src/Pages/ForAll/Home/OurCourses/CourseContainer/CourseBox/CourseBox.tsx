@@ -6,7 +6,8 @@ interface IProps {
   number: number;
 }
 const CourseBox = ({ data, number }: IProps) => {
-  const { courseTitle, courseImage } = data;
+  const { courseId, courseTitle, courseImage } = data;
+
   return (
     <div
       className={`flex flex-col gap-y-4  rounded-md border-[4px] shadow-md shadow-gray-700   ${
@@ -25,7 +26,7 @@ const CourseBox = ({ data, number }: IProps) => {
           {" "}
           {courseTitle}{" "}
         </h1>
-        <Link to={"/hswjud"}>
+        <Link to={`/course-detail/${courseId}`}>
           <div className="w-[180px]  py-4 bg-white font-semibold text-black text-center text-[16px] shadow-md shadow-gray-700 absolute right-4 bottom-5 rounded-lg flex justify-center items-center gap-2">
             <p> বিস্তারিত দেখি</p>
             <span>

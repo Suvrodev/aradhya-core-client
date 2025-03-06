@@ -6,10 +6,10 @@ import MobileHeader from "../Pages/Shared/Header/MobileHeader/MobileHeader";
 const Main = () => {
   return (
     <div>
-      <div className="hidden md:block">
+      <div className="hidden md:block  sticky top-0 z-10">
         <DesktopHeader />
       </div>
-      <div className=" md:hidden">
+      <div className=" md:hidden sticky top-0 z-10">
         <MobileHeader />
       </div>
       <div className="  ">

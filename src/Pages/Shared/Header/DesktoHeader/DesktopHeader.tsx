@@ -1,6 +1,6 @@
 import { Link, useLocation } from "react-router";
-import headerImage from "../../../../assets/Logo/Header_1.png";
-import headerText from "../../../../assets/Logo/Header_2.png";
+import headerImage from "../../../../assets/Logo/logo.png";
+import headerText from "../../../../assets/Logo/logoText.png";
 import { headerArray } from "../../../../utils/Array/headerArray";
 import { useAppSelector } from "../../../../redux/hook";
 import { useDispatch } from "react-redux";
@@ -15,13 +15,13 @@ const DesktopHeader = () => {
   return (
     <div className={`bgColor `}>
       <div className="flex  items-center justify-between  max-w-[82rem]  mx-auto shadow-lg ">
-        <div className="flex items-center  w-[33%]">
+        <div className="flex items-center  w-[33%] gap-4 p-4">
           <Link to={"/home"}>
             {" "}
-            <img src={headerImage} alt="" className="w-[95px] h-[70px] " />
+            <img src={headerImage} alt="" className="w-[50px] " />
           </Link>
           <Link to={"/home"}>
-            <img src={headerText} alt="" className="w-[200px] h-[70px]" />
+            <img src={headerText} alt="" className="w-[200px] " />
           </Link>
         </div>
         <div className="flex gap-4 items-center justify-center  w-[33%]">

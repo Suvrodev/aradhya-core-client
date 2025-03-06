@@ -23,6 +23,7 @@ import StudentDashboard from "../Pages/AStudentDashboard/StudentDashboard";
 import StudentDashboardHome from "../Pages/AStudentDashboard/StudentDashboardHome";
 import StudentProtectedRoute from "./ProtectedRoute/StudentProtectedRoute";
 import AllStudent from "../Pages/AdminDashboard/AllStudent/AllStudent/AllStudent";
+import CourseDetail from "../Pages/ForAll/CourseDetail/CourseDetail";
 
 export const router = createBrowserRouter([
   {
@@ -34,19 +35,23 @@ export const router = createBrowserRouter([
         element: <Home />,
       },
       {
-        path: "/home",
+        path: "home",
         element: <Home />,
       },
       {
-        path: "/about-us",
+        path: "course-detail/:id",
+        element: <CourseDetail />,
+      },
+      {
+        path: "about-us",
         element: <AboutUs />,
       },
       {
-        path: "/blog",
+        path: "blog",
         element: <Blog />,
       },
       {
-        path: "/contact",
+        path: "contact",
         element: <Contact />,
       },
     ],
