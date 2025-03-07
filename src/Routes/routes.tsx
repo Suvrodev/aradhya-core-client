@@ -24,7 +24,7 @@ import StudentDashboardHome from "../Pages/AStudentDashboard/StudentDashboardHom
 import StudentProtectedRoute from "./ProtectedRoute/StudentProtectedRoute";
 import AllStudent from "../Pages/AdminDashboard/AllStudent/AllStudent/AllStudent";
 import CourseDetail from "../Pages/ForAll/CourseDetail/CourseDetail";
-import BuyCourse from "../Pages/ForAll/BuyCourse/BuyCourse";
+import BuyCourse from "../Pages/ForAll/BuyCourse/BuyCourseStep";
 
 export const router = createBrowserRouter([
   {
