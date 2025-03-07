@@ -24,6 +24,8 @@ const BuyCourseFirstStep = ({
     user = verifyToken(token);
   }
 
+  console.log("USer ===========", user);
+
   const handleSubmit = async (event: FormEvent<HTMLFormElement>) => {
     event.preventDefault();
     const form = event.target as HTMLFormElement;
@@ -39,16 +41,28 @@ const BuyCourseFirstStep = ({
         Enroll Course
       </h1>
 
-      <div>
-        <img
-          src={courseImage}
-          className="w-[150px] h-[80px] rounded-md"
-          alt=""
-        />
+      <div className="flex ">
         <div>
-          <p className="text-white">
-            <span>Course</span> <span>{courseTitle}</span>
+          <p className="text-xl">
+            <span>Name: </span>
+            <span>{user?.name}</span>
           </p>
+          <p className="text-xl">
+            <span>Email: </span>
+            <span>{user?.email}</span>
+          </p>
+          <p className="text-xl">
+            <span>Batch: </span>
+            <span>Batch-1</span>
+          </p>
+        </div>
+        <div className="flex flex-col gap-2">
+          <img
+            src={courseImage}
+            className="w-[150px] h-[80px] rounded-md"
+            alt=""
+          />
+          <p className="text-xl font-bold "> {courseTitle} </p>
         </div>
       </div>
 

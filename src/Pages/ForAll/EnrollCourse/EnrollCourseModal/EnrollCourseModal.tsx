@@ -1,6 +1,6 @@
 import { useState } from "react";
 import { Modal } from "antd";
-import BuyCourseStep from "../BuyCourseStep";
+import BuyCourseStep from "../EnrollCourse";
 
 interface IProps {
   courseId: string;
@@ -8,7 +8,7 @@ interface IProps {
   courseImage: string;
 }
 
-const BuyCourseModal = ({ courseId, courseTitle, courseImage }: IProps) => {
+const EnrollCourseModal = ({ courseId, courseTitle, courseImage }: IProps) => {
   //   Modal Default Class start
   const [isModalOpen, setIsModalOpen] = useState(false);
 
@@ -59,4 +59,4 @@ const BuyCourseModal = ({ courseId, courseTitle, courseImage }: IProps) => {
   );
 };
 
-export default BuyCourseModal;
+export default EnrollCourseModal;

@@ -1,7 +1,7 @@
-import { useEffect, useState } from "react";
+import { useState } from "react";
 import { Stepper, Step } from "react-form-stepper";
-import BuyCourseFirstStep from "./BuyCourseSteps/BuyCourseFirstStep";
-import BuyCourseSecondStep from "./BuyCourseSteps/BuyCourseSecondStep";
+import BuyCourseFirstStep from "./EnrollCourseSteps/EnrollCourseFirstStep";
+import BuyCourseSecondStep from "./EnrollCourseSteps/EnrollCourseSecondStep";
 
 interface IProps {
   courseId: string;
@@ -9,7 +9,7 @@ interface IProps {
   courseImage: string;
 }
 
-const BuyCourseStep = ({ courseId, courseTitle, courseImage }: IProps) => {
+const EnrollCourse = ({ courseId, courseTitle, courseImage }: IProps) => {
   const [activeStep, setActiveStep] = useState(0);
 
   console.log("Active Step: ", activeStep);
@@ -63,4 +63,4 @@ const BuyCourseStep = ({ courseId, courseTitle, courseImage }: IProps) => {
   );
 };
 
-export default BuyCourseStep;
+export default EnrollCourse;

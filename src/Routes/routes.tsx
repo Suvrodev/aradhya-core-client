@@ -24,7 +24,7 @@ import StudentDashboardHome from "../Pages/AStudentDashboard/StudentDashboardHom
 import StudentProtectedRoute from "./ProtectedRoute/StudentProtectedRoute";
 import AllStudent from "../Pages/AdminDashboard/AllStudent/AllStudent/AllStudent";
 import CourseDetail from "../Pages/ForAll/CourseDetail/CourseDetail";
-import BuyCourse from "../Pages/ForAll/BuyCourse/BuyCourseStep";
+import AdminPromocode from "../Pages/AdminDashboard/AdminPromocode/AdminPromocode";
 
 export const router = createBrowserRouter([
   {
@@ -54,10 +54,6 @@ export const router = createBrowserRouter([
       {
         path: "contact",
         element: <Contact />,
-      },
-      {
-        path: "buy-course",
-        element: <BuyCourse />,
       },
     ],
   },
@@ -173,6 +169,15 @@ export const router = createBrowserRouter([
           <AdminProtectedRoute>
             {" "}
             <UpdateBlog />
+          </AdminProtectedRoute>
+        ),
+      },
+      {
+        path: "promo-code",
+        element: (
+          <AdminProtectedRoute>
+            {" "}
+            <AdminPromocode />
           </AdminProtectedRoute>
         ),
       },

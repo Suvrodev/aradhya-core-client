@@ -6,7 +6,7 @@ import { useTitle } from "../../../Component/hook/useTitle";
 import LoadingPage from "../../../Component/LoadingPage/LoadingPage";
 import { TCourse } from "../../../utils/types/globalTypes";
 import ReactPlayer from "react-player/youtube";
-import BuyCourseModal from "../BuyCourse/BuyCourseModal/BuyCourseModal";
+import EnrollCourseModal from "../EnrollCourse/EnrollCourseModal/EnrollCourseModal";
 
 const CourseDetail = () => {
   useTitle("Course Detail");
@@ -106,7 +106,7 @@ const CourseDetail = () => {
 
       {/* Footer Section */}
       <div className="max-w-7xl mx-auto mt-12 flex justify-center gap-4">
-        <BuyCourseModal
+        <EnrollCourseModal
           courseId={course?.courseId}
           courseTitle={course?.courseTitle}
           courseImage={course?.courseImage}

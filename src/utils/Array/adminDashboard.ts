@@ -48,6 +48,10 @@ export const adminDashboards = [
     text: "All Blog",
     path: "/admin-dashboard/admin-all-blog",
   },
+  {
+    text: "Promo code",
+  path: "/admin-dashboard/promo-code",
+  },
   // {
   //   text: "About Page",
   //   path: "/admin-dashboard/create-about",
