@@ -94,3 +94,10 @@ export type TCurriculum = {
   courseId: string;
   order: number;
 };
+
+export type TPromoCode = {
+  promoId: string;
+  promoCode: string;
+  promoPercent: number;
+  promoStatus: string;
+};
