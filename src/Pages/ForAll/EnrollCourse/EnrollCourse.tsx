@@ -1,7 +1,7 @@
 import { useState } from "react";
 import { Stepper, Step } from "react-form-stepper";
-import BuyCourseFirstStep from "./EnrollCourseSteps/EnrollCourseFirstStep";
-import BuyCourseSecondStep from "./EnrollCourseSteps/EnrollCourseSecondStep";
+import EnrollCourseFirstStep from "./EnrollCourseSteps/EnrollCourseFirstStep";
+import EnrollCourseSecondStep from "./EnrollCourseSteps/EnrollCourseSecondStep";
 
 interface IProps {
   courseId: string;
@@ -18,7 +18,7 @@ const EnrollCourse = ({ courseId, courseTitle, courseImage }: IProps) => {
     <div className="w-11/12 mx-auto  rounded-lg">
       <div>
         {activeStep == 0 && (
-          <BuyCourseFirstStep
+          <EnrollCourseFirstStep
             courseId={courseId}
             courseTitle={courseTitle}
             courseImage={courseImage}
@@ -27,7 +27,7 @@ const EnrollCourse = ({ courseId, courseTitle, courseImage }: IProps) => {
           />
         )}
         {activeStep == 1 && (
-          <BuyCourseSecondStep
+          <EnrollCourseSecondStep
             courseId={courseId}
             courseTitle={courseTitle}
             courseImage={courseImage}

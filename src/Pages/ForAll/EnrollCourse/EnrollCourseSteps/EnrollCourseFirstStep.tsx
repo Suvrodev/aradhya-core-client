@@ -10,7 +10,7 @@ interface IProps {
   setActiveStep: React.Dispatch<React.SetStateAction<number>>;
 }
 
-const BuyCourseFirstStep = ({
+const EnrollCourseFirstStep = ({
   courseId,
   courseTitle,
   courseImage,
@@ -144,4 +144,4 @@ const BuyCourseFirstStep = ({
   );
 };
 
-export default BuyCourseFirstStep;
+export default EnrollCourseFirstStep;
