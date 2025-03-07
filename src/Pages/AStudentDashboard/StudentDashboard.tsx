@@ -1,10 +1,68 @@
+import { useState } from "react";
+import { useAppSelector } from "../../redux/hook";
+import { verifyToken } from "../../utils/Fucntion/verifyToken";
 import StudentDesktopHeader from "./Shared/StudentHeader/StudentDesktopHeader/StudentDesktopHeader";
+import StudentMobileHeader from "./Shared/StudentHeader/StudentMobileHeader/StudentMobileHeader";
 import "./StudentDashboard.css";
+import StudentDashboardData from "./StudentDashboardData/StudentDashboardData";
+import StudentDashboardHome from "./StudentDashboardHome";
 const StudentDashboard = () => {
+  const { token } = useAppSelector((state) => state.auth);
+  // eslint-disable-next-line @typescript-eslint/no-explicit-any
+  let user: any;
+  if (token) {
+    user = verifyToken(token);
+  }
+
+  const [openDrawer, setOpenDrawer] = useState(false);
   return (
     <div className="userDashboardBG text-black">
-      <StudentDesktopHeader />
+      {/* Desktop Header */}
+      <div className="hidden md:block">
+        <StudentDesktopHeader user={user} />
+      </div>
 
+      {/* Mobile Header */}
+      <div className=" md:hidden">
+        <StudentMobileHeader
+          user={user}
+          openDrawer={openDrawer}
+          setOpenDrawer={setOpenDrawer}
+        />
+      </div>
+
+      <div className="bg-green-400">
+        <div className="flex relative ">
+          {/* Left Side for Desltop */}
+          <div className={`hidden md:block md:w-[18%] bg-yellow-500`}>
+            <StudentDashboardData />
+          </div>
+
+          {/* Mobile Animation */}
+          <div
+            className={`md:hidden absolute w-full left-0 top-0 min-h-screen bg-transparent`}
+            onClick={() => setOpenDrawer(false)}
+          >
+            <div
+              className="relative w-full bg-yellow-500 z-20"
+              onClick={(event) => event.stopPropagation()}
+            >
+              <div
+                className={`absolute  w-[225px] bg-teal-500 ease-in-out duration-700 ${
+                  openDrawer ? "left-0 " : "-left-[1000px]"
+                } `}
+              >
+                <StudentDashboardData />
+              </div>
+            </div>
+          </div>
+
+          {/* Right side for Desktop and Full Side for Mobile */}
+          <div className="w-full md:w-[88%] bg-purple-400">
+            <StudentDashboardHome />
+          </div>
+        </div>
+      </div>
       <div className="box1"></div>
       <div className="box2"></div>
       <div className="box3"></div>

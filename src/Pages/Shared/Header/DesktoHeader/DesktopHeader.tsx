@@ -14,8 +14,8 @@ const DesktopHeader = () => {
   // console.log("Path: ", path);
   return (
     <div className={`bgColor `}>
-      <div className="flex  items-center justify-between  max-w-[82rem]  mx-auto shadow-lg ">
-        <div className="flex items-center  w-[33%] gap-4 p-4">
+      <div className="flex  items-center justify-between  max-w-[82rem]  mx-auto  ">
+        <div className="flex items-center  justify-start w-[33%] gap-4 py-4 ">
           <Link to={"/home"}>
             {" "}
             <img src={headerImage} alt="" className="w-[50px] " />

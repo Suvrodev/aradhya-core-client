@@ -1,18 +1,12 @@
-interface IProps {
-  courseId: string;
-  courseTitle: string;
-  courseImage: string;
-  activeStep: number;
-  setActiveStep: React.Dispatch<React.SetStateAction<number>>;
-}
+// interface IProps {
+//   courseId: string;
+//   courseTitle: string;
+//   courseImage: string;
+//   activeStep: number;
+//   setActiveStep: React.Dispatch<React.SetStateAction<number>>;
+// }
 
-const EnrollCourseSecondStep = ({
-  courseId,
-  courseTitle,
-  courseImage,
-  activeStep,
-  setActiveStep,
-}: IProps) => {
+const EnrollCourseSecondStep = () => {
   return (
     <div>
       <h1> Course Second Step</h1>

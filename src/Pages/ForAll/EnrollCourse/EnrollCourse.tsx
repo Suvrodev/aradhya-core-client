@@ -28,11 +28,11 @@ const EnrollCourse = ({ courseId, courseTitle, courseImage }: IProps) => {
         )}
         {activeStep == 1 && (
           <EnrollCourseSecondStep
-            courseId={courseId}
-            courseTitle={courseTitle}
-            courseImage={courseImage}
-            activeStep={activeStep}
-            setActiveStep={setActiveStep}
+          // courseId={courseId}
+          // courseTitle={courseTitle}
+          // courseImage={courseImage}
+          // activeStep={activeStep}
+          // setActiveStep={setActiveStep}
           />
         )}
       </div>

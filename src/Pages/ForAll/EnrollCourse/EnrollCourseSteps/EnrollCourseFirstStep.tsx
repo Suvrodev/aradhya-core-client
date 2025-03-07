@@ -1,4 +1,3 @@
-import { FormEvent } from "react";
 import { useAppSelector } from "../../../../redux/hook";
 import { verifyToken } from "../../../../utils/Fucntion/verifyToken";
 
@@ -11,12 +10,12 @@ interface IProps {
 }
 
 const EnrollCourseFirstStep = ({
-  courseId,
+  // courseId,
   courseTitle,
   courseImage,
-  activeStep,
-  setActiveStep,
-}: IProps) => {
+}: // activeStep,
+// setActiveStep,
+IProps) => {
   const { token } = useAppSelector((state) => state.auth);
   // eslint-disable-next-line @typescript-eslint/no-explicit-any
   let user: any;
@@ -26,14 +25,14 @@ const EnrollCourseFirstStep = ({
 
   console.log("USer ===========", user);
 
-  const handleSubmit = async (event: FormEvent<HTMLFormElement>) => {
-    event.preventDefault();
-    const form = event.target as HTMLFormElement;
-    const formData = new FormData(form);
-    const data = Object.fromEntries(formData.entries());
-    console.log(data); // You can handle the form data here
-    setActiveStep(activeStep + 1);
-  };
+  // const handleSubmit = async (event: FormEvent<HTMLFormElement>) => {
+  //   event.preventDefault();
+  //   const form = event.target as HTMLFormElement;
+  //   const formData = new FormData(form);
+  //   const data = Object.fromEntries(formData.entries());
+  //   console.log(data); // You can handle the form data here
+  //   setActiveStep(activeStep + 1);
+  // };
 
   return (
     <div className="flex flex-col items-center justify-center  bg-purple-500">

@@ -1,80 +1,57 @@
-import "./StudentDesktopHeader.css";
-import { Link, useLocation } from "react-router";
-import { headerArray } from "../../../../../utils/Array/headerArray";
+import { Link } from "react-router";
 // import headerImage from "../../../../../../assets/Logo/Header_1.png";
-import headerImage from "../../../../../assets/Logo/Header_1.png";
-import headerText from "../../../../../assets/Logo/Header_2.png";
 import { useDispatch } from "react-redux";
-import { useAppSelector } from "../../../../../redux/hook";
 import { logout } from "../../../../../redux/api/features/auth/authSlice";
-import { verifyToken } from "../../../../../utils/Fucntion/verifyToken";
-import loggedUserDefaultImage from "../../../../../assets/loggedUser/loggedUser.png";
+import fullLogo from "../../../../../assets/Logo/fullLogo.png";
 import { useState } from "react";
-const StudentDesktopHeader = () => {
-  const { token } = useAppSelector((state) => state.auth);
+
+interface IProps {
   // eslint-disable-next-line @typescript-eslint/no-explicit-any
-  let user: any;
-  if (token) {
-    user = verifyToken(token);
-  }
+  user: any;
+}
+
+const StudentDesktopHeader = ({ user }: IProps) => {
   //   console.log("User in Student Header: ", user);
   const dispatch = useDispatch();
-  const path = useLocation()?.pathname;
 
   const [openDashboard, setOpenDashboard] = useState(false);
   const handleDashboard = () => {
     setOpenDashboard(!openDashboard);
   };
-  // console.log("Open Dashboard: ", openDashboard);
+  console.log("Open Dashboard: ", openDashboard);
 
   return (
     <div className="relative ">
       <div className="bg-gradient-to-br from-white via-[#F0F4FF] to-[#E6FCF5] overflow-hidden">
-        <div className="flex  items-center justify-between max-w-[82rem]  mx-auto   ">
-          <div className="flex items-center  w-[33%]">
-            <Link to={"/home"}>
+        <div className="flex  items-center justify-between max-w-[82rem] px-4 md:px-0 mx-auto  h-[70px]  ">
+          <div className="w-1/3 flex items-center  justify-start h-full  ">
+            <Link to={"/student-dashboard"}>
               {" "}
-              <img src={headerImage} alt="" className="w-[95px] h-[70px] " />
+              <img src={fullLogo} alt="" className="w-full md:w-4/12" />
             </Link>
-            <Link to={"/home"}>
-              <img src={headerText} alt="" className="w-[200px] h-[70px]" />
-            </Link>
-          </div>
-          <div className="flex gap-4 items-center justify-center  w-[33%]">
-            {headerArray.map((data, idx) => (
-              <Link
-                to={`${data?.path}`}
-                key={idx}
-                className={`text-black font-bold cursor-pointer ${
-                  data?.path == path ? "text-blue-500" : ""
-                }`}
-              >
-                {data?.text}
-              </Link>
-            ))}
           </div>
 
-          <div className="  w-[33%] flex items-center justify-end   ">
+          <div className="w-2/3 flex items-center justify-end h-full  ">
             <div className="flex items-center gap-2 w-full justify-end">
-              <div className="">
-                <div className="text-xl font-bold">
-                  <span className="text-green-400 ">Welcome</span>{" "}
-                  <span
-                    className="text-[#114044] cursor-pointer "
-                    onClick={() => {
-                      handleDashboard();
-                    }}
-                  >
-                    {user?.name ? user.name : "Guest"}
-                  </span>
-                </div>
+              <div className="text-[16px] md:text-xl font-bold flex flex-col md:flex-row  gap-x-4">
+                <span className="text-green-400 text-[14px] md:text-[20px]">
+                  Welcome
+                </span>{" "}
+                <span
+                  className="text-[#114044] cursor-pointer  text-[12px] md:text-[20px]"
+                  onClick={() => {
+                    handleDashboard();
+                  }}
+                >
+                  {user?.name}
+                </span>
               </div>
 
               <div className=" flex items-center gap-2 relative z-10">
                 <img
-                  src={user?.image ? user.image : loggedUserDefaultImage}
+                  src={user?.image}
                   alt=""
-                  className="h-[60px] w-full rounded-full cursor-pointer z-20"
+                  className="w-[35px] h-[35px] md:w-[50px]  md:h-[50px]  rounded-full cursor-pointer z-20"
                   onClick={handleDashboard}
                 />
               </div>
@@ -84,7 +61,7 @@ const StudentDesktopHeader = () => {
       </div>
 
       <div
-        className={`absolute w-full h-screen bg-transparent  ${
+        className={`absolute w-full h-screen bg-gre  ${
           openDashboard ? "" : "hidden"
         }`}
         onClick={() => setOpenDashboard(false)}
@@ -98,6 +75,8 @@ const StudentDesktopHeader = () => {
             }}
           >
             <div className="flex justify-center w-full">
+              <img src={user?.image} alt="" />
+              <Link to={"/"}></Link>
               <button
                 className="btn btn-error text-white"
                 onClick={() => dispatch(logout())}

@@ -14,7 +14,7 @@ const AdminPromocode = () => {
     import.meta.env.VITE_PROMOCODE_ID
   );
   const promoData: TPromoCode = data?.data;
-  console.log("Promo Data: ", promoData);
+  // console.log("Promo Data: ", promoData);
 
   const [promoStatus, setPromoStatus] = useState<string>(
     promoData?.promoStatus

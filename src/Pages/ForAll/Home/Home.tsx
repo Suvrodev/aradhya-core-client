@@ -14,7 +14,7 @@ const Home = () => {
       <div className="container banner">
         <OurCourses />
       </div>
-      <div className="max-w-[82rem] mx-auto px-0 md:px-10">
+      <div className="container">
         <Faq />
       </div>
       {/* <div className="myColor">Div</div> */}
