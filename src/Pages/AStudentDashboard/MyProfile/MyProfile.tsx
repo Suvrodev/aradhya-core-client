@@ -13,6 +13,10 @@ import LoadingPage from "../../../Component/LoadingPage/LoadingPage";
 import { CornerRightUp, Code, Camera } from "lucide-react";
 import { toast } from "sonner";
 import { sonarId } from "../../../utils/Fucntion/sonarId";
+import axios from "axios";
+
+const imageHostingUrl =
+  "https://api.cloudinary.com/v1_1/dixfkupof/image/upload";
 
 const MyProfile = () => {
   const [updateUser] = useUpdateStudentMutation();
@@ -30,6 +34,8 @@ const MyProfile = () => {
 
   const [profileImage, setProfileImage] = useState(loggedStudent?.image);
   const [imageSelected, setImageSelected] = useState(false);
+  // eslint-disable-next-line @typescript-eslint/no-explicit-any
+  const [imageFile, setImageFile] = useState<any>("");
   const [isEditing, setIsEditing] = useState(false);
   const toggleEdit = () => setIsEditing(!isEditing);
 
@@ -39,6 +45,39 @@ const MyProfile = () => {
       const imageUrl = URL.createObjectURL(file);
       setProfileImage(imageUrl);
       setImageSelected(true);
+      setImageFile(file);
+    }
+  };
+
+  const updateImage = async () => {
+    console.log("Profile Image: ", profileImage);
+    const formData = new FormData();
+    formData.append("file", imageFile);
+    formData.append("upload_preset", "suvrodeb");
+    formData.append("cloud_name", "dixfkupof");
+
+    try {
+      toast.loading("Uploading Image", { id: sonarId });
+      const response = await axios.post(imageHostingUrl, formData);
+      console.log("Image Upload Response", response);
+      if (response.data.url) {
+        const imageUrl = response.data.url;
+        console.log("New Image Linkkkkkkk: ", imageUrl);
+        toast.success("Image Uploaded", { id: sonarId });
+        const updateData = { image: imageUrl };
+        toast.loading("Updating Image", { id: sonarId });
+        const res = await updateUser({
+          id: loggedStudent?.studentId,
+          updateData,
+        }).unwrap();
+        console.log("Update Res: ", res);
+        if (res?.success) {
+          toast.success("Update Image Successfully", { id: sonarId });
+        }
+      }
+    } catch (error) {
+      console.error("Error uploading image:", error);
+      toast.error("Imagebb server issue to upload image", { id: sonarId });
     }
   };
 
@@ -123,6 +162,7 @@ const MyProfile = () => {
                 !imageSelected && "opacity-50 cursor-not-allowed"
               }`}
               disabled={!imageSelected}
+              onClick={() => updateImage()}
             >
               Change Profile Image
             </button>
