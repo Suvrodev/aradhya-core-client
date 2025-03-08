@@ -11,8 +11,8 @@ interface IProps {
 const StudentMobileHeader = ({ user, openDrawer, setOpenDrawer }: IProps) => {
   console.log("Open Drawer in Mobile Header: ", openDrawer);
   return (
-    <div className="relative ">
-      <div className="bg-gradient-to-br from-white via-[#F0F4FF] to-[#E6FCF5] overflow-hidden">
+    <div className=" ">
+      <div className="bg-gradient-to-br from-white via-[#F0F4FF] to-[#E6FCF5] sticky top-0 overflow-hidden">
         <div className="flex  items-center justify-between px-4 md:px-0 mx-auto  h-[70px]  ">
           <div className="w-2/3 flex items-center justify-start h-full  ">
             <div

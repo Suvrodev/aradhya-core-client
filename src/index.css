@@ -59,6 +59,13 @@ body {
   background-color: #004e6a;
 }
 
+.logoColorBG {
+  background-color: #004e6a;
+}
+.logoColorText {
+  color: #004e6a;
+}
+
 .bgColor {
   background-color: #dcffff;
 }

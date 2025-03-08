@@ -5,10 +5,10 @@ import StudentDesktopHeader from "./Shared/StudentHeader/StudentDesktopHeader/St
 import StudentMobileHeader from "./Shared/StudentHeader/StudentMobileHeader/StudentMobileHeader";
 import "./StudentDashboard.css";
 import StudentDashboardData from "./StudentDashboardData/StudentDashboardData";
-import StudentDashboardHome from "./StudentDashboardHome";
 import { useGetSpecificStudentQuery } from "../../redux/api/features/Student/studentManagementApi";
 import { TStudent } from "../../utils/types/globalTypes";
 import LoadingPage from "../../Component/LoadingPage/LoadingPage";
+import { Outlet } from "react-router";
 const StudentDashboard = () => {
   const { token } = useAppSelector((state) => state.auth);
   // eslint-disable-next-line @typescript-eslint/no-explicit-any
@@ -17,10 +17,9 @@ const StudentDashboard = () => {
     user = verifyToken(token);
   }
 
-  console.log("Fucking USer: ", user);
   const { data, isLoading } = useGetSpecificStudentQuery(user?.studentId);
   const loggedStudent: TStudent = data?.data;
-  console.log("Logged Student in Student Main: ", loggedStudent);
+  // console.log("Logged Student in Student Main: ", loggedStudent);
 
   const [openDrawer, setOpenDrawer] = useState(false);
 
@@ -30,12 +29,12 @@ const StudentDashboard = () => {
   return (
     <div className="userDashboardBG text-black">
       {/* Desktop Header */}
-      <div className="hidden md:block">
+      <div className="hidden md:block ">
         <StudentDesktopHeader user={user} />
       </div>
 
       {/* Mobile Header */}
-      <div className=" md:hidden">
+      <div className="md:hidden sticky top-0 z-20">
         <StudentMobileHeader
           user={user}
           openDrawer={openDrawer}
@@ -46,13 +45,13 @@ const StudentDashboard = () => {
       <div className="">
         <div className="flex relative ">
           {/* Left Side for Desktop */}
-          <div className={`hidden md:block md:w-[18%]`}>
+          <div className={`hidden md:block md:w-[18%]  sticky top-0`}>
             <StudentDashboardData loggedStudent={loggedStudent} />
           </div>
 
           {/* Mobile Animation */}
           <div
-            className={`md:hidden absolute w-full left-0 top-0 min-h-screen bg-transparent`}
+            className={`md:hidden absolute w-full left-0 top-0  bg-transparent`}
             onClick={() => setOpenDrawer(false)}
           >
             <div
@@ -71,7 +70,7 @@ const StudentDashboard = () => {
 
           {/* Right side for Desktop and Full Side for Mobile */}
           <div className="w-full md:w-[88%]  ">
-            <StudentDashboardHome loggedStudent={loggedStudent} />
+            <Outlet />
           </div>
         </div>
       </div>

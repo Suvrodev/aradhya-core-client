@@ -20,11 +20,13 @@ import UpdateCourse from "../Pages/AdminDashboard/AdminCourse/UpdateCourse/Updat
 import AdminBatch from "../Pages/AdminDashboard/AdminBatch/AdminBatch/AdminBatch";
 import AdminCourseCurriculum from "../Pages/AdminDashboard/AdminCourseCurriculum/AdminCourseCurriculum";
 import StudentDashboard from "../Pages/AStudentDashboard/StudentDashboard";
-import StudentDashboardHome from "../Pages/AStudentDashboard/StudentDashboardHome";
+import StudentDashboardHome from "../Pages/AStudentDashboard/StudentDashboardHome/StudentDashboardHome";
 import StudentProtectedRoute from "./ProtectedRoute/StudentProtectedRoute";
 import AllStudent from "../Pages/AdminDashboard/AllStudent/AllStudent/AllStudent";
 import CourseDetail from "../Pages/ForAll/CourseDetail/CourseDetail";
 import AdminPromocode from "../Pages/AdminDashboard/AdminPromocode/AdminPromocode";
+import MyProfile from "../Pages/AStudentDashboard/MyProfile/MyProfile";
+import AdditionalInfo from "../Pages/AStudentDashboard/AdditionalInfo/AdditionalInfo";
 // import EnrollCourse from "../Pages/ForAll/EnrollCourse/EnrollCourse";
 
 export const router = createBrowserRouter([
@@ -201,27 +203,24 @@ export const router = createBrowserRouter([
         index: true,
         element: (
           <StudentProtectedRoute>
-            {" "}
             <StudentDashboardHome />{" "}
           </StudentProtectedRoute>
         ),
       },
       {
-        path: "admin-home",
+        path: "my-profile",
         element: (
-          <AdminProtectedRoute>
-            {" "}
-            <AdminDashboardHome />,
-          </AdminProtectedRoute>
+          <StudentProtectedRoute>
+            <MyProfile />
+          </StudentProtectedRoute>
         ),
       },
       {
-        path: "admin-profile",
+        path: "additional-info",
         element: (
-          <AdminProtectedRoute>
-            {" "}
-            <AdminProfile />
-          </AdminProtectedRoute>
+          <StudentProtectedRoute>
+            <AdditionalInfo />
+          </StudentProtectedRoute>
         ),
       },
       {

@@ -1,9 +1,12 @@
 .userDashboardBG {
   position: relative;
   background: linear-gradient(to bottom, #cbd7dd, #9eb5c0);
-  height: 100vh;
+  /* min height dile desktop e upore nich kora jay */
+  min-height: 100vh;
+  /* height: 100vh; */
   max-width: 100vw;
   overflow: hidden;
+  /* overflow-y: auto; */
 }
 
 .userDashboardBG::before {
@@ -120,4 +123,10 @@
   transform: rotate(90deg);
   transform-origin: 0 0;
   opacity: 0.15;
+}
+
+@media only screen and (max-width: 576px) {
+  .userDashboardBG {
+    height: 100%;
+  }
 }
