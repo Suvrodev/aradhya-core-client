@@ -42,6 +42,17 @@ const studentManagementApi = baseApi.injectEndpoints({
       },
       invalidatesTags: ["student"],
     }),
+
+    updatePassword: builder.mutation({
+      query: ({ id, updateData }) => {
+        return {
+          url: `/auth/updatepassword/${id}`,
+          method: "PATCH",
+          body: updateData,
+        };
+      },
+      invalidatesTags: ["student"],
+    }),
   }),
 });
 
@@ -50,4 +61,5 @@ export const {
   useGetSpecificStudentQuery,
   useDeleteStudentMutation,
   useUpdateStudentMutation,
+  useUpdatePasswordMutation,
 } = studentManagementApi;

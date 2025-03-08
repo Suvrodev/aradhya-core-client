@@ -10,10 +10,10 @@ interface IProps {
 }
 const StudentDashboardData = ({ loggedStudent }: IProps) => {
   const dispatch = useDispatch();
-  console.log("Logged Student in Student Dashboard: ", loggedStudent);
+  // console.log("Logged Student in Student Dashboard: ", loggedStudent);
   const { name, image, studentId, email, phone } = loggedStudent;
   return (
-    <div className="bg-gradient-to-br from-[#A6E3E9] via-[#4A9BA9] to-[#1A4A54] h-screen relative overflow-hidden ">
+    <div className="bg-gradient-to-br from-[#A6E3E9] via-[#4A9BA9] to-[#1A4A54] h-full relative overflow-hidden ">
       {/* <div className="absolute inset-0 bg-gradient-to-br from-[#A6E3E9]/20 via-[#4A9BA9]/20 to-[#1A4A54]/20 blur-2xl"></div> */}
 
       {/* <div className="absolute inset-0 bg-black/20 backdrop-blur-sm"></div> */}
