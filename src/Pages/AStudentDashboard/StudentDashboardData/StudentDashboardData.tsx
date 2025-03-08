@@ -20,7 +20,7 @@ const StudentDashboardData = ({
   // console.log("Logged Student in Student Dashboard: ", loggedStudent);
   const { name, image, studentId, email, phone } = loggedStudent;
 
-  console.log("Open Drawer in Dashboard: ", openDrawer);
+  // console.log("Open Drawer in Dashboard: ", openDrawer);
   return (
     <div className="bg-gradient-to-br from-[#A6E3E9] via-[#4A9BA9] to-[#1A4A54] min-h-screen  z-20  fixed top-0 md:relative">
       {/* <div className="absolute inset-0 bg-gradient-to-br from-[#A6E3E9]/20 via-[#4A9BA9]/20 to-[#1A4A54]/20 blur-2xl"></div> */}

@@ -27,6 +27,9 @@ import CourseDetail from "../Pages/ForAll/CourseDetail/CourseDetail";
 import AdminPromocode from "../Pages/AdminDashboard/AdminPromocode/AdminPromocode";
 import MyProfile from "../Pages/AStudentDashboard/MyProfile/MyProfile";
 import AdditionalInfo from "../Pages/AStudentDashboard/AdditionalInfo/AdditionalInfo";
+import Address from "../Pages/AStudentDashboard/Address/Address";
+import Education from "../Pages/AStudentDashboard/Education/Education";
+import ImportantLink from "../Pages/AStudentDashboard/ImportantLink/ImportantLink";
 // import EnrollCourse from "../Pages/ForAll/EnrollCourse/EnrollCourse";
 
 export const router = createBrowserRouter([
@@ -224,75 +227,29 @@ export const router = createBrowserRouter([
         ),
       },
       {
-        path: "admin-service",
+        path: "address",
         element: (
-          <AdminProtectedRoute>
-            {" "}
-            <AdminService />
-          </AdminProtectedRoute>
+          <StudentProtectedRoute>
+            <Address />
+          </StudentProtectedRoute>
         ),
       },
       {
-        path: "add-course",
+        path: "education",
         element: (
-          <AdminProtectedRoute>
+          <StudentProtectedRoute>
             {" "}
-            <AddCourse />
-          </AdminProtectedRoute>
+            <Education />
+          </StudentProtectedRoute>
         ),
       },
       {
-        path: "all-course",
+        path: "important-link",
         element: (
-          <AdminProtectedRoute>
+          <StudentProtectedRoute>
             {" "}
-            <AllCourses />
-          </AdminProtectedRoute>
-        ),
-      },
-      {
-        path: "update-course/:id",
-        element: (
-          <AdminProtectedRoute>
-            {" "}
-            <UpdateCourse />
-          </AdminProtectedRoute>
-        ),
-      },
-      {
-        path: "course-courriculum",
-        element: (
-          <AdminProtectedRoute>
-            {" "}
-            <AdminCourseCurriculum />
-          </AdminProtectedRoute>
-        ),
-      },
-      {
-        path: "admin-batch",
-        element: (
-          <AdminProtectedRoute>
-            {" "}
-            <AdminBatch />
-          </AdminProtectedRoute>
-        ),
-      },
-      {
-        path: "admin-all-blog",
-        element: (
-          <AdminProtectedRoute>
-            {" "}
-            <AllBlog />
-          </AdminProtectedRoute>
-        ),
-      },
-      {
-        path: "update-blog/:id",
-        element: (
-          <AdminProtectedRoute>
-            {" "}
-            <UpdateBlog />
-          </AdminProtectedRoute>
+            <ImportantLink />
+          </StudentProtectedRoute>
         ),
       },
     ],

@@ -7,6 +7,7 @@ export type TStudent = {
   isBlocked: boolean;
   studentId: string;
   phone: string;
+  gender: string;
   iat: number;
   exp: number;
 };
