@@ -1,27 +1,46 @@
 import fullLogo from "../../../../../assets/Logo/fullLogo.png";
 import { Link } from "react-router";
+import { useAppSelector } from "../../../../../redux/hook";
+import { verifyToken } from "../../../../../utils/Fucntion/verifyToken";
+import { useGetSpecificStudentQuery } from "../../../../../redux/api/features/Student/studentManagementApi";
+import { TStudent } from "../../../../../utils/types/globalTypes";
 
 interface IProps {
-  // eslint-disable-next-line @typescript-eslint/no-explicit-any
-  user: any;
   openDrawer: boolean;
   setOpenDrawer: React.Dispatch<React.SetStateAction<boolean>>;
 }
 
-const StudentMobileHeader = ({ user, openDrawer, setOpenDrawer }: IProps) => {
+const StudentMobileHeader = ({ openDrawer, setOpenDrawer }: IProps) => {
   console.log("Open Drawer in Mobile Header: ", openDrawer);
+
+  const { token } = useAppSelector((state) => state.auth);
+  // eslint-disable-next-line @typescript-eslint/no-explicit-any
+  let user: any;
+  if (token) {
+    user = verifyToken(token);
+  }
+
+  const { data, isLoading } = useGetSpecificStudentQuery(user?.studentId);
+  const loggedStudent: TStudent = data?.data;
+
+  console.log("Open Dashboard in Mobile Header: ", openDrawer);
+
+  if (isLoading) {
+    return <p>...</p>;
+  }
+
   return (
     <div className=" ">
       <div className="bg-gradient-to-br from-white via-[#F0F4FF] to-[#E6FCF5] sticky top-0 overflow-hidden">
         <div className="flex  items-center justify-between px-4 md:px-0 mx-auto  h-[70px]  ">
           <div className="w-2/3 flex items-center justify-start h-full  ">
             <div
-              className="flex items-center justify-start"
+              className="flex items-center justify-start gap-x-2"
               onClick={() => setOpenDrawer(!openDrawer)}
             >
               <div className=" flex items-center ">
                 <img
-                  src={user?.image}
+                  src={loggedStudent?.image}
                   alt=""
                   className="w-[35px] h-[35px] md:w-[50px]  md:h-[50px]  rounded-full cursor-pointer z-20"
                 />
@@ -35,7 +54,7 @@ const StudentMobileHeader = ({ user, openDrawer, setOpenDrawer }: IProps) => {
                   className="text-[#114044] cursor-pointer  text-[12px] md:text-[20px]"
                   onClick={() => {}}
                 >
-                  {user?.name}
+                  {loggedStudent?.name}
                 </span>
               </div>
             </div>

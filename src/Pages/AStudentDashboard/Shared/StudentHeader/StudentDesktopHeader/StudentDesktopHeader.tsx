@@ -2,20 +2,31 @@ import { Link } from "react-router";
 // import headerImage from "../../../../../../assets/Logo/Header_1.png";
 import fullLogo from "../../../../../assets/Logo/fullLogo.png";
 import { useState } from "react";
+import { useAppSelector } from "../../../../../redux/hook";
+import { verifyToken } from "../../../../../utils/Fucntion/verifyToken";
+import { useGetSpecificStudentQuery } from "../../../../../redux/api/features/Student/studentManagementApi";
+import { TStudent } from "../../../../../utils/types/globalTypes";
 
-interface IProps {
+const StudentDesktopHeader = () => {
+  const { token } = useAppSelector((state) => state.auth);
   // eslint-disable-next-line @typescript-eslint/no-explicit-any
-  user: any;
-}
+  let user: any;
+  if (token) {
+    user = verifyToken(token);
+  }
 
-const StudentDesktopHeader = ({ user }: IProps) => {
-  //   console.log("User in Student Header: ", user);
+  const { data, isLoading } = useGetSpecificStudentQuery(user?.studentId);
+  const loggedStudent: TStudent = data?.data;
 
   const [openDashboard, setOpenDashboard] = useState(false);
   const handleDashboard = () => {
     setOpenDashboard(!openDashboard);
   };
   console.log("Open Dashboard: ", openDashboard);
+
+  if (isLoading) {
+    return <p>...</p>;
+  }
 
   return (
     <div className="relative ">
@@ -40,13 +51,13 @@ const StudentDesktopHeader = ({ user }: IProps) => {
                     handleDashboard();
                   }}
                 >
-                  {user?.name}
+                  {loggedStudent?.name}
                 </span>
               </div>
 
               <div className=" flex items-center gap-2 relative z-10">
                 <img
-                  src={user?.image}
+                  src={loggedStudent?.image}
                   alt=""
                   className="w-[35px] h-[35px] md:w-[50px]  md:h-[50px]  rounded-full cursor-pointer z-20"
                   onClick={handleDashboard}

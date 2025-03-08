@@ -2,7 +2,7 @@
   position: relative;
   background: linear-gradient(to bottom, #cbd7dd, #9eb5c0);
   /* min height dile desktop e upore nich kora jay */
-  min-height: 100vh;
+  /* min-height: 100vh; */
   /* height: 100vh; */
   max-width: 100vw;
   overflow: hidden;

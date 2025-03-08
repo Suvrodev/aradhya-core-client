@@ -30,13 +30,12 @@ const StudentDashboard = () => {
     <div className="userDashboardBG text-black">
       {/* Desktop Header */}
       <div className="hidden md:block ">
-        <StudentDesktopHeader user={user} />
+        <StudentDesktopHeader />
       </div>
 
       {/* Mobile Header */}
       <div className="md:hidden sticky top-0 z-20">
         <StudentMobileHeader
-          user={user}
           openDrawer={openDrawer}
           setOpenDrawer={setOpenDrawer}
         />
@@ -46,24 +45,32 @@ const StudentDashboard = () => {
         <div className="flex relative ">
           {/* Left Side for Desktop */}
           <div className={`hidden md:block md:w-[18%]  sticky top-0`}>
-            <StudentDashboardData loggedStudent={loggedStudent} />
+            <StudentDashboardData
+              loggedStudent={loggedStudent}
+              openDrawer={openDrawer}
+              setOpenDrawer={setOpenDrawer}
+            />
           </div>
 
           {/* Mobile Animation */}
           <div
-            className={`md:hidden absolute w-full left-0 top-0  bg-transparent`}
+            className={`md:hidden absolute w-full h-full left-0 top-0  bg-transparent z-10`}
             onClick={() => setOpenDrawer(false)}
           >
             <div
-              className="relative w-full z-20"
+              className="relative w-full"
               onClick={(event) => event.stopPropagation()}
             >
               <div
                 className={`absolute  w-[225px] bg-teal-500 ease-in-out duration-700 ${
-                  openDrawer ? "left-0 " : "-left-[1000px]"
+                  openDrawer ? "left-0 " : "-left-[1000px] "
                 } `}
               >
-                <StudentDashboardData loggedStudent={loggedStudent} />
+                <StudentDashboardData
+                  loggedStudent={loggedStudent}
+                  openDrawer={openDrawer}
+                  setOpenDrawer={setOpenDrawer}
+                />
               </div>
             </div>
           </div>
