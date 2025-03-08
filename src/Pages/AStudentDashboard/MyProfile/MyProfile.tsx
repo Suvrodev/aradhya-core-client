@@ -146,7 +146,7 @@ const MyProfile = () => {
             />
             <label
               htmlFor="file-upload"
-              className="absolute bottom-2 right-2 bg-gray-800 p-2 rounded-full cursor-pointer hover:bg-gray-700 transition"
+              className="absolute top-0 right-[60px] md:right-[240px] bg-gray-800 p-2 rounded-full cursor-pointer hover:bg-gray-700 transition"
             >
               <Camera className="text-[#00C8FF]" />
             </label>

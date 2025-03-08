@@ -19,7 +19,7 @@ const StudentDashboard = () => {
 
   const { data, isLoading } = useGetSpecificStudentQuery(user?.studentId);
   const loggedStudent: TStudent = data?.data;
-  // console.log("Logged Student in Student Main: ", loggedStudent);
+  console.log("Logged Student in Student Main: ", loggedStudent);
 
   const [openDrawer, setOpenDrawer] = useState(false);
 
@@ -54,7 +54,9 @@ const StudentDashboard = () => {
 
           {/* Mobile Animation */}
           <div
-            className={`md:hidden absolute w-full h-full left-0 top-0  bg-transparent z-10`}
+            className={`md:hidden absolute w-full h-full left-0 top-0  ${
+              openDrawer ? "bg-green-400 z-10" : ""
+            }`}
             onClick={() => setOpenDrawer(false)}
           >
             <div
