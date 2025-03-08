@@ -12,6 +12,15 @@ const studentManagementApi = baseApi.injectEndpoints({
       },
       providesTags: ["student"],
     }),
+    getSpecificStudent: builder.query({
+      query: (id) => {
+        return {
+          url: `/auth/allusers/${id}`,
+          method: "GET",
+        };
+      },
+      providesTags: ["student"],
+    }),
 
     deleteStudent: builder.mutation({
       query: (id) => {
@@ -38,6 +47,7 @@ const studentManagementApi = baseApi.injectEndpoints({
 
 export const {
   useGetAllStudentQuery,
+  useGetSpecificStudentQuery,
   useDeleteStudentMutation,
   useUpdateStudentMutation,
 } = studentManagementApi;

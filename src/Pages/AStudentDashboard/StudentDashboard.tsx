@@ -6,6 +6,9 @@ import StudentMobileHeader from "./Shared/StudentHeader/StudentMobileHeader/Stud
 import "./StudentDashboard.css";
 import StudentDashboardData from "./StudentDashboardData/StudentDashboardData";
 import StudentDashboardHome from "./StudentDashboardHome";
+import { useGetSpecificStudentQuery } from "../../redux/api/features/Student/studentManagementApi";
+import { TStudent } from "../../utils/types/globalTypes";
+import LoadingPage from "../../Component/LoadingPage/LoadingPage";
 const StudentDashboard = () => {
   const { token } = useAppSelector((state) => state.auth);
   // eslint-disable-next-line @typescript-eslint/no-explicit-any
@@ -14,7 +17,16 @@ const StudentDashboard = () => {
     user = verifyToken(token);
   }
 
+  console.log("Fucking USer: ", user);
+  const { data, isLoading } = useGetSpecificStudentQuery(user?.studentId);
+  const loggedStudent: TStudent = data?.data;
+  console.log("Logged Student in Student Main: ", loggedStudent);
+
   const [openDrawer, setOpenDrawer] = useState(false);
+
+  if (isLoading) {
+    return <LoadingPage />;
+  }
   return (
     <div className="userDashboardBG text-black">
       {/* Desktop Header */}
@@ -31,11 +43,11 @@ const StudentDashboard = () => {
         />
       </div>
 
-      <div className="bg-green-400">
+      <div className="">
         <div className="flex relative ">
-          {/* Left Side for Desltop */}
-          <div className={`hidden md:block md:w-[18%] bg-yellow-500`}>
-            <StudentDashboardData />
+          {/* Left Side for Desktop */}
+          <div className={`hidden md:block md:w-[18%]`}>
+            <StudentDashboardData loggedStudent={loggedStudent} />
           </div>
 
           {/* Mobile Animation */}
@@ -44,7 +56,7 @@ const StudentDashboard = () => {
             onClick={() => setOpenDrawer(false)}
           >
             <div
-              className="relative w-full bg-yellow-500 z-20"
+              className="relative w-full z-20"
               onClick={(event) => event.stopPropagation()}
             >
               <div
@@ -52,14 +64,14 @@ const StudentDashboard = () => {
                   openDrawer ? "left-0 " : "-left-[1000px]"
                 } `}
               >
-                <StudentDashboardData />
+                <StudentDashboardData loggedStudent={loggedStudent} />
               </div>
             </div>
           </div>
 
           {/* Right side for Desktop and Full Side for Mobile */}
-          <div className="w-full md:w-[88%] bg-purple-400">
-            <StudentDashboardHome />
+          <div className="w-full md:w-[88%]  ">
+            <StudentDashboardHome loggedStudent={loggedStudent} />
           </div>
         </div>
       </div>
