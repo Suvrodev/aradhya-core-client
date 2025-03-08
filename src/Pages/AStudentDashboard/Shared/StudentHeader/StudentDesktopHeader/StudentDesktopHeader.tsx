@@ -1,7 +1,5 @@
 import { Link } from "react-router";
 // import headerImage from "../../../../../../assets/Logo/Header_1.png";
-import { useDispatch } from "react-redux";
-import { logout } from "../../../../../redux/api/features/auth/authSlice";
 import fullLogo from "../../../../../assets/Logo/fullLogo.png";
 import { useState } from "react";
 
@@ -12,7 +10,6 @@ interface IProps {
 
 const StudentDesktopHeader = ({ user }: IProps) => {
   //   console.log("User in Student Header: ", user);
-  const dispatch = useDispatch();
 
   const [openDashboard, setOpenDashboard] = useState(false);
   const handleDashboard = () => {
@@ -60,7 +57,7 @@ const StudentDesktopHeader = ({ user }: IProps) => {
         </div>
       </div>
 
-      <div
+      {/* <div
         className={`absolute w-full h-screen bg-gre  ${
           openDashboard ? "" : "hidden"
         }`}
@@ -86,7 +83,7 @@ const StudentDesktopHeader = ({ user }: IProps) => {
             </div>
           </div>
         </div>
-      </div>
+      </div> */}
     </div>
   );
 };
