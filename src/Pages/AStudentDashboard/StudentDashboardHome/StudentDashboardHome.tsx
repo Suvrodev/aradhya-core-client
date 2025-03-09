@@ -1,9 +1,10 @@
+import EnrolledCard from "./EnrolledCard/EnrolledCard";
 import "./StudentDashboardHome.css";
 
 const StudentDashboardHome = () => {
   return (
-    <div className="sPadding">
-      <h1>Hi, Student</h1>
+    <div className="sPadding min-h-screen ">
+      <EnrolledCard />
     </div>
   );
 };

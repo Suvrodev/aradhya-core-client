@@ -30,6 +30,7 @@ import AdditionalInfo from "../Pages/AStudentDashboard/AdditionalInfo/Additional
 import Address from "../Pages/AStudentDashboard/Address/Address";
 import Education from "../Pages/AStudentDashboard/Education/Education";
 import ImportantLink from "../Pages/AStudentDashboard/ImportantLink/ImportantLink";
+import AddBlog from "../Pages/AdminDashboard/AdminBlog/AddBlog/AddBlog";
 // import EnrollCourse from "../Pages/ForAll/EnrollCourse/EnrollCourse";
 
 export const router = createBrowserRouter([
@@ -161,6 +162,15 @@ export const router = createBrowserRouter([
           <AdminProtectedRoute>
             {" "}
             <AdminBatch />
+          </AdminProtectedRoute>
+        ),
+      },
+      {
+        path: "admin-add-blog",
+        element: (
+          <AdminProtectedRoute>
+            {" "}
+            <AddBlog />
           </AdminProtectedRoute>
         ),
       },

@@ -20,6 +20,7 @@ import { sonarId } from "../../../utils/Fucntion/sonarId";
 const ImportantLink = () => {
   const [updateUser] = useUpdateStudentMutation();
   const { token } = useAppSelector((state) => state.auth);
+  // eslint-disable-next-line @typescript-eslint/no-explicit-any
   let user: any;
   if (token) {
     user = verifyToken(token);

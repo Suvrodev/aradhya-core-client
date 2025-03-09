@@ -1,5 +1,9 @@
 const studentDashboardArray = [
   {
+    title: "Home",
+    path: "/student-dashboard",
+  },
+  {
     title: "My Profile",
     path: "/student-dashboard/my-profile",
   },

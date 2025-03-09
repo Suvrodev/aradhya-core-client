@@ -3,10 +3,24 @@ import { toast } from "sonner";
 import { sonarId } from "../../../../utils/Fucntion/sonarId";
 import AllBatch from "../AllBatch/AllBatch";
 import { useAddBatchMutation } from "../../../../redux/api/features/Batch/batchManagementApi";
+import { useGetAllCourseQuery } from "../../../../redux/api/features/Course/courseManagementApi";
+import LoadingPage from "../../../../Component/LoadingPage/LoadingPage";
+import { TCourse } from "../../../../utils/types/globalTypes";
 
 const AdminBatch = () => {
+  const { data: CourseData, isLoading } = useGetAllCourseQuery(undefined);
   const [addBatch] = useAddBatchMutation();
   const [batchStatus, setBatchStatus] = useState("");
+
+  const courses = CourseData?.data;
+  console.log("Courses: ", courses);
+
+  const [underCourse, setUnderCourse] = useState("");
+  const handleUnderCourse = (event: ChangeEvent<HTMLSelectElement>) => {
+    const data = event.target.value;
+    setUnderCourse(data);
+  };
+
   const handleBatchStatus = (event: ChangeEvent<HTMLSelectElement>) => {
     const batchStatus = event.target.value;
     console.log("Batch Status: ", batchStatus);
@@ -20,12 +34,24 @@ const AdminBatch = () => {
     const start = Form.start.value;
     const end = Form.end.value;
 
+    if (!underCourse) {
+      toast.error("Not Selected Course", { id: sonarId });
+      return;
+    }
+
     if (!batchStatus) {
       toast.error("Batch Status must be needed", { id: sonarId });
       return;
     }
 
-    const formData = { batchId, batchName, start, end, batchStatus };
+    const formData = {
+      batchId,
+      batchName,
+      underCourse,
+      start,
+      end,
+      batchStatus,
+    };
     console.log("FormData: ", formData);
     toast.loading("Adding Batch", { id: sonarId });
     const res = await addBatch(formData).unwrap();
@@ -33,6 +59,10 @@ const AdminBatch = () => {
       toast.success("Batch Added Successfully", { id: sonarId });
     }
   };
+
+  if (isLoading) {
+    return <LoadingPage />;
+  }
   return (
     <div className="p-5">
       <h1 className="text-2xl font-bold">Admin Batch</h1>
@@ -83,6 +113,25 @@ const AdminBatch = () => {
                   className="w-full px-4 py-2 bg-gray-700 text-white rounded-lg focus:outline-none focus:ring focus:ring-teal-500 "
                   placeholder="Batch Name"
                 />
+              </div>
+              <div>
+                <h1 className="block mb-4 text-sm font-medium">Under Course</h1>
+                <select
+                  name=""
+                  id=""
+                  onChange={handleUnderCourse}
+                  value={underCourse}
+                  className="w-full px-4 py-2 bg-gray-700 text-white rounded-lg focus:outline-none focus:ring focus:ring-teal-500 "
+                >
+                  <option value="" disabled>
+                    Select One
+                  </option>
+                  {courses?.map((course: TCourse, idx: number) => (
+                    <option value={course?.courseId} key={idx}>
+                      {course?.courseTitle}
+                    </option>
+                  ))}
+                </select>
               </div>
               <div>
                 <h1 className="block mb-4 text-sm font-medium">Batch Status</h1>

@@ -18,9 +18,9 @@ export type TStudent = {
   educationInstitute: string;
   facebookUrl: string;
   twitterUrl: string;
-  linkeDinUrk: string;
+  linkedinUrl: string;
   githubUrl: string;
-  whatsAppNumber: string;
+  whatsappNumber: string;
   iat: number;
   exp: number;
 };
