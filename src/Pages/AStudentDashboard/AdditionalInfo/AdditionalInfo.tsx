@@ -14,6 +14,7 @@ import { sonarId } from "../../../utils/Fucntion/sonarId";
 const AdditionalInfo = () => {
   const [updateUser] = useUpdateStudentMutation();
   const { token } = useAppSelector((state) => state.auth);
+  // eslint-disable-next-line @typescript-eslint/no-explicit-any
   let user: any;
   if (token) {
     user = verifyToken(token);
@@ -24,7 +25,7 @@ const AdditionalInfo = () => {
 
   const [gender, setGender] = useState(loggedStudent?.gender || "");
   const [ageRange, setAgeRange] = useState(loggedStudent?.ageRange || "");
-  const [device, setDevice] = useState(loggedStudent?.device || "");
+  const [device, setDevice] = useState(loggedStudent?.deviceType || "");
   const [internetType, setInternetType] = useState(
     loggedStudent?.internetType || ""
   );
@@ -33,6 +34,7 @@ const AdditionalInfo = () => {
   const handleSubmit = async (event: FormEvent<HTMLFormElement>) => {
     event.preventDefault();
     const updateData = { gender, ageRange, device, internetType, areaType };
+    console.log("Update Data: ", updateData);
     toast.loading("Updating Additional Info", { id: sonarId });
     const res = await updateUser({
       id: loggedStudent?.studentId,
