@@ -27,12 +27,12 @@ const EnrollCourseFirstStep = ({
 IProps) => {
   const { token } = useAppSelector((state) => state.auth);
   // eslint-disable-next-line @typescript-eslint/no-explicit-any
-  let user: any;
+  let student: any;
   if (token) {
-    user = verifyToken(token);
+    student = verifyToken(token);
   }
 
-  console.log("USer ===========", user);
+  console.log("Student ===========", student);
 
   return (
     <div className="flex flex-col items-center justify-center   bg-[#2D3035] text-white underline-offset-8 px-10">
@@ -40,13 +40,13 @@ IProps) => {
         Enroll Course
       </h1>
 
-      <div className="flex bg-purple-400 w-full">
+      <div className="flex w-full">
         <div className="w-[70%] flex flex-col gap-4">
           <h1 className="text-4xl font-bold italic">{courseTitle}</h1>
-          <p className="text-xl ">
+          <p className="text-xl font-bold ">
             Course duration: <span>{courseDuration}</span>
           </p>
-          <p className="text-xl ">
+          <p className="text-xl font-bold ">
             Start Date: <span>{courseStartDate}</span>
           </p>
         </div>
@@ -55,78 +55,87 @@ IProps) => {
         </div>
       </div>
 
-      <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
-        {/* Course Name */}
+      <div className="">
+        <h1 className="text-3xl font-bold text-center text-white my-4 underline">
+          Student Detail
+        </h1>
+        <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
+          {/* Course Name */}
 
-        {/* Batch ID */}
-        <div>
-          <label className="block text-sm font-medium text-gray-300 mb-1">
-            Batch ID
-          </label>
-          <input
-            type="text"
-            name="batchId"
-            className="mt-1 block w-full px-4 py-2 bg-gray-700 text-white border border-gray-600 rounded-md shadow-sm focus:outline-none focus:ring-2 focus:ring-purple-500 focus:border-transparent"
-            placeholder="Enter batch ID"
-            required
-            disabled
-          />
-        </div>
+          {/* Student ID */}
+          <div>
+            <label className="block text-sm font-medium text-gray-300 mb-1">
+              Student ID
+            </label>
+            <input
+              defaultValue={student?.studentId}
+              type="text"
+              name="studentId"
+              className="mt-1 block w-full px-4 py-2 bg-gray-700 text-white border border-gray-600 rounded-md shadow-sm focus:outline-none focus:ring-2 focus:ring-purple-500 focus:border-transparent"
+              placeholder="Enter student ID"
+              required
+              disabled
+            />
+          </div>
 
-        {/* Student ID */}
-        <div>
-          <label className="block text-sm font-medium text-gray-300 mb-1">
-            Student ID
-          </label>
-          <input
-            type="text"
-            name="studentId"
-            className="mt-1 block w-full px-4 py-2 bg-gray-700 text-white border border-gray-600 rounded-md shadow-sm focus:outline-none focus:ring-2 focus:ring-purple-500 focus:border-transparent"
-            placeholder="Enter student ID"
-            required
-          />
-        </div>
+          {/* Student Name */}
+          <div>
+            <label className="block text-sm font-medium text-gray-300 mb-1">
+              Student Name
+            </label>
+            <input
+              defaultValue={student?.name}
+              type="text"
+              name="studentName"
+              className="mt-1 block w-full px-4 py-2 bg-gray-700 text-white border border-gray-600 rounded-md shadow-sm focus:outline-none focus:ring-2 focus:ring-purple-500 focus:border-transparent"
+              placeholder="Enter student name"
+              disabled
+            />
+          </div>
 
-        {/* Student Name */}
-        <div>
-          <label className="block text-sm font-medium text-gray-300 mb-1">
-            Student Name
-          </label>
-          <input
-            type="text"
-            name="studentName"
-            className="mt-1 block w-full px-4 py-2 bg-gray-700 text-white border border-gray-600 rounded-md shadow-sm focus:outline-none focus:ring-2 focus:ring-purple-500 focus:border-transparent"
-            placeholder="Enter student name"
-            required
-          />
-        </div>
+          {/* Batch ID */}
+          <div>
+            <label className="block text-sm font-medium text-gray-300 mb-1">
+              Batch ID
+            </label>
+            <input
+              type="text"
+              name="batchId"
+              className="mt-1 block w-full px-4 py-2 bg-gray-700 text-white border border-gray-600 rounded-md shadow-sm focus:outline-none focus:ring-2 focus:ring-purple-500 focus:border-transparent"
+              placeholder="Enter batch ID"
+              disabled
+            />
+          </div>
 
-        {/* Student Email */}
-        <div>
-          <label className="block text-sm font-medium text-gray-300 mb-1">
-            Student Email
-          </label>
-          <input
-            type="email"
-            name="studentEmail"
-            className="mt-1 block w-full px-4 py-2 bg-gray-700 text-white border border-gray-600 rounded-md shadow-sm focus:outline-none focus:ring-2 focus:ring-purple-500 focus:border-transparent"
-            placeholder="Enter student email"
-            required
-          />
-        </div>
+          {/* Student Email */}
+          <div>
+            <label className="block text-sm font-medium text-gray-300 mb-1">
+              Student Email
+            </label>
+            <input
+              defaultValue={student?.email}
+              type="email"
+              name="studentEmail"
+              className="mt-1 block w-full px-4 py-2 bg-gray-700 text-white border border-gray-600 rounded-md shadow-sm focus:outline-none focus:ring-2 focus:ring-purple-500 focus:border-transparent"
+              placeholder="Enter student email"
+              disabled
+            />
+          </div>
 
-        {/* Student Phone */}
-        <div>
-          <label className="block text-sm font-medium text-gray-300 mb-1">
-            Student Phone
-          </label>
-          <input
-            type="tel"
-            name="studentPhone"
-            className="mt-1 block w-full px-4 py-2 bg-gray-700 text-white border border-gray-600 rounded-md shadow-sm focus:outline-none focus:ring-2 focus:ring-purple-500 focus:border-transparent"
-            placeholder="Enter student phone"
-            required
-          />
+          {/* Student Phone */}
+          <div>
+            <label className="block text-sm font-medium text-gray-300 mb-1">
+              Student Phone
+            </label>
+            <input
+              defaultValue={student?.phone}
+              type="tel"
+              name="studentPhone"
+              className="mt-1 block w-full px-4 py-2 bg-gray-700 text-white border border-gray-600 rounded-md shadow-sm focus:outline-none focus:ring-2 focus:ring-purple-500 focus:border-transparent"
+              placeholder="Enter student phone"
+              disabled
+            />
+          </div>
         </div>
       </div>
     </div>
