@@ -21,10 +21,10 @@ const batchManagementApi = baseApi.injectEndpoints({
       },
       providesTags: ["batch"],
     }),
-    getSpecificBatch: builder.query({
+    getSpecificBatchUnderCourse: builder.query({
       query: (id) => {
         return {
-          url: `/batch/${id}`,
+          url: `/batch/undercourse/${id}`,
           method: "GET",
         };
       },
@@ -56,7 +56,7 @@ const batchManagementApi = baseApi.injectEndpoints({
 export const {
   useAddBatchMutation,
   useGetAllBatchQuery,
-  useGetSpecificBatchQuery,
+  useGetSpecificBatchUnderCourseQuery,
   useDeleteBatchMutation,
   useUpdateBatchMutation,
 } = batchManagementApi;

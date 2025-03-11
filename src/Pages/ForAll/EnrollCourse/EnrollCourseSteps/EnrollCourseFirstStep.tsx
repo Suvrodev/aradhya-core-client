@@ -1,5 +1,7 @@
+import { useGetSpecificBatchUnderCourseQuery } from "../../../../redux/api/features/Batch/batchManagementApi";
 import { useAppSelector } from "../../../../redux/hook";
 import { verifyToken } from "../../../../utils/Fucntion/verifyToken";
+import { TBatch } from "../../../../utils/types/globalTypes";
 
 interface IProps {
   courseId: string;
@@ -15,7 +17,7 @@ interface IProps {
 }
 
 const EnrollCourseFirstStep = ({
-  // courseId,
+  courseId,
   courseTitle,
   courseImage,
   courseDuration,
@@ -25,6 +27,11 @@ const EnrollCourseFirstStep = ({
 }: // activeStep,
 // setActiveStep,
 IProps) => {
+  const { data, isLoading } = useGetSpecificBatchUnderCourseQuery(courseId);
+
+  const onGoingBatch: TBatch = data?.data;
+  console.log("On Going Batch: ", onGoingBatch);
+
   const { token } = useAppSelector((state) => state.auth);
   // eslint-disable-next-line @typescript-eslint/no-explicit-any
   let student: any;
@@ -99,6 +106,7 @@ IProps) => {
               Batch ID
             </label>
             <input
+              defaultValue={onGoingBatch?.batchId}
               type="text"
               name="batchId"
               className="mt-1 block w-full px-4 py-2 bg-gray-700 text-white border border-gray-600 rounded-md shadow-sm focus:outline-none focus:ring-2 focus:ring-purple-500 focus:border-transparent"
