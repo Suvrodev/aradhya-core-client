@@ -39,16 +39,29 @@ const AllBatch = () => {
               </span>{" "}
               <span className="ml-4">{data?.batchId}</span>
             </h1>
-            <div className="mt-4">
-              {data?.batchName && (
-                <p>
-                  {" "}
-                  <span className="bg-white py-1 px-2 shadow-md text-black rounded-md">
-                    Batch Name
-                  </span>{" "}
-                  <span className="ml-2">{data?.batchName}</span>
-                </p>
-              )}
+            <div className="mt-4 flex justify-between">
+              <div className="">
+                {data?.underCourse && (
+                  <p>
+                    {" "}
+                    <span className="bg-white py-1 px-2 shadow-md text-black rounded-md">
+                      Under Course
+                    </span>{" "}
+                    <span className="ml-2">{data?.underCourse}</span>
+                  </p>
+                )}
+              </div>
+              <div className="">
+                {data?.batchName && (
+                  <p>
+                    {" "}
+                    <span className="bg-white py-1 px-2 shadow-md text-black rounded-md">
+                      Batch Name
+                    </span>{" "}
+                    <span className="ml-2">{data?.batchName}</span>
+                  </p>
+                )}
+              </div>
             </div>
             <div className="mt-4 flex justify-between">
               <p>

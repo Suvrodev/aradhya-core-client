@@ -54,6 +54,7 @@ export type TBlog = {
 
 export type TBatch = {
   batchId: string;
+  underCourse: string;
   batchName: string;
   batchStatus: string;
   start: string;
