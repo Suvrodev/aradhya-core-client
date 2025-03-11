@@ -43,6 +43,7 @@ const EnrollCourseFirstStep = ({
     student = verifyToken(token);
   }
 
+  ///totalPrice wull be showed as final price
   const [promoCode, setPromoCode] = useState("");
   const [appliedDiscount, setAppliedDiscount] = useState(0);
   const [isCouponApplied, setIsCouponApplied] = useState(false);
