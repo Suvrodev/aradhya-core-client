@@ -35,13 +35,13 @@ IProps) => {
   // };
 
   return (
-    <div className="flex flex-col items-center justify-center  bg-purple-500">
-      <h1 className="text-3xl font-bold text-center text-white mb-6">
+    <div className="flex flex-col items-center justify-center   bg-[#2D3035] underline-offset-8 px-10">
+      <h1 className="text-3xl font-bold text-center text-white mb-6 underline">
         Enroll Course
       </h1>
 
-      <div className="flex ">
-        <div>
+      <div className="flex bg-purple-400 w-full">
+        <div className="w-[70%]">
           <p className="text-xl">
             <span>Name: </span>
             <span>{user?.name}</span>
@@ -55,12 +55,8 @@ IProps) => {
             <span>Batch-1</span>
           </p>
         </div>
-        <div className="flex flex-col gap-2">
-          <img
-            src={courseImage}
-            className="w-[150px] h-[80px] rounded-md"
-            alt=""
-          />
+        <div className="w-[30%}">
+          <img src={courseImage} className="w-[450px] rounded-md" alt="" />
           <p className="text-xl font-bold "> {courseTitle} </p>
         </div>
       </div>

@@ -1,6 +1,6 @@
 import { useState } from "react";
 import { Modal } from "antd";
-import BuyCourseStep from "../EnrollCourse";
+import EnrollCourse from "../EnrollCourse";
 
 interface IProps {
   courseId: string;
@@ -47,8 +47,8 @@ const EnrollCourseModal = ({ courseId, courseTitle, courseImage }: IProps) => {
           xxl: "60%",
         }}
       >
-        <div className="form-container ">
-          <BuyCourseStep
+        <div className="">
+          <EnrollCourse
             courseId={courseId}
             courseTitle={courseTitle}
             courseImage={courseImage}
