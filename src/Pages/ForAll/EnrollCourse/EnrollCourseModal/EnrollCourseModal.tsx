@@ -6,9 +6,21 @@ interface IProps {
   courseId: string;
   courseTitle: string;
   courseImage: string;
+  courseDuration: string;
+  courseStartDate: string;
+  coursePrice: number;
+  courseDiscount: number;
 }
 
-const EnrollCourseModal = ({ courseId, courseTitle, courseImage }: IProps) => {
+const EnrollCourseModal = ({
+  courseId,
+  courseTitle,
+  courseImage,
+  courseDuration,
+  courseStartDate,
+  coursePrice,
+  courseDiscount,
+}: IProps) => {
   //   Modal Default Class start
   const [isModalOpen, setIsModalOpen] = useState(false);
 
@@ -50,8 +62,12 @@ const EnrollCourseModal = ({ courseId, courseTitle, courseImage }: IProps) => {
         <div className="">
           <EnrollCourse
             courseId={courseId}
+            courseDuration={courseDuration}
             courseTitle={courseTitle}
             courseImage={courseImage}
+            courseStartDate={courseStartDate}
+            coursePrice={coursePrice}
+            courseDiscount={courseDiscount}
           />
         </div>
       </Modal>

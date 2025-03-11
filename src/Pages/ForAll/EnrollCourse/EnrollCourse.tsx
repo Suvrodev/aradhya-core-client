@@ -8,9 +8,21 @@ interface IProps {
   courseId: string;
   courseTitle: string;
   courseImage: string;
+  courseDuration: string;
+  courseStartDate: string;
+  coursePrice: number;
+  courseDiscount: number;
 }
 
-const EnrollCourse = ({ courseId, courseTitle, courseImage }: IProps) => {
+const EnrollCourse = ({
+  courseId,
+  courseTitle,
+  courseImage,
+  courseDuration,
+  courseStartDate,
+  coursePrice,
+  courseDiscount,
+}: IProps) => {
   const [activeStep, setActiveStep] = useState(0);
 
   console.log("Active Step: ", activeStep);
@@ -21,9 +33,13 @@ const EnrollCourse = ({ courseId, courseTitle, courseImage }: IProps) => {
         {activeStep == 0 && (
           <EnrollCourseFirstStep
             courseId={courseId}
+            courseDuration={courseDuration}
             courseTitle={courseTitle}
             courseImage={courseImage}
             activeStep={activeStep}
+            courseStartDate={courseStartDate}
+            coursePrice={coursePrice}
+            courseDiscount={courseDiscount}
             setActiveStep={setActiveStep}
           />
         )}

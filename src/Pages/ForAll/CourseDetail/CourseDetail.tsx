@@ -109,7 +109,11 @@ const CourseDetail = () => {
         <EnrollCourseModal
           courseId={course?.courseId}
           courseTitle={course?.courseTitle}
+          courseDuration={course?.courseDuration}
           courseImage={course?.courseImage}
+          courseStartDate={course?.courseStartDate || "Up to date"}
+          coursePrice={course?.coursePrice}
+          courseDiscount={course?.courseDiscount || 0}
         />
         {course.courseCouponStatus && (
           <button className="bg-green-600 hover:bg-green-700 text-white font-bold py-3 px-6 rounded-full transition-all transform hover:scale-105">

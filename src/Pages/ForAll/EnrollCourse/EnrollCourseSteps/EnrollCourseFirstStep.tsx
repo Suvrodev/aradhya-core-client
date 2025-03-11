@@ -3,8 +3,13 @@ import { verifyToken } from "../../../../utils/Fucntion/verifyToken";
 
 interface IProps {
   courseId: string;
+  courseDuration: string;
   courseTitle: string;
   courseImage: string;
+  courseStartDate: string;
+  coursePrice: number;
+  courseDiscount: number;
+
   activeStep: number;
   setActiveStep: React.Dispatch<React.SetStateAction<number>>;
 }
@@ -13,6 +18,10 @@ const EnrollCourseFirstStep = ({
   // courseId,
   courseTitle,
   courseImage,
+  courseDuration,
+  courseStartDate,
+  coursePrice,
+  courseDiscount,
 }: // activeStep,
 // setActiveStep,
 IProps) => {
@@ -25,39 +34,24 @@ IProps) => {
 
   console.log("USer ===========", user);
 
-  // const handleSubmit = async (event: FormEvent<HTMLFormElement>) => {
-  //   event.preventDefault();
-  //   const form = event.target as HTMLFormElement;
-  //   const formData = new FormData(form);
-  //   const data = Object.fromEntries(formData.entries());
-  //   console.log(data); // You can handle the form data here
-  //   setActiveStep(activeStep + 1);
-  // };
-
   return (
-    <div className="flex flex-col items-center justify-center   bg-[#2D3035] underline-offset-8 px-10">
+    <div className="flex flex-col items-center justify-center   bg-[#2D3035] text-white underline-offset-8 px-10">
       <h1 className="text-3xl font-bold text-center text-white mb-6 underline">
         Enroll Course
       </h1>
 
       <div className="flex bg-purple-400 w-full">
-        <div className="w-[70%]">
-          <p className="text-xl">
-            <span>Name: </span>
-            <span>{user?.name}</span>
+        <div className="w-[70%] flex flex-col gap-4">
+          <h1 className="text-4xl font-bold italic">{courseTitle}</h1>
+          <p className="text-xl ">
+            Course duration: <span>{courseDuration}</span>
           </p>
-          <p className="text-xl">
-            <span>Email: </span>
-            <span>{user?.email}</span>
-          </p>
-          <p className="text-xl">
-            <span>Batch: </span>
-            <span>Batch-1</span>
+          <p className="text-xl ">
+            Start Date: <span>{courseStartDate}</span>
           </p>
         </div>
-        <div className="w-[30%}">
-          <img src={courseImage} className="w-[450px] rounded-md" alt="" />
-          <p className="text-xl font-bold "> {courseTitle} </p>
+        <div className="w-[30%} ">
+          <img src={courseImage} className="w-[350px] rounded-md" alt="" />
         </div>
       </div>
 
