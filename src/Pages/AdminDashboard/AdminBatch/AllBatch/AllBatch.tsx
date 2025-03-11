@@ -83,7 +83,19 @@ const AllBatch = () => {
                 <span className="bg-white py-1 px-2 shadow-md text-black rounded-md">
                   Batch Status
                 </span>{" "}
-                <span className="ml-2"> {data?.batchStatus}</span>
+                <span
+                  className={`ml-2 py-1 px-2 shadow-md text-white rounded-md ${
+                    data?.batchStatus === "onGoing"
+                      ? "bg-green-500"
+                      : data?.batchStatus === "upComing"
+                      ? "bg-yellow-500"
+                      : data?.batchStatus === "end"
+                      ? "bg-red-800"
+                      : "bg-gray-400" // Default case (optional)
+                  }`}
+                >
+                  {data?.batchStatus}
+                </span>
               </p>
             </div>
 
