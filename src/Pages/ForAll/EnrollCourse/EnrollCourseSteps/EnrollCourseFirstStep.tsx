@@ -1,5 +1,7 @@
+import "./EnrollCourseFirstStep.css";
 import { useGetSpecificBatchUnderCourseQuery } from "../../../../redux/api/features/Batch/batchManagementApi";
 import { useAppSelector } from "../../../../redux/hook";
+import { calculateDiscountedPrice } from "../../../../utils/Fucntion/calculateDiscount";
 import { verifyToken } from "../../../../utils/Fucntion/verifyToken";
 import { TBatch } from "../../../../utils/types/globalTypes";
 
@@ -40,6 +42,10 @@ IProps) => {
   }
 
   console.log("Student ===========", student);
+
+  const appyCouponCode = () => {
+    console.log("Apply Coupon Code");
+  };
 
   return (
     <div className="flex flex-col items-center justify-center   bg-[#2D3035] text-white underline-offset-8 px-10">
@@ -143,6 +149,38 @@ IProps) => {
               placeholder="Enter student phone"
               disabled
             />
+          </div>
+        </div>
+      </div>
+      <div className=" w-full h-full">
+        <h1 className="text-3xl font-bold text-center text-white my-4 underline ">
+          Payment Detail
+        </h1>
+        <div className=" flex items-start w-full  ">
+          <div className="w-1/2 leading-8 ">
+            <h1 className="text-[18px]">Course Price: ${coursePrice} ৳ </h1>
+            <h1 className="text-[18px]">Discount: ${courseDiscount} ৳</h1>
+            <h1 className="text-[18px]">
+              Total Price:{" "}
+              {calculateDiscountedPrice(coursePrice, courseDiscount)}৳
+            </h1>
+          </div>
+          <div className=" w-1/2 leading-8">
+            <div className="flex items-center gap-2">
+              <h1 className="text-[18px]">Coupon </h1>
+              <input
+                type="text"
+                name="studentPhone"
+                className="   px-4  bg-gray-700 text-white border border-gray-600 rounded-md shadow-sm focus:outline-none focus:ring-2 focus:ring-purple-500 focus:border-transparent"
+                placeholder="Enter Coupon Code"
+              />
+            </div>
+            <button
+              className="btn btn-sm applyCoupon mt-2"
+              onClick={() => appyCouponCode()}
+            >
+              Apply
+            </button>
           </div>
         </div>
       </div>
