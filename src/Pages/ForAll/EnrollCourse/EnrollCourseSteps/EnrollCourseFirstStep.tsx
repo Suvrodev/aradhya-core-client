@@ -49,6 +49,8 @@ const EnrollCourseFirstStep = ({
   const [errorMessage, setErrorMessage] = useState("");
   const [successMessage, setSuccessMessage] = useState("");
   const [totalPrice, setTotalPrice] = useState<number>(0); // New state for total price
+  const [transactionId, setTransactionId] = useState(""); // Transaction ID state
+  const [transactionMobile, setTransactionMobile] = useState(""); // Transaction mobile state
 
   const initialTotalPrice = calculateDiscountedPrice(
     coursePrice,
@@ -88,14 +90,20 @@ const EnrollCourseFirstStep = ({
         Enroll Course
       </h1>
 
-      <div className="flex w-full">
-        <div className="w-[70%] flex flex-col gap-4">
-          <h1 className="text-4xl font-bold italic">{courseTitle}</h1>
+      <div className="flex flex-col-reverse md:flex-row w-full">
+        <div className="w-full md:w-[70%] flex flex-col gap-4">
+          <h1 className="text-4xl font-bold italic text-center md:text-start">
+            {courseTitle}
+          </h1>
           <p className="text-xl font-bold">Course duration: {courseDuration}</p>
           <p className="text-xl font-bold">Start Date: {courseStartDate}</p>
         </div>
-        <div className="w-[30%]">
-          <img src={courseImage} className="w-[350px] rounded-md" alt="" />
+        <div className="w-full md:w-[30%]">
+          <img
+            src={courseImage}
+            className="w-full md:w-[450px] rounded-md"
+            alt=""
+          />
         </div>
       </div>
 
@@ -164,7 +172,7 @@ const EnrollCourseFirstStep = ({
         </h1>
         <div className=" w-full">
           <div className="w-full leading-8">
-            <div className="flex items-center gap-2">
+            <div className="flex flex-col md:flex-row items-start md:items-center gap-2">
               <h1 className="text-[18px]">Promo Code:</h1>
               <input
                 type="text"
@@ -200,6 +208,43 @@ const EnrollCourseFirstStep = ({
                 (এই Ammount টাই আমাদের bKash/Nagad এ send money করুন)
               </span>
             </h1>
+          </div>
+        </div>
+      </div>
+
+      {/* Transaction Details Section */}
+      <div className="w-full mt-6">
+        <h1 className="text-3xl font-bold text-center my-4 underline">
+          Transaction Details
+        </h1>
+        <div className="grid grid-cols-1  gap-4">
+          {/* Transaction ID */}
+          <div className="flex flex-col md:flex-row items-start md:items-center gap-4">
+            <label className="text-sm font-medium text-gray-300 mb-1 w-32">
+              Transaction ID
+            </label>
+            <input
+              type="text"
+              value={transactionId}
+              onChange={(e) => setTransactionId(e.target.value)}
+              className="px-4 py-2 bg-gray-700 text-white border border-gray-600 rounded-md w-full"
+              placeholder="Enter Transaction ID"
+            />
+          </div>
+
+          {/* Transaction Mobile Number */}
+          <div className="flex flex-col md:flex-row items-start md:items-center gap-4">
+            <label className="text-sm font-medium text-gray-300 mb-1 w-32">
+              Transaction Mobile Number
+            </label>
+
+            <input
+              type="text"
+              value={transactionMobile}
+              onChange={(e) => setTransactionMobile(e.target.value)}
+              className="px-4 py-2 bg-gray-700 text-white border border-gray-600 rounded-md w-full"
+              placeholder="Enter Transaction Mobile Number"
+            />
           </div>
         </div>
       </div>
