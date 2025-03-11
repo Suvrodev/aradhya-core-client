@@ -54,10 +54,12 @@ const EnrollCourseModal = ({
           xs: "90%",
           sm: "80%",
           md: "70%",
-          lg: "50%",
-          xl: "50%",
-          xxl: "60%",
+          lg: "70%",
+          xl: "70%",
+          xxl: "70%",
         }}
+        // bodyStyle={{ maxHeight: "100vh", overflowY: "auto" }} // Ensures the modal takes full height and is scrollable if needed
+        style={{ height: "100vh", top: 0 }} // Full height and no top margin
       >
         <div className="">
           <EnrollCourse

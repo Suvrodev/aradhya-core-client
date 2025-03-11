@@ -43,7 +43,7 @@ const EnrollCourseFirstStep = ({
     student = verifyToken(token);
   }
 
-  const [couponCode, setCouponCode] = useState("");
+  const [promoCode, setPromoCode] = useState("");
   const [appliedDiscount, setAppliedDiscount] = useState(0);
   const [isCouponApplied, setIsCouponApplied] = useState(false);
   const [errorMessage, setErrorMessage] = useState("");
@@ -65,7 +65,7 @@ const EnrollCourseFirstStep = ({
   const applyCouponCode = () => {
     if (
       promoData?.promoStatus === "yes" &&
-      couponCode === promoData?.promoCode
+      promoCode === promoData?.promoCode
     ) {
       const newDiscount = promoData.promoPercent;
       setAppliedDiscount(newDiscount);
@@ -104,47 +104,54 @@ const EnrollCourseFirstStep = ({
           Student Detail
         </h1>
         <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
-          <div>
-            <label className="block text-sm font-medium text-gray-300 mb-1">
+          {/* Student ID */}
+          <div className="flex items-center gap-4">
+            <label className="text-sm font-medium text-gray-300 mb-1 w-32">
               Student ID
             </label>
             <input
               defaultValue={student?.studentId}
               type="text"
-              className="px-4 py-2 bg-gray-700 text-white border border-gray-600 rounded-md"
+              className="px-4 py-2 bg-gray-700 text-white border border-gray-600 rounded-md w-full"
               disabled
             />
           </div>
-          <div>
-            <label className="block text-sm font-medium text-gray-300 mb-1">
+
+          {/* Student Name */}
+          <div className="flex items-center gap-4">
+            <label className="text-sm font-medium text-gray-300 mb-1 w-32">
               Student Name
             </label>
             <input
               defaultValue={student?.name}
               type="text"
-              className="px-4 py-2 bg-gray-700 text-white border border-gray-600 rounded-md"
+              className="px-4 py-2 bg-gray-700 text-white border border-gray-600 rounded-md w-full"
               disabled
             />
           </div>
-          <div>
-            <label className="block text-sm font-medium text-gray-300 mb-1">
+
+          {/* Batch ID */}
+          <div className="flex items-center gap-4">
+            <label className="text-sm font-medium text-gray-300 mb-1 w-32">
               Batch ID
             </label>
             <input
               defaultValue={onGoingBatch?.batchId}
               type="text"
-              className="px-4 py-2 bg-gray-700 text-white border border-gray-600 rounded-md"
+              className="px-4 py-2 bg-gray-700 text-white border border-gray-600 rounded-md w-full"
               disabled
             />
           </div>
-          <div>
-            <label className="block text-sm font-medium text-gray-300 mb-1">
+
+          {/* Student Email */}
+          <div className="flex items-center gap-4">
+            <label className="text-sm font-medium text-gray-300 mb-1 w-32">
               Student Email
             </label>
             <input
               defaultValue={student?.email}
               type="email"
-              className="px-4 py-2 bg-gray-700 text-white border border-gray-600 rounded-md"
+              className="px-4 py-2 bg-gray-700 text-white border border-gray-600 rounded-md w-full"
               disabled
             />
           </div>
@@ -158,17 +165,17 @@ const EnrollCourseFirstStep = ({
         <div className=" w-full">
           <div className="w-full leading-8">
             <div className="flex items-center gap-2">
-              <h1 className="text-[18px]">Coupon</h1>
+              <h1 className="text-[18px]">Promo Code:</h1>
               <input
                 type="text"
-                value={couponCode}
-                onChange={(e) => setCouponCode(e.target.value)}
+                value={promoCode}
+                onChange={(e) => setPromoCode(e.target.value)}
                 className="px-4 bg-gray-700 text-white border border-gray-600 rounded-md"
                 placeholder="Enter Coupon Code"
                 disabled={isCouponApplied}
               />
               <button
-                className="btn btn-sm applyCoupon mt-2"
+                className="btn btn-sm applyCoupon "
                 onClick={applyCouponCode}
                 disabled={isCouponApplied}
               >
@@ -184,7 +191,7 @@ const EnrollCourseFirstStep = ({
             )}
           </div>
 
-          <div className="w-full leading-8">
+          <div className="w-full leading-8 mt-4">
             <h1 className="text-[18px]">Course Price: {coursePrice} ৳</h1>
             <h1 className="text-[18px]">Discount: {courseDiscount} ৳</h1>
             <h1 className="text-[18px]">
