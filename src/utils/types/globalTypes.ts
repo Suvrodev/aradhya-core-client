@@ -85,7 +85,7 @@ export type TBatch = {
   end?: string;
 };
 
-export type TCategory = {
+export type TService = {
   _id: string;
   name: string;
   order: number;

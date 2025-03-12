@@ -7,11 +7,11 @@ import {
   Network,
   Layers,
 } from "lucide-react";
-import { TCategory } from "../../../../../utils/types/globalTypes";
 import { selectCategory } from "../../../../../redux/api/features/Service/selectServiceSlice";
 import { useAppSelector } from "../../../../../redux/hook";
+import { TService } from "../../../../../utils/types/globalTypes";
 interface Iprops {
-  category: TCategory;
+  service: TService;
 }
 
 // Function to map categories to icons
@@ -32,22 +32,27 @@ const getServiceIcon = (name: string) => {
   }
 };
 
-const ServiceBox = ({ category }: Iprops) => {
+const ServiceBox = ({ service }: Iprops) => {
   const { serviceId: selectService } = useAppSelector(
     (state) => state.selectService
   );
   const dispatch = useDispatch();
 
-  const { name, serviceId } = category;
+  const { name, serviceId } = service;
 
   const handleCategory = (serviceId: string) => {
     console.log("Category id: ", serviceId);
     dispatch(selectCategory(serviceId));
   };
+
+  console.log("Select service:------------ ", selectService);
+  console.log("Service id:----------------- ", serviceId);
   return (
     <div
-      className={`group bg-gradient-to-b from-gray-100 to-white shadow-md hover:shadow-lg border border-gray-200 rounded-2xl py-2 transition-all duration-300 cursor-pointer hover:scale-105 ${
-        serviceId == selectService ? "bg-purple-500" : ""
+      className={`group shadow-md hover:shadow-lg rounded-2xl py-2 transition-all duration-300 cursor-pointer hover:scale-105 ${
+        selectService == serviceId
+          ? "bg-gradient-to-b from-[#669fb3] to-sky-500"
+          : "bg-gradient-to-b from-gray-100 to-white border border-gray-200"
       }`}
       onClick={() => handleCategory(serviceId)}
     >

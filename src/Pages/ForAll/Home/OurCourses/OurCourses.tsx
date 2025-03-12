@@ -1,16 +1,16 @@
 import "./OurCourses.css";
 import { useRef } from "react";
 import { ChevronLeft, ChevronRight } from "lucide-react";
-import { TCategory } from "../../../../utils/types/globalTypes";
 import { useGetAllServiceQuery } from "../../../../redux/api/features/Service/serviceManagementApi";
 import CourseContainer from "./CourseContainer/CourseContainer";
 import ServiceBox from "./ServiceBox/ServiceBox";
+import { TService } from "../../../../utils/types/globalTypes";
 
 const OurCourses = () => {
   const scrollRef = useRef<HTMLDivElement>(null);
 
   const { data, isLoading } = useGetAllServiceQuery(undefined);
-  const categories = data?.data;
+  const services = data?.data;
   // console.log("categories: ", categories);
 
   // Scroll left function
@@ -44,12 +44,12 @@ const OurCourses = () => {
           ref={scrollRef}
           className="flex space-x-4 overflow-x-auto snap-x snap-mandatory scroll-smooth scrollbar-hidden"
         >
-          {categories?.map((category: TCategory, idx: number) => (
+          {services?.map((service: TService, idx: number) => (
             <div
               key={idx}
               className="snap-center shrink-0 w-[90%] sm:w-[70%] md:w-[45%] lg:w-[24%]"
             >
-              <ServiceBox key={idx} category={category} />
+              <ServiceBox key={idx} service={service} />
             </div>
           ))}
         </div>
