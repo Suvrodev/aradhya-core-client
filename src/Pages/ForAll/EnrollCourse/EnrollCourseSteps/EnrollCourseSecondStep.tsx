@@ -1,73 +1,140 @@
-import { useLottie } from "lottie-react";
-import successfullAnim from "../../../../assets/Lottie/successful_1.json";
+import { useState } from "react";
+import goCall from "../../../../utils/Fucntion/goCall";
+import { useAddAssignStudentMutation } from "../../../../redux/api/features/AssignStudent/assignStudentManagementApi";
 import { useAppSelector } from "../../../../redux/hook";
-import { verifyToken } from "../../../../utils/Fucntion/verifyToken";
 
 const EnrollCourseSecondStep = () => {
-  const options = {
-    animationData: successfullAnim,
-    loop: true,
+  const {
+    studentId: studentIdSlice,
+    studentName: studentNameSlice,
+    studentEmail: studentEmailSlice,
+    studentPhone: studentPhoneSlice,
+    courseId: courseIdSlice,
+    batchId: batchIdSlice,
+    coursePrice: coursePriceSlice,
+    courseDiscount: courseDiscountSlice,
+    promoCodeStatus: promoCodeStatusSlice,
+    promoCode: promoCodeSlice,
+    appliedpromoCode: appliedpromoCodeSlice,
+    promoPercent: promoPercentSlice,
+    finalPrice: finalPriceSlice,
+  } = useAppSelector((state) => state.assignStudent);
+
+  const [makeAssign] = useAddAssignStudentMutation();
+  const [transactionId, setTransactionId] = useState(""); // Transaction ID state
+  const [transactionMobileNumber, setTransactionMobileNumber] = useState(""); // Transaction mobile state
+
+  const handleSubmitPayment = async () => {
+    if (!transactionId) {
+      alert("Didn't give transaction id");
+      return;
+    }
+    if (!transactionMobileNumber) {
+      alert("Didn't give transaction Mobile number");
+      return;
+    }
+
+    const assignData = {
+      studentId: studentIdSlice,
+      studentName: studentNameSlice,
+      studentEmail: studentEmailSlice,
+      studentPhone: studentPhoneSlice,
+      courseId: courseIdSlice,
+      batchId: batchIdSlice,
+      coursePrice: coursePriceSlice,
+      courseDiscount: courseDiscountSlice,
+      promoCodeStatus: promoCodeStatusSlice,
+      promoCode: promoCodeSlice,
+      appliedpromoCode: appliedpromoCodeSlice,
+      promoPercent: promoPercentSlice,
+      finalPrice: finalPriceSlice,
+      transactionId,
+      transactionMobileNumber,
+    };
+    console.log("Assign Data: ", assignData);
+
+    // toast.loading("Assigning Student", { id: sonarId });
+    // const res = await makeAssign(assignData).unwrap();
+    // console.log("Res: ", res);
+    // if (res?.success) {
+    //   toast.success("You are assigned Successfully", { id: sonarId });
+    //   setActiveStep(activeStep + 1);
+    // }
   };
-
-  const { View } = useLottie(options);
-
-  const { token } = useAppSelector((state) => state.auth);
-  // eslint-disable-next-line @typescript-eslint/no-explicit-any
-  let student: any;
-  if (token) {
-    student = verifyToken(token);
-  }
 
   return (
     <div className="flex flex-col items-center justify-center min-h-screen bg-gradient-to-br from-purple-900 to-indigo-900 text-white px-4 py-8 sm:px-10 sm:py-12">
-      {/* Lottie Animation */}
-      <div className="w-[150px] h-[150px] sm:w-[200px] sm:h-[200px] mb-6 sm:mb-8 transform hover:scale-110 transition-transform duration-300">
-        {View}
-      </div>
+      {/* Transaction Details Section */}
+      <div className="w-full mt-6">
+        <h1 className="text-3xl font-bold text-center my-4 underline underline-offset-4">
+          Transaction Details
+        </h1>
+        {/* Payment Instructions */}
+        <div className="bg-purple-900/50 p-6 rounded-lg shadow-lg border border-purple-700 mb-6">
+          <p className="text-lg text-purple-100 leading-relaxed">
+            <span className="font-bold text-purple-300">Course Enroll</span>{" "}
+            করার জন্য{" "}
+            <span
+              onClick={() => goCall("01609593186")}
+              className="text-blue-400 hover:text-blue-300 cursor-pointer underline"
+            >
+              01609593186
+            </span>{" "}
+            এই নাম্বারে{" "}
+            <span className="text-[#EC0C71] font-semibold">bKash</span> অথবা{" "}
+            <span className="text-[#FF7135] font-semibold">Nagad</span> এ{" "}
+            <span className="font-bold text-purple-300">Total Price</span> send
+            money করবেন। এবং তার Transaction ID এবং যে Mobile Number দিয়ে send
+            money করবেন সেই নাম্বারটি নিচের ফর্মে দিয়ে Submit করবেন।
+          </p>
+        </div>
 
-      {/* Congratulations Message */}
-      <div className="bg-white/10 backdrop-blur-md rounded-xl p-6 sm:p-8 text-center shadow-2xl border border-white/20 w-full ">
-        <p className="text-3xl sm:text-4xl font-bold text-transparent bg-clip-text bg-gradient-to-r from-purple-400 to-pink-400 mb-4">
-          Congratulations!
-        </p>
-        <p className="text-lg sm:text-xl text-purple-200 mb-4 sm:mb-6">
-          <span className="font-semibold text-purple-300">{student?.name}</span>
-          , আপনি সফলভাবে কোর্সে এনরোল করেছেন!
-        </p>
-        <p className="text-base sm:text-lg text-purple-100">
-          আগামী ২৪ ঘন্টার মধ্যে আপনি আপনার লগইন প্রোফাইলে কোর্সটি দেখতে পারবেন।
-          আপনাকে আমাদের WhatsApp গ্রুপে যোগ করে দেওয়া হবে।
-        </p>
-      </div>
+        {/* Warning Message */}
+        <div className="bg-red-900/50 p-6 rounded-lg shadow-lg border border-red-700">
+          <p className="text-lg text-red-100 leading-relaxed">
+            <span className="font-bold text-red-300">বিশেষ সতর্কীকরণ:</span> ভুল
+            নাম্বারে send money করলে আপনি কোর্সে Enrollment করতে পারবেন না। এবং
+            সে জন্য কর্তৃপক্ষ কোনো ভাবে দায়ী থাকবে না। দয়া করে নাম্বার এবং
+            Transaction ID সঠিকভাবে প্রদান করুন।
+          </p>
+        </div>
+        <div className="grid grid-cols-1  gap-4 mt-6">
+          {/* Transaction ID */}
+          <div className="flex flex-col md:flex-row items-start md:items-center gap-4">
+            <label className="text-sm font-medium text-gray-300 mb-1 w-32">
+              Transaction ID
+            </label>
+            <input
+              type="text"
+              value={transactionId}
+              onChange={(e) => setTransactionId(e.target.value)}
+              className="px-4 py-2 bg-gray-700 text-white border border-gray-600 rounded-md w-full"
+              placeholder="Enter Transaction ID"
+            />
+          </div>
 
-      {/* Badge Button */}
-      <button className="mt-8 sm:mt-10 px-6 py-2 sm:px-8 sm:py-3 bg-gradient-to-r from-purple-500 to-pink-500 text-white font-bold rounded-full shadow-lg hover:shadow-xl hover:scale-105 transition-all duration-300 flex items-center justify-center">
-        <span className="mr-2">🎉</span>
-        View Course
-        <span className="ml-2">🚀</span>
-      </button>
+          {/* Transaction Mobile Number */}
+          <div className="flex flex-col md:flex-row items-start md:items-center gap-4">
+            <label className="text-sm font-medium text-gray-300 mb-1 w-32">
+              Transaction Mobile Number
+            </label>
 
-      {/* Support Team Info */}
-      <div className="mt-6 sm:mt-8 text-sm text-purple-300 text-center w-full max-w-md">
-        <p className="mb-2">
-          আপনার কোর্স সম্পর্কিত যেকোনো প্রশ্ন বা সাহায্যের জন্য, আমাদের সাপোর্ট
-          টিমের সাথে যোগাযোগ করুন:
-        </p>
-        <div className="flex flex-col space-y-2">
-          <a
-            href="tel:015"
-            className="flex items-center justify-center px-4 py-2 bg-purple-800/50 rounded-lg hover:bg-purple-800/70 transition-colors duration-300 text-sm sm:text-base"
-          >
-            <span className="mr-2">📞</span>
-            Support Team Number-1: 015
-          </a>
-          <a
-            href="tel:017"
-            className="flex items-center justify-center px-4 py-2 bg-purple-800/50 rounded-lg hover:bg-purple-800/70 transition-colors duration-300 text-sm sm:text-base"
-          >
-            <span className="mr-2">📞</span>
-            Support Team Number-2: 017
-          </a>
+            <input
+              type="text"
+              value={transactionMobileNumber}
+              onChange={(e) => setTransactionMobileNumber(e.target.value)}
+              className="px-4 py-2 bg-gray-700 text-white border border-gray-600 rounded-md w-full"
+              placeholder="Enter Transaction Mobile Number"
+            />
+          </div>
+          <div>
+            <button
+              className="btn btn-primary"
+              onClick={() => handleSubmitPayment()}
+            >
+              Submit
+            </button>
+          </div>
         </div>
       </div>
     </div>
