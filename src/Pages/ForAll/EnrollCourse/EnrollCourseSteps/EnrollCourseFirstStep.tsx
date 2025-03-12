@@ -57,8 +57,6 @@ const EnrollCourseFirstStep = ({
   const [errorMessage, setErrorMessage] = useState("");
   const [successMessage, setSuccessMessage] = useState("");
   const [totalPrice, setTotalPrice] = useState<number>(0); // New state for total price
-  const [transactionId, setTransactionId] = useState(""); // Transaction ID state
-  const [transactionMobileNumber, setTransactionMobileNumber] = useState(""); // Transaction mobile state
 
   const initialTotalPrice = calculateDiscountedPrice(
     coursePrice,
@@ -263,77 +261,11 @@ const EnrollCourseFirstStep = ({
         </div>
       </div>
 
-      {/* Transaction Details Section */}
-      <div className="w-full mt-6">
-        <h1 className="text-3xl font-bold text-center my-4 underline underline-offset-4">
-          Transaction Details
-        </h1>
-        {/* Payment Instructions */}
-        <div className="bg-purple-900/50 p-6 rounded-lg shadow-lg border border-purple-700 mb-6">
-          <p className="text-lg text-purple-100 leading-relaxed">
-            <span className="font-bold text-purple-300">Course Enroll</span>{" "}
-            করার জন্য{" "}
-            <span
-              onClick={() => goCall("01609593186")}
-              className="text-blue-400 hover:text-blue-300 cursor-pointer underline"
-            >
-              01609593186
-            </span>{" "}
-            এই নাম্বারে{" "}
-            <span className="text-[#EC0C71] font-semibold">bKash</span> অথবা{" "}
-            <span className="text-[#FF7135] font-semibold">Nagad</span> এ{" "}
-            <span className="font-bold text-purple-300">Total Price</span> send
-            money করবেন। এবং তার Transaction ID এবং যে Mobile Number দিয়ে send
-            money করবেন সেই নাম্বারটি নিচের ফর্মে দিয়ে Submit করবেন।
-          </p>
-        </div>
-
-        {/* Warning Message */}
-        <div className="bg-red-900/50 p-6 rounded-lg shadow-lg border border-red-700">
-          <p className="text-lg text-red-100 leading-relaxed">
-            <span className="font-bold text-red-300">বিশেষ সতর্কীকরণ:</span> ভুল
-            নাম্বারে send money করলে আপনি কোর্সে Enrollment করতে পারবেন না। এবং
-            সে জন্য কর্তৃপক্ষ কোনো ভাবে দায়ী থাকবে না। দয়া করে নাম্বার এবং
-            Transaction ID সঠিকভাবে প্রদান করুন।
-          </p>
-        </div>
-        <div className="grid grid-cols-1  gap-4 mt-6">
-          {/* Transaction ID */}
-          <div className="flex flex-col md:flex-row items-start md:items-center gap-4">
-            <label className="text-sm font-medium text-gray-300 mb-1 w-32">
-              Transaction ID
-            </label>
-            <input
-              type="text"
-              value={transactionId}
-              onChange={(e) => setTransactionId(e.target.value)}
-              className="px-4 py-2 bg-gray-700 text-white border border-gray-600 rounded-md w-full"
-              placeholder="Enter Transaction ID"
-            />
-          </div>
-
-          {/* Transaction Mobile Number */}
-          <div className="flex flex-col md:flex-row items-start md:items-center gap-4">
-            <label className="text-sm font-medium text-gray-300 mb-1 w-32">
-              Transaction Mobile Number
-            </label>
-
-            <input
-              type="text"
-              value={transactionMobileNumber}
-              onChange={(e) => setTransactionMobileNumber(e.target.value)}
-              className="px-4 py-2 bg-gray-700 text-white border border-gray-600 rounded-md w-full"
-              placeholder="Enter Transaction Mobile Number"
-            />
-          </div>
-        </div>
-      </div>
-
       <button
         className="btn btn-lg applyButton mt-6"
         onClick={() => handleSubmitPayment()}
       >
-        Submit
+        Next
       </button>
     </div>
   );

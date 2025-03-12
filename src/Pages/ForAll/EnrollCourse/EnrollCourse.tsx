@@ -3,6 +3,7 @@ import { useState } from "react";
 import { Stepper, Step } from "react-form-stepper";
 import EnrollCourseFirstStep from "./EnrollCourseSteps/EnrollCourseFirstStep";
 import EnrollCourseSecondStep from "./EnrollCourseSteps/EnrollCourseSecondStep";
+import EnrollCourseThirdStep from "./EnrollCourseSteps/EnrollCourseThirdStep";
 
 interface IProps {
   courseId: string;
@@ -43,15 +44,8 @@ const EnrollCourse = ({
             setActiveStep={setActiveStep}
           />
         )}
-        {activeStep == 1 && (
-          <EnrollCourseSecondStep
-          // courseId={courseId}
-          // courseTitle={courseTitle}
-          // courseImage={courseImage}
-          // activeStep={activeStep}
-          // setActiveStep={setActiveStep}
-          />
-        )}
+        {activeStep == 1 && <EnrollCourseSecondStep />}
+        {activeStep == 2 && <EnrollCourseThirdStep />}
       </div>
 
       <Stepper
@@ -75,6 +69,7 @@ const EnrollCourse = ({
       >
         <Step label="Step 1" />
         <Step label="Step 2" />
+        <Step label="Step 3" />
       </Stepper>
     </div>
   );
