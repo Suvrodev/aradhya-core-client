@@ -25,6 +25,27 @@ export type TStudent = {
   exp: number;
 };
 
+export type TAssignedStudent = {
+  _id: string;
+  studentId: string;
+  studentName: string;
+  studentEmail: string;
+  studentPhone: string;
+  courseId: string;
+  batchId: string;
+  coursePrice: number;
+  courseDiscount: number;
+  promoCodeStatus: string;
+  promoCode: string;
+  appliedpromoCode: string;
+  promoPercent: number;
+  finalPrice: number;
+  paymentGateWay: string;
+  transactionId: string;
+  transactionMobileNumber: string;
+  status: boolean;
+};
+
 export type TService = {
   _id: string;
   serviceId: string;
