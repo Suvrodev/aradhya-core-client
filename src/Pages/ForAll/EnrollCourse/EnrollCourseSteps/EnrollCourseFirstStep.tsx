@@ -43,7 +43,7 @@ const EnrollCourseFirstStep = ({
     student = verifyToken(token);
   }
 
-  ///totalPrice wull be showed as final price
+  ///totalPrice will be showed as final price
   const [promoCode, setPromoCode] = useState("");
   const [appliedDiscount, setAppliedDiscount] = useState(0);
   const [isCouponApplied, setIsCouponApplied] = useState(false);
@@ -51,7 +51,7 @@ const EnrollCourseFirstStep = ({
   const [successMessage, setSuccessMessage] = useState("");
   const [totalPrice, setTotalPrice] = useState<number>(0); // New state for total price
   const [transactionId, setTransactionId] = useState(""); // Transaction ID state
-  const [transactionMobile, setTransactionMobile] = useState(""); // Transaction mobile state
+  const [transactionMobileNumber, setTransactionMobileNumber] = useState(""); // Transaction mobile state
 
   const initialTotalPrice = calculateDiscountedPrice(
     coursePrice,
@@ -85,9 +85,27 @@ const EnrollCourseFirstStep = ({
     if (!transactionId) {
       alert("Didn't give transaction id");
     }
-    if (!transactionMobile) {
+    if (!transactionMobileNumber) {
       alert("Didn't give transaction Mobile number");
     }
+
+    const assignData = {
+      studentId: student?.studentId,
+      studentName: student?.name,
+      studentEmail: student?.email,
+      studentPhone: student?.phone,
+      courseId,
+      batchId: onGoingBatch?.batchId,
+      coursePrice,
+      courseDiscount,
+      promoCodeStatus: promoData?.promoStatus,
+      promoCode,
+      promoPercent: promoData?.promoPercent,
+      finalPrice: totalPrice,
+      transactionId,
+      transactionMobileNumber,
+    };
+    console.log("Assign Data: ", assignData);
   };
 
   if (batchLoading || PromoLoading) {
@@ -250,8 +268,8 @@ const EnrollCourseFirstStep = ({
 
             <input
               type="text"
-              value={transactionMobile}
-              onChange={(e) => setTransactionMobile(e.target.value)}
+              value={transactionMobileNumber}
+              onChange={(e) => setTransactionMobileNumber(e.target.value)}
               className="px-4 py-2 bg-gray-700 text-white border border-gray-600 rounded-md w-full"
               placeholder="Enter Transaction Mobile Number"
             />
