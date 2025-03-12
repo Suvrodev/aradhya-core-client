@@ -1,26 +1,14 @@
-import { toast } from "sonner";
 import LoadingPage from "../../../Component/LoadingPage/LoadingPage";
-import {
-  useDeleteAssignStudentMutation,
-  useGetAllAssignStudentQuery,
-} from "../../../redux/api/features/AssignStudent/assignStudentManagementApi";
-import { sonarId } from "../../../utils/Fucntion/sonarId";
+import { useGetAllAssignStudentQuery } from "../../../redux/api/features/AssignStudent/assignStudentManagementApi";
 import { TAssignedStudent } from "../../../utils/types/globalTypes";
-import { Trash2 } from "lucide-react";
+import AdminAssignedStudentTable from "./AdminAssignedStudentTable";
 
 const AdminAssignedStudent = () => {
-  const [deleteAssignStudent] = useDeleteAssignStudentMutation();
   const { data, isLoading } = useGetAllAssignStudentQuery(undefined);
-  const allAssignedStudent = data?.data;
-  console.log("All Assigned Student: ", allAssignedStudent);
 
-  const handleDelete = async (id: string) => {
-    toast.loading("Deleting", { id: sonarId });
-    const res = await deleteAssignStudent(id).unwrap();
-    if (res?.success) {
-      toast.success("Student deleted successfully", { id: sonarId });
-    }
-  };
+  const allAssignedStudent = data?.data;
+
+  console.log("All Assigned Student: ", allAssignedStudent);
 
   if (isLoading) {
     return <LoadingPage />;
@@ -39,6 +27,8 @@ const AdminAssignedStudent = () => {
               <th className="py-3 px-4 text-left">Email</th>
               <th className="py-3 px-4 text-left">Phone</th>
               <th className="py-3 px-4 text-left">Course id</th>
+              <th className="py-3 px-4 text-left">Batch id</th>
+              <th className="py-3 px-4 text-left">Course Name</th>
               <th className="py-3 px-4 text-left">Course Price</th>
               <th className="py-3 px-4 text-left">Course Discount</th>
               <th className="py-3 px-4 text-left">PromoCodeStatus</th>
@@ -50,48 +40,58 @@ const AdminAssignedStudent = () => {
               <th className="py-3 px-4 text-left">transactionId</th>
               <th className="py-3 px-4 text-left">Transaction Number</th>
               <th className="py-3 px-4 text-left">Status</th>
+              <th className="py-3 px-4 text-left">Assign</th>
+              <th className="py-3 px-4 text-left">Create</th>
               <th className="py-3 px-4 text-left">Update</th>
               <th className="py-3 px-4 text-left">Delete</th>
             </tr>
           </thead>
           <tbody>
             {allAssignedStudent?.map((data: TAssignedStudent, idx: number) => (
-              <tr
-                key={idx}
-                className=" border-b border-gray-700 hover:bg-gray-700 transition-all duration-300"
-              >
-                <td className="py-3 px-4">{idx + 1}</td>
-                <td className="py-3 px-4">{data?.studentId}</td>
-                <td className="py-3 px-4">{data?.studentName}</td>
-                <td className="py-3 px-4">{data?.studentEmail}</td>
-                <td className="py-3 px-4">{data?.studentPhone}</td>
-                <td className="py-3 px-4">{data?.courseId}</td>
-                <td className="py-3 px-4">{data?.coursePrice}</td>
-                <td className="py-3 px-4">{data?.courseDiscount}</td>
-                <td className="py-3 px-4">{data?.promoCodeStatus}</td>
-                <td className="py-3 px-4">{data?.promoCode}</td>
-                <td className="py-3 px-4">{data?.appliedpromoCode}</td>
-                <td className="py-3 px-4">{data?.promoPercent}</td>
-                <td className="py-3 px-4">{data?.finalPrice}</td>
-                <td className="py-3 px-4">{data?.paymentGateWay}</td>
-                <td className="py-3 px-4">{data?.transactionId}</td>
-                <td className="py-3 px-4">{data?.transactionMobileNumber}</td>
-                <td className="py-3 px-4">{data?.status?.toString()}</td>
-                <td className="py-3 px-4">
-                  <button className="px-4 py-2 bg-teal-500 text-white rounded-lg hover:bg-teal-600 transition-all duration-300">
-                    {/* <AssignStudent student={data} /> */}
-                    Assign
-                  </button>
-                </td>
-                <td className="py-3 px-4">
-                  <button
-                    className="btn btn-error text-white flex items-center justify-center"
-                    onClick={() => handleDelete(data?.studentId)}
-                  >
-                    <Trash2 />
-                  </button>
-                </td>
-              </tr>
+              <AdminAssignedStudentTable data={data} idx={idx} />
+              //   <tr
+              //     key={idx}
+              //     className=" border-b border-gray-700 hover:bg-gray-700 transition-all duration-300"
+              //   >
+              //     <td className="py-3 px-4">{idx + 1}</td>
+              //     <td className="py-3 px-4">{data?.studentId}</td>
+              //     <td className="py-3 px-4">{data?.studentName}</td>
+              //     <td className="py-3 px-4">{data?.studentEmail}</td>
+              //     <td className="py-3 px-4">{data?.studentPhone}</td>
+              //     <td className="py-3 px-4">{data?.courseId}</td>
+              //     <td className="py-3 px-4">{
+              //     allCourses?.map((course:TCourse,idx:number)=> {
+              //          course?.courseId== data?.courseId
+              //          return course?.courseTitle
+              //     } )
+
+              //     }</td>
+              //     <td className="py-3 px-4">{data?.coursePrice}</td>
+              //     <td className="py-3 px-4">{data?.courseDiscount}</td>
+              //     <td className="py-3 px-4">{data?.promoCodeStatus}</td>
+              //     <td className="py-3 px-4">{data?.promoCode}</td>
+              //     <td className="py-3 px-4">{data?.appliedpromoCode}</td>
+              //     <td className="py-3 px-4">{data?.promoPercent}</td>
+              //     <td className="py-3 px-4">{data?.finalPrice}</td>
+              //     <td className="py-3 px-4">{data?.paymentGateWay}</td>
+              //     <td className="py-3 px-4">{data?.transactionId}</td>
+              //     <td className="py-3 px-4">{data?.transactionMobileNumber}</td>
+              //     <td className="py-3 px-4">{data?.status?.toString()}</td>
+              //     <td className="py-3 px-4">
+              //       <button className="px-4 py-2 bg-teal-500 text-white rounded-lg hover:bg-teal-600 transition-all duration-300">
+              //         {/* <AssignStudent student={data} /> */}
+              //         Assign
+              //       </button>
+              //     </td>
+              //     <td className="py-3 px-4">
+              //       <button
+              //         className="btn btn-error text-white flex items-center justify-center"
+              //         onClick={() => handleDelete(data?.studentId)}
+              //       >
+              //         <Trash2 />
+              //       </button>
+              //     </td>
+              //   </tr>
             ))}
           </tbody>
         </table>

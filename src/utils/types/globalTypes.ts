@@ -44,6 +44,8 @@ export type TAssignedStudent = {
   transactionId: string;
   transactionMobileNumber: string;
   status: boolean;
+  createdAt: string;
+  updatedAt: string;
 };
 
 export type TService = {
