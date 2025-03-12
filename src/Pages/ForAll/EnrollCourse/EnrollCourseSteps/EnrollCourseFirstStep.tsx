@@ -7,10 +7,10 @@ import { calculateDiscountedPrice } from "../../../../utils/Fucntion/calculateDi
 import { verifyToken } from "../../../../utils/Fucntion/verifyToken";
 import { TBatch, TPromoCode } from "../../../../utils/types/globalTypes";
 import { useGetSpecificPromoCodeQuery } from "../../../../redux/api/features/PromoCode/promoCodeManagementApi";
-import { useAddAssignStudentMutation } from "../../../../redux/api/features/AssignStudent/assignStudentManagementApi";
 import { toast } from "sonner";
 import { sonarId } from "../../../../utils/Fucntion/sonarId";
-import goCall from "../../../../utils/Fucntion/goCall";
+import { useDispatch } from "react-redux";
+import { selectAssignStudentId } from "../../../../redux/api/features/AssignStudent/assignStudentSlice";
 
 interface IProps {
   courseId: string;
@@ -35,15 +35,23 @@ const EnrollCourseFirstStep = ({
   activeStep,
   setActiveStep,
 }: IProps) => {
-  const [makeAssign] = useAddAssignStudentMutation();
+  const { studentId, studentName } = useAppSelector(
+    (state) => state.assignStudent
+  );
+  const dispatch = useDispatch();
+
+  //Retrive promocode
   const { data: promocodeData, isLoading: PromoLoading } =
     useGetSpecificPromoCodeQuery(import.meta.env.VITE_PROMOCODE_ID);
   const promoData: TPromoCode = promocodeData?.data;
   console.log("Promo data: ", promoData);
+
+  //Retrive onGoing Batch based on Course id
   const { data, isLoading: batchLoading } =
     useGetSpecificBatchUnderCourseQuery(courseId);
   const onGoingBatch: TBatch = data?.data;
 
+  //Distructure Token
   const { token } = useAppSelector((state) => state.auth);
   let student: any;
   if (token) {
@@ -86,42 +94,43 @@ const EnrollCourseFirstStep = ({
     }
   };
 
-  const handleSubmitPayment = async () => {
-    if (!transactionId) {
-      alert("Didn't give transaction id");
-      return;
-    }
-    if (!transactionMobileNumber) {
-      alert("Didn't give transaction Mobile number");
-      return;
-    }
+  const handleSubmitPayment = () => {
+    dispatch(selectAssignStudentId(student?.studentId));
+    // if (!transactionId) {
+    //   alert("Didn't give transaction id");
+    //   return;
+    // }
+    // if (!transactionMobileNumber) {
+    //   alert("Didn't give transaction Mobile number");
+    //   return;
+    // }
 
-    const assignData = {
-      studentId: student?.studentId,
-      studentName: student?.name,
-      studentEmail: student?.email,
-      studentPhone: student?.phone,
-      courseId,
-      batchId: onGoingBatch?.batchId,
-      coursePrice,
-      courseDiscount,
-      promoCodeStatus: promoData?.promoStatus,
-      promoCode: promoData?.promoCode,
-      appliedpromoCode: promoCode,
-      promoPercent: promoData?.promoPercent,
-      finalPrice: totalPrice,
-      transactionId,
-      transactionMobileNumber,
-    };
-    console.log("Assign Data: ", assignData);
+    // const assignData = {
+    //   studentId: student?.studentId,
+    //   studentName: student?.name,
+    //   studentEmail: student?.email,
+    //   studentPhone: student?.phone,
+    //   courseId,
+    //   batchId: onGoingBatch?.batchId,
+    //   coursePrice,
+    //   courseDiscount,
+    //   promoCodeStatus: promoData?.promoStatus,
+    //   promoCode: promoData?.promoCode,
+    //   appliedpromoCode: promoCode,
+    //   promoPercent: promoData?.promoPercent,
+    //   finalPrice: totalPrice,
+    //   transactionId,
+    //   transactionMobileNumber,
+    // };
+    // console.log("Assign Data: ", assignData);
 
-    toast.loading("Assigning Student", { id: sonarId });
-    const res = await makeAssign(assignData).unwrap();
-    console.log("Res: ", res);
-    if (res?.success) {
-      toast.success("You are assigned Successfully", { id: sonarId });
-      setActiveStep(activeStep + 1);
-    }
+    // toast.loading("Assigning Student", { id: sonarId });
+    // const res = await makeAssign(assignData).unwrap();
+    // console.log("Res: ", res);
+    // if (res?.success) {
+    //   toast.success("You are assigned Successfully", { id: sonarId });
+    //   setActiveStep(activeStep + 1);
+    // }
   };
 
   if (batchLoading || PromoLoading) {
