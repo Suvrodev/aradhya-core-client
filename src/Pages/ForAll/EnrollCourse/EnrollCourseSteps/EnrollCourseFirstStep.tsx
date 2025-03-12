@@ -81,12 +81,21 @@ const EnrollCourseFirstStep = ({
     }
   };
 
+  const handleSubmitPayment = () => {
+    if (!transactionId) {
+      alert("Didn't give transaction id");
+    }
+    if (!transactionMobile) {
+      alert("Didn't give transaction Mobile number");
+    }
+  };
+
   if (batchLoading || PromoLoading) {
     return <p>Loading...</p>;
   }
 
   return (
-    <div className="flex flex-col items-center justify-center bg-[#2D3035] text-white px-10">
+    <div className="flex flex-col items-center justify-center  text-white px-10">
       <h1 className="text-3xl font-bold text-center text-white mb-6 underline">
         Enroll Course
       </h1>
@@ -250,7 +259,10 @@ const EnrollCourseFirstStep = ({
         </div>
       </div>
 
-      <button className="btn btn-lg bg-purple-500 text-white mt-6">
+      <button
+        className="btn btn-lg applyButton mt-6"
+        onClick={() => handleSubmitPayment()}
+      >
         Submit
       </button>
     </div>

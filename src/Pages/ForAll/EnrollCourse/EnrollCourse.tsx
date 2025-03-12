@@ -28,7 +28,7 @@ const EnrollCourse = ({
   console.log("Active Step: ", activeStep);
 
   return (
-    <div className="w-full mx-auto  rounded-lg">
+    <div className="w-full rounded-lg bg-[#2D3035]">
       <div className="">
         {activeStep == 0 && (
           <EnrollCourseFirstStep
@@ -57,21 +57,21 @@ const EnrollCourse = ({
       <Stepper
         className="stepStype"
         activeStep={activeStep}
-        // styleConfig={{
-        //   activeBgColor: "#2196F3",
-        //   activeTextColor: "#ffffff",
-        //   completedBgColor: "#4CAF50",
-        //   completedTextColor: "#000000",
-        //   inactiveBgColor: "gray",
-        //   inactiveTextColor: "black",
-        //   size: 40,
-        //   circleFontSize: 14,
-        //   labelFontSize: 12,
-        //   borderRadius: "50%",
-        //   fontWeight: 500,
-        //   activeColor: "purple",
-        //   stepSize: "5em",
-        // }}
+        styleConfig={{
+          activeBgColor: "#2196F3",
+          activeTextColor: "#ffffff", // Text color for active step
+          completedBgColor: "#4CAF50",
+          completedTextColor: "#000000", // Text color for completed step
+          inactiveBgColor: "gray",
+          inactiveTextColor: "white", // Text color for inactive steps
+          size: 40,
+          circleFontSize: 14,
+          labelFontSize: 12,
+          borderRadius: "50%",
+          fontWeight: 500,
+          activeColor: "purple",
+          stepSize: "5em",
+        }}
       >
         <Step label="Step 1" />
         <Step label="Step 2" />

@@ -13,3 +13,16 @@
 .applyCoupon:hover {
   background-color: darkgreen !important;
 }
+
+.applyButton {
+  background-color: green;
+  color: white;
+  font-size: 18px;
+  font-weight: bold;
+  padding: 8px 20px;
+  border: none;
+  border-radius: 5px;
+  box-shadow: 2px 2px 5px rgba(0, 0, 0, 0.5);
+  cursor: pointer;
+  background: linear-gradient(to bottom, #4caf50, #006837, #4caf50);
+}
