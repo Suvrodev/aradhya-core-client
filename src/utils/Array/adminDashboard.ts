@@ -13,7 +13,7 @@ export const adminDashboards = [
   },
   {
     text: "Assign Student",
-    path: "/admin-dashboard/book-management",
+    path: "/admin-dashboard/assigned-student",
   },
   {
     text: "Service",
@@ -50,7 +50,7 @@ export const adminDashboards = [
   },
   {
     text: "Promo code",
-  path: "/admin-dashboard/promo-code",
+    path: "/admin-dashboard/promo-code",
   },
   // {
   //   text: "About Page",

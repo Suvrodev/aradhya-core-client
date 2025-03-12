@@ -31,6 +31,7 @@ import Address from "../Pages/AStudentDashboard/Address/Address";
 import Education from "../Pages/AStudentDashboard/Education/Education";
 import ImportantLink from "../Pages/AStudentDashboard/ImportantLink/ImportantLink";
 import AddBlog from "../Pages/AdminDashboard/AdminBlog/AddBlog/AddBlog";
+import AdminAssignedStudent from "../Pages/AdminDashboard/AdminAssignedStudent/AdminAssignedStudent";
 // import EnrollCourse from "../Pages/ForAll/EnrollCourse/EnrollCourse";
 
 export const router = createBrowserRouter([
@@ -108,6 +109,14 @@ export const router = createBrowserRouter([
         element: (
           <AdminProtectedRoute>
             <AllStudent />
+          </AdminProtectedRoute>
+        ),
+      },
+      {
+        path: "assigned-student",
+        element: (
+          <AdminProtectedRoute>
+            <AdminAssignedStudent />
           </AdminProtectedRoute>
         ),
       },
