@@ -7,6 +7,9 @@ import { calculateDiscountedPrice } from "../../../../utils/Fucntion/calculateDi
 import { verifyToken } from "../../../../utils/Fucntion/verifyToken";
 import { TBatch, TPromoCode } from "../../../../utils/types/globalTypes";
 import { useGetSpecificPromoCodeQuery } from "../../../../redux/api/features/PromoCode/promoCodeManagementApi";
+import { useAddAssignStudentMutation } from "../../../../redux/api/features/AssignStudent/assignStudentManagementApi";
+import { toast } from "sonner";
+import { sonarId } from "../../../../utils/Fucntion/sonarId";
 
 interface IProps {
   courseId: string;
@@ -29,10 +32,11 @@ const EnrollCourseFirstStep = ({
   coursePrice,
   courseDiscount,
 }: IProps) => {
+  const [makeAssign] = useAddAssignStudentMutation();
   const { data: promocodeData, isLoading: PromoLoading } =
     useGetSpecificPromoCodeQuery(import.meta.env.VITE_PROMOCODE_ID);
   const promoData: TPromoCode = promocodeData?.data;
-
+  console.log("Promo data: ", promoData);
   const { data, isLoading: batchLoading } =
     useGetSpecificBatchUnderCourseQuery(courseId);
   const onGoingBatch: TBatch = data?.data;
@@ -81,12 +85,14 @@ const EnrollCourseFirstStep = ({
     }
   };
 
-  const handleSubmitPayment = () => {
+  const handleSubmitPayment = async () => {
     if (!transactionId) {
       alert("Didn't give transaction id");
+      return;
     }
     if (!transactionMobileNumber) {
       alert("Didn't give transaction Mobile number");
+      return;
     }
 
     const assignData = {
@@ -99,13 +105,21 @@ const EnrollCourseFirstStep = ({
       coursePrice,
       courseDiscount,
       promoCodeStatus: promoData?.promoStatus,
-      promoCode,
+      promoCode: promoData?.promoCode,
+      appliedpromoCode: promoCode,
       promoPercent: promoData?.promoPercent,
       finalPrice: totalPrice,
       transactionId,
       transactionMobileNumber,
     };
     console.log("Assign Data: ", assignData);
+
+    toast.loading("Assigning Student", { id: sonarId });
+    const res = await makeAssign(assignData).unwrap();
+    console.log("Res: ", res);
+    if (res?.success) {
+      toast.success("You are assigned Successfully", { id: sonarId });
+    }
   };
 
   if (batchLoading || PromoLoading) {
@@ -148,7 +162,7 @@ const EnrollCourseFirstStep = ({
             <input
               defaultValue={student?.studentId}
               type="text"
-              className="px-4 py-2 bg-gray-700 text-white border border-gray-600 rounded-md w-full"
+              className="px-4 py-2 bg-gray-700 text-white border border-gray-600 rounded-md w-full disabled:text-gray-400"
               disabled
             />
           </div>
@@ -161,7 +175,7 @@ const EnrollCourseFirstStep = ({
             <input
               defaultValue={student?.name}
               type="text"
-              className="px-4 py-2 bg-gray-700 text-white border border-gray-600 rounded-md w-full"
+              className="px-4 py-2 bg-gray-700 text-white border border-gray-600 rounded-md w-full disabled:text-gray-400"
               disabled
             />
           </div>
@@ -174,7 +188,7 @@ const EnrollCourseFirstStep = ({
             <input
               defaultValue={onGoingBatch?.batchId}
               type="text"
-              className="px-4 py-2 bg-gray-700 text-white border border-gray-600 rounded-md w-full"
+              className="px-4 py-2 bg-gray-700 text-white border border-gray-600 rounded-md w-full disabled:text-gray-400"
               disabled
             />
           </div>
@@ -187,7 +201,7 @@ const EnrollCourseFirstStep = ({
             <input
               defaultValue={student?.email}
               type="email"
-              className="px-4 py-2 bg-gray-700 text-white border border-gray-600 rounded-md w-full"
+              className="px-4 py-2 bg-gray-700 text-white border border-gray-600 rounded-md w-full disabled:text-gray-400"
               disabled
             />
           </div>
@@ -230,6 +244,11 @@ const EnrollCourseFirstStep = ({
           <div className="w-full leading-8 mt-4">
             <h1 className="text-[18px]">Course Price: {coursePrice} ৳</h1>
             <h1 className="text-[18px]">Discount: {courseDiscount} ৳</h1>
+            {isCouponApplied && (
+              <h1 className="text-[18px]">
+                Promocode Discount: {promoData?.promoPercent} % ৳
+              </h1>
+            )}
             <h1 className="text-[18px]">
               Total Price: {totalPrice}৳{" "}
               <span className="text-[12px] text-green-500">
