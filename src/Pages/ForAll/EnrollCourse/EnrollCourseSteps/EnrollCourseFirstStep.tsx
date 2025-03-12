@@ -31,6 +31,8 @@ const EnrollCourseFirstStep = ({
   courseStartDate,
   coursePrice,
   courseDiscount,
+  activeStep,
+  setActiveStep,
 }: IProps) => {
   const [makeAssign] = useAddAssignStudentMutation();
   const { data: promocodeData, isLoading: PromoLoading } =
@@ -119,6 +121,7 @@ const EnrollCourseFirstStep = ({
     console.log("Res: ", res);
     if (res?.success) {
       toast.success("You are assigned Successfully", { id: sonarId });
+      setActiveStep(activeStep + 1);
     }
   };
 

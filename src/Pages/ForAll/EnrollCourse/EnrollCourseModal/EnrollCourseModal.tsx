@@ -1,3 +1,4 @@
+import "./EnrollCourseModal.css";
 import { useState } from "react";
 import { Modal } from "antd";
 import EnrollCourse from "../EnrollCourse";
@@ -45,11 +46,12 @@ const EnrollCourseModal = ({
         </button>
       </div>
       <Modal
-        title="Enroll Course"
+        // title="Enroll Course"
         open={isModalOpen}
         onOk={handleOk}
         onCancel={handleCancel}
         footer={null}
+        className="custom-modal"
         width={{
           xs: "90%",
           sm: "80%",
@@ -58,10 +60,14 @@ const EnrollCourseModal = ({
           xl: "70%",
           xxl: "70%",
         }}
-        // bodyStyle={{ maxHeight: "100vh", overflowY: "auto" }} // Ensures the modal takes full height and is scrollable if needed
-        style={{ height: "100vh", top: 0 }} // Full height and no top margin
+        // bodyStyle={{
+        //   maxHeight: "100vh",
+        //   overflowY: "auto",
+        //   padding: 0,
+        // }}
+        style={{ height: "100vh", top: 0, padding: 0, color: "while" }} // Full height and no top margin
       >
-        <div className="">
+        <div className="bg-gray-500">
           <EnrollCourse
             courseId={courseId}
             courseDuration={courseDuration}

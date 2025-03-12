@@ -1,0 +1,10 @@
+/* Modal er close button er background white korar jonno */
+.custom-modal .ant-modal-close {
+  background: white !important;
+  border-radius: 50%;
+}
+
+/* Close button er icon ta black korar jonno */
+.custom-modal .ant-modal-close-x {
+  color: black !important;
+}
