@@ -104,7 +104,7 @@ const EnrollCourseFirstStep = ({
     }
   };
 
-  const handleSubmitPayment = () => {
+  const handleGoPaymentPage = () => {
     dispatch(selectAssignStudentId(student?.studentId));
     dispatch(selectAssignStudentName(student?.name));
     dispatch(selectAssignStudentEmail(student?.email));
@@ -260,7 +260,7 @@ const EnrollCourseFirstStep = ({
 
       <button
         className="btn btn-lg applyButton mt-6"
-        onClick={() => handleSubmitPayment()}
+        onClick={() => handleGoPaymentPage()}
       >
         Next
       </button>

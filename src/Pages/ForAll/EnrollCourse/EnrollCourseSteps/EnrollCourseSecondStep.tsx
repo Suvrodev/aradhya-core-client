@@ -21,10 +21,15 @@ const EnrollCourseSecondStep = () => {
   } = useAppSelector((state) => state.assignStudent);
 
   const [makeAssign] = useAddAssignStudentMutation();
+  const [paymentGateWay, setPaymentGateWay] = useState("");
   const [transactionId, setTransactionId] = useState(""); // Transaction ID state
   const [transactionMobileNumber, setTransactionMobileNumber] = useState(""); // Transaction mobile state
 
   const handleSubmitPayment = async () => {
+    if (!paymentGateWay) {
+      alert("Please Select Your payment getway");
+      return;
+    }
     if (!transactionId) {
       alert("Didn't give transaction id");
       return;
@@ -48,6 +53,7 @@ const EnrollCourseSecondStep = () => {
       appliedpromoCode: appliedpromoCodeSlice,
       promoPercent: promoPercentSlice,
       finalPrice: finalPriceSlice,
+      paymentGateWay,
       transactionId,
       transactionMobileNumber,
     };
@@ -98,7 +104,27 @@ const EnrollCourseSecondStep = () => {
             Transaction ID সঠিকভাবে প্রদান করুন।
           </p>
         </div>
-        <div className="grid grid-cols-1  gap-4 mt-6">
+        <div className="grid grid-cols-1 gap-4 mt-6">
+          {/* Payment Way Dropdown */}
+          <div className="flex flex-col md:flex-row items-start md:items-center gap-4">
+            <label className="text-sm font-medium text-gray-300 mb-1 w-32">
+              Payment Way
+            </label>
+            <select
+              value={paymentGateWay}
+              onChange={(e) => setPaymentGateWay(e.target.value)}
+              className="px-4 py-2 bg-gray-700 text-white border border-gray-600 rounded-md w-full"
+            >
+              <option value="">Select Payment Method</option>
+              <option value="bKash" className="bg-[#E3106E]">
+                bKash
+              </option>
+              <option value="Nagad" className="bg-[#FF7135]">
+                Nagad
+              </option>
+            </select>
+          </div>
+
           {/* Transaction ID */}
           <div className="flex flex-col md:flex-row items-start md:items-center gap-4">
             <label className="text-sm font-medium text-gray-300 mb-1 w-32">
@@ -118,7 +144,6 @@ const EnrollCourseSecondStep = () => {
             <label className="text-sm font-medium text-gray-300 mb-1 w-32">
               Transaction Mobile Number
             </label>
-
             <input
               type="text"
               value={transactionMobileNumber}
@@ -127,14 +152,14 @@ const EnrollCourseSecondStep = () => {
               placeholder="Enter Transaction Mobile Number"
             />
           </div>
-          <div>
-            <button
-              className="btn btn-primary"
-              onClick={() => handleSubmitPayment()}
-            >
-              Submit
-            </button>
-          </div>
+        </div>
+        <div className="flex justify-center">
+          <button
+            className="btn btn-lg applyButton mt-6"
+            onClick={() => handleSubmitPayment()}
+          >
+            Submit
+          </button>
         </div>
       </div>
     </div>
