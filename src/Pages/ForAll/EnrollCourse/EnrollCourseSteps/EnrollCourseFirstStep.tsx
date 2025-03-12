@@ -10,6 +10,7 @@ import { useGetSpecificPromoCodeQuery } from "../../../../redux/api/features/Pro
 import { useAddAssignStudentMutation } from "../../../../redux/api/features/AssignStudent/assignStudentManagementApi";
 import { toast } from "sonner";
 import { sonarId } from "../../../../utils/Fucntion/sonarId";
+import goCall from "../../../../utils/Fucntion/goCall";
 
 interface IProps {
   courseId: string;
@@ -131,7 +132,7 @@ const EnrollCourseFirstStep = ({
 
   return (
     <div className="flex flex-col items-center justify-center  text-white px-10">
-      <h1 className="text-3xl font-bold text-center text-white mb-6 underline">
+      <h1 className="text-3xl font-bold text-center text-white mb-6 underline underline-offset-4">
         Enroll Course
       </h1>
 
@@ -153,7 +154,7 @@ const EnrollCourseFirstStep = ({
       </div>
 
       <div className="w-full">
-        <h1 className="text-3xl font-bold text-center my-4 underline">
+        <h1 className="text-3xl font-bold text-center my-4 underline underline-offset-4">
           Student Detail
         </h1>
         <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
@@ -212,7 +213,7 @@ const EnrollCourseFirstStep = ({
       </div>
 
       <div className="w-full h-full">
-        <h1 className="text-3xl font-bold text-center my-4 underline">
+        <h1 className="text-3xl font-bold text-center my-4 underline underline-offset-4">
           Payment Detail
         </h1>
         <div className=" w-full">
@@ -264,10 +265,39 @@ const EnrollCourseFirstStep = ({
 
       {/* Transaction Details Section */}
       <div className="w-full mt-6">
-        <h1 className="text-3xl font-bold text-center my-4 underline">
+        <h1 className="text-3xl font-bold text-center my-4 underline underline-offset-4">
           Transaction Details
         </h1>
-        <div className="grid grid-cols-1  gap-4">
+        {/* Payment Instructions */}
+        <div className="bg-purple-900/50 p-6 rounded-lg shadow-lg border border-purple-700 mb-6">
+          <p className="text-lg text-purple-100 leading-relaxed">
+            <span className="font-bold text-purple-300">Course Enroll</span>{" "}
+            করার জন্য{" "}
+            <span
+              onClick={() => goCall("01609593186")}
+              className="text-blue-400 hover:text-blue-300 cursor-pointer underline"
+            >
+              01609593186
+            </span>{" "}
+            এই নাম্বারে{" "}
+            <span className="text-[#EC0C71] font-semibold">bKash</span> অথবা{" "}
+            <span className="text-[#FF7135] font-semibold">Nagad</span> এ{" "}
+            <span className="font-bold text-purple-300">Total Price</span> send
+            money করবেন। এবং তার Transaction ID এবং যে Mobile Number দিয়ে send
+            money করবেন সেই নাম্বারটি নিচের ফর্মে দিয়ে Submit করবেন।
+          </p>
+        </div>
+
+        {/* Warning Message */}
+        <div className="bg-red-900/50 p-6 rounded-lg shadow-lg border border-red-700">
+          <p className="text-lg text-red-100 leading-relaxed">
+            <span className="font-bold text-red-300">বিশেষ সতর্কীকরণ:</span> ভুল
+            নাম্বারে send money করলে আপনি কোর্সে Enrollment করতে পারবেন না। এবং
+            সে জন্য কর্তৃপক্ষ কোনো ভাবে দায়ী থাকবে না। দয়া করে নাম্বার এবং
+            Transaction ID সঠিকভাবে প্রদান করুন।
+          </p>
+        </div>
+        <div className="grid grid-cols-1  gap-4 mt-6">
           {/* Transaction ID */}
           <div className="flex flex-col md:flex-row items-start md:items-center gap-4">
             <label className="text-sm font-medium text-gray-300 mb-1 w-32">

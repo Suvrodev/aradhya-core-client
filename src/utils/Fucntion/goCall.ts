@@ -1,5 +1,5 @@
-const goCall = () => {
-  const phoneNumber = "+8801951912997";
+const goCall = (phoneNumber: string) => {
+  // const phoneNumber = "+8801951912997";
   window.location.href = `tel:${phoneNumber}`;
 };
 
