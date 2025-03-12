@@ -242,10 +242,10 @@ const EnrollCourseFirstStep = ({
 
           <div className="w-full leading-8 mt-4">
             <h1 className="text-[18px]">Course Price: {coursePrice} ৳</h1>
-            <h1 className="text-[18px]">Discount: {courseDiscount} ৳</h1>
+            <h1 className="text-[18px]">Discount: {courseDiscount} %</h1>
             {isCouponApplied && (
               <h1 className="text-[18px]">
-                Promocode Discount: {promoData?.promoPercent} % ৳
+                Promocode Discount: {promoData?.promoPercent} %
               </h1>
             )}
             <h1 className="text-[18px]">

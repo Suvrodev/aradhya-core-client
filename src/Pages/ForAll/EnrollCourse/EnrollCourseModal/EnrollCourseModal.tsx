@@ -51,6 +51,7 @@ const EnrollCourseModal = ({
         onOk={handleOk}
         onCancel={handleCancel}
         footer={null}
+        maskClosable={false}
         className="custom-modal"
         width={{
           xs: "90%",
