@@ -2,8 +2,15 @@ import { useState } from "react";
 import goCall from "../../../../utils/Fucntion/goCall";
 import { useAddAssignStudentMutation } from "../../../../redux/api/features/AssignStudent/assignStudentManagementApi";
 import { useAppSelector } from "../../../../redux/hook";
+import { toast } from "sonner";
+import { sonarId } from "../../../../utils/Fucntion/sonarId";
 
-const EnrollCourseSecondStep = () => {
+interface IProps {
+  activeStep: number;
+  setActiveStep: React.Dispatch<React.SetStateAction<number>>;
+}
+
+const EnrollCourseSecondStep = ({ activeStep, setActiveStep }: IProps) => {
   const {
     studentId: studentIdSlice,
     studentName: studentNameSlice,
@@ -59,13 +66,13 @@ const EnrollCourseSecondStep = () => {
     };
     console.log("Assign Data: ", assignData);
 
-    // toast.loading("Assigning Student", { id: sonarId });
-    // const res = await makeAssign(assignData).unwrap();
-    // console.log("Res: ", res);
-    // if (res?.success) {
-    //   toast.success("You are assigned Successfully", { id: sonarId });
-    //   setActiveStep(activeStep + 1);
-    // }
+    toast.loading("Assigning Student", { id: sonarId });
+    const res = await makeAssign(assignData).unwrap();
+    console.log("Res: ", res);
+    if (res?.success) {
+      toast.success("You are assigned Successfully", { id: sonarId });
+      setActiveStep(activeStep + 1);
+    }
   };
 
   return (

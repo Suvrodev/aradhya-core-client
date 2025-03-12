@@ -44,7 +44,12 @@ const EnrollCourse = ({
             setActiveStep={setActiveStep}
           />
         )}
-        {activeStep == 1 && <EnrollCourseSecondStep />}
+        {activeStep == 1 && (
+          <EnrollCourseSecondStep
+            activeStep={activeStep}
+            setActiveStep={setActiveStep}
+          />
+        )}
         {activeStep == 2 && <EnrollCourseThirdStep />}
       </div>
 

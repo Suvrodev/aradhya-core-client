@@ -54,7 +54,7 @@ const EnrollCourseFirstStep = ({
   const { data: promocodeData, isLoading: PromoLoading } =
     useGetSpecificPromoCodeQuery(import.meta.env.VITE_PROMOCODE_ID);
   const promoData: TPromoCode = promocodeData?.data;
-  console.log("Promo data: ", promoData);
+  // console.log("Promo data: ", promoData);
 
   //Retrive onGoing Batch based on Course id
   const { data, isLoading: batchLoading } =
