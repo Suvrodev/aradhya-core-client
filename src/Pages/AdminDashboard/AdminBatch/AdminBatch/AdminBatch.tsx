@@ -13,7 +13,7 @@ const AdminBatch = () => {
   const [batchStatus, setBatchStatus] = useState("");
 
   const courses = CourseData?.data;
-  console.log("Courses: ", courses);
+  // console.log("Courses: ", courses);
 
   const [underCourse, setUnderCourse] = useState("");
   const handleUnderCourse = (event: ChangeEvent<HTMLSelectElement>) => {

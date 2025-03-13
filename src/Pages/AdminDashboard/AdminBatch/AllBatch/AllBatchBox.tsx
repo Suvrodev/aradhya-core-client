@@ -1,15 +1,21 @@
 import { toast } from "sonner";
 import DeleteComponent from "../../../../Component/DeleteComponent/DeleteComponent";
 import { useDeleteBatchMutation } from "../../../../redux/api/features/Batch/batchManagementApi";
-import { TBatch } from "../../../../utils/types/globalTypes";
+import { TBatch, TCourse } from "../../../../utils/types/globalTypes";
 import UpdateBatch from "../UpdateBatch/UpdateBatch";
 import { sonarId } from "../../../../utils/Fucntion/sonarId";
+import { useGetAllCourseQuery } from "../../../../redux/api/features/Course/courseManagementApi";
 
 interface IProps {
   data: TBatch;
 }
 const AllBatchBox = ({ data }: IProps) => {
   const { batchId, batchName, underCourse, batchStatus, start, end } = data;
+
+  const { data: courseData } = useGetAllCourseQuery(undefined);
+  const courses = courseData?.data;
+  console.log("Courses: ", courses);
+
   const [deleteBatch] = useDeleteBatchMutation();
   const handleDelete = async (id: string) => {
     console.log("Delete: ", id);
@@ -45,7 +51,10 @@ const AllBatchBox = ({ data }: IProps) => {
           <span className="bg-white py-1 px-2 shadow-md text-black rounded-md">
             Course Name
           </span>{" "}
-          <span className="ml-2">{batchName}</span>
+          <span className="ml-2">
+            {courses?.find((course: TCourse) => course?.courseId == underCourse)
+              ?.courseTitle || "Not Found"}
+          </span>
         </div>
       </div>
       <div className="mt-4">
@@ -100,7 +109,7 @@ const AllBatchBox = ({ data }: IProps) => {
           <UpdateBatch data={data} />
         </div>
 
-        <div onClick={() => handleDelete(data?.batchId)}>
+        <div onClick={() => handleDelete(batchId)}>
           <DeleteComponent />
         </div>
       </div>
