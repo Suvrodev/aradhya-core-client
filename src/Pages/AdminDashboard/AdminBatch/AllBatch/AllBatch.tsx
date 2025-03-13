@@ -6,6 +6,7 @@ import { TBatch } from "../../../../utils/types/globalTypes";
 import DeleteComponent from "../../../../Component/DeleteComponent/DeleteComponent";
 import { toast } from "sonner";
 import { sonarId } from "../../../../utils/Fucntion/sonarId";
+import UpdateBatch from "../UpdateBatch/UpdateBatch";
 
 const AllBatch = () => {
   const { data, isLoading } = useGetAllBatchQuery(undefined);
@@ -99,7 +100,11 @@ const AllBatch = () => {
               </p>
             </div>
 
-            <div className="absolute top-2 right-2">
+            <div className="absolute top-2 right-2 flex gap-x-2">
+              <div>
+                <UpdateBatch />
+              </div>
+
               <div onClick={() => handleDelete(data?.batchId)}>
                 <DeleteComponent />
               </div>

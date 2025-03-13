@@ -85,13 +85,6 @@ export type TBatch = {
   end?: string;
 };
 
-export type TService = {
-  _id: string;
-  name: string;
-  order: number;
-  serviceId: string;
-};
-
 export type TCourseBox = {
   _id: string;
   courseId: string;
