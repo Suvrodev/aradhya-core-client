@@ -9,8 +9,8 @@ interface IProps {
   data: TBatch;
 }
 const AllBatchBox = ({ data }: IProps) => {
+  const { batchId, batchName, underCourse, batchStatus, start, end } = data;
   const [deleteBatch] = useDeleteBatchMutation();
-
   const handleDelete = async (id: string) => {
     console.log("Delete: ", id);
     toast.loading("Deleting batch", { id: sonarId });
@@ -27,17 +27,17 @@ const AllBatchBox = ({ data }: IProps) => {
         <span className="bg-white py-1 px-2 shadow-md text-black rounded-md">
           Batch id
         </span>{" "}
-        <span className="ml-4">{data?.batchId}</span>
+        <span className="ml-4">{batchId}</span>
       </h1>
       <div className="mt-4 flex justify-between">
         <div className="">
-          {data?.underCourse && (
+          {underCourse && (
             <p>
               {" "}
               <span className="bg-white py-1 px-2 shadow-md text-black rounded-md">
                 Under Course
               </span>{" "}
-              <span className="ml-2">{data?.underCourse}</span>
+              <span className="ml-2">{underCourse}</span>
             </p>
           )}
         </div>
@@ -45,17 +45,17 @@ const AllBatchBox = ({ data }: IProps) => {
           <span className="bg-white py-1 px-2 shadow-md text-black rounded-md">
             Course Name
           </span>{" "}
-          <span className="ml-2">{data?.batchName}</span>
+          <span className="ml-2">{batchName}</span>
         </div>
       </div>
       <div className="mt-4">
-        {data?.batchName && (
+        {batchName && (
           <p>
             {" "}
             <span className="bg-white py-1 px-2 shadow-md text-black rounded-md">
               Batch Name
             </span>{" "}
-            <span className="ml-2">{data?.batchName}</span>
+            <span className="ml-2">{batchName}</span>
           </p>
         )}
       </div>
@@ -65,13 +65,13 @@ const AllBatchBox = ({ data }: IProps) => {
           <span className="bg-white py-1 px-2 shadow-md text-black rounded-md">
             start
           </span>{" "}
-          <span className="ml-2"> {data?.start}</span>
+          <span className="ml-2"> {start}</span>
         </p>
         <p>
           <span className="bg-white py-1 px-2 shadow-md text-black rounded-md">
             End
           </span>{" "}
-          <span className="ml-2"> {data?.end}</span>
+          <span className="ml-2"> {end}</span>
         </p>
       </div>
       <div className="mt-4 flex justify-between">
@@ -81,7 +81,7 @@ const AllBatchBox = ({ data }: IProps) => {
           </span>{" "}
           <span
             className={`ml-2 py-1 px-2 shadow-md text-white rounded-md ${
-              data?.batchStatus === "onGoing"
+              batchStatus === "onGoing"
                 ? "bg-green-500"
                 : data?.batchStatus === "upComing"
                 ? "bg-yellow-500"
@@ -90,7 +90,7 @@ const AllBatchBox = ({ data }: IProps) => {
                 : "bg-gray-400" // Default case (optional)
             }`}
           >
-            {data?.batchStatus}
+            {batchStatus}
           </span>
         </p>
       </div>
