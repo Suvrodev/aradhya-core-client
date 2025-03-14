@@ -14,7 +14,7 @@ const AllBatchBox = ({ data }: IProps) => {
 
   const { data: courseData } = useGetAllCourseQuery(undefined);
   const courses = courseData?.data;
-  console.log("Courses: ", courses);
+  //   console.log("Courses: ", courses);
 
   const [deleteBatch] = useDeleteBatchMutation();
   const handleDelete = async (id: string) => {

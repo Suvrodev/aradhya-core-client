@@ -12,10 +12,27 @@ const assignStudentManagementApi = baseApi.injectEndpoints({
       },
       invalidatesTags: ["assignStudent"],
     }),
+    // getAllAssignStudent: builder.query({
+    //   query: () => {
+    //     return {
+    //       url: `/assign`,
+    //       method: "GET",
+    //     };
+    //   },
+    //   providesTags: ["assignStudent"],
+    // }),
     getAllAssignStudent: builder.query({
-      query: () => {
+      query: ({ search, paymentGateWay, status, sort }) => {
+        let queryString = "";
+
+        // Adding query parameters dynamically
+        if (search) queryString += `search=${search}&`;
+        if (paymentGateWay) queryString += `paymentGateWay=${paymentGateWay}&`;
+        if (status) queryString += `status=${status}&`;
+        if (sort) queryString += `sort=${sort}&`;
+
         return {
-          url: `/assign`,
+          url: `/assign?${queryString}`,
           method: "GET",
         };
       },
