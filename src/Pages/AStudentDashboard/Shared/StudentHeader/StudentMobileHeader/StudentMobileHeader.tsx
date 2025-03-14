@@ -11,8 +11,6 @@ interface IProps {
 }
 
 const StudentMobileHeader = ({ openDrawer, setOpenDrawer }: IProps) => {
-  console.log("Open Drawer in Mobile Header: ", openDrawer);
-
   const { token } = useAppSelector((state) => state.auth);
   // eslint-disable-next-line @typescript-eslint/no-explicit-any
   let user: any;
@@ -23,7 +21,7 @@ const StudentMobileHeader = ({ openDrawer, setOpenDrawer }: IProps) => {
   const { data, isLoading } = useGetSpecificStudentQuery(user?.studentId);
   const loggedStudent: TStudent = data?.data;
 
-  console.log("Open Dashboard in Mobile Header: ", openDrawer);
+  // console.log("Open Dashboard in Mobile Header: ", openDrawer);
 
   if (isLoading) {
     return <p>...</p>;

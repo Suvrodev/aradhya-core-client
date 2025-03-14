@@ -19,7 +19,7 @@ const StudentDashboard = () => {
 
   const { data, isLoading } = useGetSpecificStudentQuery(user?.studentId);
   const loggedStudent: TStudent = data?.data;
-  console.log("Logged Student in Student Main: ", loggedStudent);
+  console.log("Logged Student in Student Main(fetch): ", loggedStudent);
 
   const [openDrawer, setOpenDrawer] = useState(false);
 
