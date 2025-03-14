@@ -5,6 +5,7 @@ import { sonarId } from "../../../utils/Fucntion/sonarId";
 import { useGetAllCourseQuery } from "../../../redux/api/features/Course/courseManagementApi";
 import { Trash2 } from "lucide-react";
 import { formatDate } from "../../../utils/Fucntion/convertDate";
+import AdminAssignStudentUpdate from "./AdminAssignStudentUpdate/AdminAssignStudentUpdate";
 
 interface IProps {
   data: TAssignedStudent;
@@ -13,7 +14,6 @@ interface IProps {
 const AdminAssignedStudentTable = ({ data, idx }: IProps) => {
   console.log("Data: ", data);
   const {
-    _id,
     studentId,
     studentName,
     studentEmail,
@@ -82,9 +82,7 @@ const AdminAssignedStudentTable = ({ data, idx }: IProps) => {
         {status.toString()}
       </td>
       <td className="py-3 px-4">
-        <button className="px-4 py-2 bg-teal-500 text-white rounded-lg hover:bg-teal-600 transition-all duration-300">
-          Assign
-        </button>
+        <AdminAssignStudentUpdate data={data} />
       </td>
       <td className="py-3 px-4">{formatDate(createdAt)}</td>
       <td className="py-3 px-4">{formatDate(updatedAt)}</td>
