@@ -2,6 +2,9 @@ import { Modal } from "antd";
 import { Settings } from "lucide-react";
 import { TAssignedStudent } from "../../../../utils/types/globalTypes";
 import { ChangeEvent, FormEvent, useState } from "react";
+import { useUpdateAssignStudentMutation } from "../../../../redux/api/features/AssignStudent/assignStudentManagementApi";
+import { toast } from "sonner";
+import { sonarId } from "../../../../utils/Fucntion/sonarId";
 
 interface IProps {
   data: TAssignedStudent;
@@ -17,8 +20,11 @@ const AdminAssignStudentUpdate = ({ data }: IProps) => {
    * Start Functionality
    */
 
+  const [updateAssign] = useUpdateAssignStudentMutation();
+
   // Destructure data
   const {
+    _id,
     studentId,
     studentName,
     studentEmail,
@@ -52,7 +58,7 @@ const AdminAssignStudentUpdate = ({ data }: IProps) => {
     }
   };
 
-  const handleSubmit = (event: FormEvent<HTMLFormElement>) => {
+  const handleSubmit = async (event: FormEvent<HTMLFormElement>) => {
     event.preventDefault();
     const Form = event.target as HTMLFormElement;
     const checkTransactionId = Form.checkTransactionId.value;
@@ -61,6 +67,12 @@ const AdminAssignStudentUpdate = ({ data }: IProps) => {
       checkTransactionId,
     };
     console.log("Update Data: ", updateData);
+
+    toast.loading("Updating", { id: sonarId });
+    const res = await updateAssign({ id: _id, updateData }).unwrap();
+    if (res?.status) {
+      toast.success("Updated", { id: sonarId });
+    }
   };
 
   return (
@@ -296,7 +308,9 @@ const AdminAssignStudentUpdate = ({ data }: IProps) => {
               <select
                 value={status?.toString()}
                 onChange={handleStatus}
-                className="w-full p-3 rounded-lg bg-gray-800 text-white border border-gray-700 focus:border-purple-500 focus:ring-2 focus:ring-purple-200 transition-all duration-300 outline-none"
+                className={`w-full p-3 rounded-lg ${
+                  status ? "bg-green-500" : "bg-yellow-500"
+                } text-white border border-gray-700 focus:border-purple-500 focus:ring-2 focus:ring-purple-200 transition-all duration-300 outline-none`}
               >
                 <option value="true">true</option>
                 <option value="false">false</option>
@@ -327,7 +341,7 @@ const AdminAssignStudentUpdate = ({ data }: IProps) => {
                 name="checkTransactionId"
                 placeholder="Transaction ID"
                 defaultValue={checkTransactionId}
-                className="w-full p-3 rounded-lg bg-gray-800 text-white border border-gray-700 focus:border-purple-500 focus:ring-2 focus:ring-purple-200 transition-all duration-300 outline-none"
+                className="w-full p-3 rounded-lg bg-orange-600 text-white border border-gray-700 focus:border-purple-500 focus:ring-2 focus:ring-purple-200 transition-all duration-300 outline-none"
               />
             </div>
 
