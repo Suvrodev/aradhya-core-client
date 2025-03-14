@@ -35,6 +35,7 @@ const AdminAssignStudentUpdate = ({ data }: IProps) => {
     paymentGateWay,
     status: statusCome,
     transactionId,
+    checkTransactionId,
     transactionMobileNumber,
   } = data;
 
@@ -53,9 +54,11 @@ const AdminAssignStudentUpdate = ({ data }: IProps) => {
 
   const handleSubmit = (event: FormEvent<HTMLFormElement>) => {
     event.preventDefault();
-
+    const Form = event.target as HTMLFormElement;
+    const checkTransactionId = Form.checkTransactionId.value;
     const updateData = {
       status,
+      checkTransactionId,
     };
     console.log("Update Data: ", updateData);
   };
@@ -86,7 +89,7 @@ const AdminAssignStudentUpdate = ({ data }: IProps) => {
                 type="text"
                 name="studentId"
                 placeholder="Student ID"
-                value={studentId}
+                defaultValue={studentId}
                 disabled
                 className="disabled:text-gray-400 w-full p-3 rounded-lg bg-gray-800 text-white border border-gray-700 focus:border-purple-500 focus:ring-2 focus:ring-purple-200 transition-all duration-300 outline-none"
               />
@@ -101,7 +104,7 @@ const AdminAssignStudentUpdate = ({ data }: IProps) => {
                 type="text"
                 name="studentName"
                 placeholder="Student Name"
-                value={studentName}
+                defaultValue={studentName}
                 className="w-full p-3 rounded-lg bg-gray-800 text-white border border-gray-700 focus:border-purple-500 focus:ring-2 focus:ring-purple-200 transition-all duration-300 outline-none"
               />
             </div>
@@ -115,7 +118,7 @@ const AdminAssignStudentUpdate = ({ data }: IProps) => {
                 type="email"
                 name="studentEmail"
                 placeholder="Student Email"
-                value={studentEmail}
+                defaultValue={studentEmail}
                 disabled
                 className="disabled:text-gray-400 w-full p-3 rounded-lg bg-gray-800 text-white border border-gray-700 focus:border-purple-500 focus:ring-2 focus:ring-purple-200 transition-all duration-300 outline-none"
               />
@@ -130,7 +133,7 @@ const AdminAssignStudentUpdate = ({ data }: IProps) => {
                 type="text"
                 name="studentPhone"
                 placeholder="Student Phone"
-                value={studentPhone}
+                defaultValue={studentPhone}
                 disabled
                 className="disabled:text-gray-400 w-full p-3 rounded-lg bg-gray-800 text-white border border-gray-700 focus:border-purple-500 focus:ring-2 focus:ring-purple-200 transition-all duration-300 outline-none"
               />
@@ -145,7 +148,7 @@ const AdminAssignStudentUpdate = ({ data }: IProps) => {
                 type="text"
                 name="courseId"
                 placeholder="Course ID"
-                value={courseId}
+                defaultValue={courseId}
                 disabled
                 className="disabled:text-gray-400 w-full p-3 rounded-lg bg-gray-800 text-white border border-gray-700 focus:border-purple-500 focus:ring-2 focus:ring-purple-200 transition-all duration-300 outline-none"
               />
@@ -160,7 +163,7 @@ const AdminAssignStudentUpdate = ({ data }: IProps) => {
                 type="text"
                 name="batchId"
                 placeholder="Batch ID"
-                value={batchId}
+                defaultValue={batchId}
                 disabled
                 className="disabled:text-gray-400 w-full p-3 rounded-lg bg-gray-800 text-white border border-gray-700 focus:border-purple-500 focus:ring-2 focus:ring-purple-200 transition-all duration-300 outline-none"
               />
@@ -175,7 +178,7 @@ const AdminAssignStudentUpdate = ({ data }: IProps) => {
                 type="number"
                 name="coursePrice"
                 placeholder="Course Price"
-                value={coursePrice}
+                defaultValue={coursePrice}
                 disabled
                 className="disabled:text-gray-400 w-full p-3 rounded-lg bg-gray-800 text-white border border-gray-700 focus:border-purple-500 focus:ring-2 focus:ring-purple-200 transition-all duration-300 outline-none"
               />
@@ -190,7 +193,7 @@ const AdminAssignStudentUpdate = ({ data }: IProps) => {
                 type="number"
                 name="courseDiscount"
                 placeholder="Course Discount"
-                value={courseDiscount}
+                defaultValue={courseDiscount}
                 disabled
                 className="disabled:text-gray-400 w-full p-3 rounded-lg bg-gray-800 text-white border border-gray-700 focus:border-purple-500 focus:ring-2 focus:ring-purple-200 transition-all duration-300 outline-none"
               />
@@ -219,7 +222,7 @@ const AdminAssignStudentUpdate = ({ data }: IProps) => {
                 type="text"
                 name="promoCode"
                 placeholder="Promo Code"
-                value={promoCode}
+                defaultValue={promoCode}
                 disabled
                 className="disabled:text-gray-400 w-full p-3 rounded-lg bg-gray-800 text-white border border-gray-700 focus:border-purple-500 focus:ring-2 focus:ring-purple-200 transition-all duration-300 outline-none"
               />
@@ -234,7 +237,7 @@ const AdminAssignStudentUpdate = ({ data }: IProps) => {
                 type="text"
                 name="appliedpromoCode"
                 placeholder="Applied Promo Code"
-                value={appliedpromoCode}
+                defaultValue={appliedpromoCode}
                 disabled
                 className="disabled:text-gray-400 w-full p-3 rounded-lg bg-gray-800 text-white border border-gray-700 focus:border-purple-500 focus:ring-2 focus:ring-purple-200 transition-all duration-300 outline-none"
               />
@@ -249,7 +252,7 @@ const AdminAssignStudentUpdate = ({ data }: IProps) => {
                 type="number"
                 name="promoPercent"
                 placeholder="Promo Percent"
-                value={promoPercent}
+                defaultValue={promoPercent}
                 disabled
                 className=" disabled:text-gray-400 w-full p-3 rounded-lg bg-gray-800 text-white border border-gray-700 focus:border-purple-500 focus:ring-2 focus:ring-purple-200 transition-all duration-300 outline-none"
               />
@@ -264,7 +267,7 @@ const AdminAssignStudentUpdate = ({ data }: IProps) => {
                 type="number"
                 name="finalPrice"
                 placeholder="Final Price"
-                value={finalPrice}
+                defaultValue={finalPrice}
                 disabled
                 className=" disabled:text-gray-400 w-full p-3 rounded-lg bg-gray-800 text-white border border-gray-700 focus:border-purple-500 focus:ring-2 focus:ring-purple-200 transition-all duration-300 outline-none"
               />
@@ -279,7 +282,7 @@ const AdminAssignStudentUpdate = ({ data }: IProps) => {
                 type="text"
                 name="paymentGateWay"
                 placeholder="Final Price"
-                value={paymentGateWay}
+                defaultValue={paymentGateWay}
                 disabled
                 className=" disabled:text-gray-400 w-full p-3 rounded-lg bg-gray-800 text-white border border-gray-700 focus:border-purple-500 focus:ring-2 focus:ring-purple-200 transition-all duration-300 outline-none"
               />
@@ -309,7 +312,21 @@ const AdminAssignStudentUpdate = ({ data }: IProps) => {
                 type="text"
                 name="transactionId"
                 placeholder="Transaction ID"
-                value={transactionId}
+                defaultValue={transactionId}
+                className="w-full p-3 rounded-lg bg-gray-800 text-white border border-gray-700 focus:border-purple-500 focus:ring-2 focus:ring-purple-200 transition-all duration-300 outline-none"
+              />
+            </div>
+
+            {/*Check Transaction ID */}
+            <div>
+              <label className="block text-sm font-medium text-gray-300 mb-1">
+                Check Transaction ID
+              </label>
+              <input
+                type="text"
+                name="checkTransactionId"
+                placeholder="Transaction ID"
+                defaultValue={checkTransactionId}
                 className="w-full p-3 rounded-lg bg-gray-800 text-white border border-gray-700 focus:border-purple-500 focus:ring-2 focus:ring-purple-200 transition-all duration-300 outline-none"
               />
             </div>
@@ -323,7 +340,7 @@ const AdminAssignStudentUpdate = ({ data }: IProps) => {
                 type="text"
                 name="transactionMobileNumber"
                 placeholder="Transaction Mobile Number"
-                value={transactionMobileNumber}
+                defaultValue={transactionMobileNumber}
                 className="w-full p-3 rounded-lg bg-gray-800 text-white border border-gray-700 focus:border-purple-500 focus:ring-2 focus:ring-purple-200 transition-all duration-300 outline-none"
               />
             </div>

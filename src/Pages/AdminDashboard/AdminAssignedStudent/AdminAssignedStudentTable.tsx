@@ -12,7 +12,7 @@ interface IProps {
   idx: number;
 }
 const AdminAssignedStudentTable = ({ data, idx }: IProps) => {
-  console.log("Data: ", data);
+  // console.log("Data: ", data);
   const {
     studentId,
     studentName,
@@ -47,7 +47,13 @@ const AdminAssignedStudentTable = ({ data, idx }: IProps) => {
   };
 
   if (isLoading) {
-    return <p>Loading....</p>;
+    return (
+      <tr>
+        <td colSpan={24} className="text-center py-4">
+          Loading....
+        </td>
+      </tr>
+    );
   }
 
   return (
