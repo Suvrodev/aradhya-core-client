@@ -1,35 +1,24 @@
 import { Modal } from "antd";
 import { Settings } from "lucide-react";
 import { TAssignedStudent } from "../../../../utils/types/globalTypes";
-import { FormEvent, useState } from "react";
+import { ChangeEvent, FormEvent, useState } from "react";
 
 interface IProps {
   data: TAssignedStudent;
 }
 
 const AdminAssignStudentUpdate = ({ data }: IProps) => {
-  //   Modal Default Class start
   const [isModalOpen, setIsModalOpen] = useState(false);
 
-  const showModal = () => {
-    setIsModalOpen(true);
-  };
-
-  const handleOk = () => {
-    setIsModalOpen(false);
-  };
-
-  const handleCancel = () => {
-    setIsModalOpen(false);
-  };
-  //   Modal Default Class end
+  const showModal = () => setIsModalOpen(true);
+  const handleCancel = () => setIsModalOpen(false);
 
   /**
-   * Start Work
+   * Start Functionality
    */
 
+  // Destructure data
   const {
-    _id,
     studentId,
     studentName,
     studentEmail,
@@ -44,42 +33,312 @@ const AdminAssignStudentUpdate = ({ data }: IProps) => {
     promoPercent,
     finalPrice,
     paymentGateWay,
-    status,
+    status: statusCome,
     transactionId,
     transactionMobileNumber,
-    createdAt,
-    updatedAt,
   } = data;
 
-  const handleUpdateAssignStudent = (event: FormEvent<HTMLFormElement>) => {
+  const [status, setStatus] = useState(statusCome);
+
+  const handleStatus = (event: ChangeEvent<HTMLSelectElement>) => {
+    const res = event.target.value;
+
+    // console.log("Res: ", res);
+    if (res == "true") {
+      setStatus(true);
+    } else {
+      setStatus(false);
+    }
+  };
+
+  const handleSubmit = (event: FormEvent<HTMLFormElement>) => {
     event.preventDefault();
+
+    const updateData = {
+      status,
+    };
+    console.log("Update Data: ", updateData);
   };
 
   return (
-    <div className="">
-      <div onClick={showModal}>
-        <button className="w-[30px] h-[30px] bg-green-500 text-white flex justify-center items-center rounded-md p-2">
-          <Settings />
-        </button>
-      </div>
+    <div>
+      <button
+        onClick={showModal}
+        className="w-[30px] h-[30px] bg-gradient-to-r from-blue-500 to-purple-500 text-white flex justify-center items-center rounded-md p-2 hover:from-blue-600 hover:to-purple-600 transition-all duration-300"
+      >
+        <Settings className="w-4 h-4" />
+      </button>
       <Modal
         title="Update Assign Student"
         open={isModalOpen}
-        onOk={handleOk}
         onCancel={handleCancel}
         footer={null}
-        width={{
-          xs: "90%",
-          sm: "80%",
-          md: "70%",
-          lg: "60%",
-          xl: "50%",
-          xxl: "40%",
-        }}
+        width={"90%"}
       >
-        <div className="">
-          <h1 className="font-bold text-xl">Update Assign Student</h1>
-        </div>
+        <form onSubmit={handleSubmit} className=" bg-gray-900">
+          <div className="grid grid-cols-4 gap-6 p-6 rounded-lg">
+            {/* Student ID */}
+            <div>
+              <label className="block text-sm font-medium text-gray-300 mb-1">
+                Student ID
+              </label>
+              <input
+                type="text"
+                name="studentId"
+                placeholder="Student ID"
+                value={studentId}
+                disabled
+                className="disabled:text-gray-400 w-full p-3 rounded-lg bg-gray-800 text-white border border-gray-700 focus:border-purple-500 focus:ring-2 focus:ring-purple-200 transition-all duration-300 outline-none"
+              />
+            </div>
+
+            {/* Student Name */}
+            <div>
+              <label className="block text-sm font-medium text-gray-300 mb-1">
+                Student Name
+              </label>
+              <input
+                type="text"
+                name="studentName"
+                placeholder="Student Name"
+                value={studentName}
+                className="w-full p-3 rounded-lg bg-gray-800 text-white border border-gray-700 focus:border-purple-500 focus:ring-2 focus:ring-purple-200 transition-all duration-300 outline-none"
+              />
+            </div>
+
+            {/* Student Email */}
+            <div>
+              <label className="block text-sm font-medium text-gray-300 mb-1">
+                Student Email
+              </label>
+              <input
+                type="email"
+                name="studentEmail"
+                placeholder="Student Email"
+                value={studentEmail}
+                disabled
+                className="disabled:text-gray-400 w-full p-3 rounded-lg bg-gray-800 text-white border border-gray-700 focus:border-purple-500 focus:ring-2 focus:ring-purple-200 transition-all duration-300 outline-none"
+              />
+            </div>
+
+            {/* Student Phone */}
+            <div>
+              <label className="block text-sm font-medium text-gray-300 mb-1">
+                Student Phone
+              </label>
+              <input
+                type="text"
+                name="studentPhone"
+                placeholder="Student Phone"
+                value={studentPhone}
+                disabled
+                className="disabled:text-gray-400 w-full p-3 rounded-lg bg-gray-800 text-white border border-gray-700 focus:border-purple-500 focus:ring-2 focus:ring-purple-200 transition-all duration-300 outline-none"
+              />
+            </div>
+
+            {/* Course ID */}
+            <div>
+              <label className="block text-sm font-medium text-gray-300 mb-1">
+                Course ID
+              </label>
+              <input
+                type="text"
+                name="courseId"
+                placeholder="Course ID"
+                value={courseId}
+                disabled
+                className="disabled:text-gray-400 w-full p-3 rounded-lg bg-gray-800 text-white border border-gray-700 focus:border-purple-500 focus:ring-2 focus:ring-purple-200 transition-all duration-300 outline-none"
+              />
+            </div>
+
+            {/* Batch ID */}
+            <div>
+              <label className="block text-sm font-medium text-gray-300 mb-1">
+                Batch ID
+              </label>
+              <input
+                type="text"
+                name="batchId"
+                placeholder="Batch ID"
+                value={batchId}
+                disabled
+                className="disabled:text-gray-400 w-full p-3 rounded-lg bg-gray-800 text-white border border-gray-700 focus:border-purple-500 focus:ring-2 focus:ring-purple-200 transition-all duration-300 outline-none"
+              />
+            </div>
+
+            {/* Course Price */}
+            <div>
+              <label className="block text-sm font-medium text-gray-300 mb-1">
+                Course Price
+              </label>
+              <input
+                type="number"
+                name="coursePrice"
+                placeholder="Course Price"
+                value={coursePrice}
+                disabled
+                className="disabled:text-gray-400 w-full p-3 rounded-lg bg-gray-800 text-white border border-gray-700 focus:border-purple-500 focus:ring-2 focus:ring-purple-200 transition-all duration-300 outline-none"
+              />
+            </div>
+
+            {/* Course Discount */}
+            <div>
+              <label className="block text-sm font-medium text-gray-300 mb-1">
+                Course Discount
+              </label>
+              <input
+                type="number"
+                name="courseDiscount"
+                placeholder="Course Discount"
+                value={courseDiscount}
+                disabled
+                className="disabled:text-gray-400 w-full p-3 rounded-lg bg-gray-800 text-white border border-gray-700 focus:border-purple-500 focus:ring-2 focus:ring-purple-200 transition-all duration-300 outline-none"
+              />
+            </div>
+
+            {/* Promo Code Status */}
+            <div>
+              <label className="block text-sm font-medium text-gray-300 mb-1">
+                Promo Code Status
+              </label>
+              <input
+                type="text"
+                name="promoCodeStatus"
+                defaultValue={promoCodeStatus}
+                disabled
+                className="disabled:text-gray-400 w-full p-3 rounded-lg bg-gray-800 text-white border border-gray-700 focus:border-purple-500 focus:ring-2 focus:ring-purple-200 transition-all duration-300 outline-none"
+              />
+            </div>
+
+            {/* Promo Code */}
+            <div>
+              <label className="block text-sm font-medium text-gray-300 mb-1">
+                Promo Code
+              </label>
+              <input
+                type="text"
+                name="promoCode"
+                placeholder="Promo Code"
+                value={promoCode}
+                disabled
+                className="disabled:text-gray-400 w-full p-3 rounded-lg bg-gray-800 text-white border border-gray-700 focus:border-purple-500 focus:ring-2 focus:ring-purple-200 transition-all duration-300 outline-none"
+              />
+            </div>
+
+            {/* Applied Promo Code */}
+            <div>
+              <label className="block text-sm font-medium text-gray-300 mb-1">
+                Applied Promo Code
+              </label>
+              <input
+                type="text"
+                name="appliedpromoCode"
+                placeholder="Applied Promo Code"
+                value={appliedpromoCode}
+                disabled
+                className="disabled:text-gray-400 w-full p-3 rounded-lg bg-gray-800 text-white border border-gray-700 focus:border-purple-500 focus:ring-2 focus:ring-purple-200 transition-all duration-300 outline-none"
+              />
+            </div>
+
+            {/* Promo Percent */}
+            <div>
+              <label className="block text-sm font-medium text-gray-300 mb-1">
+                Promo Percent
+              </label>
+              <input
+                type="number"
+                name="promoPercent"
+                placeholder="Promo Percent"
+                value={promoPercent}
+                disabled
+                className=" disabled:text-gray-400 w-full p-3 rounded-lg bg-gray-800 text-white border border-gray-700 focus:border-purple-500 focus:ring-2 focus:ring-purple-200 transition-all duration-300 outline-none"
+              />
+            </div>
+
+            {/* Final Price */}
+            <div>
+              <label className="block text-sm font-medium text-gray-300 mb-1">
+                Final Price
+              </label>
+              <input
+                type="number"
+                name="finalPrice"
+                placeholder="Final Price"
+                value={finalPrice}
+                disabled
+                className=" disabled:text-gray-400 w-full p-3 rounded-lg bg-gray-800 text-white border border-gray-700 focus:border-purple-500 focus:ring-2 focus:ring-purple-200 transition-all duration-300 outline-none"
+              />
+            </div>
+
+            {/* Payment Gateway */}
+            <div>
+              <label className="block text-sm font-medium text-gray-300 mb-1">
+                Payment Gateway
+              </label>
+              <input
+                type="text"
+                name="paymentGateWay"
+                placeholder="Final Price"
+                value={paymentGateWay}
+                disabled
+                className=" disabled:text-gray-400 w-full p-3 rounded-lg bg-gray-800 text-white border border-gray-700 focus:border-purple-500 focus:ring-2 focus:ring-purple-200 transition-all duration-300 outline-none"
+              />
+            </div>
+
+            {/* Status */}
+            <div>
+              <label className="block text-sm font-medium text-gray-300 mb-1">
+                Assign Status
+              </label>
+              <select
+                value={status?.toString()}
+                onChange={handleStatus}
+                className="w-full p-3 rounded-lg bg-gray-800 text-white border border-gray-700 focus:border-purple-500 focus:ring-2 focus:ring-purple-200 transition-all duration-300 outline-none"
+              >
+                <option value="true">true</option>
+                <option value="false">false</option>
+              </select>
+            </div>
+
+            {/* Transaction ID */}
+            <div>
+              <label className="block text-sm font-medium text-gray-300 mb-1">
+                Transaction ID
+              </label>
+              <input
+                type="text"
+                name="transactionId"
+                placeholder="Transaction ID"
+                value={transactionId}
+                className="w-full p-3 rounded-lg bg-gray-800 text-white border border-gray-700 focus:border-purple-500 focus:ring-2 focus:ring-purple-200 transition-all duration-300 outline-none"
+              />
+            </div>
+
+            {/* Transaction Mobile Number */}
+            <div>
+              <label className="block text-sm font-medium text-gray-300 mb-1">
+                Transaction Mobile Number
+              </label>
+              <input
+                type="text"
+                name="transactionMobileNumber"
+                placeholder="Transaction Mobile Number"
+                value={transactionMobileNumber}
+                className="w-full p-3 rounded-lg bg-gray-800 text-white border border-gray-700 focus:border-purple-500 focus:ring-2 focus:ring-purple-200 transition-all duration-300 outline-none"
+              />
+            </div>
+          </div>
+
+          <div className="flex justify-center">
+            {/* Submit Button */}
+            <button
+              type="submit"
+              className="w-1/2 bg-gradient-to-r from-blue-500 to-purple-500 text-white p-3 rounded-lg hover:from-blue-600 hover:to-purple-600 transition-all duration-300"
+            >
+              Update
+            </button>
+          </div>
+        </form>
       </Modal>
     </div>
   );
