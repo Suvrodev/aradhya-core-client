@@ -33,6 +33,7 @@ const AdminBatch = () => {
     const batchName = Form.batchName.value;
     const start = Form.start.value;
     const end = Form.end.value;
+    const classNumber = Number(Form.classNumber.value);
 
     if (!underCourse) {
       toast.error("Not Selected Course", { id: sonarId });
@@ -51,6 +52,7 @@ const AdminBatch = () => {
       start,
       end,
       batchStatus,
+      classNumber,
     };
     console.log("FormData: ", formData);
     toast.loading("Adding Batch", { id: sonarId });
@@ -132,6 +134,16 @@ const AdminBatch = () => {
                     </option>
                   ))}
                 </select>
+              </div>
+              <div>
+                <h1 className="block mb-4 text-sm font-medium">Class Number</h1>
+                <input
+                  type="number"
+                  name="classNumber"
+                  id=""
+                  className="w-full px-4 py-2 bg-gray-700 text-white rounded-lg focus:outline-none focus:ring focus:ring-teal-500 "
+                  placeholder="Class Number"
+                />
               </div>
               <div>
                 <h1 className="block mb-4 text-sm font-medium">Batch Status</h1>
