@@ -10,7 +10,15 @@ interface IProps {
   data: TBatch;
 }
 const AllBatchBox = ({ data }: IProps) => {
-  const { batchId, batchName, underCourse, batchStatus, start, end } = data;
+  const {
+    batchId,
+    batchName,
+    underCourse,
+    batchStatus,
+    start,
+    end,
+    classNumber,
+  } = data;
 
   const { data: courseData } = useGetAllCourseQuery(undefined);
   const courses = courseData?.data;
@@ -100,6 +108,14 @@ const AllBatchBox = ({ data }: IProps) => {
             }`}
           >
             {batchStatus}
+          </span>
+        </p>
+        <p>
+          <span className="bg-white py-1 px-2 shadow-md text-black rounded-md">
+            Class
+          </span>{" "}
+          <span className={`ml-2 py-1 px-2 shadow-md text-white rounded-md`}>
+            {classNumber}
           </span>
         </p>
       </div>

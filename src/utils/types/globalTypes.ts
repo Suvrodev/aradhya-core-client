@@ -84,6 +84,7 @@ export type TBatch = {
   batchStatus: string;
   start: string;
   end?: string;
+  classNumber: number;
 };
 
 export type TCourseBox = {
