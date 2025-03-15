@@ -20,8 +20,6 @@ const StudentDashboardHome = () => {
 
   const ownCourse = data?.data;
 
-  console.log("Own Course:  ", ownCourse);
-
   if (isLoading) {
     return <p>Loading....</p>;
   }
