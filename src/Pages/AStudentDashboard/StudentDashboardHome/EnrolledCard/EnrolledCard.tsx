@@ -14,6 +14,8 @@ interface IProps {
 }
 
 const EnrolledCard = ({ data }: IProps) => {
+  console.log("Own Course: ", data);
+
   const { data: singleCourseData, isLoading } = useGetSpecificCourseQuery(
     data?.courseId
   );
