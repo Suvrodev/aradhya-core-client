@@ -1,5 +1,4 @@
 import "./MobileHeader.css";
-import logo from "../../../../assets/Logo/Header_1.png";
 import { useState } from "react";
 import MobileHeaderOption from "./MobileHeaderOption/MobileHeaderOption";
 import fullLogo from "../../../../assets/Logo/fullLogo.png";

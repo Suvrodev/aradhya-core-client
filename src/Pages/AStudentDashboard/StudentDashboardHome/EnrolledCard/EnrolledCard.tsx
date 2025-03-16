@@ -34,7 +34,7 @@ const EnrolledCard = ({ data }: IProps) => {
   }
 
   return (
-    <div className="flex flex-col md:flex-row justify-between bg-gradient-to-br from-purple-600 to-indigo-700 rounded-2xl shadow-2xl overflow-hidden transform transition-all hover:scale-105 w-full max-w-4xl mx-auto">
+    <div className="flex flex-col md:flex-row justify-between bg-gradient-to-br from-purple-600 to-indigo-700 rounded-2xl shadow-2xl overflow-hidden transform transition-all  w-full max-w-4xl mx-auto">
       {/* Left Section: Course Details */}
       <div className="flex flex-col justify-between p-6 md:p-8 text-white w-full md:w-2/3 bg-whi">
         {/* Course Title */}
@@ -77,7 +77,7 @@ const EnrolledCard = ({ data }: IProps) => {
           <img
             src={courseDetail?.courseImage}
             alt={courseDetail?.courseTitle}
-            className="w-full h-full object-cover md:rounded-r-2xl"
+            className="w-full h-full object-cover md:rounded-2xl"
           />
         </div>
       </div>

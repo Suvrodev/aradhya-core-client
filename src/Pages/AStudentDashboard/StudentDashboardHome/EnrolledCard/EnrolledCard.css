@@ -2,7 +2,7 @@
   background-color: transparent;
   width: 350px;
   height: fit-content;
-  perspective: 1000px;
+  /* perspective: 1000px; */
   display: flex;
   justify-content: center;
   align-items: center;
@@ -25,4 +25,13 @@
 .flipped {
   transform: rotateY(-20deg);
   transform: perspective(1000px) rotateY(-60deg) scaleX(1.3) scaleY(0.7);
+}
+
+@media only screen and (max-width: 576px) {
+  .flip-card {
+    padding: 10px;
+  }
+  .flipped {
+    transform: none !important;
+  }
 }
