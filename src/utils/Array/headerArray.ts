@@ -4,6 +4,10 @@ export const headerArray = [
     path: "/",
   },
   {
+    text: "All Curse",
+    path: "/all-courses",
+  },
+  {
     text: "About",
     path: "/about-us",
   },

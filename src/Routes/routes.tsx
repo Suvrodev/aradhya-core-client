@@ -32,6 +32,7 @@ import Education from "../Pages/AStudentDashboard/Education/Education";
 import ImportantLink from "../Pages/AStudentDashboard/ImportantLink/ImportantLink";
 import AddBlog from "../Pages/AdminDashboard/AdminBlog/AddBlog/AddBlog";
 import AdminAssignedStudent from "../Pages/AdminDashboard/AdminAssignedStudent/AdminAssignedStudent";
+import UserAllCourses from "../Pages/ForAll/UserAllCourses/UserAllCourses";
 // import EnrollCourse from "../Pages/ForAll/EnrollCourse/EnrollCourse";
 
 export const router = createBrowserRouter([
@@ -46,6 +47,10 @@ export const router = createBrowserRouter([
       {
         path: "home",
         element: <Home />,
+      },
+      {
+        path: "all-courses",
+        element: <UserAllCourses />,
       },
       {
         path: "course-detail/:id",
