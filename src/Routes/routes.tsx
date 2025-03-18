@@ -33,6 +33,7 @@ import ImportantLink from "../Pages/AStudentDashboard/ImportantLink/ImportantLin
 import AddBlog from "../Pages/AdminDashboard/AdminBlog/AddBlog/AddBlog";
 import AdminAssignedStudent from "../Pages/AdminDashboard/AdminAssignedStudent/AdminAssignedStudent";
 import UserAllCourses from "../Pages/ForAll/UserAllCourses/UserAllCourses";
+import TermsAndConditions from "../Pages/ForAll/TermsAndConditions/TermsAndConditions";
 // import EnrollCourse from "../Pages/ForAll/EnrollCourse/EnrollCourse";
 
 export const router = createBrowserRouter([
@@ -67,6 +68,10 @@ export const router = createBrowserRouter([
       {
         path: "contact",
         element: <Contact />,
+      },
+      {
+        path: "terms-and-condition",
+        element: <TermsAndConditions />,
       },
       // {
       //   path: "enroll-course",
