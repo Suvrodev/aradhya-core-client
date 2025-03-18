@@ -4,7 +4,7 @@ export const headerArray = [
     path: "/",
   },
   {
-    text: "All Curse",
+    text: "All Course",
     path: "/all-courses",
   },
   {

@@ -15,8 +15,9 @@ import { toast } from "sonner";
 import { sonarId } from "../../../utils/Fucntion/sonarId";
 import axios from "axios";
 
-const imageHostingUrl =
-  "https://api.cloudinary.com/v1_1/dixfkupof/image/upload";
+const imageHostingUrl = `https://api.cloudinary.com/v1_1/${
+  import.meta.env.VITE_CLOUDNARY_API_KEY
+}/image/upload`;
 
 const MyProfile = () => {
   const [updateUser] = useUpdateStudentMutation();
@@ -53,8 +54,14 @@ const MyProfile = () => {
     console.log("Profile Image: ", profileImage);
     const formData = new FormData();
     formData.append("file", imageFile);
-    formData.append("upload_preset", "suvrodeb");
-    formData.append("cloud_name", "dixfkupof");
+    formData.append(
+      "upload_preset",
+      `${import.meta.env.VITE_ClOUDNARY_PRESET}`
+    );
+    formData.append(
+      "cloud_name",
+      `{${import.meta.env.VITE_CLOUDNARY_API_KEY}}`
+    );
 
     try {
       toast.loading("Uploading Image", { id: sonarId });
@@ -77,7 +84,7 @@ const MyProfile = () => {
       }
     } catch (error) {
       console.error("Error uploading image:", error);
-      toast.error("Imagebb server issue to upload image", { id: sonarId });
+      toast.error("Something Erron in Upload Image", { id: sonarId });
     }
   };
 

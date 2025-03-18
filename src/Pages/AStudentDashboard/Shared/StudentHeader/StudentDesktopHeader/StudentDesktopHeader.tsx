@@ -33,7 +33,7 @@ const StudentDesktopHeader = () => {
       <div className="bg-gradient-to-br from-white via-[#F0F4FF] to-[#E6FCF5] overflow-hidden">
         <div className="flex  items-center justify-between max-w-[82rem] px-4 md:px-0 mx-auto  h-[70px]  ">
           <div className="w-1/3 flex items-center  justify-start h-full  ">
-            <Link to={"/"}>
+            <Link to={"/home"}>
               {" "}
               <img src={fullLogo} alt="" className="w-full md:w-4/12" />
             </Link>

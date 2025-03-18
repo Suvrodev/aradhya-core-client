@@ -91,7 +91,7 @@ const AdminAssignStudentUpdate = ({ data }: IProps) => {
         width={"90%"}
       >
         <form onSubmit={handleSubmit} className=" bg-gray-900">
-          <div className="grid grid-cols-4 gap-6 p-6 rounded-lg">
+          <div className="grid grid-cols-1 md:grid-cols-4 gap-6 p-6 rounded-lg">
             {/* Student ID */}
             <div>
               <label className="block text-sm font-medium text-gray-300 mb-1">
