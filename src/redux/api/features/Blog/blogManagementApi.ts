@@ -19,7 +19,7 @@ const blogManagementApi = baseApi.injectEndpoints({
           method: "GET",
         };
       },
-      providesTags: ["service"],
+      providesTags: ["blog"],
     }),
     getSpecificBlog: builder.query({
       query: (id) => {

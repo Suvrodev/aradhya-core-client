@@ -48,7 +48,7 @@ const UpdateBlog = () => {
     toast.loading("Updating Blog", { id: sonarId });
     const res = await updateBlog({ id, updateData }).unwrap();
     console.log("Res------------: ", res);
-    if (res?.status) {
+    if (res?.success) {
       toast.success("Blog Updated Successfully", { id: sonarId });
     }
   };
