@@ -1,4 +1,3 @@
-import "./Contact.css";
 import { useRef, useState } from "react";
 import contactLottie from "../../../assets/Lottie/contact.json";
 import Lottie from "lottie-react";
@@ -8,7 +7,7 @@ import emailjs from "@emailjs/browser";
 
 const Contact = () => {
   const form = useRef<HTMLFormElement>(null);
-  const [loading, setLoading] = useState(false); // লোডিং স্টেট
+  const [loading, setLoading] = useState(false);
 
   const sendEmail = (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
@@ -43,14 +42,14 @@ const Contact = () => {
     }
 
     const templateParams = {
-      title: subject, // ডাইনামিক সাবজেক্ট
+      title: subject,
       name,
       email,
       message,
       time,
     };
 
-    setLoading(true); // লোডিং শুরু
+    setLoading(true);
 
     emailjs
       .send("service_yzwi1e9", "template_32tkren", templateParams, {
@@ -61,7 +60,7 @@ const Contact = () => {
           console.log("SUCCESS!", result);
           if (result.text === "OK") {
             toast.success("Your mail sent successfully", { id: sonarId });
-            Form.reset(); // সফল হলে ফর্ম রিসেট
+            Form.reset();
           }
         },
         (error) => {
@@ -69,63 +68,81 @@ const Contact = () => {
           toast.error("Failed to send email. Please try again.");
         }
       )
-      .finally(() => setLoading(false)); // লোডিং বন্ধ
+      .finally(() => setLoading(false));
   };
 
   return (
-    <div>
-      <section className="mb-20">
-        <div className="flex flex-col md:flex-row bg-[#192655] p-4 md:p-10 rounded-lg">
-          <div className="w-full md:w-1/2 relative">
-            <h1 className="text-white md:text-4xl font-bold md:absolute top-0 left-0">
-              Contact with Me
+    <div className="min-h-screen flex items-center justify-center bg-gradient-to-br from-teal-500 to-[#262F51] p-4">
+      <section className="w-full max-w-6xl bg-white/10 backdrop-blur-lg rounded-2xl shadow-2xl overflow-hidden">
+        <div className="flex flex-col md:flex-row">
+          <div className="w-full md:w-1/2 p-8 flex flex-col items-center justify-center bg-gradient-to-br from-teal-500 to-[#262F51]">
+            <h1 className="text-4xl font-bold text-white mb-8">
+              Contact with Us
             </h1>
-            <div className="h-full w-full flex flex-col items-center justify-center">
+            <div className="w-full max-w-md">
               <Lottie animationData={contactLottie} loop={true} />
             </div>
           </div>
 
-          <div className="w-full md:w-1/2">
-            <div className="bg-[#333333] p-4 md:p-10 rounded-lg contactForm">
-              <form ref={form} onSubmit={sendEmail}>
-                <input
-                  type="text"
-                  name="user_name"
-                  className="w-full bg-transparent p-5 myBorder shadow-md hover:shadow-xl pText"
-                  placeholder="Name"
-                />
-
-                <input
-                  type="text"
-                  name="user_email"
-                  className="w-full bg-transparent p-5 myBorder mt-10 shadow-md hover:shadow-xl pText"
-                  placeholder="Email"
-                />
-
-                {/* ✅ ডাইনামিক Subject Input */}
-                <input
-                  type="text"
-                  name="subject"
-                  className="w-full bg-transparent p-5 myBorder mt-10 shadow-md hover:shadow-xl pText"
-                  placeholder="Subject"
-                />
-
-                <textarea
-                  name="message"
-                  className="w-full bg-transparent p-5 h-60 textBorder mt-10 pText"
-                  placeholder="Message"
-                />
-
-                {/* ✅ লোডিং ইফেক্ট সহ সাবমিট বাটন */}
-                <button
-                  type="submit"
-                  className="btn text-white w-full md:w-[250px] mt-10 bg-[#192655] hover:bg-[#192655] border-0 shadow-md hover:shadow-xl"
-                  disabled={loading}
-                >
-                  {loading ? "Sending..." : "Send"}
-                </button>
-              </form>
+          <div className="w-full md:w-1/2 p-8">
+            {/* Four Cards */}
+            <div className="grid grid-cols-1 sm:grid-cols-2 gap-6 mb-8">
+              <div className="bg-white/10 backdrop-blur-sm rounded-lg p-6 text-white hover:scale-105 transition-transform duration-300">
+                <h3 className="text-xl font-bold mb-2">Location</h3>
+                <p className="text-sm">123 Main Street, City, Country</p>
+              </div>
+              <div className="bg-white/10 backdrop-blur-sm rounded-lg p-6 text-white hover:scale-105 transition-transform duration-300">
+                <h3 className="text-xl font-bold mb-2">Service</h3>
+                <p className="text-sm">Web Development, UI/UX Design</p>
+              </div>
+              <div className="bg-white/10 backdrop-blur-sm rounded-lg p-6 text-white hover:scale-105 transition-transform duration-300">
+                <h3 className="text-xl font-bold mb-2">Drop a Line</h3>
+                <p className="text-sm">info@example.com</p>
+              </div>
+              <div className="bg-white/10 backdrop-blur-sm rounded-lg p-6 text-white hover:scale-105 transition-transform duration-300">
+                <h3 className="text-xl font-bold mb-2">OFFICE HOURS</h3>
+                <p className="text-sm">Mon - Fri: 9 AM - 5 PM</p>
+              </div>
             </div>
+
+            {/* Contact Form */}
+            <form ref={form} onSubmit={sendEmail} className="space-y-6">
+              <input
+                type="text"
+                name="user_name"
+                className="w-full p-4 bg-white/20 backdrop-blur-sm rounded-lg text-white placeholder-white/70 focus:outline-none focus:ring-2 focus:ring-teal-500 focus:border-transparent transition-all"
+                placeholder="Name"
+              />
+
+              <input
+                type="text"
+                name="user_email"
+                className="w-full p-4 bg-white/20 backdrop-blur-sm rounded-lg text-white placeholder-white/70 focus:outline-none focus:ring-2 focus:ring-teal-500 focus:border-transparent transition-all"
+                placeholder="Email"
+              />
+
+              <input
+                type="text"
+                name="subject"
+                className="w-full p-4 bg-white/20 backdrop-blur-sm rounded-lg text-white placeholder-white/70 focus:outline-none focus:ring-2 focus:ring-teal-500 focus:border-transparent transition-all"
+                placeholder="Subject"
+              />
+
+              <textarea
+                name="message"
+                className="w-full p-4 bg-white/20 backdrop-blur-sm rounded-lg text-white placeholder-white/70 focus:outline-none focus:ring-2 focus:ring-teal-500 focus:border-transparent transition-all resize-none"
+                placeholder="Message"
+                rows={5}
+              />
+
+              <button
+                type="submit"
+                className="w-full p-4 bg-teal-500 text-white rounded-lg hover:bg-teal-600 transition-all duration-300 ease-in-out shadow-lg hover:shadow-xl disabled:opacity-50 disabled:cursor-not-allowed"
+                disabled={loading}
+              >
+                {loading ? "Sending..." : "Send"}
+              </button>
+            </form>
           </div>
         </div>
       </section>
