@@ -129,4 +129,7 @@
   .userDashboardBG {
     height: 100%;
   }
+  .widthBarao {
+    width: 50% !important;
+  }
 }

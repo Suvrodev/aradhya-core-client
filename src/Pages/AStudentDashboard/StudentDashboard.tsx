@@ -64,7 +64,7 @@ const StudentDashboard = () => {
               onClick={(event) => event.stopPropagation()}
             >
               <div
-                className={`absolute  w-[225px] bg-teal-500 ease-in-out duration-700 ${
+                className={`absolute  widthBarao  ease-in-out duration-700 ${
                   openDrawer ? "left-0 " : "-left-[1000px] "
                 } `}
               >

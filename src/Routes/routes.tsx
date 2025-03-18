@@ -34,6 +34,7 @@ import AddBlog from "../Pages/AdminDashboard/AdminBlog/AddBlog/AddBlog";
 import AdminAssignedStudent from "../Pages/AdminDashboard/AdminAssignedStudent/AdminAssignedStudent";
 import UserAllCourses from "../Pages/ForAll/UserAllCourses/UserAllCourses";
 import TermsAndConditions from "../Pages/ForAll/TermsAndConditions/TermsAndConditions";
+import BlogDetail from "../Pages/AdminDashboard/AdminBlog/AllBlog/BlogDetail/BlogDetail";
 // import EnrollCourse from "../Pages/ForAll/EnrollCourse/EnrollCourse";
 
 export const router = createBrowserRouter([
@@ -64,6 +65,10 @@ export const router = createBrowserRouter([
       {
         path: "blog",
         element: <Blog />,
+      },
+      {
+        path: "blog/:id",
+        element: <BlogDetail />,
       },
       {
         path: "contact",

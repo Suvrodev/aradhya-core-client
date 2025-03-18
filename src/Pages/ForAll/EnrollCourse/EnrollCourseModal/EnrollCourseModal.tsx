@@ -2,6 +2,8 @@ import "./EnrollCourseModal.css";
 import { useState } from "react";
 import { Modal } from "antd";
 import EnrollCourse from "../EnrollCourse";
+import { useAppSelector } from "../../../../redux/hook";
+import NotLogged from "./NotLogged/NotLogged";
 
 interface IProps {
   courseId: string;
@@ -38,6 +40,8 @@ const EnrollCourseModal = ({
   };
   //   Modal Default Class end
 
+  const { token } = useAppSelector((state) => state.auth);
+
   return (
     <div className="">
       <div onClick={showModal}>
@@ -69,15 +73,23 @@ const EnrollCourseModal = ({
         style={{ height: "100vh", top: 0, padding: 0, color: "while" }} // Full height and no top margin
       >
         <div className="bg-gray-500">
-          <EnrollCourse
-            courseId={courseId}
-            courseDuration={courseDuration}
-            courseTitle={courseTitle}
-            courseImage={courseImage}
-            courseStartDate={courseStartDate}
-            coursePrice={coursePrice}
-            courseDiscount={courseDiscount}
-          />
+          {token ? (
+            // If token exists, show EnrollCourse component
+            <EnrollCourse
+              courseId={courseId}
+              courseDuration={courseDuration}
+              courseTitle={courseTitle}
+              courseImage={courseImage}
+              courseStartDate={courseStartDate}
+              coursePrice={coursePrice}
+              courseDiscount={courseDiscount}
+            />
+          ) : (
+            // If token does not exist, show Login First message
+            <div>
+              <NotLogged />
+            </div>
+          )}
         </div>
       </Modal>
     </div>

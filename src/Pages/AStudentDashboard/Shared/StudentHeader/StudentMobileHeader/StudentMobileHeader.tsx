@@ -4,6 +4,7 @@ import { useAppSelector } from "../../../../../redux/hook";
 import { verifyToken } from "../../../../../utils/Fucntion/verifyToken";
 import { useGetSpecificStudentQuery } from "../../../../../redux/api/features/Student/studentManagementApi";
 import { TStudent } from "../../../../../utils/types/globalTypes";
+import { Menu } from "lucide-react";
 
 interface IProps {
   openDrawer: boolean;
@@ -36,12 +37,15 @@ const StudentMobileHeader = ({ openDrawer, setOpenDrawer }: IProps) => {
               className="flex items-center justify-start gap-x-2"
               onClick={() => setOpenDrawer(!openDrawer)}
             >
-              <div className=" flex items-center ">
+              <div className=" flex items-center relative ">
                 <img
                   src={loggedStudent?.image}
                   alt=""
                   className="w-[35px] h-[35px] md:w-[50px]  md:h-[50px]  rounded-full cursor-pointer z-20"
                 />
+                <div className="absolute bottom-0 right-0 z-20 bg-teal-500 p-1 rounded-full">
+                  <Menu className="size-2 text-white" />
+                </div>
               </div>
 
               <div className="text-[16px] md:text-xl font-bold flex flex-col md:flex-row  gap-x-4">
