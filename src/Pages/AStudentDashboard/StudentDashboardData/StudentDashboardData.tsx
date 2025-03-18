@@ -2,9 +2,8 @@ import "./StudentDashboardData.css";
 import { TStudent } from "../../../utils/types/globalTypes";
 import studentDashboardArray from "./studentDashboardArray";
 import { Link } from "react-router";
-import { useDispatch } from "react-redux";
-import { logout } from "../../../redux/api/features/auth/authSlice";
 import { X } from "lucide-react";
+import LogOutButton from "../../../Component/Button/LogOutButton";
 
 interface IProps {
   loggedStudent: TStudent;
@@ -16,7 +15,6 @@ const StudentDashboardData = ({
   openDrawer,
   setOpenDrawer,
 }: IProps) => {
-  const dispatch = useDispatch();
   // console.log("Logged Student in Student Dashboard: ", loggedStudent);
   const { name, image, studentId, email, phone } = loggedStudent;
 
@@ -60,12 +58,9 @@ const StudentDashboardData = ({
           ))}
         </div>
         <div className="flex justify-start w-full mt-4">
-          <button
-            className="btn btn-error text-white relative left-4 "
-            onClick={() => dispatch(logout())}
-          >
-            Logout
-          </button>
+          <div className="relative left-4">
+            <LogOutButton />
+          </div>
         </div>
       </div>
     </div>
