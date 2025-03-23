@@ -100,8 +100,8 @@ const Login = () => {
             <div className="form-control mt-6">
               <input type="submit" className="btn btn-primary" value="Login" />
             </div>
-            <div className="flex flex-col md:flex-row my-2">
-              <p className=" ">
+            <div className="flex  flex-row my-2">
+              <p className=" w-1/2">
                 Don't have an account? Go to{" "}
                 <Link
                   to={"/registration"}
@@ -110,7 +110,12 @@ const Login = () => {
                   Registration
                 </Link>{" "}
               </p>
-              <Link to={"/forget-password"}>Forget Password</Link>
+              <Link
+                to={"/forget-password"}
+                className="underline flex justify-end w-1/2"
+              >
+                Forget Password
+              </Link>
             </div>
           </form>
         </div>

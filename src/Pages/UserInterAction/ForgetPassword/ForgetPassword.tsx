@@ -6,6 +6,7 @@ import {
 } from "../../../redux/api/features/auth/authApi";
 import { toast } from "sonner";
 import { sonarId } from "../../../utils/Fucntion/sonarId";
+import { Link } from "react-router";
 
 const ForgetPassword = () => {
   const [step, setStep] = useState(1);
@@ -68,7 +69,7 @@ const ForgetPassword = () => {
     console.log("Res: ", res);
     if (res?.success) {
       toast.success("Set Password successfully", { id: sonarId });
-      setStep(1);
+      setStep(3);
       setEmail("");
     }
     if (!res?.success) {
@@ -78,7 +79,7 @@ const ForgetPassword = () => {
 
   return (
     <div className="flex justify-center items-center min-h-screen bg-gray-900">
-      <div className="w-full md:w-8/12 lg:w-5/12 bg-gray-800 text-white shadow-xl rounded-lg p-6">
+      <div className="w-full md:w-8/12 lg:w-5/12 bg-gray-800 text-white shadow-xl rounded-lg p-6 ">
         <h2 className="text-center text-2xl font-bold">Password Recovery</h2>
         {errorMessage && (
           <div className="bg-[#F7D7DA] text-[#7B2C2E] px-2 py-6 rounded mt-2 relative">
@@ -92,25 +93,26 @@ const ForgetPassword = () => {
           </div>
         )}
 
-        <div>
-          <label className="block mb-2 text-sm font-medium">
-            Email Address
-          </label>
-          <input
-            type="email"
-            value={email}
-            onChange={(e) => setEmail(e.target.value)}
-            disabled={step == 2 && true}
-            className="w-full bg-gray-700 text-white border-none focus:ring-2 focus:ring-blue-500 p-2 rounded disabled:text-gray-400"
-            placeholder="Enter your email"
-          />
-          <button
-            onClick={handleSendOtp}
-            className="mt-4 w-full bg-blue-500 hover:bg-blue-600 p-2 rounded"
-          >
-            Submit Email
-          </button>
-        </div>
+        {step == 1 && (
+          <div>
+            <label className="block mb-2 text-sm font-medium">
+              Email Address
+            </label>
+            <input
+              type="email"
+              value={email}
+              onChange={(e) => setEmail(e.target.value)}
+              className="w-full bg-gray-700 text-white border-none focus:ring-2 focus:ring-blue-500 p-2 rounded disabled:text-gray-400"
+              placeholder="Enter your email"
+            />
+            <button
+              onClick={handleSendOtp}
+              className="mt-4 w-full bg-blue-500 hover:bg-blue-600 p-2 rounded"
+            >
+              Submit Email
+            </button>
+          </div>
+        )}
 
         {step === 2 && (
           <div>
@@ -170,6 +172,47 @@ const ForgetPassword = () => {
               >
                 Reset Password
               </button>
+            </div>
+          </div>
+        )}
+
+        {step === 3 && (
+          <div className=" flex items-center justify-center  p-4">
+            <div className="bg-white/10 backdrop-blur-sm rounded-xl shadow-2xl p-8 md:p-12 text-center max-w-md w-full">
+              {/* Success Icon */}
+              <div className="flex justify-center mb-6">
+                <svg
+                  xmlns="http://www.w3.org/2000/svg"
+                  className="h-16 w-16 text-green-500"
+                  fill="none"
+                  viewBox="0 0 24 24"
+                  stroke="currentColor"
+                >
+                  <path
+                    strokeLinecap="round"
+                    strokeLinejoin="round"
+                    strokeWidth={2}
+                    d="M5 13l4 4L19 7"
+                  />
+                </svg>
+              </div>
+
+              {/* Success Message */}
+              <h1 className="text-3xl font-bold text-white mb-4">
+                Password Successfully Set!
+              </h1>
+              <p className="text-white/80 mb-6">
+                Your password has been updated successfully. You can now log in
+                with your new password.
+              </p>
+
+              {/* Go to Login Button */}
+              <Link
+                to="/login"
+                className="inline-flex items-center justify-center px-6 py-3 bg-teal-500 text-white font-semibold rounded-lg hover:bg-teal-600 transition-all transform hover:scale-105"
+              >
+                Go to Login
+              </Link>
             </div>
           </div>
         )}
