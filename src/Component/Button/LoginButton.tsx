@@ -1,14 +1,6 @@
-import { useDispatch } from "react-redux";
-import { logout } from "../../redux/api/features/auth/authSlice";
-
 const LoginButton = () => {
-  const dispatch = useDispatch();
-
   return (
-    <button
-      onClick={() => dispatch(logout())}
-      className="relative inline-flex items-center justify-center px-8 py-3 overflow-hidden font-medium text-white bg-gradient-to-br from-teal-500 to-[#262F51] rounded-lg group"
-    >
+    <button className="shadow-black shadow-sm relative inline-flex items-center justify-center px-8 py-3 overflow-hidden font-medium text-white bg-gradient-to-br from-teal-500 to-[#262F51] rounded-lg group">
       {/* Button Text */}
       <span className="relative z-10 text-lg font-semibold">Login</span>
 

@@ -7,7 +7,7 @@ const LogOutButton = () => {
   return (
     <button
       onClick={() => dispatch(logout())}
-      className="relative inline-flex items-center justify-center px-4 py-3 overflow-hidden font-medium text-white bg-gradient-to-br from-red-600 to-red-800 rounded-lg group"
+      className="shadow-black shadow-sm relative inline-flex items-center justify-center px-4 py-3 overflow-hidden font-medium text-white bg-gradient-to-br from-red-600 to-red-800 rounded-lg group"
     >
       {/* Button Text and Icon */}
       <span className="relative z-10 flex items-center gap-2 text-lg font-semibold">
