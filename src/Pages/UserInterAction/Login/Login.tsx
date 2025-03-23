@@ -100,15 +100,18 @@ const Login = () => {
             <div className="form-control mt-6">
               <input type="submit" className="btn btn-primary" value="Login" />
             </div>
-            <p className="text-center my-2">
-              Don't have an account? Go to{" "}
-              <Link
-                to={"/registration"}
-                className="font-bold underline text-blue-600"
-              >
-                Registration
-              </Link>{" "}
-            </p>
+            <div className="flex flex-col md:flex-row my-2">
+              <p className=" ">
+                Don't have an account? Go to{" "}
+                <Link
+                  to={"/registration"}
+                  className="font-bold underline text-blue-600"
+                >
+                  Registration
+                </Link>{" "}
+              </p>
+              <Link to={"/forget-password"}>Forget Password</Link>
+            </div>
           </form>
         </div>
       </div>

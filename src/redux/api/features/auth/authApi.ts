@@ -30,6 +30,25 @@ const authApi = baseApi.injectEndpoints({
         };
       },
     }),
+    forgetPassword: builder.mutation({
+      query: (email) => {
+        console.log("Email in rtK: ", email);
+        return {
+          url: `/forget-password`,
+          method: "POST",
+          body: email,
+        };
+      },
+    }),
+    updatePasswordAfterOTP: builder.mutation({
+      query: (data) => {
+        return {
+          url: `/forget-password/update-password-after-otp`,
+          method: "POST",
+          body: data,
+        };
+      },
+    }),
   }),
 });
 
@@ -37,4 +56,6 @@ export const {
   useRegistrationMutation,
   useLoginMutation,
   useChangePasswordMutation,
+  useForgetPasswordMutation,
+  useUpdatePasswordAfterOTPMutation,
 } = authApi;

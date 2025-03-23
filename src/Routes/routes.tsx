@@ -35,6 +35,7 @@ import AdminAssignedStudent from "../Pages/AdminDashboard/AdminAssignedStudent/A
 import UserAllCourses from "../Pages/ForAll/UserAllCourses/UserAllCourses";
 import TermsAndConditions from "../Pages/ForAll/TermsAndConditions/TermsAndConditions";
 import BlogDetail from "../Pages/AdminDashboard/AdminBlog/AllBlog/BlogDetail/BlogDetail";
+import ForgetPassword from "../Pages/UserInterAction/ForgetPassword/ForgetPassword";
 // import EnrollCourse from "../Pages/ForAll/EnrollCourse/EnrollCourse";
 
 export const router = createBrowserRouter([
@@ -77,6 +78,10 @@ export const router = createBrowserRouter([
       {
         path: "terms-and-condition",
         element: <TermsAndConditions />,
+      },
+      {
+        path: "forget-password",
+        element: <ForgetPassword />,
       },
       // {
       //   path: "enroll-course",
