@@ -1,7 +1,6 @@
 /* eslint-disable @typescript-eslint/no-explicit-any */
 import "./EnrollCourseFirstStep.css";
 import { useState, useEffect } from "react";
-import { useGetSpecificBatchUnderCourseQuery } from "../../../../redux/api/features/Batch/batchManagementApi";
 import { useAppSelector } from "../../../../redux/hook";
 import { calculateDiscountedPrice } from "../../../../utils/Fucntion/calculateDiscount";
 import { verifyToken } from "../../../../utils/Fucntion/verifyToken";
@@ -24,6 +23,7 @@ import {
   selectPromoCodeStatus,
   selectPromoPercent,
 } from "../../../../redux/api/features/AssignStudent/assignStudentSlice";
+import { useGetUpComingBatchUnderCourseQuery } from "../../../../redux/api/features/Batch/batchManagementApi";
 
 interface IProps {
   courseId: string;
@@ -58,7 +58,7 @@ const EnrollCourseFirstStep = ({
 
   //Retrive onGoing Batch based on Course id
   const { data, isLoading: batchLoading } =
-    useGetSpecificBatchUnderCourseQuery(courseId);
+    useGetUpComingBatchUnderCourseQuery(courseId);
   const onGoingBatch: TBatch = data?.data;
 
   //Distructure Token
