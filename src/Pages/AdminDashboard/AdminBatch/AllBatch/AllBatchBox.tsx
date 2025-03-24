@@ -99,9 +99,9 @@ const AllBatchBox = ({ data }: IProps) => {
           <span
             className={`ml-2 py-1 px-2 shadow-md text-white rounded-md ${
               batchStatus === "onGoing"
-                ? "bg-green-500"
+                ? "bg-purple-500"
                 : data?.batchStatus === "upComing"
-                ? "bg-yellow-500"
+                ? "bg-green-500"
                 : data?.batchStatus === "end"
                 ? "bg-red-800"
                 : "bg-gray-400" // Default case (optional)

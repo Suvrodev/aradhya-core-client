@@ -78,13 +78,19 @@ export type TBlog = {
 
 export type TBatch = {
   batchId: string;
-  underCourse: string;
   batchName: string;
-
-  batchStatus: string;
+  underCourse: string;
   start: string;
   end?: string;
+  duration: string;
   classNumber: number;
+  projectnumber: number;
+  instructorname: string;
+  instructorimage: string;
+  instructorfb: string;
+  classdays: string;
+  supportdays: string;
+  batchStatus: string;
 };
 
 export type TCourseBox = {

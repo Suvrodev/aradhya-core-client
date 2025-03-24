@@ -33,7 +33,14 @@ const AdminBatch = () => {
     const batchName = Form.batchName.value;
     const start = Form.start.value;
     const end = Form.end.value;
+    const duration = Form.duration.value;
     const classNumber = Number(Form.classNumber.value);
+    const projectnumber = Number(Form.projectnumber.value);
+    const instructorname = Form.instructorname.value;
+    const instructorimage = Form.instructorimage.value;
+    const instructorfb = Form.instructorfb.value;
+    const classdays = Form.classdays.value;
+    const supportdays = Form.supportdays.value;
 
     if (!underCourse) {
       toast.error("Not Selected Course", { id: sonarId });
@@ -51,8 +58,15 @@ const AdminBatch = () => {
       underCourse,
       start,
       end,
-      batchStatus,
+      duration,
       classNumber,
+      projectnumber,
+      instructorname,
+      instructorimage,
+      instructorfb,
+      classdays,
+      supportdays,
+      batchStatus,
     };
     console.log("FormData: ", formData);
     toast.loading("Adding Batch", { id: sonarId });
@@ -95,6 +109,25 @@ const AdminBatch = () => {
                   placeholder="Batch Name"
                 />
               </div>
+              <div>
+                <h1 className="block mb-4 text-sm font-medium">Under Course</h1>
+                <select
+                  name=""
+                  id=""
+                  onChange={handleUnderCourse}
+                  value={underCourse}
+                  className="w-full px-4 py-2 bg-gray-700 text-white rounded-lg focus:outline-none focus:ring focus:ring-teal-500 "
+                >
+                  <option value="" disabled>
+                    Select One
+                  </option>
+                  {courses?.map((course: TCourse, idx: number) => (
+                    <option value={course?.courseId} key={idx}>
+                      {course?.courseTitle}
+                    </option>
+                  ))}
+                </select>
+              </div>
               <div className="">
                 <h1 className="block mb-4 text-sm font-medium">Start Date</h1>
                 <input
@@ -117,24 +150,17 @@ const AdminBatch = () => {
                 />
               </div>
               <div>
-                <h1 className="block mb-4 text-sm font-medium">Under Course</h1>
-                <select
-                  name=""
+                <h1 className="block mb-4 text-sm font-medium">Duration</h1>
+                <input
+                  type="text"
+                  name="duration"
                   id=""
-                  onChange={handleUnderCourse}
-                  value={underCourse}
                   className="w-full px-4 py-2 bg-gray-700 text-white rounded-lg focus:outline-none focus:ring focus:ring-teal-500 "
-                >
-                  <option value="" disabled>
-                    Select One
-                  </option>
-                  {courses?.map((course: TCourse, idx: number) => (
-                    <option value={course?.courseId} key={idx}>
-                      {course?.courseTitle}
-                    </option>
-                  ))}
-                </select>
+                  placeholder="Duration"
+                  required
+                />
               </div>
+
               <div>
                 <h1 className="block mb-4 text-sm font-medium">Class Number</h1>
                 <input
@@ -145,6 +171,85 @@ const AdminBatch = () => {
                   placeholder="Class Number"
                 />
               </div>
+
+              <div>
+                <h1 className="block mb-4 text-sm font-medium">
+                  Project Number
+                </h1>
+                <input
+                  type="number"
+                  name="projectnumber"
+                  id=""
+                  className="w-full px-4 py-2 bg-gray-700 text-white rounded-lg focus:outline-none focus:ring focus:ring-teal-500 "
+                  placeholder="Project Number"
+                  required
+                />
+              </div>
+              <div>
+                <h1 className="block mb-4 text-sm font-medium">
+                  Instructor Name
+                </h1>
+                <input
+                  type="text"
+                  name="instructorname"
+                  id=""
+                  className="w-full px-4 py-2 bg-gray-700 text-white rounded-lg focus:outline-none focus:ring focus:ring-teal-500 "
+                  placeholder="Instructor Name"
+                  required
+                />
+              </div>
+              <div>
+                <h1 className="block mb-4 text-sm font-medium">
+                  Instructor Image
+                </h1>
+                <input
+                  type="text"
+                  name="instructorimage"
+                  id=""
+                  className="w-full px-4 py-2 bg-gray-700 text-white rounded-lg focus:outline-none focus:ring focus:ring-teal-500 "
+                  placeholder="Instructor Image"
+                  required
+                />
+              </div>
+
+              <div>
+                <h1 className="block mb-4 text-sm font-medium">
+                  Instructor Facebook id
+                </h1>
+                <input
+                  type="text"
+                  name="instructorfb"
+                  id=""
+                  className="w-full px-4 py-2 bg-gray-700 text-white rounded-lg focus:outline-none focus:ring focus:ring-teal-500 "
+                  placeholder="Instructor Facebook id"
+                  required
+                />
+              </div>
+
+              <div>
+                <h1 className="block mb-4 text-sm font-medium">Class days</h1>
+                <input
+                  type="text"
+                  name="classdays"
+                  id=""
+                  className="w-full px-4 py-2 bg-gray-700 text-white rounded-lg focus:outline-none focus:ring focus:ring-teal-500 "
+                  placeholder="Class Days"
+                  required
+                />
+              </div>
+
+              <div>
+                <h1 className="block mb-4 text-sm font-medium">Support Days</h1>
+                <input
+                  type="text"
+                  name="supportdays"
+                  id=""
+                  className="w-full px-4 py-2 bg-gray-700 text-white rounded-lg focus:outline-none focus:ring focus:ring-teal-500 "
+                  placeholder="Support Days"
+                  required
+                />
+              </div>
+
               <div>
                 <h1 className="block mb-4 text-sm font-medium">Batch Status</h1>
                 <select
