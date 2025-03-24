@@ -61,17 +61,11 @@ const UpdateCourse = () => {
 
   const [courseStatus, setCourseStatus] = useState<string>("onGoing");
   const [courseExists, setCourseExists] = useState<boolean>(true);
-  const handleCourseStatus = (event: React.ChangeEvent<HTMLSelectElement>) => {
-    setCourseStatus(event.target.value);
-  };
 
   const handleCourseExists = (event: ChangeEvent<HTMLSelectElement>) => {
     const res = event.target.value;
-    if (res == "true") {
-      setCourseExists(true);
-    } else {
-      setCourseExists(false);
-    }
+
+    setCourseExists(res);
   };
 
   const handleService = (event: React.ChangeEvent<HTMLSelectElement>) => {
@@ -146,18 +140,18 @@ const UpdateCourse = () => {
   }
   return (
     <div className="flex justify-center items-center min-h-screen bg-gradient-to-br from-gray-900 to-black p-6">
-      <div className="w-full max-w-3xl bg-gray-800 bg-opacity-50 backdrop-blur-lg shadow-2xl rounded-2xl p-8 border border-gray-700">
+      <div className="w-full bg-gray-800 bg-opacity-50 backdrop-blur-lg shadow-2xl rounded-2xl p-8 border border-gray-700">
         <h2 className="text-3xl font-bold text-white mb-6 text-center">
           Update Course
         </h2>
 
         <img
           src={specificCourse?.courseImage}
-          className="w-full md:w-[300px] mx-auto h-[300px] rounded-md"
+          className="w-full md:w-[450px] mx-auto h-[300px] rounded-md"
           alt=""
         />
-        <form onSubmit={handleAddCourse}>
-          <div className="grid grid-cols-1 md:grid-cols-2 gap-6 mt-4">
+        <form onSubmit={handleAddCourse} className="mt-4">
+          <div className="grid grid-cols-1 md:grid-cols-4 gap-6">
             {/* Course id */}
             <div>
               <label className="block font-medium mb-2 text-gray-300">
@@ -283,25 +277,11 @@ const UpdateCourse = () => {
                 Class Number
               </label>
               <input
-                type="number"
+                type="text"
                 name="courseClassNumber"
                 defaultValue={specificCourse?.courseClassNumber}
                 className="w-full p-3 bg-gray-700 border border-gray-600 rounded-lg text-white placeholder-gray-400 focus:outline-none focus:ring-2 focus:ring-blue-500 transition-all"
                 placeholder="Enter class number"
-                required
-              />
-            </div>
-
-            {/* Start Date */}
-            <div>
-              <label className="block font-medium mb-2 text-gray-300">
-                Start Date
-              </label>
-              <input
-                type="date"
-                name="courseStartDate"
-                defaultValue={specificCourse?.courseStartDate}
-                className="w-full p-3 bg-gray-700 border border-gray-600 rounded-lg text-white placeholder-gray-400 focus:outline-none focus:ring-2 focus:ring-blue-500 transition-all"
                 required
               />
             </div>
@@ -327,7 +307,7 @@ const UpdateCourse = () => {
                 Project Number
               </label>
               <input
-                type="number"
+                type="text"
                 name="courseProjectNumber"
                 defaultValue={specificCourse?.courseProjectNumber}
                 className="w-full p-3 bg-gray-700 border border-gray-600 rounded-lg text-white placeholder-gray-400 focus:outline-none focus:ring-2 focus:ring-blue-500 transition-all"
@@ -351,25 +331,6 @@ const UpdateCourse = () => {
               />
             </div>
 
-            {/* Course Status */}
-            <div>
-              <label className="block font-medium mb-2 text-gray-300">
-                Course Status
-              </label>
-              <select
-                name="courseStatus"
-                onChange={handleCourseStatus}
-                className="w-full p-3 bg-gray-700 border border-gray-600 rounded-lg text-white focus:outline-none focus:ring-2 focus:ring-blue-500 transition-all"
-              >
-                <option value="onGoing" className="bg-gray-800">
-                  On Going
-                </option>
-                <option value="upComming" className="bg-gray-800">
-                  Upcoming
-                </option>
-              </select>
-            </div>
-
             {/* Course Exists */}
             <div>
               <label className="block font-medium mb-2 text-gray-300">
@@ -380,10 +341,10 @@ const UpdateCourse = () => {
                 onChange={handleCourseExists}
                 className="w-full p-3 bg-gray-700 border border-gray-600 rounded-lg text-white focus:outline-none focus:ring-2 focus:ring-blue-500 transition-all"
               >
-                <option value="true" className="bg-gray-800">
+                <option value="yes" className="bg-gray-800">
                   Yes
                 </option>
-                <option value="false" className="bg-gray-800">
+                <option value="no" className="bg-gray-800">
                   No
                 </option>
               </select>

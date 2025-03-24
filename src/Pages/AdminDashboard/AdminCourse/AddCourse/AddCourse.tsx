@@ -15,41 +15,27 @@ const AddCourse = () => {
   const [computerConfiguration, setComputerConfiguration] = useState<string>(
     " <p>Computer Configuration</p>"
   );
-  const [refService, setRefService] = useState<string>("");
   const [refServiceId, setRefServiceId] = useState<string>("");
-  const [selectedService, setSelectedService] = useState<string>("");
-  const [courseStatus, setCourseStatus] = useState<string>("onGoing");
-  const [courseExists, setCourseExists] = useState<boolean>(true);
-  const handleCourseStatus = (event: React.ChangeEvent<HTMLSelectElement>) => {
-    setCourseStatus(event.target.value);
-  };
+  const [courseExists, setCourseExists] = useState<string>("yes");
 
   const handleCourseExists = (event: ChangeEvent<HTMLSelectElement>) => {
     const res = event.target.value;
-    if (res == "true") {
-      setCourseExists(true);
-    } else {
-      setCourseExists(false);
-    }
+    setCourseExists(res);
   };
 
   const handleService = (event: React.ChangeEvent<HTMLSelectElement>) => {
-    const [serviceId, _id, name] = event.target.value.split(",");
-
-    setRefService(_id);
-    setRefServiceId(serviceId);
-    setSelectedService(name); // Set selected service name
+    const res = event.target.value;
+    setRefServiceId(res);
   };
 
-  // console.log("ref Service:", refService);
-  // console.log("Service id:", refServiceId);
+  console.log("ref Service id:", refServiceId);
 
   const handleAddCourse = async (event: FormEvent<HTMLFormElement>) => {
     event.preventDefault();
     console.log("Add Course");
     const Form = event.target as HTMLFormElement;
 
-    if (!refService) {
+    if (!refServiceId) {
       toast.error("Select Service", { id: sonarId });
       return;
     }
@@ -61,18 +47,27 @@ const AddCourse = () => {
     const coursePrice = Form.coursePrice.value;
     const courseDiscount = Form.courseDiscount?.value;
     const courseDiscountReason = Form.courseDiscountReason?.value;
-    // const courseCoupon = Form.courseCoupon?.value;
-    // const courseCouponStatus = Form.courseCouponStatus?.checked;
     const courseYoutubeVideo = Form.courseYoutubeVideo?.value;
     const courseClassNumber = Form.courseClassNumber.value;
-    const courseStartDate = Form.courseStartDate.value;
 
     const courseDuration = Form.courseDuration.value;
     const courseProjectNumber = Form.courseProjectNumber.value;
     const courseReview = Form.courseReview?.value;
+    const kikipaschen = Form.kikipaschen?.value;
+    const courseCurriculum = Form.courseCurriculum?.value;
+    const jobposition = Form.jobposition?.value;
+    const projects = Form.projects?.value;
+
+    // Processing needed software into an array of objects
+    const neededsoftware = Form.neededsoftware?.value;
+    const neededSoftwareArray = neededsoftware
+      .split("#")
+      .map((item: string) => {
+        const [image, title] = item.split(",").map((el) => el.trim());
+        return { image, title };
+      });
 
     const formData = {
-      refService,
       refServiceId,
       courseId,
       courseTitle,
@@ -82,14 +77,19 @@ const AddCourse = () => {
       courseDiscount: Number(courseDiscount),
       courseDiscountReason,
       courseYoutubeVideo,
-      courseClassNumber: Number(courseClassNumber),
-      courseStartDate,
+      courseClassNumber: courseClassNumber,
       courseDuration,
-      courseProjectNumber: Number(courseProjectNumber),
+      courseProjectNumber: courseProjectNumber,
       courseReview,
       computerConfiguration,
-      courseStatus,
       courseExists,
+      kikipaschen: kikipaschen.split("#").map((item: string) => item.trim()),
+      courseCurriculum: courseCurriculum
+        .split("#")
+        .map((item: string) => item.trim()),
+      jobposition: jobposition.split("#").map((item: string) => item.trim()),
+      projects: projects.split("#").map((item: string) => item.trim()),
+      neededSoftware: neededSoftwareArray,
     };
     console.log("Form Data: ", formData);
     toast.loading("Adding Course", { id: sonarId });
@@ -102,12 +102,12 @@ const AddCourse = () => {
 
   return (
     <div className="flex justify-center items-center min-h-screen bg-gradient-to-br from-gray-900 to-black p-6">
-      <div className="w-full max-w-3xl bg-gray-800 bg-opacity-50 backdrop-blur-lg shadow-2xl rounded-2xl p-8 border border-gray-700">
+      <div className="w-full bg-gray-800 bg-opacity-50 backdrop-blur-lg shadow-2xl rounded-2xl p-8 border border-gray-700">
         <h2 className="text-3xl font-bold text-white mb-6 text-center">
           Add Course
         </h2>
         <form onSubmit={handleAddCourse}>
-          <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
+          <div className="grid grid-cols-1 md:grid-cols-4 gap-6">
             {/* Course id */}
             <div>
               <label className="block font-medium mb-2 text-gray-300">
@@ -119,6 +119,7 @@ const AddCourse = () => {
                 className="w-full p-3 bg-gray-700 border border-gray-600 rounded-lg text-white placeholder-gray-400 focus:outline-none focus:ring-2 focus:ring-blue-500 transition-all"
                 placeholder="Enter course id"
                 required
+                defaultValue={"c-1"}
               />
             </div>
             {/* Service id */}
@@ -130,21 +131,14 @@ const AddCourse = () => {
               {/* Under Servuice */}
               <select
                 onChange={handleService}
-                value={
-                  selectedService
-                    ? `${refServiceId},${refService},${selectedService}`
-                    : ""
-                }
+                value={refServiceId}
                 className="w-full p-3 bg-gray-700 border border-gray-600 rounded-lg text-white placeholder-gray-400 focus:outline-none focus:ring-2 focus:ring-blue-500 transition-all"
               >
                 <option value="" disabled>
                   Select one
                 </option>
                 {services?.map((data: TService, idx: number) => (
-                  <option
-                    value={`${data?.serviceId},${data?._id},${data?.name}`}
-                    key={idx}
-                  >
+                  <option value={`${data?.serviceId}`} key={idx}>
                     {data?.name}
                   </option>
                 ))}
@@ -161,6 +155,7 @@ const AddCourse = () => {
                 className="w-full p-3 bg-gray-700 border border-gray-600 rounded-lg text-white placeholder-gray-400 focus:outline-none focus:ring-2 focus:ring-blue-500 transition-all"
                 placeholder="Enter course title"
                 required
+                defaultValue="check Title"
               />
             </div>
 
@@ -175,6 +170,7 @@ const AddCourse = () => {
                 className="w-full p-3 bg-gray-700 border border-gray-600 rounded-lg text-white placeholder-gray-400 focus:outline-none focus:ring-2 focus:ring-blue-500 transition-all"
                 placeholder="Enter image URL"
                 required
+                defaultValue="https://i.ibb.co.com/qFLh8jRD/python.jpg"
               />
             </div>
 
@@ -189,6 +185,7 @@ const AddCourse = () => {
                 className="w-full p-3 bg-gray-700 border border-gray-600 rounded-lg text-white placeholder-gray-400 focus:outline-none focus:ring-2 focus:ring-blue-500 transition-all"
                 placeholder="Enter price"
                 required
+                defaultValue={5000}
               />
             </div>
 
@@ -203,6 +200,7 @@ const AddCourse = () => {
                 className="w-full p-3 bg-gray-700 border border-gray-600 rounded-lg text-white placeholder-gray-400 focus:outline-none focus:ring-2 focus:ring-blue-500 transition-all"
                 placeholder="Enter discount"
                 required
+                defaultValue={50}
               />
             </div>
 
@@ -217,6 +215,7 @@ const AddCourse = () => {
                 className="w-full p-3 bg-gray-700 border border-gray-600 rounded-lg text-white placeholder-gray-400 focus:outline-none focus:ring-2 focus:ring-blue-500 transition-all"
                 placeholder="Enter discount reason"
                 required
+                defaultValue={"Eid Offer"}
               />
             </div>
 
@@ -226,24 +225,12 @@ const AddCourse = () => {
                 Class Number
               </label>
               <input
-                type="number"
+                type="text"
                 name="courseClassNumber"
                 className="w-full p-3 bg-gray-700 border border-gray-600 rounded-lg text-white placeholder-gray-400 focus:outline-none focus:ring-2 focus:ring-blue-500 transition-all"
                 placeholder="Enter class number"
                 required
-              />
-            </div>
-
-            {/* Start Date */}
-            <div>
-              <label className="block font-medium mb-2 text-gray-300">
-                Start Date
-              </label>
-              <input
-                type="date"
-                name="courseStartDate"
-                className="w-full p-3 bg-gray-700 border border-gray-600 rounded-lg text-white placeholder-gray-400 focus:outline-none focus:ring-2 focus:ring-blue-500 transition-all"
-                required
+                defaultValue={"30+"}
               />
             </div>
 
@@ -258,6 +245,7 @@ const AddCourse = () => {
                 className="w-full p-3 bg-gray-700 border border-gray-600 rounded-lg text-white placeholder-gray-400 focus:outline-none focus:ring-2 focus:ring-blue-500 transition-all"
                 placeholder="Enter duration (e.g., 3 months)"
                 required
+                defaultValue={"3 Month+"}
               />
             </div>
 
@@ -267,11 +255,12 @@ const AddCourse = () => {
                 Project Number
               </label>
               <input
-                type="number"
+                type="text"
                 name="courseProjectNumber"
                 className="w-full p-3 bg-gray-700 border border-gray-600 rounded-lg text-white placeholder-gray-400 focus:outline-none focus:ring-2 focus:ring-blue-500 transition-all"
                 placeholder="Enter number of projects"
                 required
+                defaultValue={"30+"}
               />
             </div>
 
@@ -286,26 +275,8 @@ const AddCourse = () => {
                 className="w-full p-3 bg-gray-700 border border-gray-600 rounded-lg text-white placeholder-gray-400 focus:outline-none focus:ring-2 focus:ring-blue-500 transition-all"
                 placeholder="Enter course review"
                 required
+                defaultValue={5}
               />
-            </div>
-
-            {/* Course Status */}
-            <div>
-              <label className="block font-medium mb-2 text-gray-300">
-                Course Status
-              </label>
-              <select
-                name="courseStatus"
-                onChange={handleCourseStatus}
-                className="w-full p-3 bg-gray-700 border border-gray-600 rounded-lg text-white focus:outline-none focus:ring-2 focus:ring-blue-500 transition-all"
-              >
-                <option value="onGoing" className="bg-gray-800">
-                  On Going
-                </option>
-                <option value="upComming" className="bg-gray-800">
-                  Upcoming
-                </option>
-              </select>
             </div>
 
             {/* Course Exists */}
@@ -318,10 +289,10 @@ const AddCourse = () => {
                 onChange={handleCourseExists}
                 className="w-full p-3 bg-gray-700 border border-gray-600 rounded-lg text-white focus:outline-none focus:ring-2 focus:ring-blue-500 transition-all"
               >
-                <option value="true" className="bg-gray-800">
+                <option value="yes" className="bg-gray-800">
                   Yes
                 </option>
-                <option value="false" className="bg-gray-800">
+                <option value="no" className="bg-gray-800">
                   No
                 </option>
               </select>
@@ -337,10 +308,11 @@ const AddCourse = () => {
                 name="courseYoutubeVideo"
                 className="w-full p-3 bg-gray-700 border border-gray-600 rounded-lg text-white placeholder-gray-400 focus:outline-none focus:ring-2 focus:ring-blue-500 transition-all"
                 placeholder="Enter course description"
+                defaultValue={"youtube Link"}
               ></input>
             </div>
             {/* Description */}
-            <div className="md:col-span-2">
+            <div className="md:col-span-4">
               <label className="block font-medium mb-2 text-gray-300">
                 Description
               </label>
@@ -350,11 +322,77 @@ const AddCourse = () => {
                 rows={4}
                 placeholder="Enter course description"
                 required
+                defaultValue={"Description"}
               ></textarea>
             </div>
 
+            {/* Course Passes */}
+            <div className="md:col-span-4">
+              <label className="block font-medium mb-2 text-gray-300">
+                কোর্সে কি কি পাচ্ছে
+              </label>
+              <textarea
+                name="kikipaschen"
+                className="w-full p-3 bg-gray-700 border border-gray-600 rounded-lg text-white placeholder-gray-400 focus:outline-none focus:ring-2 focus:ring-blue-500 transition-all"
+                placeholder="কোর্সে কি কি পাচ্ছেন, separated by #"
+                defaultValue="১৮ সপ্তাহের স্টাডিপ্ল্যান#ক্যানভার উপর ২ টি ক্লাস#AI মিডজার্নির উপর ২ টি ক্লাস"
+              />
+            </div>
+
+            {/* Course Curriculum */}
+            <div className="md:col-span-4">
+              <label className="block font-medium mb-2 text-gray-300">
+                Course Curriculam
+              </label>
+              <textarea
+                name="courseCurriculum"
+                className="w-full p-3 bg-gray-700 border border-gray-600 rounded-lg text-white placeholder-gray-400 focus:outline-none focus:ring-2 focus:ring-blue-500 transition-all"
+                placeholder="Course Curriculum, separated by #"
+                defaultValue="Raster To Vector#Invoice Template Design#Letterhead Design#Brochure Layout"
+              />
+            </div>
+
+            {/* Open Job Position */}
+            <div className="md:col-span-4">
+              <label className="block font-medium mb-2 text-gray-300">
+                Job Position
+              </label>
+              <textarea
+                name="jobposition"
+                className="w-full p-3 bg-gray-700 border border-gray-600 rounded-lg text-white placeholder-gray-400 focus:outline-none focus:ring-2 focus:ring-blue-500 transition-all"
+                placeholder="Job Position, separated by #"
+                defaultValue="Fiver#Upwork"
+              />
+            </div>
+
+            {/*Project */}
+            <div className="md:col-span-4">
+              <label className="block font-medium mb-2 text-gray-300">
+                Projects
+              </label>
+              <textarea
+                name="projects"
+                className="w-full p-3 bg-gray-700 border border-gray-600 rounded-lg text-white placeholder-gray-400 focus:outline-none focus:ring-2 focus:ring-blue-500 transition-all"
+                placeholder="Job Position, separated by #"
+                defaultValue="https://i.ibb.co.com/qFLh8jRD/python.jpg#https://i.ibb.co.com/gLNfMXc0/graphics.jpg"
+              />
+            </div>
+
+            {/*Software You will learn */}
+            <div className="md:col-span-4">
+              <label className="block font-medium mb-2 text-gray-300">
+                Needed Software
+              </label>
+              <textarea
+                name="neededsoftware"
+                className="w-full p-3 bg-gray-700 border border-gray-600 rounded-lg text-white placeholder-gray-400 focus:outline-none focus:ring-2 focus:ring-blue-500 transition-all"
+                placeholder="Job Position, separated by #"
+                defaultValue="https://i.ibb.co.com/qFLh8jRD/python.jpg,Photoshop#https://i.ibb.co.com/qFLh8jRD/python.jpg,Illustrator"
+              />
+            </div>
+
             {/* Computer Configuration */}
-            <div className="md:col-span-2">
+            <div className="md:col-span-4">
               <label className="block font-medium mb-2 text-gray-300">
                 Computer Configuration
               </label>
@@ -365,7 +403,7 @@ const AddCourse = () => {
             </div>
 
             {/* Submit Button */}
-            <button className="md:col-span-2 mt-6 w-full bg-gradient-to-r from-blue-600 to-indigo-600 text-white py-3 rounded-lg font-semibold hover:from-blue-700 hover:to-indigo-700 transition-all transform hover:scale-105">
+            <button className="md:col-span-4 mt-6 w-full bg-gradient-to-r from-blue-600 to-indigo-600 text-white py-3 rounded-lg font-semibold hover:from-blue-700 hover:to-indigo-700 transition-all transform hover:scale-105">
               Submit
             </button>
           </div>

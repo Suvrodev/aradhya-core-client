@@ -79,7 +79,7 @@ const ForgetPassword = () => {
 
   return (
     <div className="flex justify-center items-center min-h-screen bg-gray-900">
-      <div className="w-full md:w-8/12 lg:w-5/12 bg-gray-800 text-white shadow-xl rounded-lg p-6 ">
+      <div className="w-full md:w-8/12 lg:w-5/12 h-[100%] bg-gray-800 text-white shadow-xl rounded-lg p-6 ">
         <h2 className="text-center text-2xl font-bold">Password Recovery</h2>
         {errorMessage && (
           <div className="bg-[#F7D7DA] text-[#7B2C2E] px-2 py-6 rounded mt-2 relative">
