@@ -116,7 +116,12 @@ export type TCourse = {
   courseReview?: number;
   computerConfiguration: string;
   courseStatus: "onGoing" | "upComming";
-  courseExists: boolean;
+  courseExists: string;
+  kikipaschen: string[]; // Included kikipaschen
+  courseCurriculum: string[]; // Included courseCurriculum
+  jobposition: string[]; // Included jobposition
+  projects: string[]; // Included projects
+  neededSoftware: { image: string; title: string }[]; // Included neededSoftware
   createdAt: string;
   updatedAt: string;
   __v: number;

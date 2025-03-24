@@ -19,7 +19,7 @@ const UpdateCourse = () => {
   const [updateCourse] = useUpdateCourseMutation();
   const services = serviceData?.data;
   const specificCourse: TCourse = CourseData?.data;
-  // console.log("Specific Course: ", specificCourse);
+  console.log("Specific Course: ", specificCourse);
   // console.log("All Services: ", services);
 
   /**
@@ -48,24 +48,22 @@ const UpdateCourse = () => {
   const [selectedService, setSelectedService] = useState<string>(
     serviceNameSelect?.name
   );
-
+  const [courseExists, setCourseExists] = useState<string>("yes");
   useEffect(() => {
     if (serviceNameSelect) {
       setSelectedService(serviceNameSelect?.name);
       setRefService(serviceNameSelect?._id);
       setRefServiceId(serviceNameSelect?.serviceId);
       setComputerConfiguration(specificCourse?.computerConfiguration);
+      setCourseExists(specificCourse.courseExists);
     }
   }, [CourseData, serviceData, serviceNameSelect, specificCourse]);
   console.log("So service name", selectedService);
 
-  const [courseStatus, setCourseStatus] = useState<string>("onGoing");
-  const [courseExists, setCourseExists] = useState<boolean>(true);
-
   const handleCourseExists = (event: ChangeEvent<HTMLSelectElement>) => {
     const res = event.target.value;
 
-    setCourseExists(res);
+    // setCourseExists(res);
   };
 
   const handleService = (event: React.ChangeEvent<HTMLSelectElement>) => {
@@ -123,7 +121,6 @@ const UpdateCourse = () => {
       courseProjectNumber: Number(courseProjectNumber),
       courseReview,
       computerConfiguration,
-      courseStatus,
       courseExists,
     };
     console.log("Update Data: ", updateData);
@@ -364,7 +361,7 @@ const UpdateCourse = () => {
               ></input>
             </div>
             {/* Description */}
-            <div className="md:col-span-2">
+            <div className="md:col-span-4">
               <label className="block font-medium mb-2 text-gray-300">
                 Description
               </label>
@@ -379,7 +376,7 @@ const UpdateCourse = () => {
             </div>
 
             {/* Computer Configuration */}
-            <div className="md:col-span-2">
+            <div className="md:col-span-4">
               <label className="block font-medium mb-2 text-gray-300">
                 Computer Configuration
               </label>
@@ -390,7 +387,7 @@ const UpdateCourse = () => {
             </div>
 
             {/* Submit Button */}
-            <button className="md:col-span-2 mt-6 w-full bg-gradient-to-r from-blue-600 to-indigo-600 text-white py-3 rounded-lg font-semibold hover:from-blue-700 hover:to-indigo-700 transition-all transform hover:scale-105">
+            <button className="md:col-span-4 mt-6 w-full bg-gradient-to-r from-blue-600 to-indigo-600 text-white py-3 rounded-lg font-semibold hover:from-blue-700 hover:to-indigo-700 transition-all transform hover:scale-105">
               Update Course
             </button>
           </div>
