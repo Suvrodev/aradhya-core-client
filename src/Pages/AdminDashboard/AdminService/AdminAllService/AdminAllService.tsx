@@ -1,14 +1,15 @@
 import { toast } from "sonner";
 import {
   useDeleteServiceMutation,
-  useGetAllServiceQuery,
+  useGetAllServiceByAdminQuery,
 } from "../../../../redux/api/features/Service/serviceManagementApi";
 import { TService } from "../../../../utils/types/globalTypes";
-import { Trash2, CodeXml } from "lucide-react";
+import { Trash2 } from "lucide-react";
 import { sonarId } from "../../../../utils/Fucntion/sonarId";
+import AdminUpdateService from "../AdminUpdateService/AdminUpdateService";
 
 const AdminAllService = () => {
-  const { data, isLoading } = useGetAllServiceQuery(undefined);
+  const { data, isLoading } = useGetAllServiceByAdminQuery(undefined);
   const [deleteService] = useDeleteServiceMutation();
   const serviceData = data?.data;
   //   console.log("Service data: ", serviceData);
@@ -27,7 +28,7 @@ const AdminAllService = () => {
   }
   return (
     <div>
-      <div className="grid grid-cols-1 md:grid-cols-3 gap-4">
+      <div className="grid grid-cols-1  gap-4  ">
         {serviceData?.map((data: TService, idx: number) => (
           <div key={idx} className="border border-1 p-4 rounded-md relative">
             <p className="font-bold">
@@ -40,12 +41,21 @@ const AdminAllService = () => {
             </p>
             <p className="text-xl font-bold">{data?.name}</p>
 
-            <div className="absolute top-0 right-0">
-              <p className="btn bg-green-500 hover:bg-green-600 text-white">
-                <CodeXml />
-              </p>
+            <p className="mt-2">
+              Exist:
+              <span
+                className={`relative left-2 rounded-md px-2 py-1 ${
+                  data?.serviceExists == "yes" ? "bg-green-500" : "bg-red-600"
+                }`}
+              >
+                {data?.serviceExists}
+              </span>{" "}
+            </p>
+
+            <div className="absolute top-2 right-0 flex  gap-x-2">
+              <AdminUpdateService data={data} />
               <p
-                className="btn bg-red-500 hover:bg-red-600 text-white"
+                className="w-[30px] h-[30px] bg-red-500 text-white flex justify-center items-center rounded-md p-2"
                 onClick={() => handleDelete(data?.serviceId)}
               >
                 <Trash2 />

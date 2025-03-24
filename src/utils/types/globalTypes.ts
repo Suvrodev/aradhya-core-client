@@ -55,6 +55,7 @@ export type TService = {
   name: string;
   image: string;
   order: number;
+  serviceExists: string;
 };
 
 export type TBanner = {

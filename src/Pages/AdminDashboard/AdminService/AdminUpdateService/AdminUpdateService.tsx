@@ -1,12 +1,38 @@
-import { useAddServiceMutation } from "../../../redux/api/features/Service/serviceManagementApi";
-import { toast } from "sonner";
-import { sonarId } from "../../../utils/Fucntion/sonarId";
-import AdminAllService from "./AdminAllService/AdminAllService";
+import { Modal } from "antd";
+import { Settings } from "lucide-react";
 import { ChangeEvent, FormEvent, useState } from "react";
+import { TService } from "../../../../utils/types/globalTypes";
+import { toast } from "sonner";
+import { sonarId } from "../../../../utils/Fucntion/sonarId";
+import { useUpdateServiceMutation } from "../../../../redux/api/features/Service/serviceManagementApi";
 
-const AdminService = () => {
-  const [addService] = useAddServiceMutation();
+interface IProps {
+  data: TService;
+}
 
+const AdminUpdateService = ({ data }: IProps) => {
+  //   Modal Default Class start
+  const [isModalOpen, setIsModalOpen] = useState(false);
+
+  const showModal = () => {
+    setIsModalOpen(true);
+  };
+
+  const handleOk = () => {
+    setIsModalOpen(false);
+  };
+
+  const handleCancel = () => {
+    setIsModalOpen(false);
+  };
+  //   Modal Default Class end
+
+  /**
+   * Start Logic From Here
+   */
+
+  //   console.log("Flim Data: ", data);
+  const [updateService] = useUpdateServiceMutation();
   const [serviceExists, setServiceExists] = useState("yes");
 
   const handleServiceExists = (event: ChangeEvent<HTMLSelectElement>) => {
@@ -24,22 +50,40 @@ const AdminService = () => {
       toast.error("Select Service Exists", { id: sonarId });
       return;
     }
-    const formData = { serviceId, name, order, serviceExists };
-    // console.log("Form Data: ", formData);
-    toast.loading("Inserting Service", { id: sonarId });
-    const res = await addService(formData).unwrap();
+    const updateData = { serviceId, name, order, serviceExists };
+    console.log("updateData : ", updateData);
+    toast.loading("Updating Service", { id: sonarId });
+    const res = await updateService({ id: serviceId, updateData }).unwrap();
     console.log("Res: ", res);
-    if (res?.success) {
-      toast.success("Service Added Successfully", { id: sonarId });
+    if (res?.status) {
+      toast.success("Service Updated Successfully", { id: sonarId });
     }
   };
 
   return (
-    <div className="p-5">
-      <h1 className="text-2xl font-bold">Admin Service</h1>
-      <div className="mt-4 flex flex-col md:flex-row gap-4">
-        <div className=" w-full md:w-1/2 ">
-          <h1 className="text-xl font-bold">Add Service</h1>
+    <div className="">
+      <div onClick={showModal}>
+        <button className="w-[30px] h-[30px] bg-green-500 text-white flex justify-center items-center rounded-md p-2">
+          <Settings />
+        </button>
+      </div>
+      <Modal
+        title="Update Service"
+        open={isModalOpen}
+        onOk={handleOk}
+        onCancel={handleCancel}
+        footer={null}
+        width={{
+          xs: "90%",
+          sm: "80%",
+          md: "70%",
+          lg: "60%",
+          xl: "50%",
+          xxl: "40%",
+        }}
+      >
+        <div className="">
+          <h1 className="font-bold text-xl">Update Service</h1>
 
           <form onSubmit={handleServiceSubmit} className="mt-10">
             <div className="w-full flex flex-col gap-4">
@@ -50,9 +94,11 @@ const AdminService = () => {
                 <input
                   type="text"
                   name="serviceId"
-                  className="w-full px-4 py-2 bg-gray-700 text-white rounded-lg focus:outline-none focus:ring focus:ring-teal-500"
+                  defaultValue={data?.serviceId}
+                  className="w-full px-4 py-2 bg-gray-700 text-white rounded-lg focus:outline-none focus:ring focus:ring-teal-500 disabled:text-gray-400"
                   placeholder="Enter Service id"
                   required
+                  disabled
                 />
               </div>
 
@@ -63,6 +109,7 @@ const AdminService = () => {
                 <input
                   type="text"
                   name="servicename"
+                  defaultValue={data?.name}
                   className="w-full px-4 py-2 bg-gray-700 text-white rounded-lg focus:outline-none focus:ring focus:ring-teal-500"
                   placeholder="Enter Service Name"
                   required
@@ -74,6 +121,7 @@ const AdminService = () => {
                 <input
                   type="number"
                   name="order"
+                  defaultValue={data?.order}
                   className="w-full px-4 py-2 bg-gray-700 text-white rounded-lg focus:outline-none focus:ring focus:ring-teal-500"
                   placeholder="Enter Service Order"
                   required
@@ -101,14 +149,9 @@ const AdminService = () => {
             </div>
           </form>
         </div>
-
-        <div className="mt-4 w-full md:w-1/2 h-[550px]  overflow-auto">
-          <h1 className="text-xl font-bold">All Service</h1>
-          <AdminAllService />
-        </div>
-      </div>
+      </Modal>
     </div>
   );
 };
 
-export default AdminService;
+export default AdminUpdateService;

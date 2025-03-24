@@ -21,6 +21,15 @@ const serviceManagementApi = baseApi.injectEndpoints({
       },
       providesTags: ["service"],
     }),
+    getAllServiceByAdmin: builder.query({
+      query: () => {
+        return {
+          url: `/service/admin`,
+          method: "GET",
+        };
+      },
+      providesTags: ["service"],
+    }),
 
     deleteService: builder.mutation({
       query: (id) => {
@@ -46,6 +55,7 @@ const serviceManagementApi = baseApi.injectEndpoints({
 
 export const {
   useAddServiceMutation,
+  useGetAllServiceByAdminQuery,
   useGetAllServiceQuery,
   useDeleteServiceMutation,
   useUpdateServiceMutation,

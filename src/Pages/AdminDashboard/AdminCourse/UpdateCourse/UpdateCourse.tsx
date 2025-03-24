@@ -39,28 +39,20 @@ const UpdateCourse = () => {
     specificCourse?.computerConfiguration
   );
 
-  const [refService, setRefService] = useState<string>(
-    specificCourse?.refService
-  );
   const [refServiceId, setRefServiceId] = useState<string>(
     specificCourse?.refServiceId
   );
-  const [selectedService, setSelectedService] = useState<string>(
-    serviceNameSelect?.name
-  );
+
   const [courseExists, setCourseExists] = useState<string>(
     specificCourse?.courseExists
   );
   useEffect(() => {
     if (serviceNameSelect) {
-      setSelectedService(serviceNameSelect?.name);
-      setRefService(serviceNameSelect?._id);
       setRefServiceId(serviceNameSelect?.serviceId);
       setComputerConfiguration(specificCourse?.computerConfiguration);
       setCourseExists(specificCourse.courseExists);
     }
   }, [CourseData, serviceData, serviceNameSelect, specificCourse]);
-  console.log("So service name", selectedService);
 
   const handleCourseExists = (event: ChangeEvent<HTMLSelectElement>) => {
     const res = event.target.value;
@@ -68,22 +60,17 @@ const UpdateCourse = () => {
   };
 
   const handleService = (event: React.ChangeEvent<HTMLSelectElement>) => {
-    const [serviceId, _id, name] = event.target.value.split(",");
-
-    setRefService(_id);
-    setRefServiceId(serviceId);
-    setSelectedService(name); // Set selected service name
+    const res = event.target.value;
+    setRefServiceId(res);
   };
-
-  // console.log("ref Service:", refService);
-  // console.log("Service id:", refServiceId);
+  console.log(" refServiceId:", refServiceId);
 
   const handleAddCourse = async (event: FormEvent<HTMLFormElement>) => {
     event.preventDefault();
     console.log("Add Course");
     const Form = event.target as HTMLFormElement;
 
-    if (!refService) {
+    if (!refServiceId) {
       toast.error("Select Service", { id: sonarId });
       return;
     }
@@ -190,21 +177,14 @@ const UpdateCourse = () => {
               {/* Under Servuice */}
               <select
                 onChange={handleService}
-                value={
-                  selectedService
-                    ? `${refServiceId},${refService},${selectedService}`
-                    : ""
-                }
+                value={refServiceId}
                 className="w-full p-3 bg-gray-700 border border-gray-600 rounded-lg text-white placeholder-gray-400 focus:outline-none focus:ring-2 focus:ring-blue-500 transition-all"
               >
                 <option value="" disabled>
                   Select one
                 </option>
                 {services?.map((data: TService, idx: number) => (
-                  <option
-                    value={`${data?.serviceId},${data?._id},${data?.name}`}
-                    key={idx}
-                  >
+                  <option value={data?.serviceId} key={idx}>
                     {data?.name}
                   </option>
                 ))}
