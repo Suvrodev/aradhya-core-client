@@ -328,7 +328,7 @@ const AddCourse = () => {
 
             {/* Course Passes */}
             <div className="md:col-span-4">
-              <label className="block font-medium mb-2 text-gray-300">
+              <label className="block font-medium mb-2 text-green-500">
                 কোর্সে কি কি পাচ্ছে
               </label>
               <textarea
@@ -341,7 +341,7 @@ const AddCourse = () => {
 
             {/* Course Curriculum */}
             <div className="md:col-span-4">
-              <label className="block font-medium mb-2 text-gray-300">
+              <label className="block font-medium mb-2 text-green-500">
                 Course Curriculam
               </label>
               <textarea
@@ -354,7 +354,7 @@ const AddCourse = () => {
 
             {/* Open Job Position */}
             <div className="md:col-span-4">
-              <label className="block font-medium mb-2 text-gray-300">
+              <label className="block font-medium mb-2 text-green-500">
                 Job Position
               </label>
               <textarea
@@ -367,7 +367,7 @@ const AddCourse = () => {
 
             {/*Project */}
             <div className="md:col-span-4">
-              <label className="block font-medium mb-2 text-gray-300">
+              <label className="block font-medium mb-2 text-green-500">
                 Projects
               </label>
               <textarea
@@ -380,7 +380,7 @@ const AddCourse = () => {
 
             {/*Software You will learn */}
             <div className="md:col-span-4">
-              <label className="block font-medium mb-2 text-gray-300">
+              <label className="block font-medium mb-2 text-green-500">
                 Needed Software
               </label>
               <textarea

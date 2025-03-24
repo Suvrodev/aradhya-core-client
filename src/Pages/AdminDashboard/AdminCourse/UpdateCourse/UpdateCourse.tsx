@@ -19,7 +19,7 @@ const UpdateCourse = () => {
   const [updateCourse] = useUpdateCourseMutation();
   const services = serviceData?.data;
   const specificCourse: TCourse = CourseData?.data;
-  console.log("Specific Course: ", specificCourse);
+  // console.log("Specific Course: ", specificCourse);
   // console.log("All Services: ", services);
 
   /**
@@ -48,7 +48,9 @@ const UpdateCourse = () => {
   const [selectedService, setSelectedService] = useState<string>(
     serviceNameSelect?.name
   );
-  const [courseExists, setCourseExists] = useState<string>("yes");
+  const [courseExists, setCourseExists] = useState<string>(
+    specificCourse?.courseExists
+  );
   useEffect(() => {
     if (serviceNameSelect) {
       setSelectedService(serviceNameSelect?.name);
@@ -62,8 +64,7 @@ const UpdateCourse = () => {
 
   const handleCourseExists = (event: ChangeEvent<HTMLSelectElement>) => {
     const res = event.target.value;
-
-    // setCourseExists(res);
+    setCourseExists(res);
   };
 
   const handleService = (event: React.ChangeEvent<HTMLSelectElement>) => {
@@ -94,18 +95,28 @@ const UpdateCourse = () => {
     const coursePrice = Form.coursePrice.value;
     const courseDiscount = Form.courseDiscount?.value;
     const courseDiscountReason = Form.courseDiscountReason?.value;
-    // const courseCoupon = Form.courseCoupon?.value;
-    // const courseCouponStatus = Form.courseCouponStatus?.checked;
     const courseYoutubeVideo = Form.courseYoutubeVideo?.value;
     const courseClassNumber = Form.courseClassNumber.value;
-    const courseStartDate = Form.courseStartDate.value;
 
     const courseDuration = Form.courseDuration.value;
     const courseProjectNumber = Form.courseProjectNumber.value;
     const courseReview = Form.courseReview?.value;
 
+    const kikipaschen = Form.kikipaschen?.value;
+    const courseCurriculum = Form.courseCurriculum?.value;
+    const jobposition = Form.jobposition?.value;
+    const projects = Form.projects?.value;
+
+    // Processing needed software into an array of objects
+    const neededsoftware = Form.neededsoftware?.value;
+    const neededSoftwareArray = neededsoftware
+      .split("#")
+      .map((item: string) => {
+        const [image, title] = item.split(",").map((el) => el.trim());
+        return { image, title };
+      });
+
     const updateData = {
-      refService,
       refServiceId,
       courseId,
       courseTitle,
@@ -115,13 +126,19 @@ const UpdateCourse = () => {
       courseDiscount: Number(courseDiscount),
       courseDiscountReason,
       courseYoutubeVideo,
-      courseClassNumber: Number(courseClassNumber),
-      courseStartDate,
+      courseClassNumber: courseClassNumber,
       courseDuration,
-      courseProjectNumber: Number(courseProjectNumber),
+      courseProjectNumber: courseProjectNumber,
       courseReview,
       computerConfiguration,
       courseExists,
+      kikipaschen: kikipaschen.split("#").map((item: string) => item.trim()),
+      courseCurriculum: courseCurriculum
+        .split("#")
+        .map((item: string) => item.trim()),
+      jobposition: jobposition.split("#").map((item: string) => item.trim()),
+      projects: projects.split("#").map((item: string) => item.trim()),
+      neededSoftware: neededSoftwareArray,
     };
     console.log("Update Data: ", updateData);
     toast.loading("Updating Course", { id: sonarId });
@@ -335,6 +352,7 @@ const UpdateCourse = () => {
               </label>
               <select
                 name="courseExists"
+                value={courseExists}
                 onChange={handleCourseExists}
                 className="w-full p-3 bg-gray-700 border border-gray-600 rounded-lg text-white focus:outline-none focus:ring-2 focus:ring-blue-500 transition-all"
               >
@@ -373,6 +391,73 @@ const UpdateCourse = () => {
                 placeholder="Enter course description"
                 required
               ></textarea>
+            </div>
+
+            {/* Course Passes */}
+            <div className="md:col-span-4">
+              <label className="block font-medium mb-2 text-green-500">
+                কোর্সে কি কি পাচ্ছে
+              </label>
+              <textarea
+                name="kikipaschen"
+                className="w-full p-3 bg-gray-700 border border-gray-600 rounded-lg text-white placeholder-gray-400 focus:outline-none focus:ring-2 focus:ring-blue-500 transition-all"
+                placeholder="কোর্সে কি কি পাচ্ছেন, separated by #"
+                defaultValue={specificCourse?.kikipaschen?.join("#")}
+              />
+            </div>
+
+            {/* Course Curriculum */}
+            <div className="md:col-span-4">
+              <label className="block font-medium mb-2 text-green-500">
+                Course Curriculam
+              </label>
+              <textarea
+                name="courseCurriculum"
+                className="w-full p-3 bg-gray-700 border border-gray-600 rounded-lg text-white placeholder-gray-400 focus:outline-none focus:ring-2 focus:ring-blue-500 transition-all"
+                placeholder="Course Curriculum, separated by #"
+                defaultValue={specificCourse?.courseCurriculum?.join("#")}
+              />
+            </div>
+
+            {/* Open Job Position */}
+            <div className="md:col-span-4">
+              <label className="block font-medium mb-2 text-green-500">
+                Job Position
+              </label>
+              <textarea
+                name="jobposition"
+                className="w-full p-3 bg-gray-700 border border-gray-600 rounded-lg text-white placeholder-gray-400 focus:outline-none focus:ring-2 focus:ring-blue-500 transition-all"
+                placeholder="Job Position, separated by #"
+                defaultValue={specificCourse?.jobposition?.join("#")}
+              />
+            </div>
+
+            {/*Project */}
+            <div className="md:col-span-4">
+              <label className="block font-medium mb-2 text-green-500">
+                Projects
+              </label>
+              <textarea
+                name="projects"
+                className="w-full p-3 bg-gray-700 border border-gray-600 rounded-lg text-white placeholder-gray-400 focus:outline-none focus:ring-2 focus:ring-blue-500 transition-all"
+                placeholder="Job Position, separated by #"
+                defaultValue={specificCourse?.projects?.join("#")}
+              />
+            </div>
+
+            {/*Software You will learn */}
+            <div className="md:col-span-4">
+              <label className="block font-medium mb-2 text-green-500">
+                Needed Software
+              </label>
+              <textarea
+                name="neededsoftware"
+                className="w-full p-3 bg-gray-700 border border-gray-600 rounded-lg text-white placeholder-gray-400 focus:outline-none focus:ring-2 focus:ring-blue-500 transition-all"
+                placeholder="Job Position, separated by #"
+                defaultValue={specificCourse?.neededSoftware
+                  ?.map((item) => `${item.image},${item.title}`)
+                  .join("#")}
+              />
             </div>
 
             {/* Computer Configuration */}
