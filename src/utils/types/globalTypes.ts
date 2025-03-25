@@ -101,6 +101,7 @@ export type TCourseBox = {
   courseImage: string;
   courseClassNumber: number;
   courseProjectNumber: number;
+  courseExists: string;
 };
 export type TCourse = {
   _id: string;

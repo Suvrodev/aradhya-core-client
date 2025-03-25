@@ -42,12 +42,7 @@ const DesktopHeader = () => {
               <div className="flex flex-row-reverse items-center">
                 <DashboradButton />
               </div>
-              {/* <button
-                className="btn btn-error text-white"
-                onClick={() => dispatch(logout())}
-              >
-                Logout
-              </button> */}
+
               <LogOutButton />
             </div>
           ) : (

@@ -1,10 +1,10 @@
 import LoadingPage from "../../../../Component/LoadingPage/LoadingPage";
-import { useGetAllCourseQuery } from "../../../../redux/api/features/Course/courseManagementApi";
+import { useGetAllCourseByAdminQuery } from "../../../../redux/api/features/Course/courseManagementApi";
 import { TCourseBox } from "../../../../utils/types/globalTypes";
 import CourseBox from "../CourseBox/CourseBox";
 
 const AllCourses = () => {
-  const { data, isLoading } = useGetAllCourseQuery(undefined);
+  const { data, isLoading } = useGetAllCourseByAdminQuery(undefined);
   const courses = data?.data;
   //   console.log(courses);
 

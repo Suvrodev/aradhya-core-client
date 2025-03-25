@@ -52,6 +52,13 @@ const AdminBatch = () => {
       return;
     }
 
+    // Processing needed software into an array of objects
+    const schedule = Form.schedule?.value;
+    const scheduleArray = schedule.split("#").map((item: string) => {
+      const [date, topic] = item.split(",").map((el) => el.trim());
+      return { date, topic };
+    });
+
     const formData = {
       batchId,
       batchName,
@@ -67,6 +74,7 @@ const AdminBatch = () => {
       classdays,
       supportdays,
       batchStatus,
+      schedule: scheduleArray,
     };
     console.log("FormData: ", formData);
     toast.loading("Adding Batch", { id: sonarId });
@@ -182,7 +190,6 @@ const AdminBatch = () => {
                   id=""
                   className="w-full px-4 py-2 bg-gray-700 text-white rounded-lg focus:outline-none focus:ring focus:ring-teal-500 "
                   placeholder="Project Number"
-                  required
                 />
               </div>
               <div>
@@ -266,6 +273,19 @@ const AdminBatch = () => {
                   <option value="upComing">Up Comming</option>
                   <option value="end">End</option>
                 </select>
+              </div>
+
+              {/*Batch Schedule */}
+              <div className="md:col-span-2">
+                <label className="block font-medium mb-2 text-green-500">
+                  Batch Schedule
+                </label>
+                <textarea
+                  name="schedule"
+                  className="w-full h-[250px] p-3 bg-gray-700 border border-gray-600 rounded-lg text-white placeholder-gray-400 focus:outline-none focus:ring-2 focus:ring-blue-500 transition-all"
+                  placeholder="Job Position, separated by #"
+                  defaultValue="01/01/2025,Orented Class#01/01/2025,Orented Class"
+                />
               </div>
             </div>
             <button className="btn btn-primary text-white mt-4">
