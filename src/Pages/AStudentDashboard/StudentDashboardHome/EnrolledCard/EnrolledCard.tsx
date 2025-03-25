@@ -8,6 +8,7 @@ import {
 import { useGetSpecificCourseQuery } from "../../../../redux/api/features/Course/courseManagementApi";
 import { formatDate } from "../../../../utils/Fucntion/convertDate";
 import { useGetSpecificBatchQuery } from "../../../../redux/api/features/Batch/batchManagementApi";
+import CourseSchedule from "./CourseSchedule/CourseSchedule";
 
 interface IProps {
   data: TAssignedStudent;
@@ -60,6 +61,10 @@ const EnrolledCard = ({ data }: IProps) => {
             <span className="text-xs md:text-sm font-semibold bg-purple-800 px-3 py-1 rounded-full">
               Classes: {batchdetail?.classNumber}
             </span>
+          </div>
+
+          <div>
+            <CourseSchedule batchId={data?.batchId} />
           </div>
         </div>
       </div>

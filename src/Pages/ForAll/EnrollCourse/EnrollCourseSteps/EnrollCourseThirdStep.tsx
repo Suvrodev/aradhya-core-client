@@ -2,6 +2,7 @@ import { useLottie } from "lottie-react";
 import successfullAnim from "../../../../assets/Lottie/successful_1.json";
 import { useAppSelector } from "../../../../redux/hook";
 import { verifyToken } from "../../../../utils/Fucntion/verifyToken";
+import { Link } from "react-router";
 
 const EnrollCourseThirdStep = () => {
   const options = {
@@ -42,8 +43,10 @@ const EnrollCourseThirdStep = () => {
 
       {/* Badge Button */}
       <button className="mt-8 sm:mt-10 px-6 py-2 sm:px-8 sm:py-3 bg-gradient-to-r from-purple-500 to-pink-500 text-white font-bold rounded-full shadow-lg hover:shadow-xl hover:scale-105 transition-all duration-300 flex items-center justify-center">
-        <span className="mr-2">🎉</span>
-        View Course
+        <Link to={"/"} className="mr-2">
+          🎉
+        </Link>
+        Go Home
         <span className="ml-2">🚀</span>
       </button>
 

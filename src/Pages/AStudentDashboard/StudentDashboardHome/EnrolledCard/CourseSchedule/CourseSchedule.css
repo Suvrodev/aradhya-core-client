@@ -1,0 +1,59 @@
+.view-schedule-button {
+  position: relative;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  padding: 10px 16px;
+  font-weight: bold;
+  color: white;
+  background: linear-gradient(to right, #3b82f6, #9333ea, #db2777);
+  border-radius: 24px;
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2);
+  transition: all 0.3s ease;
+}
+
+.view-schedule-button:hover {
+  transform: scale(1.05);
+  box-shadow: 0 6px 15px rgba(0, 0, 0, 0.25);
+}
+
+.custom-modal .ant-modal-content {
+  border-radius: 12px;
+  box-shadow: 0 10px 20px rgba(0, 0, 0, 0.1);
+}
+
+.modal-title {
+  font-size: 1.5rem;
+  font-weight: bold;
+  background: linear-gradient(to right, #a855f7, #ec4899);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+}
+
+.schedule-box {
+  padding: 10px;
+  border-radius: 10px;
+  transition: transform 0.2s ease, box-shadow 0.2s ease;
+}
+
+.schedule-box:hover {
+  transform: translateY(-3px);
+  box-shadow: 0 6px 10px rgba(0, 0, 0, 0.15);
+}
+
+.date-box {
+  background: rgba(255, 255, 255, 0.2);
+  border-radius: 50%;
+  width: 30px;
+  height: 30px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.empty-state-icon {
+  display: inline-block;
+  padding: 12px;
+  background: linear-gradient(to right, #e9d5ff, #bfdbfe);
+  border-radius: 50%;
+}
