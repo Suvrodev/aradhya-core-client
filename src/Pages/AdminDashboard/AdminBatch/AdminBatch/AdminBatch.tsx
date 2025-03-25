@@ -52,7 +52,7 @@ const AdminBatch = () => {
       return;
     }
 
-    // Processing needed software into an array of objects
+    // Processing Achedule into an array of objects
     const schedule = Form.schedule?.value;
     const scheduleArray = schedule.split("#").map((item: string) => {
       const [date, topic] = item.split(",").map((el) => el.trim());

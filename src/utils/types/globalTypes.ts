@@ -92,6 +92,7 @@ export type TBatch = {
   classdays: string;
   supportdays: string;
   batchStatus: string;
+  schedule: { date: string; topic: string }[];
 };
 
 export type TCourseBox = {

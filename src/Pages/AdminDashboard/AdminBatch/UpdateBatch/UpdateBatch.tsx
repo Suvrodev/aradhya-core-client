@@ -1,6 +1,6 @@
 import { Modal } from "antd";
 import { Settings } from "lucide-react";
-import { ChangeEvent, FormEvent, useState } from "react";
+import { ChangeEvent, FormEvent, useEffect, useState } from "react";
 import { useGetAllCourseQuery } from "../../../../redux/api/features/Course/courseManagementApi";
 import { TBatch, TCourse } from "../../../../utils/types/globalTypes";
 import { toast } from "sonner";
@@ -32,9 +32,9 @@ const UpdateBatch = ({ data }: IProps) => {
    * Start Logic From Here
    */
 
-  //   console.log("Flim Data: ", data);
+  console.log("Flim Data: ", data);
   const [updateBatch] = useUpdateBatchMutation();
-  const { data: CourseData } = useGetAllCourseQuery(undefined);
+  const { data: CourseData, isLoading } = useGetAllCourseQuery(undefined);
   const courses = CourseData?.data;
   //   console.log("Courses: ", courses);
   const [batchStatus, setBatchStatus] = useState(data?.batchStatus);
@@ -43,6 +43,14 @@ const UpdateBatch = ({ data }: IProps) => {
     const data = event.target.value;
     setUnderCourse(data);
   };
+
+  useEffect(() => {
+    if (underCourse) {
+      setUnderCourse(underCourse);
+    }
+  }, [CourseData, underCourse]);
+
+  console.log("Under course:-------------------", underCourse);
 
   const handleBatchStatus = (event: ChangeEvent<HTMLSelectElement>) => {
     const batchStatus = event.target.value;
@@ -75,6 +83,13 @@ const UpdateBatch = ({ data }: IProps) => {
       return;
     }
 
+    // Processing Achedule into an array of objects
+    const schedule = Form.schedule?.value;
+    const scheduleArray = schedule.split("#").map((item: string) => {
+      const [date, topic] = item.split(",").map((el) => el.trim());
+      return { date, topic };
+    });
+
     const updateData = {
       batchId,
       batchName,
@@ -90,6 +105,7 @@ const UpdateBatch = ({ data }: IProps) => {
       classdays,
       supportdays,
       batchStatus,
+      schedule: scheduleArray,
     };
     console.log("Update Data: ", updateData);
     toast.loading("Updating Batch", { id: sonarId });
@@ -98,6 +114,10 @@ const UpdateBatch = ({ data }: IProps) => {
       toast.success("Batch Updated Successfully", { id: sonarId });
     }
   };
+
+  if (isLoading) {
+    return <p>Loading</p>;
+  }
 
   return (
     <div className="">
@@ -132,8 +152,9 @@ const UpdateBatch = ({ data }: IProps) => {
                   type="text"
                   name="batchId"
                   id=""
-                  className="w-full px-4 py-2 bg-gray-700 text-white rounded-lg focus:outline-none focus:ring focus:ring-teal-500 "
+                  className="w-full px-4 py-2 bg-gray-700 text-white rounded-lg focus:outline-none focus:ring focus:ring-teal-500 disabled:text-gray-400"
                   placeholder="Batch id"
+                  disabled
                   required
                 />
               </div>
@@ -316,6 +337,21 @@ const UpdateBatch = ({ data }: IProps) => {
                   <option value="upComing">Up Comming</option>
                   <option value="end">End</option>
                 </select>
+              </div>
+
+              {/*Batch Schedule */}
+              <div className="md:col-span-2">
+                <label className="block font-medium mb-2 text-green-500">
+                  Batch Schedule
+                </label>
+                <textarea
+                  name="schedule"
+                  className="w-full h-[250px] p-3 bg-gray-700 border border-gray-600 rounded-lg text-white placeholder-gray-400 focus:outline-none focus:ring-2 focus:ring-blue-500 transition-all"
+                  placeholder="Job Position, separated by #"
+                  defaultValue={data?.schedule
+                    ?.map((item) => `${item.date},${item.topic}`)
+                    .join("#")}
+                />
               </div>
             </div>
             <button className="btn btn-primary text-white mt-4">
