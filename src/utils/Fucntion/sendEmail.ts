@@ -1,5 +1,4 @@
-const sendEmail = () => {
-  const emailAddress = "suvrodeb.cse@gmail.com";
+const sendEmail = (emailAddress: string) => {
   window.location.href = `mailto:${emailAddress}`;
 };
 

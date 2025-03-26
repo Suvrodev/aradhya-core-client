@@ -49,9 +49,9 @@ const assignStudentManagementApi = baseApi.injectEndpoints({
     }),
 
     getOwnCourseOfAssignStudent: builder.query({
-      query: (id) => {
+      query: (email) => {
         return {
-          url: `/assign/own-course/${id}`,
+          url: `/assign/own-course/${email}`,
           method: "GET",
         };
       },

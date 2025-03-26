@@ -10,7 +10,7 @@ const CourseContainer = () => {
   const courses = CourseData?.data;
 
   return (
-    <div className="grid grid-cols-1 md:grid-cols-4 gap-x-4 rounded-lg border-[4px] border-white  innerShadw p-6 ">
+    <div className="grid grid-cols-1 md:grid-cols-4 gap-x-4 gap-y-4 rounded-lg border-[4px] border-white  innerShadw p-6 ">
       {courses?.map((data: TCourseBox, idx: number) => (
         <CourseBox key={idx} data={data} number={idx + 1} />
       ))}

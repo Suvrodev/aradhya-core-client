@@ -2,10 +2,12 @@ import { Outlet } from "react-router";
 import Footer from "../Pages/Shared/Footer/Footer";
 import DesktopHeader from "../Pages/Shared/Header/DesktoHeader/DesktopHeader";
 import MobileHeader from "../Pages/Shared/Header/MobileHeader/MobileHeader";
+import NoticeHeader from "../Pages/Shared/NoticeHeader/NoticeHeader";
 
 const Main = () => {
   return (
     <div>
+      <NoticeHeader />
       <div className="hidden md:block  sticky top-0 z-10">
         <DesktopHeader />
       </div>

@@ -14,9 +14,7 @@ const StudentDashboardHome = () => {
   }
   console.log("User in Home: ", user);
 
-  const { data, isLoading } = useGetOwnCourseOfAssignStudentQuery(
-    user?.studentId
-  );
+  const { data, isLoading } = useGetOwnCourseOfAssignStudentQuery(user?.email);
 
   const ownCourse = data?.data;
 

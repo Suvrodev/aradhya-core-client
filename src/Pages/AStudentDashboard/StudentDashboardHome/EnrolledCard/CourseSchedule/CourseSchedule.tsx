@@ -91,11 +91,6 @@ const CourseSchedule = ({ batchId }: IProps) => {
                         </span>
                       </div>
                     </div>
-                    <div className="mt-2 pt-2 border-t border-white border-opacity-20">
-                      <span className="text-sm opacity-90">
-                        Session {index + 1}
-                      </span>
-                    </div>
                   </div>
                 </div>
               ))}

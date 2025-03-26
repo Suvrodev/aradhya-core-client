@@ -4,6 +4,7 @@ import Lottie from "lottie-react";
 import { toast } from "sonner";
 import { sonarId } from "../../../utils/Fucntion/sonarId";
 import emailjs from "@emailjs/browser";
+import { PhoneOutgoing } from "lucide-react";
 
 const Contact = () => {
   const form = useRef<HTMLFormElement>(null);
@@ -89,19 +90,32 @@ const Contact = () => {
             <div className="grid grid-cols-1 sm:grid-cols-2 gap-6 mb-8">
               <div className="bg-white/10 backdrop-blur-sm rounded-lg p-6 text-white hover:scale-105 transition-transform duration-300">
                 <h3 className="text-xl font-bold mb-2">Location</h3>
-                <p className="text-sm">123 Main Street, City, Country</p>
+                <p className="text-sm">Shib Bari, Khulna</p>
               </div>
               <div className="bg-white/10 backdrop-blur-sm rounded-lg p-6 text-white hover:scale-105 transition-transform duration-300">
-                <h3 className="text-xl font-bold mb-2">Service</h3>
-                <p className="text-sm">Web Development, UI/UX Design</p>
+                <h3 className="text-xl font-bold mb-2">Service Number</h3>
+                <div className="flex flex-col gap-2">
+                  <div className="flex items-center gap-2">
+                    <PhoneOutgoing className="h-5 w-5 text-white" />
+                    <p className="text-sm font-bold">01745377702</p>
+                  </div>
+                  <div className="flex items-center gap-2">
+                    <PhoneOutgoing className="h-5 w-5 text-white" />
+                    <p className="text-sm font-bold">01951912997</p>
+                  </div>
+                </div>
               </div>
               <div className="bg-white/10 backdrop-blur-sm rounded-lg p-6 text-white hover:scale-105 transition-transform duration-300">
-                <h3 className="text-xl font-bold mb-2">Drop a Line</h3>
-                <p className="text-sm">info@example.com</p>
+                <h3 className="text-xl font-bold mb-2">Email</h3>
+                <p className="text-sm">support@aradhyacore.com</p>
+                <p className="text-sm">info@aradhyacore.com</p>
               </div>
               <div className="bg-white/10 backdrop-blur-sm rounded-lg p-6 text-white hover:scale-105 transition-transform duration-300">
                 <h3 className="text-xl font-bold mb-2">OFFICE HOURS</h3>
-                <p className="text-sm">Mon - Fri: 9 AM - 5 PM</p>
+                <p className="text-sm">
+                  Saturday-Thrusday({" "}
+                  <span className="text-yellow-200 font-bold">24 hours </span> )
+                </p>
               </div>
             </div>
 
