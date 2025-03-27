@@ -4,6 +4,7 @@ import DownloadApp from "./DownloadApp/DownloadApp";
 import Faq from "./Faq/Faq";
 import OurCourses from "./OurCourses/OurCourses";
 import Ostad from "./Review/Ostad/Ostad";
+import FreeSeminer from "./FreeSeminer/FreeSeminer";
 
 const Home = () => {
   return (
@@ -13,6 +14,9 @@ const Home = () => {
       </div>
       <div className="container banner">
         <OurCourses />
+      </div>
+      <div className="container banner">
+        <FreeSeminer />
       </div>
       <div className="container">
         <Faq />
