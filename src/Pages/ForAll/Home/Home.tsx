@@ -6,6 +6,8 @@ import OurCourses from "./OurCourses/OurCourses";
 import Ostad from "./Review/Ostad/Ostad";
 import FreeSeminer from "./FreeSeminer/FreeSeminer";
 import LiveCourse from "./LiveCourse/LiveCourse";
+import HomeAbout from "./HomeAbout/HomeAbout";
+import Review from "./Review/Review";
 
 const Home = () => {
   return (
@@ -23,8 +25,15 @@ const Home = () => {
         <LiveCourse />
       </div>
       <div className="container">
+        <HomeAbout />
+      </div>
+      <div className="container">
         <Faq />
       </div>
+      <div className="container">
+        <Review />
+      </div>
+
       {/* <div className="myColor">Div</div> */}
       <div className="max-w-[82rem] mx-auto px-0 md:px-10 hidden">
         <DownloadApp />

@@ -1,50 +1,23 @@
 [
   {
-    "name": "Faisal Azam Siddiqui",
-    "role": "Full Stack Web Development with MERN Batch 1",
-    "quote": "ওস্তাদ-এর MERN কোর্স ছিল ডেভেলপমেন্টের জন্য অনেক ফ্রুটফুল।...",
-    "initials": "FA"
+    "id": "1",
+    "name": "Zisan Khan",
+    "image": "ZS",
+    "Course": "Graphics Design",
+    "comment": "আরাধ্য কোর-এর প্রশিক্ষকরা অত্যন্ত দক্ষ ও পেশাদার। তারা প্রতিটি বিষয় সহজভাবে বোঝান এবং যেকোনো সমস্যা দ্রুত সমাধান করেন। তাদের দিকনির্দেশনায় আমি আত্মবিশ্বাসী হয়ে উঠেছি।"
   },
   {
-    "name": "Shafayet Rana",
-    "role": "UX/UI Batch 6",
-    "quote": "Ostad এর বিশ্বাসযোগ্য ডি...",
-    "initials": "SR"
+    "id": "2",
+    "name": "Fahim Islam",
+    "image": "FI",
+    "Course": "Motion Graphics",
+    "comment": "আরাধ্য কোর-এর প্রশিক্ষকরা শুধু শেখান না, বরং বাস্তব অভিজ্ঞতার মাধ্যমে দক্ষতা গড়ে তুলতে সাহায্য করেন। তাদের সহায়তায় আমি ক্যারিয়ারে আরও আত্মবিশ্বাসী।"
   },
   {
-    "name": "Abu Hasan",
-    "role": "UX/UI Batch 17",
-    "quote": "ক্লাস মাল্টিমিডিয়া হেজান...",
-    "initials": "AH"
-  },
-  {
-    "name": "Jahid Hossain",
-    "role": "Full Stack Web Development with MERN Batch 2",
-    "quote": "এই কোর্সটি হচ্ছে আমার লা...",
-    "initials": "JH"
-  },
-  {
-    "name": "Md Ashfaque Ul Hoque",
-    "role": "UX/UI Batch 6",
-    "quote": "সাজানো (গাইডলাইন সহ...)...",
-    "initials": "MH"
-  },
-  {
-    "name": "MD Galib Hasan",
-    "role": "Data Science Certificate Program Batch 09",
-    "quote": "Even though I come...",
-    "initials": "MG"
-  },
-  {
-    "name": "ARM Salahuddin",
-    "role": "Data Science Certificate Program Batch 19",
-    "quote": "The Data Science program delivered...",
-    "initials": "AS"
-  },
-  {
-    "name": "Nayem Islam",
-    "role": "Full Stack Web Development with MERN Batch 2",
-    "quote": "MERN নিয়ে আমার...",
-    "initials": "NI"
+    "id": "3",
+    "name": "Md. Faysal",
+    "image": "MF",
+    "Course": "Video Editing",
+    "comment": "আরাধ্য কোর-এর প্রশিক্ষকরা শিক্ষার্থীদের প্রতিটি ধাপে গাইড করেন এবং পেশাদার মানের প্রশিক্ষণ নিশ্চিত করেন। তাদের সহযোগিতা অনন্য।"
   }
 ]
