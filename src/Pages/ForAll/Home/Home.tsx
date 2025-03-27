@@ -5,6 +5,7 @@ import Faq from "./Faq/Faq";
 import OurCourses from "./OurCourses/OurCourses";
 import Ostad from "./Review/Ostad/Ostad";
 import FreeSeminer from "./FreeSeminer/FreeSeminer";
+import LiveCourse from "./LiveCourse/LiveCourse";
 
 const Home = () => {
   return (
@@ -17,6 +18,9 @@ const Home = () => {
       </div>
       <div className="container banner">
         <FreeSeminer />
+      </div>
+      <div className="container banner">
+        <LiveCourse />
       </div>
       <div className="container">
         <Faq />
