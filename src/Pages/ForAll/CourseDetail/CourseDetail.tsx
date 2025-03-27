@@ -1,125 +1,447 @@
-import "./CourseDetail.css";
 import { useParams } from "react-router";
 import { useGetSpecificCourseQuery } from "../../../redux/api/features/Course/courseManagementApi";
 import { useTitle } from "../../../Component/hook/useTitle";
-// import { FaStar, FaPlayCircle } from "react-icons/fa";
 import LoadingPage from "../../../Component/LoadingPage/LoadingPage";
-import { TCourse } from "../../../utils/types/globalTypes";
+import { TBatch, TCourse } from "../../../utils/types/globalTypes";
 import ReactPlayer from "react-player/youtube";
 import EnrollCourseModal from "../EnrollCourse/EnrollCourseModal/EnrollCourseModal";
+import { motion } from "framer-motion";
+import Slider from "react-slick";
+import "slick-carousel/slick/slick.css";
+import "slick-carousel/slick/slick-theme.css";
+import { useGetUpComingBatchUnderCourseQuery } from "../../../redux/api/features/Batch/batchManagementApi";
 
 const CourseDetail = () => {
   useTitle("Course Detail");
   const { id } = useParams();
-
   const { data: CourseData, isLoading } = useGetSpecificCourseQuery(id);
   const course: TCourse = CourseData?.data;
-  console.log("Course: ", course);
 
-  if (isLoading) {
-    return <LoadingPage />;
-  }
+  const { data, isLoading: batchLoading } = useGetUpComingBatchUnderCourseQuery(
+    course?.courseId
+  );
+  const batch: TBatch = data?.data;
+
+  // React Slick settings for projects carousel
+  const projectSettings = {
+    dots: true,
+    infinite: true,
+    speed: 500,
+    slidesToShow: 1,
+    slidesToScroll: 1,
+    autoplay: true,
+    autoplaySpeed: 3000,
+    arrows: true,
+    fade: true,
+    cssEase: "linear",
+  };
+
+  if (isLoading || batchLoading) return <LoadingPage />;
+
+  // Format date to DD/MMM/YYYY (01/Jan/2025)
+  const formatDate = (dateString: string) => {
+    const date = new Date(dateString);
+    const day = date.getDate().toString().padStart(2, "0");
+    const month = date.toLocaleString("default", { month: "short" });
+    const year = date.getFullYear();
+    return `${day}/${month}/${year}`;
+  };
+
+  // Calculate enrollment last date (batch.start - 1 day)
+  const enrollmentLastDate = batch?.start
+    ? new Date(new Date(batch.start).getTime() - 86400000)
+    : null;
+  const formattedEnrollmentLastDate = enrollmentLastDate
+    ? formatDate(new Date(enrollmentLastDate).toISOString())
+    : "Not specified";
+
+  // Calculate discounted price
+  const discountedPrice =
+    course?.coursePrice -
+    (course?.coursePrice * (course?.courseDiscount || 0)) / 100;
 
   return (
-    <div className="min-h-screen bg-gradient-to-br from-purple-900 via-indigo-900 to-blue-900 text-white py-12 px-4 sm:px-6 lg:px-8">
-      {/* Header Section */}
-      <div className="max-w-7xl mx-auto bg-white/10 backdrop-blur-md rounded-2xl shadow-2xl p-8 mb-12">
-        <div className="flex flex-col md:flex-row items-center gap-8">
-          <img
-            src={course.courseImage}
-            alt={course.courseTitle}
-            className="w-full md:w-96 h-64 object-cover rounded-2xl shadow-lg"
-          />
-          <div className="flex-1">
-            <h1 className="text-4xl font-bold mb-4">{course.courseTitle}</h1>
-            <p className="text-lg text-gray-300 mb-6">
-              {course.courseDescription}
-            </p>
-            <div className="flex flex-wrap gap-4">
-              <span className="bg-purple-600/50 px-4 py-2 rounded-full text-sm font-semibold">
-                ⭐ {course.courseReview} Rating
-              </span>
-              <span className="bg-blue-600/50 px-4 py-2 rounded-full text-sm font-semibold">
-                ⏳ {course.courseDuration}
-              </span>
-              <span className="bg-green-600/50 px-4 py-2 rounded-full text-sm font-semibold">
-                💲 {course.coursePrice}{" "}
-                {course.courseDiscount && (
-                  <span className="text-yellow-300">
-                    ({course.courseDiscount}% OFF)
+    <div className="min-h-screen bg-gradient-to-br from-[#0f2027] via-[#203a43] to-[#2c5364] text-white">
+      <div className="flex flex-col lg:flex-row">
+        {/* Left Side (60%) - Content */}
+        <div className="w-full lg:w-[60%] p-6 lg:p-8">
+          <motion.div
+            initial={{ opacity: 0, y: 20 }}
+            animate={{ opacity: 1, y: 0 }}
+            className="space-y-8"
+          >
+            {/* Course Title & Description */}
+            <div className="bg-white/5 backdrop-blur-sm rounded-xl p-6 shadow-xl border border-white/10">
+              <h1 className="text-3xl md:text-4xl font-bold mb-4 bg-gradient-to-r from-teal-400 to-teal-600 bg-clip-text text-transparent">
+                {course?.courseTitle}
+              </h1>
+              <p className="text-gray-300 text-lg leading-relaxed">
+                {course?.courseDescription}
+              </p>
+            </div>
+
+            {/* YouTube Video */}
+            {course?.courseYoutubeVideo && (
+              <div className="bg-white/10 backdrop-blur-md rounded-2xl shadow-2xl p-6 border border-white/10">
+                <h2 className="text-2xl font-bold mb-6 text-teal-400">
+                  YouTube Video
+                </h2>
+                <div className="w-full h-[450px] rounded-xl overflow-hidden">
+                  <ReactPlayer
+                    url={course.courseYoutubeVideo}
+                    controls={true}
+                    width="100%"
+                    height="100%"
+                    style={{ borderRadius: "0.5rem", overflow: "hidden" }}
+                  />
+                </div>
+              </div>
+            )}
+
+            {/* Curriculum */}
+            {course?.courseCurriculum && course.courseCurriculum.length > 0 && (
+              <div className="bg-white/5 backdrop-blur-sm rounded-xl p-6 shadow-xl border border-white/10">
+                <h2 className="text-2xl font-bold mb-4 text-teal-400">
+                  Curriculum
+                </h2>
+                <div className="grid grid-cols-1 md:grid-cols-4 gap-4">
+                  {course.courseCurriculum.map((item, index) => (
+                    <div
+                      key={index}
+                      className="flex items-start space-x-3 bg-white/5 p-4 rounded-lg hover:bg-white/10 transition-colors"
+                    >
+                      <span className="text-teal-400 mt-1">✓</span>
+                      <span className="text-gray-300">{item}</span>
+                    </div>
+                  ))}
+                </div>
+              </div>
+            )}
+
+            {/* Needed Software */}
+            {course?.neededSoftware && course.neededSoftware.length > 0 && (
+              <div className="bg-white/5 backdrop-blur-sm rounded-xl p-6 shadow-xl border border-white/10">
+                <h2 className="text-2xl font-bold mb-4 text-teal-400">
+                  Required Software
+                </h2>
+                <div className="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 gap-4">
+                  {course.neededSoftware.map((software, index) => (
+                    <div
+                      key={index}
+                      className="flex flex-col items-center p-4 bg-white/10 rounded-lg hover:bg-white/20 transition-all duration-300"
+                    >
+                      <img
+                        src={software.image}
+                        alt={software.title}
+                        className="w-16 h-16 object-contain mb-2"
+                      />
+                      <span className="text-gray-300 text-sm text-center">
+                        {software.title}
+                      </span>
+                    </div>
+                  ))}
+                </div>
+              </div>
+            )}
+
+            {/* Computer Configuration */}
+            {course?.computerConfiguration && (
+              <div className="bg-white/5 backdrop-blur-sm rounded-xl p-6 shadow-xl border border-white/10">
+                <h2 className="text-2xl font-bold mb-4 text-teal-400">
+                  Computer Configuration
+                </h2>
+                <div
+                  className="prose prose-invert max-w-none"
+                  dangerouslySetInnerHTML={{
+                    __html: course.computerConfiguration,
+                  }}
+                />
+              </div>
+            )}
+
+            {/* Job Positions */}
+            {course?.jobposition && course.jobposition.length > 0 && (
+              <div className="bg-white/5 backdrop-blur-sm rounded-xl p-6 shadow-xl border border-white/10">
+                <h2 className="text-2xl font-bold mb-4 text-teal-400">
+                  Career Opportunities
+                </h2>
+                <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
+                  {course.jobposition.map((position, index) => (
+                    <div
+                      key={index}
+                      className="bg-white/10 p-4 rounded-lg hover:bg-white/20 transition-colors flex items-center"
+                    >
+                      <div className="w-3 h-3 rounded-full bg-teal-400 mr-3"></div>
+                      <h3 className="text-lg font-medium text-gray-300">
+                        {position}
+                      </h3>
+                    </div>
+                  ))}
+                </div>
+              </div>
+            )}
+
+            {/* Batch Information */}
+            {batch && (
+              <div className="bg-white/5 backdrop-blur-sm rounded-xl p-6 shadow-xl border border-white/10">
+                <h2 className="text-2xl font-bold mb-4 text-teal-400">
+                  Batch Information
+                </h2>
+                <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
+                  <div>
+                    <h3 className="text-xl font-semibold mb-2 text-teal-300">
+                      Schedule
+                    </h3>
+                    <div className="space-y-3">
+                      <p className="flex items-center">
+                        <span className="font-medium w-32">Start Date:</span>
+                        <span className="text-gray-300">
+                          {formatDate(batch.start)}
+                        </span>
+                      </p>
+                      <p className="flex items-center">
+                        <span className="font-medium w-32">
+                          Enrollment Ends:
+                        </span>
+                        <span className="text-gray-300">
+                          {formattedEnrollmentLastDate}
+                        </span>
+                      </p>
+                      <p className="flex items-center">
+                        <span className="font-medium w-32">Duration:</span>
+                        <span className="text-gray-300">{batch.duration}</span>
+                      </p>
+                    </div>
+                  </div>
+                  <div>
+                    <h3 className="text-xl font-semibold mb-2 text-teal-300">
+                      Class Schedule
+                    </h3>
+                    <div className="space-y-3">
+                      <p className="flex items-center">
+                        <span className="font-medium w-32">Class Days:</span>
+                        <span className="text-gray-300">{batch.classdays}</span>
+                      </p>
+                      <p className="flex items-center">
+                        <span className="font-medium w-32">Support Day:</span>
+                        <span className="text-gray-300">
+                          {batch.supportdays}
+                        </span>
+                      </p>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            )}
+
+            {/* Instructor Information */}
+            {batch && (
+              <div className="bg-white/5 backdrop-blur-sm rounded-xl p-6 shadow-xl border border-white/10">
+                <h2 className="text-2xl font-bold mb-4 text-teal-400">
+                  Instructor
+                </h2>
+                <div className="flex items-center gap-4">
+                  <img
+                    src={batch.instructorimage}
+                    alt={batch.instructorname}
+                    className="w-16 h-16 rounded-full object-cover border-2 border-teal-400"
+                  />
+                  <div>
+                    <h3 className="text-xl font-semibold text-gray-100">
+                      {batch.instructorname}
+                    </h3>
+                    <a
+                      href={batch.instructorfb}
+                      target="_blank"
+                      rel="noopener noreferrer"
+                      className="text-teal-400 hover:underline inline-flex items-center mt-1"
+                    >
+                      <svg
+                        xmlns="http://www.w3.org/2000/svg"
+                        className="h-4 w-4 mr-1"
+                        fill="currentColor"
+                        viewBox="0 0 24 24"
+                      >
+                        <path d="M22.675 0h-21.35c-.732 0-1.325.593-1.325 1.325v21.351c0 .731.593 1.324 1.325 1.324h11.495v-9.294h-3.128v-3.622h3.128v-2.671c0-3.1 1.893-4.788 4.659-4.788 1.325 0 2.463.099 2.795.143v3.24l-1.918.001c-1.504 0-1.795.715-1.795 1.763v2.313h3.587l-.467 3.622h-3.12v9.293h6.116c.73 0 1.323-.593 1.323-1.325v-21.35c0-.732-.593-1.325-1.325-1.325z" />
+                      </svg>
+                      View Profile
+                    </a>
+                  </div>
+                </div>
+              </div>
+            )}
+
+            {/* Projects Carousel */}
+            {course?.projects && course.projects.length > 0 && (
+              <div className="bg-white/10 backdrop-blur-md rounded-2xl shadow-2xl p-6 border border-white/10">
+                <h2 className="text-2xl font-bold mb-6 text-teal-400">
+                  Project Samples
+                </h2>
+                <div className="relative">
+                  <Slider {...projectSettings}>
+                    {course.projects.map((project, index) => (
+                      <div key={index} className="px-2 outline-none">
+                        <div className="relative group">
+                          <img
+                            src={project}
+                            alt={`Project ${index + 1}`}
+                            className="w-full h-96 object-contain rounded-lg shadow-lg transition-all duration-300 transform group-hover:scale-105"
+                          />
+                          <div className="absolute inset-0 bg-gradient-to-t from-black/80 to-transparent rounded-lg flex items-end p-6 opacity-0 group-hover:opacity-100 transition-opacity duration-300">
+                            <span className="text-white text-lg font-medium">
+                              Project {index + 1}
+                            </span>
+                          </div>
+                        </div>
+                      </div>
+                    ))}
+                  </Slider>
+                </div>
+              </div>
+            )}
+          </motion.div>
+        </div>
+
+        {/* Right Side (40%) - Fixed Sidebar */}
+        <div className="w-full lg:w-[40%] bg-gradient-to-b from-[#0a161b] to-[#162d35] p-6 lg:p-8 lg:sticky lg:top-0 lg:h-screen overflow-y-auto">
+          <div className="space-y-6">
+            {/* Course Image */}
+            <div className="rounded-xl overflow-hidden shadow-2xl border-2 border-white/10">
+              <img
+                src={course?.courseImage}
+                alt={course?.courseTitle}
+                className="w-full h-64 object-cover hover:scale-105 transition-transform duration-500"
+              />
+            </div>
+
+            {/* Pricing Section */}
+            <div className="bg-white/5 backdrop-blur-sm rounded-xl p-6 shadow-xl border border-white/10">
+              <h3 className="text-xl font-bold mb-4 text-teal-400">
+                Course Fee
+              </h3>
+              <div className="space-y-4">
+                <div className="flex justify-between items-center">
+                  <span className="text-gray-300">Original Price:</span>
+                  <span className="font-medium text-lg">
+                    ৳{course?.coursePrice}
                   </span>
+                </div>
+                {course?.courseDiscount > 0 && (
+                  <>
+                    <div className="flex justify-between items-center">
+                      <span className="text-gray-300">Discount:</span>
+                      <span className="text-teal-400 font-bold">
+                        {course.courseDiscount}% OFF
+                      </span>
+                    </div>
+                    <div className="flex justify-between items-center text-lg font-bold pt-2 border-t border-white/10">
+                      <span className="text-gray-300">Discounted Price:</span>
+                      <span className="text-teal-400 text-xl">
+                        ৳{discountedPrice}
+                      </span>
+                    </div>
+                  </>
                 )}
-              </span>
+              </div>
+            </div>
+
+            {/* Course Features */}
+            <div className="bg-white/5 backdrop-blur-sm rounded-xl p-6 shadow-xl border border-white/10">
+              <h3 className="text-xl font-bold mb-4 text-teal-400">
+                আমাদের কোর্সে কি কি পাচ্ছেন?
+              </h3>
+              <div className="grid grid-cols-1 md:grid-cols-2 gap-3">
+                {course?.kikipaschen?.map((item, index) => (
+                  <div
+                    key={index}
+                    className="flex items-start space-x-2 bg-white/5 p-3 rounded-lg hover:bg-white/10 transition-colors"
+                  >
+                    <span className="text-teal-400 mt-1">✦</span>
+                    <span className="text-gray-300 text-sm">{item}</span>
+                  </div>
+                ))}
+              </div>
+            </div>
+
+            {/* Course Stats */}
+            <div className="bg-white/5 backdrop-blur-sm rounded-xl p-6 shadow-xl border border-white/10">
+              <h3 className="text-xl font-bold mb-4 text-teal-400">
+                Course Highlights
+              </h3>
+              <div className="grid grid-cols-2 gap-4">
+                <div className="text-center bg-white/10 p-3 rounded-lg">
+                  <div className="text-3xl font-bold text-teal-400">
+                    {batch?.classNumber}
+                  </div>
+                  <div className="text-gray-300 text-sm mt-1">Classes</div>
+                </div>
+                <div className="text-center bg-white/10 p-3 rounded-lg">
+                  <div className="text-3xl font-bold text-teal-400">
+                    {batch?.projectnumber}
+                  </div>
+                  <div className="text-gray-300 text-sm mt-1">Projects</div>
+                </div>
+                <div className="text-center bg-white/10 p-3 rounded-lg">
+                  <div className="text-3xl font-bold text-teal-400">
+                    {batch?.duration}
+                  </div>
+                  <div className="text-gray-300 text-sm mt-1">Duration</div>
+                </div>
+                <div className="text-center bg-white/10 p-3 rounded-lg">
+                  <div className="text-3xl font-bold text-teal-400">
+                    {course?.courseReview}/5
+                  </div>
+                  <div className="text-gray-300 text-sm mt-1">Rating</div>
+                </div>
+              </div>
+            </div>
+
+            {/* Enrollment Deadline */}
+            {batch?.start && (
+              <div className="bg-red-900/20 backdrop-blur-sm rounded-xl p-4 shadow-xl border border-red-500/30">
+                <div className="flex items-center justify-between">
+                  <div>
+                    <h4 className="text-sm font-semibold text-red-300">
+                      Enrollment Ends
+                    </h4>
+                    <p className="text-white font-medium">
+                      {formattedEnrollmentLastDate}
+                    </p>
+                  </div>
+                  <div className="bg-red-500/80 text-white px-3 py-1 rounded-full text-sm font-bold">
+                    Hurry Up!
+                  </div>
+                </div>
+              </div>
+            )}
+
+            {/* Action Buttons */}
+            <div className="space-y-3">
+              <EnrollCourseModal
+                courseId={course?.courseId}
+                courseTitle={course?.courseTitle}
+                courseDuration={course?.courseDuration}
+                courseImage={course?.courseImage}
+                courseStartDate={batch?.start || "Upcoming"}
+                coursePrice={course?.coursePrice}
+                courseDiscount={course?.courseDiscount || 0}
+              />
+              {course?.courseCouponStatus && (
+                <button className="w-full bg-gradient-to-r from-green-600 to-emerald-700 hover:from-green-700 hover:to-emerald-800 text-white font-bold py-3 px-6 rounded-lg transition-all transform hover:scale-[1.02] shadow-lg flex items-center justify-center">
+                  <svg
+                    xmlns="http://www.w3.org/2000/svg"
+                    className="h-5 w-5 mr-2"
+                    viewBox="0 0 20 20"
+                    fill="currentColor"
+                  >
+                    <path d="M2 6a2 2 0 012-2h12a2 2 0 012 2v2a2 2 0 100 4v2a2 2 0 01-2 2H4a2 2 0 01-2-2v-2a2 2 0 100-4V6z" />
+                  </svg>
+                  Apply Coupon
+                </button>
+              )}
             </div>
           </div>
         </div>
-      </div>
-
-      {/* Main Content Section */}
-      <div className="max-w-7xl mx-auto space-y-12">
-        {/* Course Details */}
-        <div className="bg-white/10 backdrop-blur-md rounded-2xl shadow-2xl p-8">
-          <h2 className="text-3xl font-bold mb-6">Course Details</h2>
-          <div className="grid grid-cols-1 md:grid-cols-2 gap-6 text-lg">
-            <p>
-              <strong>Start Date:</strong>{" "}
-              {new Date(course.courseStartDate).toLocaleDateString()}
-            </p>
-            <p>
-              <strong>Class Number:</strong> {course.courseClassNumber}
-            </p>
-            <p>
-              <strong>Projects:</strong> {course.courseProjectNumber}
-            </p>
-            <p>
-              <strong>Status:</strong> {course.courseStatus}
-            </p>
-            {course.courseDiscountReason && (
-              <p>
-                <strong>Discount Reason:</strong> {course.courseDiscountReason}
-              </p>
-            )}
-          </div>
-        </div>
-
-        {/* Embedded YouTube Video */}
-        <div className="bg-white/10 backdrop-blur-md rounded-2xl shadow-2xl p-8">
-          <h2 className="text-3xl font-bold mb-6">Course Preview</h2>
-          <div className="aspect-w-16 aspect-h-9">
-            <ReactPlayer
-              url={course?.courseYoutubeVideo}
-              controls={true}
-              className="react-player"
-            />
-          </div>
-        </div>
-
-        {/* Course Configuration */}
-        <div className="bg-white/10 backdrop-blur-md rounded-2xl shadow-2xl p-8">
-          <h2 className="text-3xl font-bold mb-6">Course Configuration</h2>
-          <div
-            className="prose prose-invert max-w-none"
-            dangerouslySetInnerHTML={{ __html: course.computerConfiguration }}
-          />
-        </div>
-      </div>
-
-      {/* Footer Section */}
-      <div className="max-w-7xl mx-auto mt-12 flex justify-center gap-4">
-        <EnrollCourseModal
-          courseId={course?.courseId}
-          courseTitle={course?.courseTitle}
-          courseDuration={course?.courseDuration}
-          courseImage={course?.courseImage}
-          courseStartDate={course?.courseStartDate || "Up to date"}
-          coursePrice={course?.coursePrice}
-          courseDiscount={course?.courseDiscount || 0}
-        />
-        {course.courseCouponStatus && (
-          <button className="bg-green-600 hover:bg-green-700 text-white font-bold py-3 px-6 rounded-full transition-all transform hover:scale-105">
-            Apply Coupon
-          </button>
-        )}
       </div>
     </div>
   );

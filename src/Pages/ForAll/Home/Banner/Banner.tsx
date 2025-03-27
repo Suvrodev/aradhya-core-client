@@ -23,7 +23,7 @@ const Banner = () => {
   useEffect(() => {
     const interval = setInterval(() => {
       setCurrentIndex((prevIndex) => (prevIndex + 1) % bannerData.length);
-    }, 3000); // Change the interval time as needed
+    }, 6000); // Change the interval time as needed
 
     return () => clearInterval(interval);
   }, [bannerData.length, currentIndex]); // Reset interval when currentIndex changes

@@ -59,7 +59,7 @@ const EnrollCourseFirstStep = ({
   //Retrive onGoing Batch based on Course id
   const { data, isLoading: batchLoading } =
     useGetUpComingBatchUnderCourseQuery(courseId);
-  const onGoingBatch: TBatch = data?.data;
+  const upCommingBatch: TBatch = data?.data;
 
   //Distructure Token
   const { token } = useAppSelector((state) => state.auth);
@@ -110,7 +110,7 @@ const EnrollCourseFirstStep = ({
     dispatch(selectAssignStudentEmail(student?.email));
     dispatch(selectAssignStudentPhone(student?.phone));
     dispatch(selectCourseId(courseId));
-    dispatch(selectBatchId(onGoingBatch?.batchId));
+    dispatch(selectBatchId(upCommingBatch?.batchId));
     dispatch(selectCoursePrice(coursePrice));
     dispatch(selectCourseDiscount(courseDiscount));
     dispatch(selectPromoCodeStatus(promoData?.promoStatus));
@@ -185,7 +185,7 @@ const EnrollCourseFirstStep = ({
               Batch ID
             </label>
             <input
-              defaultValue={onGoingBatch?.batchId}
+              defaultValue={upCommingBatch?.batchId}
               type="text"
               className="px-4 py-2 bg-gray-700 text-white border border-gray-600 rounded-md w-full disabled:text-gray-400"
               disabled

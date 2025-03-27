@@ -5,7 +5,7 @@ import { headerArray } from "../../../../utils/Array/headerArray";
 import { useAppSelector } from "../../../../redux/hook";
 import DashboradButton from "../DashboardButton/DashboradButton";
 import LoginButton from "../../../../Component/Button/LoginButton";
-import LogOutButton from "../../../../Component/Button/LogOutButton";
+// import LogOutButton from "../../../../Component/Button/LogOutButton";
 const DesktopHeader = () => {
   const { token } = useAppSelector((state) => state.auth);
 
@@ -43,7 +43,7 @@ const DesktopHeader = () => {
                 <DashboradButton />
               </div>
 
-              <LogOutButton />
+              {/* <LogOutButton /> */}
             </div>
           ) : (
             <Link to={"/login"}>

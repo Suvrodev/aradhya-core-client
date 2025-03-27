@@ -12,7 +12,7 @@ import { sonarId } from "../../utils/Fucntion/sonarId";
 
 const baseQuery = fetchBaseQuery({
   baseUrl: "http://localhost:7000/api",
-  // baseUrl: "https://aradhyacore-se rver.vercel.app/api",
+  // baseUrl: "https://aradhyacore-server.vercel.app/api",
   credentials: "include",
   prepareHeaders: (headers, { getState }) => {
     const token = (getState() as RootState).auth.token;

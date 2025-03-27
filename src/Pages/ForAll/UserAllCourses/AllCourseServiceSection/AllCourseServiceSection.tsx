@@ -1,5 +1,5 @@
 import { useGetCourseUnderServiceQuery } from "../../../../redux/api/features/Course/courseManagementApi";
-import { TCourse, TService } from "../../../../utils/types/globalTypes";
+import { TCourseBox, TService } from "../../../../utils/types/globalTypes";
 import CourseBox from "../../Home/OurCourses/CourseContainer/CourseBox/CourseBox";
 
 interface IProps {
@@ -23,7 +23,7 @@ const AllCourseServiceSection = ({ data }: IProps) => {
         {data?.name}
       </h1>
       <div className="grid grid-cols-1 md:grid-cols-4 gap-x-4 gap-y-4 rounded-lg border-[4px] border-white  innerShadw p-6">
-        {allCourses?.map((data: TCourse, idx: number) => (
+        {allCourses?.map((data: TCourseBox, idx: number) => (
           <CourseBox key={idx} data={data} number={idx + 1} />
         ))}
       </div>

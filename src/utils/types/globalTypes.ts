@@ -115,7 +115,7 @@ export type TCourse = {
   courseImage: string;
   courseDescription: string;
   coursePrice: number;
-  courseDiscount?: number;
+  courseDiscount: number;
   courseDiscountReason?: string;
   courseCoupon?: string;
   courseCouponStatus?: boolean;

@@ -3,7 +3,7 @@ import { useAppSelector } from "../../../../../redux/hook";
 import DashboradButton from "../../DashboardButton/DashboradButton";
 import { headerArray } from "../../../../../utils/Array/headerArray";
 import LoginButton from "../../../../../Component/Button/LoginButton";
-import LogOutButton from "../../../../../Component/Button/LogOutButton";
+// import LogOutButton from "../../../../../Component/Button/LogOutButton";
 
 // eslint-disable-next-line @typescript-eslint/no-explicit-any
 const MobileHeaderOption = ({ handleClick }: any) => {
@@ -38,7 +38,7 @@ const MobileHeaderOption = ({ handleClick }: any) => {
             </div>
 
             {/* Logout Button */}
-            <LogOutButton />
+            {/* <LogOutButton /> */}
           </div>
         ) : (
           <Link to={"/login"}>
