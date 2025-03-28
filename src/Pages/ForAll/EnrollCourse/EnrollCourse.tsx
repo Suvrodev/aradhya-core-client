@@ -1,11 +1,11 @@
 import "./EnrollCourse.css";
-import { useState } from "react";
 import { Stepper, Step } from "react-form-stepper";
 import EnrollCourseFirstStep from "./EnrollCourseSteps/EnrollCourseFirstStep";
 import EnrollCourseSecondStep from "./EnrollCourseSteps/EnrollCourseSecondStep";
 import EnrollCourseThirdStep from "./EnrollCourseSteps/EnrollCourseThirdStep";
 
 interface IProps {
+  batchId: string;
   courseId: string;
   courseTitle: string;
   courseImage: string;
@@ -13,9 +13,12 @@ interface IProps {
   courseStartDate: string;
   coursePrice: number;
   courseDiscount: number;
+  activeStep: number;
+  setActiveStep: React.Dispatch<React.SetStateAction<number>>;
 }
 
 const EnrollCourse = ({
+  batchId,
   courseId,
   courseTitle,
   courseImage,
@@ -23,9 +26,9 @@ const EnrollCourse = ({
   courseStartDate,
   coursePrice,
   courseDiscount,
+  activeStep,
+  setActiveStep,
 }: IProps) => {
-  const [activeStep, setActiveStep] = useState(0);
-
   console.log("Active Step: ", activeStep);
 
   return (
@@ -33,6 +36,7 @@ const EnrollCourse = ({
       <div className="">
         {activeStep == 0 && (
           <EnrollCourseFirstStep
+            batchId={batchId}
             courseId={courseId}
             courseDuration={courseDuration}
             courseTitle={courseTitle}

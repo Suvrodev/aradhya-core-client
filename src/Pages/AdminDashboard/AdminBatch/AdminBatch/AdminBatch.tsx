@@ -31,6 +31,8 @@ const AdminBatch = () => {
     const Form = event.target as HTMLFormElement;
     const batchId = Form.batchId.value;
     const batchName = Form.batchName.value;
+    const coursePrice = Form.coursePrice.value;
+    const courseDiscount = Form.courseDiscount.value;
     const start = Form.start.value;
     const end = Form.end.value;
     const duration = Form.duration.value;
@@ -63,6 +65,8 @@ const AdminBatch = () => {
       batchId,
       batchName,
       underCourse,
+      coursePrice,
+      courseDiscount,
       start,
       end,
       duration,
@@ -135,6 +139,28 @@ const AdminBatch = () => {
                     </option>
                   ))}
                 </select>
+              </div>
+              <div>
+                <h1 className="block mb-4 text-sm font-medium">Course Price</h1>
+                <input
+                  type="number"
+                  name="coursePrice"
+                  id=""
+                  className="w-full px-4 py-2 bg-gray-700 text-white rounded-lg focus:outline-none focus:ring focus:ring-teal-500 "
+                  placeholder="Course Price"
+                />
+              </div>
+              <div>
+                <h1 className="block mb-4 text-sm font-medium">
+                  Course Discount
+                </h1>
+                <input
+                  type="number"
+                  name="courseDiscount"
+                  id=""
+                  className="w-full px-4 py-2 bg-gray-700 text-white rounded-lg focus:outline-none focus:ring focus:ring-teal-500 "
+                  placeholder="Course Discount"
+                />
               </div>
               <div className="">
                 <h1 className="block mb-4 text-sm font-medium">Start Date</h1>

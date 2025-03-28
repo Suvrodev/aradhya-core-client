@@ -28,15 +28,15 @@ const EnrollCourseSecondStep = ({ activeStep, setActiveStep }: IProps) => {
   } = useAppSelector((state) => state.assignStudent);
 
   const [makeAssign] = useAddAssignStudentMutation();
-  const [paymentGateWay, setPaymentGateWay] = useState("");
+  // const [paymentGateWay, setPaymentGateWay] = useState("");
   const [transactionId, setTransactionId] = useState(""); // Transaction ID state
   const [transactionMobileNumber, setTransactionMobileNumber] = useState(""); // Transaction mobile state
 
   const handleSubmitPayment = async () => {
-    if (!paymentGateWay) {
-      alert("Please Select Your payment getway");
-      return;
-    }
+    // if (!paymentGateWay) {
+    //   alert("Please Select Your payment getway");
+    //   return;
+    // }
     if (!transactionId) {
       alert("Didn't give transaction id");
       return;
@@ -60,7 +60,7 @@ const EnrollCourseSecondStep = ({ activeStep, setActiveStep }: IProps) => {
       appliedpromoCode: appliedpromoCodeSlice,
       promoPercent: promoPercentSlice,
       finalPrice: finalPriceSlice,
-      paymentGateWay,
+      // paymentGateWay,
       transactionId,
       transactionMobileNumber,
     };
@@ -94,12 +94,25 @@ const EnrollCourseSecondStep = ({ activeStep, setActiveStep }: IProps) => {
               01609593186
             </span>{" "}
             এই নাম্বারে{" "}
-            <span className="text-[#EC0C71] font-semibold">bKash</span> অথবা{" "}
-            <span className="text-[#FF7135] font-semibold">Nagad</span> এ{" "}
+            <span className="text-[#EC0C71] font-semibold">bKash</span> এ{" "}
+            {/* <span className="text-[#FF7135] font-semibold">Nagad</span> এ{" "} */}
             <span className="font-bold text-purple-300">Total Price</span> send
-            money করবেন। এবং তার Transaction ID এবং যে Mobile Number দিয়ে send
-            money করবেন সেই নাম্বারটি নিচের ফর্মে দিয়ে Submit করবেন।
+            money করবেন এবং send Money করার সময় আপনার{" "}
+            <span className="text-teal-500 font-bold">
+              student id ({studentIdSlice}){" "}
+            </span>{" "}
+            অবশ্যই reference হিসেবে দিবেন।তার পরে Transaction ID এবং যে Mobile
+            Number দিয়ে send money করবেন সেই নাম্বারটি নিচের ফর্মে দিয়ে Submit
+            করবেন।
           </p>
+        </div>
+
+        {/* Payment Procesure Image */}
+        <div className="bg-purple-900/50 p-6 rounded-lg shadow-lg border border-purple-700 mb-6">
+          <img
+            src="https://i.ibb.co.com/x832LqQ8/b-Kash-Transaction.png"
+            alt=""
+          />
         </div>
 
         {/* Warning Message */}
@@ -110,10 +123,21 @@ const EnrollCourseSecondStep = ({ activeStep, setActiveStep }: IProps) => {
             সে জন্য কর্তৃপক্ষ কোনো ভাবে দায়ী থাকবে না। দয়া করে নাম্বার এবং
             Transaction ID সঠিকভাবে প্রদান করুন।
           </p>
+          <p className="text-center font-bold text-white  bg-red-500 py-2 px-4 rounded-md border border-red-700 inline-block mx-auto mt-3 animate-pulse">
+            ⚠️ Nagad এ send money গ্রহন যোগ্য নয় ⚠️
+          </p>
         </div>
         <div className="grid grid-cols-1 gap-4 mt-6">
+          <h1 className="font-medium">
+            Your Student id:{" "}
+            <span className="font-bold text-green-500">{studentIdSlice}</span>{" "}
+          </h1>
+          <h1 className="font-medium">
+            Your Total Price:{" "}
+            <span className="font-bold text-green-500">{finalPriceSlice}</span>{" "}
+          </h1>
           {/* Payment Way Dropdown */}
-          <div className="flex flex-col md:flex-row items-start md:items-center gap-4">
+          {/* <div className="flex flex-col md:flex-row items-start md:items-center gap-4">
             <label className="text-sm font-medium text-gray-300 mb-1 w-32">
               Payment Way
             </label>
@@ -130,7 +154,7 @@ const EnrollCourseSecondStep = ({ activeStep, setActiveStep }: IProps) => {
                 Nagad
               </option>
             </select>
-          </div>
+          </div> */}
 
           {/* Transaction ID */}
           <div className="flex flex-col md:flex-row items-start md:items-center gap-4">

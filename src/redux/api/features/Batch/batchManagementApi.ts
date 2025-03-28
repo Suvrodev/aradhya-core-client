@@ -21,6 +21,8 @@ const batchManagementApi = baseApi.injectEndpoints({
       },
       providesTags: ["batch"],
     }),
+
+    ///Not Used
     getSpecificBatch: builder.query({
       query: (id) => {
         return {
@@ -30,6 +32,18 @@ const batchManagementApi = baseApi.injectEndpoints({
       },
       providesTags: ["batch"],
     }),
+    //Just use for update (1 batch will come)
+    getJustOneBatchForUpdate: builder.query({
+      query: (id) => {
+        return {
+          url: `/batch/just-one/${id}`,
+          method: "GET",
+        };
+      },
+      providesTags: ["batch"],
+    }),
+
+    //Get just one upcomming batch (Course detaul)
     getUpComingBatchUnderCourse: builder.query({
       query: (id) => {
         return {
@@ -39,6 +53,8 @@ const batchManagementApi = baseApi.injectEndpoints({
       },
       providesTags: ["batch"],
     }),
+
+    //Show all batch from admin panner persperctive of course
     getSpecificBatchUnderCourse: builder.query({
       query: (id) => {
         return {
@@ -75,6 +91,7 @@ export const {
   useAddBatchMutation,
   useGetAllBatchQuery,
   useGetSpecificBatchQuery,
+  useGetJustOneBatchForUpdateQuery,
   useGetUpComingBatchUnderCourseQuery,
   useGetSpecificBatchUnderCourseQuery,
   useDeleteBatchMutation,

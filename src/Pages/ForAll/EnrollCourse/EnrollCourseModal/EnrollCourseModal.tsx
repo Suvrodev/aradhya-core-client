@@ -6,6 +6,7 @@ import { useAppSelector } from "../../../../redux/hook";
 import NotLogged from "./NotLogged/NotLogged";
 
 interface IProps {
+  batchId: string;
   courseId: string;
   courseTitle: string;
   courseImage: string;
@@ -16,6 +17,7 @@ interface IProps {
 }
 
 const EnrollCourseModal = ({
+  batchId,
   courseId,
   courseTitle,
   courseImage,
@@ -37,10 +39,12 @@ const EnrollCourseModal = ({
 
   const handleCancel = () => {
     setIsModalOpen(false);
+    setActiveStep(0);
   };
   //   Modal Default Class end
 
   const { token } = useAppSelector((state) => state.auth);
+  const [activeStep, setActiveStep] = useState(0);
 
   return (
     <div className="">
@@ -76,6 +80,9 @@ const EnrollCourseModal = ({
           {token ? (
             // If token exists, show EnrollCourse component
             <EnrollCourse
+              activeStep={activeStep}
+              setActiveStep={setActiveStep}
+              batchId={batchId}
               courseId={courseId}
               courseDuration={courseDuration}
               courseTitle={courseTitle}

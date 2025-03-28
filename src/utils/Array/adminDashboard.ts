@@ -28,14 +28,14 @@ export const adminDashboards = [
     text: "Courses",
     path: "/admin-dashboard/all-course",
   },
-  {
-    text: "Course Curriculum",
-    path: "/admin-dashboard/course-courriculum",
-  },
-  {
-    text: "Needed Software",
-    path: "/admin-dashboard/order-management",
-  },
+  // {
+  //   text: "Course Curriculum",
+  //   path: "/admin-dashboard/course-courriculum",
+  // },
+  // {
+  //   text: "Needed Software",
+  //   path: "/admin-dashboard/order-management",
+  // },
   {
     text: "Batch",
     path: "/admin-dashboard/admin-batch",

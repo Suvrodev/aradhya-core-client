@@ -5,13 +5,16 @@ import { useGetAllCourseQuery } from "../../../../redux/api/features/Course/cour
 import { TBatch, TCourse } from "../../../../utils/types/globalTypes";
 import { toast } from "sonner";
 import { sonarId } from "../../../../utils/Fucntion/sonarId";
-import { useUpdateBatchMutation } from "../../../../redux/api/features/Batch/batchManagementApi";
+import {
+  useGetJustOneBatchForUpdateQuery,
+  useUpdateBatchMutation,
+} from "../../../../redux/api/features/Batch/batchManagementApi";
 
 interface IProps {
-  data: TBatch;
+  batchId: string;
 }
 
-const UpdateBatch = ({ data }: IProps) => {
+const UpdateBatch = ({ batchId }: IProps) => {
   //   Modal Default Class start
   const [isModalOpen, setIsModalOpen] = useState(false);
 
@@ -32,25 +35,22 @@ const UpdateBatch = ({ data }: IProps) => {
    * Start Logic From Here
    */
 
-  console.log("Flim Data: ", data);
+  console.log("Flim Batch Data: ", batchId);
   const [updateBatch] = useUpdateBatchMutation();
-  const { data: CourseData, isLoading } = useGetAllCourseQuery(undefined);
+
+  //Fetching batch
+  const { data: batchData, isLoading: batchLoading } =
+    useGetJustOneBatchForUpdateQuery(batchId);
+  const batch: TBatch = batchData?.data;
+  console.log("Xosssssssssssssssssssssssssssss=", batch);
+
+  ///Fetching all courses
+  const { data: CourseData, isLoading: CourseLoading } =
+    useGetAllCourseQuery(undefined);
   const courses = CourseData?.data;
   //   console.log("Courses: ", courses);
-  const [batchStatus, setBatchStatus] = useState(data?.batchStatus);
-  const [underCourse, setUnderCourse] = useState(data?.underCourse);
-  const handleUnderCourse = (event: ChangeEvent<HTMLSelectElement>) => {
-    const data = event.target.value;
-    setUnderCourse(data);
-  };
-
-  useEffect(() => {
-    if (underCourse) {
-      setUnderCourse(underCourse);
-    }
-  }, [CourseData, underCourse]);
-
-  console.log("Under course:-------------------", underCourse);
+  const [batchStatus, setBatchStatus] = useState(batch?.batchStatus);
+  const [underCourse, setUnderCourse] = useState(batch?.underCourse);
 
   const handleBatchStatus = (event: ChangeEvent<HTMLSelectElement>) => {
     const batchStatus = event.target.value;
@@ -58,11 +58,27 @@ const UpdateBatch = ({ data }: IProps) => {
     setBatchStatus(batchStatus);
   };
 
+  const handleUnderCourse = (event: ChangeEvent<HTMLSelectElement>) => {
+    const data = event.target.value;
+    setUnderCourse(data);
+  };
+
+  useEffect(() => {
+    if (courses) {
+      setUnderCourse(batch?.underCourse);
+      setBatchStatus(batch?.batchStatus);
+    }
+  }, [courses, batch, underCourse]);
+
+  console.log("Under course:-------------------", underCourse);
+
   const handleUpdateBatch = async (event: FormEvent<HTMLFormElement>) => {
     event.preventDefault();
     const Form = event.target as HTMLFormElement;
     const batchId = Form.batchId.value;
     const batchName = Form.batchName.value;
+    const coursePrice = Number(Form.coursePrice.value);
+    const courseDiscount = Number(Form.courseDiscount.value);
     const start = Form.start.value;
     const end = Form.end.value;
     const duration = Form.duration.value;
@@ -94,6 +110,8 @@ const UpdateBatch = ({ data }: IProps) => {
       batchId,
       batchName,
       underCourse,
+      coursePrice,
+      courseDiscount,
       start,
       end,
       duration,
@@ -115,7 +133,7 @@ const UpdateBatch = ({ data }: IProps) => {
     }
   };
 
-  if (isLoading) {
+  if (batchLoading || CourseLoading) {
     return <p>Loading</p>;
   }
 
@@ -148,7 +166,7 @@ const UpdateBatch = ({ data }: IProps) => {
               <div>
                 <h1 className="block mb-4 text-sm font-medium">Batch id</h1>
                 <input
-                  defaultValue={data?.batchId}
+                  defaultValue={batch?.batchId}
                   type="text"
                   name="batchId"
                   id=""
@@ -161,7 +179,7 @@ const UpdateBatch = ({ data }: IProps) => {
               <div>
                 <h1 className="block mb-4 text-sm font-medium">Batch Name</h1>
                 <input
-                  defaultValue={data?.batchName}
+                  defaultValue={batch?.batchName}
                   type="text"
                   name="batchName"
                   id=""
@@ -189,10 +207,35 @@ const UpdateBatch = ({ data }: IProps) => {
                   ))}
                 </select>
               </div>
+
+              <div>
+                <h1 className="block mb-4 text-sm font-medium">Course Price</h1>
+                <input
+                  type="number"
+                  name="coursePrice"
+                  defaultValue={batch?.coursePrice}
+                  id=""
+                  className="w-full px-4 py-2 bg-gray-700 text-white rounded-lg focus:outline-none focus:ring focus:ring-teal-500 "
+                  placeholder="Course Price"
+                />
+              </div>
+              <div>
+                <h1 className="block mb-4 text-sm font-medium">
+                  Course Discount
+                </h1>
+                <input
+                  type="number"
+                  name="courseDiscount"
+                  defaultValue={batch?.courseDiscount}
+                  id=""
+                  className="w-full px-4 py-2 bg-gray-700 text-white rounded-lg focus:outline-none focus:ring focus:ring-teal-500 "
+                  placeholder="Course Discount"
+                />
+              </div>
               <div className="">
                 <h1 className="block mb-4 text-sm font-medium">Start Date</h1>
                 <input
-                  defaultValue={data?.start}
+                  defaultValue={batch?.start}
                   type="date"
                   name="start"
                   id=""
@@ -204,7 +247,7 @@ const UpdateBatch = ({ data }: IProps) => {
               <div>
                 <h1 className="block mb-4 text-sm font-medium">End Date</h1>
                 <input
-                  defaultValue={data?.end}
+                  defaultValue={batch?.end}
                   type="date"
                   name="end"
                   id=""
@@ -216,7 +259,7 @@ const UpdateBatch = ({ data }: IProps) => {
               <div>
                 <h1 className="block mb-4 text-sm font-medium">Duration</h1>
                 <input
-                  defaultValue={data?.duration}
+                  defaultValue={batch?.duration}
                   type="text"
                   name="duration"
                   id=""
@@ -229,7 +272,7 @@ const UpdateBatch = ({ data }: IProps) => {
               <div>
                 <h1 className="block mb-4 text-sm font-medium">Class Number</h1>
                 <input
-                  defaultValue={data?.classNumber}
+                  defaultValue={batch?.classNumber}
                   type="number"
                   name="classNumber"
                   id=""
@@ -243,7 +286,7 @@ const UpdateBatch = ({ data }: IProps) => {
                   Project Number
                 </h1>
                 <input
-                  defaultValue={data?.projectnumber}
+                  defaultValue={batch?.projectnumber}
                   type="number"
                   name="projectnumber"
                   id=""
@@ -257,7 +300,7 @@ const UpdateBatch = ({ data }: IProps) => {
                   Instructor Name
                 </h1>
                 <input
-                  defaultValue={data?.instructorname}
+                  defaultValue={batch?.instructorname}
                   type="text"
                   name="instructorname"
                   id=""
@@ -271,7 +314,7 @@ const UpdateBatch = ({ data }: IProps) => {
                   Instructor Image
                 </h1>
                 <input
-                  defaultValue={data?.instructorimage}
+                  defaultValue={batch?.instructorimage}
                   type="text"
                   name="instructorimage"
                   id=""
@@ -286,7 +329,7 @@ const UpdateBatch = ({ data }: IProps) => {
                   Instructor Facebook id
                 </h1>
                 <input
-                  defaultValue={data?.instructorfb}
+                  defaultValue={batch?.instructorfb}
                   type="text"
                   name="instructorfb"
                   id=""
@@ -299,7 +342,7 @@ const UpdateBatch = ({ data }: IProps) => {
               <div>
                 <h1 className="block mb-4 text-sm font-medium">Class days</h1>
                 <input
-                  defaultValue={data?.classdays}
+                  defaultValue={batch?.classdays}
                   type="text"
                   name="classdays"
                   id=""
@@ -312,7 +355,7 @@ const UpdateBatch = ({ data }: IProps) => {
               <div>
                 <h1 className="block mb-4 text-sm font-medium">Support Days</h1>
                 <input
-                  defaultValue={data?.supportdays}
+                  defaultValue={batch?.supportdays}
                   type="text"
                   name="supportdays"
                   id=""
@@ -348,7 +391,7 @@ const UpdateBatch = ({ data }: IProps) => {
                   name="schedule"
                   className="w-full h-[250px] p-3 bg-gray-700 border border-gray-600 rounded-lg text-white placeholder-gray-400 focus:outline-none focus:ring-2 focus:ring-blue-500 transition-all"
                   placeholder="Job Position, separated by #"
-                  defaultValue={data?.schedule
+                  defaultValue={batch?.schedule
                     ?.map((item) => `${item.date},${item.topic}`)
                     .join("#")}
                 />

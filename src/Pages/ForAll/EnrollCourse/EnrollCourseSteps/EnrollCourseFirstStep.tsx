@@ -4,7 +4,7 @@ import { useState, useEffect } from "react";
 import { useAppSelector } from "../../../../redux/hook";
 import { calculateDiscountedPrice } from "../../../../utils/Fucntion/calculateDiscount";
 import { verifyToken } from "../../../../utils/Fucntion/verifyToken";
-import { TBatch, TPromoCode } from "../../../../utils/types/globalTypes";
+import { TPromoCode } from "../../../../utils/types/globalTypes";
 import { useGetSpecificPromoCodeQuery } from "../../../../redux/api/features/PromoCode/promoCodeManagementApi";
 
 import { useDispatch } from "react-redux";
@@ -23,9 +23,9 @@ import {
   selectPromoCodeStatus,
   selectPromoPercent,
 } from "../../../../redux/api/features/AssignStudent/assignStudentSlice";
-import { useGetUpComingBatchUnderCourseQuery } from "../../../../redux/api/features/Batch/batchManagementApi";
 
 interface IProps {
+  batchId: string;
   courseId: string;
   courseDuration: string;
   courseTitle: string;
@@ -38,6 +38,7 @@ interface IProps {
 }
 
 const EnrollCourseFirstStep = ({
+  batchId,
   courseId,
   courseTitle,
   courseImage,
@@ -55,11 +56,6 @@ const EnrollCourseFirstStep = ({
     useGetSpecificPromoCodeQuery(import.meta.env.VITE_PROMOCODE_ID);
   const promoData: TPromoCode = promocodeData?.data;
   // console.log("Promo data: ", promoData);
-
-  //Retrive onGoing Batch based on Course id
-  const { data, isLoading: batchLoading } =
-    useGetUpComingBatchUnderCourseQuery(courseId);
-  const upCommingBatch: TBatch = data?.data;
 
   //Distructure Token
   const { token } = useAppSelector((state) => state.auth);
@@ -105,12 +101,16 @@ const EnrollCourseFirstStep = ({
   };
 
   const handleGoPaymentPage = () => {
+    if (!batchId) {
+      alert("Batch will be created later");
+      return;
+    }
     dispatch(selectAssignStudentId(student?.studentId));
     dispatch(selectAssignStudentName(student?.name));
     dispatch(selectAssignStudentEmail(student?.email));
     dispatch(selectAssignStudentPhone(student?.phone));
     dispatch(selectCourseId(courseId));
-    dispatch(selectBatchId(upCommingBatch?.batchId));
+    dispatch(selectBatchId(batchId));
     dispatch(selectCoursePrice(coursePrice));
     dispatch(selectCourseDiscount(courseDiscount));
     dispatch(selectPromoCodeStatus(promoData?.promoStatus));
@@ -121,7 +121,7 @@ const EnrollCourseFirstStep = ({
     setActiveStep(activeStep + 1);
   };
 
-  if (batchLoading || PromoLoading) {
+  if (PromoLoading) {
     return <p>Loading...</p>;
   }
 
@@ -185,7 +185,7 @@ const EnrollCourseFirstStep = ({
               Batch ID
             </label>
             <input
-              defaultValue={upCommingBatch?.batchId}
+              defaultValue={batchId}
               type="text"
               className="px-4 py-2 bg-gray-700 text-white border border-gray-600 rounded-md w-full disabled:text-gray-400"
               disabled

@@ -122,7 +122,7 @@ const AllBatchBox = ({ data }: IProps) => {
 
       <div className="absolute top-2 right-2 flex gap-x-2">
         <div>
-          <UpdateBatch data={data} />
+          <UpdateBatch batchId={batchId} />
         </div>
 
         <div onClick={() => handleDelete(batchId)}>

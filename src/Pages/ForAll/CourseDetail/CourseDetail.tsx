@@ -16,6 +16,7 @@ const CourseDetail = () => {
   const { id } = useParams();
   const { data: CourseData, isLoading } = useGetSpecificCourseQuery(id);
   const course: TCourse = CourseData?.data;
+  console.log("Course: ", course);
 
   const { data, isLoading: batchLoading } = useGetUpComingBatchUnderCourseQuery(
     course?.courseId
@@ -57,12 +58,12 @@ const CourseDetail = () => {
 
   // Calculate discounted price
   const discountedPrice =
-    course?.coursePrice -
-    (course?.coursePrice * (course?.courseDiscount || 0)) / 100;
+    batch?.coursePrice -
+    (batch?.coursePrice * (batch?.courseDiscount || 0)) / 100;
 
   return (
     <div className="min-h-screen bg-gradient-to-br from-[#0f2027] via-[#203a43] to-[#2c5364] text-white">
-      <div className="flex flex-col lg:flex-row">
+      <div className="flex flex-col-reverse md:flex-row">
         {/* Left Side (60%) - Content */}
         <div className="w-full lg:w-[60%] p-6 lg:p-8">
           <motion.div
@@ -71,7 +72,7 @@ const CourseDetail = () => {
             className="space-y-8"
           >
             {/* Course Title & Description */}
-            <div className="bg-white/5 backdrop-blur-sm rounded-xl p-6 shadow-xl border border-white/10">
+            <div className="hidden md:block bg-white/5 backdrop-blur-sm rounded-xl p-6 shadow-xl border border-white/10">
               <h1 className="text-3xl md:text-4xl font-bold mb-4 bg-gradient-to-r from-teal-400 to-teal-600 bg-clip-text text-transparent">
                 {course?.courseTitle}
               </h1>
@@ -94,6 +95,61 @@ const CourseDetail = () => {
                     height="100%"
                     style={{ borderRadius: "0.5rem", overflow: "hidden" }}
                   />
+                </div>
+              </div>
+            )}
+
+            {/* Course Features */}
+            {course?.kikipaschen && course.kikipaschen.length > 0 && (
+              <div className="bg-white/5 backdrop-blur-sm rounded-xl p-6 shadow-xl border border-white/10">
+                <h2 className="text-2xl font-bold mb-4 text-teal-400">
+                  আমাদের কোর্সে কি কি পাচ্ছেন?
+                </h2>
+                <div className="grid grid-cols-1 md:grid-cols-2 gap-3">
+                  {course.kikipaschen.map((item, index) => (
+                    <div
+                      key={index}
+                      className="flex items-start space-x-2 bg-white/5 p-3 rounded-lg hover:bg-white/10 transition-colors"
+                    >
+                      <span className="text-teal-400 mt-1">✦</span>
+                      <span className="text-gray-300 text-sm">{item}</span>
+                    </div>
+                  ))}
+                </div>
+              </div>
+            )}
+
+            {/* Course Stats */}
+            {batch && (
+              <div className="bg-white/5 backdrop-blur-sm rounded-xl p-6 shadow-xl border border-white/10">
+                <h2 className="text-2xl font-bold mb-4 text-teal-400">
+                  Course Highlights
+                </h2>
+                <div className="grid grid-cols-2 md:grid-cols-4 gap-4">
+                  <div className="text-center bg-white/10 p-3 rounded-lg">
+                    <div className="text-3xl font-bold text-teal-400">
+                      {batch?.classNumber}
+                    </div>
+                    <div className="text-gray-300 text-sm mt-1">Classes</div>
+                  </div>
+                  <div className="text-center bg-white/10 p-3 rounded-lg">
+                    <div className="text-3xl font-bold text-teal-400">
+                      {batch?.projectnumber}
+                    </div>
+                    <div className="text-gray-300 text-sm mt-1">Projects</div>
+                  </div>
+                  <div className="text-center bg-white/10 p-3 rounded-lg">
+                    <div className="text-3xl font-bold text-teal-400">
+                      {batch?.duration}
+                    </div>
+                    <div className="text-gray-300 text-sm mt-1">Duration</div>
+                  </div>
+                  <div className="text-center bg-white/10 p-3 rounded-lg">
+                    <div className="text-3xl font-bold text-teal-400">
+                      {course?.courseReview}/5
+                    </div>
+                    <div className="text-gray-300 text-sm mt-1">Rating</div>
+                  </div>
                 </div>
               </div>
             )}
@@ -160,7 +216,7 @@ const CourseDetail = () => {
             )}
 
             {/* Job Positions */}
-            {course?.jobposition && course.jobposition.length > 0 && (
+            {course?.jobposition && course.jobposition.length > 1 && (
               <div className="bg-white/5 backdrop-blur-sm rounded-xl p-6 shadow-xl border border-white/10">
                 <h2 className="text-2xl font-bold mb-4 text-teal-400">
                   Career Opportunities
@@ -272,7 +328,7 @@ const CourseDetail = () => {
             )}
 
             {/* Projects Carousel */}
-            {course?.projects && course.projects.length > 0 && (
+            {course?.projects && course.projects.length > 1 && (
               <div className="bg-white/10 backdrop-blur-md rounded-2xl shadow-2xl p-6 border border-white/10">
                 <h2 className="text-2xl font-bold mb-6 text-teal-400">
                   Project Samples
@@ -303,7 +359,7 @@ const CourseDetail = () => {
         </div>
 
         {/* Right Side (40%) - Fixed Sidebar */}
-        <div className="w-full lg:w-[40%] bg-gradient-to-b from-[#0a161b] to-[#162d35] p-6 lg:p-8 lg:sticky lg:top-0 lg:h-screen overflow-y-auto">
+        <div className="w-full lg:w-[40%] bg-gradient-to-b from-[#0a161b] to-[#162d35] p-6 lg:p-8 lg:sticky md:top-20 lg:h-screen ">
           <div className="space-y-6">
             {/* Course Image */}
             <div className="rounded-xl overflow-hidden shadow-2xl border-2 border-white/10">
@@ -314,132 +370,137 @@ const CourseDetail = () => {
               />
             </div>
 
-            {/* Pricing Section */}
-            <div className="bg-white/5 backdrop-blur-sm rounded-xl p-6 shadow-xl border border-white/10">
-              <h3 className="text-xl font-bold mb-4 text-teal-400">
-                Course Fee
-              </h3>
-              <div className="space-y-4">
-                <div className="flex justify-between items-center">
-                  <span className="text-gray-300">Original Price:</span>
-                  <span className="font-medium text-lg">
-                    ৳{course?.coursePrice}
-                  </span>
-                </div>
-                {course?.courseDiscount > 0 && (
-                  <>
-                    <div className="flex justify-between items-center">
-                      <span className="text-gray-300">Discount:</span>
-                      <span className="text-teal-400 font-bold">
-                        {course.courseDiscount}% OFF
-                      </span>
+            <div className="flex flex-col gap-6">
+              {/* Course Title & Description */}
+              <div className="md:hidden bg-white/5 backdrop-blur-sm rounded-xl p-6 shadow-xl border border-white/10">
+                <h1 className="text-3xl md:text-4xl font-bold mb-4 bg-gradient-to-r from-teal-400 to-teal-600 bg-clip-text text-transparent">
+                  {course?.courseTitle}
+                </h1>
+                <p className="text-gray-300 text-lg leading-relaxed">
+                  {course?.courseDescription}
+                </p>
+              </div>
+
+              {/* Action Buttons */}
+              <div className="space-y-3">
+                <EnrollCourseModal
+                  batchId={batch?.batchId}
+                  courseId={course?.courseId}
+                  courseTitle={course?.courseTitle}
+                  courseDuration={batch?.duration}
+                  courseImage={course?.courseImage}
+                  courseStartDate={batch?.start || "Upcoming"}
+                  coursePrice={batch?.coursePrice}
+                  courseDiscount={batch?.courseDiscount || 0}
+                />
+              </div>
+
+              {/* Enrollment Deadline */}
+              {batch?.start && (
+                <div className="bg-red-900/20 backdrop-blur-sm rounded-xl p-4 shadow-xl border border-red-500/30">
+                  <div className="flex items-center justify-between">
+                    <div>
+                      <h4 className="text-sm font-semibold text-red-300">
+                        Enrollment Ends
+                      </h4>
+                      <p className="text-white font-medium">
+                        {formattedEnrollmentLastDate}
+                      </p>
                     </div>
-                    <div className="flex justify-between items-center text-lg font-bold pt-2 border-t border-white/10">
-                      <span className="text-gray-300">Discounted Price:</span>
-                      <span className="text-teal-400 text-xl">
+                    <div className="bg-red-500/80 text-white px-3 py-1 rounded-full text-sm font-bold">
+                      Hurry Up!
+                    </div>
+                  </div>
+                </div>
+              )}
+            </div>
+
+            {/* Compact Pricing Section */}
+            <div className="bg-white/5 backdrop-blur-sm rounded-xl p-4 shadow-xl border border-white/10">
+              <div className="flex justify-between items-center mb-2">
+                <h3 className="text-lg font-bold text-teal-400">Course Fee</h3>
+                {batch?.courseDiscount > 0 && (
+                  <span className="bg-teal-600/30 text-teal-300 px-2 py-1 rounded-full text-xs font-bold">
+                    {batch.courseDiscount}% OFF
+                  </span>
+                )}
+              </div>
+
+              <div className="flex items-end justify-between">
+                {batch?.courseDiscount > 0 ? (
+                  <>
+                    <div>
+                      <span className="text-gray-400 text-sm line-through">
+                        ৳{batch?.coursePrice}
+                      </span>
+                      <span className="text-teal-400 text-xl font-bold ml-2">
                         ৳{discountedPrice}
                       </span>
                     </div>
                   </>
+                ) : (
+                  <span className="text-teal-400 text-xl font-bold">
+                    ৳{batch?.coursePrice}
+                  </span>
                 )}
               </div>
             </div>
 
-            {/* Course Features */}
-            <div className="bg-white/5 backdrop-blur-sm rounded-xl p-6 shadow-xl border border-white/10">
-              <h3 className="text-xl font-bold mb-4 text-teal-400">
-                আমাদের কোর্সে কি কি পাচ্ছেন?
-              </h3>
-              <div className="grid grid-cols-1 md:grid-cols-2 gap-3">
-                {course?.kikipaschen?.map((item, index) => (
-                  <div
-                    key={index}
-                    className="flex items-start space-x-2 bg-white/5 p-3 rounded-lg hover:bg-white/10 transition-colors"
-                  >
-                    <span className="text-teal-400 mt-1">✦</span>
-                    <span className="text-gray-300 text-sm">{item}</span>
-                  </div>
-                ))}
-              </div>
-            </div>
-
-            {/* Course Stats */}
-            <div className="bg-white/5 backdrop-blur-sm rounded-xl p-6 shadow-xl border border-white/10">
-              <h3 className="text-xl font-bold mb-4 text-teal-400">
-                Course Highlights
-              </h3>
-              <div className="grid grid-cols-2 gap-4">
-                <div className="text-center bg-white/10 p-3 rounded-lg">
-                  <div className="text-3xl font-bold text-teal-400">
-                    {batch?.classNumber}
-                  </div>
-                  <div className="text-gray-300 text-sm mt-1">Classes</div>
-                </div>
-                <div className="text-center bg-white/10 p-3 rounded-lg">
-                  <div className="text-3xl font-bold text-teal-400">
-                    {batch?.projectnumber}
-                  </div>
-                  <div className="text-gray-300 text-sm mt-1">Projects</div>
-                </div>
-                <div className="text-center bg-white/10 p-3 rounded-lg">
-                  <div className="text-3xl font-bold text-teal-400">
-                    {batch?.duration}
-                  </div>
-                  <div className="text-gray-300 text-sm mt-1">Duration</div>
-                </div>
-                <div className="text-center bg-white/10 p-3 rounded-lg">
-                  <div className="text-3xl font-bold text-teal-400">
-                    {course?.courseReview}/5
-                  </div>
-                  <div className="text-gray-300 text-sm mt-1">Rating</div>
+            {/* Batch Information */}
+            {/* {batch && (
+              <div className="bg-white/5 backdrop-blur-sm rounded-xl p-6 shadow-xl border border-white/10">
+                <h3 className="text-xl font-bold mb-4 text-teal-400">
+                  Class Schedule
+                </h3>
+                <div className="space-y-3">
+                  <p className="flex items-center">
+                    <span className="font-medium w-32">Class Days:</span>
+                    <span className="text-gray-300">{batch.classdays}</span>
+                  </p>
+                  <p className="flex items-center">
+                    <span className="font-medium w-32">Support Day:</span>
+                    <span className="text-gray-300">{batch.supportdays}</span>
+                  </p>
                 </div>
               </div>
-            </div>
+            )} */}
 
-            {/* Enrollment Deadline */}
-            {batch?.start && (
-              <div className="bg-red-900/20 backdrop-blur-sm rounded-xl p-4 shadow-xl border border-red-500/30">
-                <div className="flex items-center justify-between">
+            {/* Instructor Information */}
+            {/* {batch && (
+              <div className="bg-white/5 backdrop-blur-sm rounded-xl p-6 shadow-xl border border-white/10">
+                <h3 className="text-xl font-bold mb-4 text-teal-400">
+                  Instructor
+                </h3>
+                <div className="flex items-center gap-4">
+                  <img
+                    src={batch.instructorimage}
+                    alt={batch.instructorname}
+                    className="w-12 h-12 rounded-full object-cover border-2 border-teal-400"
+                  />
                   <div>
-                    <h4 className="text-sm font-semibold text-red-300">
-                      Enrollment Ends
-                    </h4>
-                    <p className="text-white font-medium">
-                      {formattedEnrollmentLastDate}
-                    </p>
-                  </div>
-                  <div className="bg-red-500/80 text-white px-3 py-1 rounded-full text-sm font-bold">
-                    Hurry Up!
+                    <h3 className="text-lg font-semibold text-gray-100">
+                      {batch.instructorname}
+                    </h3>
+                    <a
+                      href={batch.instructorfb}
+                      target="_blank"
+                      rel="noopener noreferrer"
+                      className="text-teal-400 hover:underline text-sm inline-flex items-center mt-1"
+                    >
+                      <svg
+                        xmlns="http://www.w3.org/2000/svg"
+                        className="h-3 w-3 mr-1"
+                        fill="currentColor"
+                        viewBox="0 0 24 24"
+                      >
+                        <path d="M22.675 0h-21.35c-.732 0-1.325.593-1.325 1.325v21.351c0 .731.593 1.324 1.325 1.324h11.495v-9.294h-3.128v-3.622h3.128v-2.671c0-3.1 1.893-4.788 4.659-4.788 1.325 0 2.463.099 2.795.143v3.24l-1.918.001c-1.504 0-1.795.715-1.795 1.763v2.313h3.587l-.467 3.622h-3.12v9.293h6.116c.73 0 1.323-.593 1.323-1.325v-21.35c0-.732-.593-1.325-1.325-1.325z" />
+                      </svg>
+                      View Profile
+                    </a>
                   </div>
                 </div>
               </div>
-            )}
-
-            {/* Action Buttons */}
-            <div className="space-y-3">
-              <EnrollCourseModal
-                courseId={course?.courseId}
-                courseTitle={course?.courseTitle}
-                courseDuration={course?.courseDuration}
-                courseImage={course?.courseImage}
-                courseStartDate={batch?.start || "Upcoming"}
-                coursePrice={course?.coursePrice}
-                courseDiscount={course?.courseDiscount || 0}
-              />
-              {course?.courseCouponStatus && (
-                <button className="w-full bg-gradient-to-r from-green-600 to-emerald-700 hover:from-green-700 hover:to-emerald-800 text-white font-bold py-3 px-6 rounded-lg transition-all transform hover:scale-[1.02] shadow-lg flex items-center justify-center">
-                  <svg
-                    xmlns="http://www.w3.org/2000/svg"
-                    className="h-5 w-5 mr-2"
-                    viewBox="0 0 20 20"
-                    fill="currentColor"
-                  >
-                    <path d="M2 6a2 2 0 012-2h12a2 2 0 012 2v2a2 2 0 100 4v2a2 2 0 01-2 2H4a2 2 0 01-2-2v-2a2 2 0 100-4V6z" />
-                  </svg>
-                  Apply Coupon
-                </button>
-              )}
-            </div>
+            )} */}
           </div>
         </div>
       </div>
