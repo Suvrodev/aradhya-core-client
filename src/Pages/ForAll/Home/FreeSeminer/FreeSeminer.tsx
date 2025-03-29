@@ -12,10 +12,10 @@ const FreeSeminer = () => {
               Join Our Free Seminars
             </h2>
             <p className="text-lg text-white/80 mb-6">
-              Need guidelines to choose a suitable course? Join our free
-              seminars to consult with our experts, who will guide you to pick
-              the course that matches your interest and discuss the career
-              prospects.
+              Looking for guidance in selecting the right course? Attend our
+              free seminars and consult with our experts, who will help you
+              choose a course aligned with your interests and explore potential
+              career opportunities.
             </p>
             <button className="bg-white text-teal-600 hover:bg-teal-100 font-semibold py-3 px-6 rounded-lg transition-all shadow-md hover:shadow-lg">
               Free Seminar Schedule

@@ -90,7 +90,7 @@ const Banner = () => {
         {bannerData.map((_, index) => (
           <p
             key={index}
-            className={`w-[10px] h-[5px] bg-yellow-900 rounded-full transition-width duration-500 ease-in-out  ${
+            className={`w-[10px] h-[5px] bg-white rounded-full transition-width duration-500 ease-in-out  ${
               currentIndex === index ? "w-[35px]" : "w-[10px]"
             } `}
           ></p>
