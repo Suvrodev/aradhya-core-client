@@ -64,6 +64,27 @@ const TraceUser = () => {
   // Send to Google Sheet
   useEffect(() => {
     if (ipInfo) {
+      const now = new Date();
+
+      // Convert to Bangladesh Time (Asia/Dhaka)
+      const options: Intl.DateTimeFormatOptions = {
+        timeZone: "Asia/Dhaka",
+        hour: "2-digit",
+        minute: "2-digit",
+        hour12: true,
+      };
+      const time = now.toLocaleTimeString("en-US", options); // e.g., "08:35 PM"
+
+      // BD Date
+      const dateOptions: Intl.DateTimeFormatOptions = {
+        timeZone: "Asia/Dhaka",
+        day: "2-digit",
+        month: "2-digit",
+        year: "numeric",
+      };
+      const rawDate = now.toLocaleDateString("en-GB", dateOptions); // e.g., "05/04/2025"
+      const date = rawDate.split("/").join("-"); // safer than replaceAll
+
       const payload = {
         ip: ipInfo.ip,
         loc: ipInfo.loc,
@@ -76,9 +97,11 @@ const TraceUser = () => {
         "Device Type": deviceType,
         OS: os,
         Browser: browser,
+        Time: time,
+        Date: date,
       };
 
-      //   console.log("Sending to Sheet:", payload);
+      console.log("Sending to Sheet:", payload);
 
       fetch(`https://sheetdb.io/api/v1/${import.meta.env.VITE_SPREED_SHEET}`, {
         method: "POST",
