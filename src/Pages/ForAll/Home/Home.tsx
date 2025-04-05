@@ -8,8 +8,10 @@ import FreeSeminer from "./FreeSeminer/FreeSeminer";
 import LiveCourse from "./LiveCourse/LiveCourse";
 import HomeAbout from "./HomeAbout/HomeAbout";
 import Review from "./Review/Review";
+import { useTitle } from "../../../Component/hook/useTitle";
 
 const Home = () => {
+  useTitle("Home");
   return (
     <div className="mainContainer">
       <div className="container banner">

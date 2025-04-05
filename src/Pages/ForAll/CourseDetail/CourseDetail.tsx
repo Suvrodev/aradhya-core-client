@@ -16,7 +16,7 @@ const CourseDetail = () => {
   const { id } = useParams();
   const { data: CourseData, isLoading } = useGetSpecificCourseQuery(id);
   const course: TCourse = CourseData?.data;
-  console.log("Course: ", course);
+  // console.log("Course: ", course);
 
   const { data, isLoading: batchLoading } = useGetUpComingBatchUnderCourseQuery(
     course?.courseId

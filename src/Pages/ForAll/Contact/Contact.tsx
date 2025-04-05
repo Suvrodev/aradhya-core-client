@@ -5,8 +5,10 @@ import { toast } from "sonner";
 import { sonarId } from "../../../utils/Fucntion/sonarId";
 import emailjs from "@emailjs/browser";
 import { PhoneOutgoing } from "lucide-react";
+import { useTitle } from "../../../Component/hook/useTitle";
 
 const Contact = () => {
+  useTitle("Contact");
   const form = useRef<HTMLFormElement>(null);
   const [loading, setLoading] = useState(false);
 

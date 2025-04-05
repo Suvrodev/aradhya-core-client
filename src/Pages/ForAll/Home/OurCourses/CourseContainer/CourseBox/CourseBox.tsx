@@ -7,7 +7,7 @@ interface IProps {
   number: number;
 }
 const CourseBox = ({ data, number }: IProps) => {
-  console.log("Course data: ", data);
+  // console.log("Course data: ", data);
   const { courseId, courseTitle, courseImage } = data;
 
   return (

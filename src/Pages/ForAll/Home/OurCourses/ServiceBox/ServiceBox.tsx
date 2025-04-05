@@ -45,8 +45,8 @@ const ServiceBox = ({ service }: Iprops) => {
     dispatch(selectCategory(serviceId));
   };
 
-  console.log("Select service:------------ ", selectService);
-  console.log("Service id:----------------- ", serviceId);
+  // console.log("Select service:------------ ", selectService);
+  // console.log("Service id:----------------- ", serviceId);
   return (
     <div
       className={`group shadow-md hover:shadow-lg rounded-2xl py-2 transition-all duration-300 cursor-pointer hover:scale-105 ${

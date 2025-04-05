@@ -6,8 +6,10 @@ import {
   FaCode,
   FaNetworkWired,
 } from "react-icons/fa";
+import { useTitle } from "../../../Component/hook/useTitle";
 
 const AboutUs = () => {
+  useTitle("About us");
   return (
     <div className="min-h-screen flex items-center justify-center bg-gradient-to-br from-teal-500 to-[#262F51] p-4">
       <section className="w-full max-w-6xl bg-white/10 backdrop-blur-lg rounded-2xl shadow-2xl overflow-hidden p-8">

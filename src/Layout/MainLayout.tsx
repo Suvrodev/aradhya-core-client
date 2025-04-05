@@ -3,6 +3,7 @@ import Footer from "../Pages/Shared/Footer/Footer";
 import DesktopHeader from "../Pages/Shared/Header/DesktoHeader/DesktopHeader";
 import MobileHeader from "../Pages/Shared/Header/MobileHeader/MobileHeader";
 import NoticeHeader from "../Pages/Shared/NoticeHeader/NoticeHeader";
+import TraceUser from "../Component/TraceUser/TraceUser";
 
 const Main = () => {
   return (
@@ -19,6 +20,9 @@ const Main = () => {
       </div>
       <div>
         <Footer />
+      </div>
+      <div>
+        <TraceUser />
       </div>
     </div>
   );
