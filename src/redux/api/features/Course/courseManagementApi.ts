@@ -46,6 +46,7 @@ const courseManagementApi = baseApi.injectEndpoints({
     }),
 
     //Not use less for All Courses *Directly all course link e asle state theke to data dekhate parbe ne
+    //Site e dhokar somoy e sob course state e set hobe, so eta lagbe na
     getCourseUnderService: builder.query({
       query: (id) => {
         return {

@@ -1,5 +1,8 @@
 import { Link, useLocation, useNavigate } from "react-router";
-import { useDeleteBlogMutation } from "../../../../redux/api/features/Blog/blogManagementApi";
+import {
+  useDeleteBlogMutation,
+  useUpdateBlogPinMutation,
+} from "../../../../redux/api/features/Blog/blogManagementApi";
 import { TBlog } from "../../../../utils/types/globalTypes";
 import AOS from "aos";
 import "aos/dist/aos.css";
@@ -16,7 +19,8 @@ interface IProps {
 
 const BlogBox = ({ blog, admin = false }: IProps) => {
   const [deleteBlog] = useDeleteBlogMutation();
-  const { _id, title, image, category, writer } = blog;
+  const [updatePin] = useUpdateBlogPinMutation();
+  const { _id, title, image, category, writer, pin } = blog;
   const [trimmedTitle, setTrimmedTitle] = useState("");
   const path = useLocation()?.pathname;
   const navigate = useNavigate();
@@ -55,11 +59,30 @@ const BlogBox = ({ blog, admin = false }: IProps) => {
     navigate(`/blog/${_id}`);
   };
 
+  const handlepin = async (id: string) => {
+    const updateData = { pin: "yes" };
+    toast.loading("Pinning", { id: sonarId });
+    const res = await updatePin({ id, updateData }).unwrap();
+    if (res?.success) {
+      toast.success("Made Pin", { id: sonarId });
+    }
+  };
+
+  const handleUnpin = async (id: string) => {
+    const updateData = { pin: "no" };
+    toast.loading("Pinning", { id: sonarId });
+    const res = await updatePin({ id, updateData }).unwrap();
+    if (res?.success) {
+      toast.success("Made UnPin", { id: sonarId });
+    }
+  };
+
   return (
     <div
       data-aos="flip-right"
       data-aos-anchor-placement="top-bottom"
-      className="relative bg-white/10 backdrop-blur-sm rounded-xl shadow-lg overflow-hidden transform transition-all duration-300 hover:scale-105 hover:shadow-2xl cursor-pointer flex flex-col h-[400px]"
+      // className="relative bg-white/10 backdrop-blur-sm rounded-xl shadow-lg overflow-hidden transform transition-all duration-300 hover:scale-105 hover:shadow-2xl cursor-pointer flex flex-col h-[400px]"
+      className="relative bg-white  rounded-xl shadow-lg overflow-hidden transform transition-all duration-300 hover:scale-105 hover:shadow-2xl cursor-pointer flex flex-col h-[400px]"
       onClick={() => handleGoBlogDetail(_id)}
     >
       {/* Blog Image */}
@@ -74,7 +97,7 @@ const BlogBox = ({ blog, admin = false }: IProps) => {
       {/* Blog Content */}
       <div className="p-4 flex flex-col flex-grow">
         {/* Title */}
-        <h2 className="text-xl font-bold text-white mb-2">{trimmedTitle}</h2>
+        <h2 className="text-xl font-bold text-black mb-2">{trimmedTitle}</h2>
 
         {/* Category and Writer */}
         <div className="flex flex-wrap gap-2 mb-4">
@@ -92,7 +115,7 @@ const BlogBox = ({ blog, admin = false }: IProps) => {
             <span className="bg-green-500 rounded-md py-1 px-3 text-white">
               Date:
             </span>
-            <span>{formatDate(blog?.createdAt)}</span>
+            <span className="text-black">{formatDate(blog?.createdAt)}</span>
           </div>
         </div>
       </div>
@@ -100,6 +123,20 @@ const BlogBox = ({ blog, admin = false }: IProps) => {
       {/* Action Buttons (Admin Only) */}
       {admin && (
         <div className="absolute top-4 right-4 flex space-x-2">
+          <div
+            className={`w-10 h-10 flex items-center justify-center rounded-full shadow-md transition-colors ${
+              pin === "yes"
+                ? "bg-green-500 hover:bg-green-600"
+                : "bg-gray-500 hover:bg-gray-600"
+            }`}
+          >
+            {pin === "yes" ? (
+              <span onClick={() => handleUnpin(_id)}>📌</span>
+            ) : (
+              <span onClick={() => handlepin(_id)}>📍</span>
+            )}
+          </div>
+
           <Link
             to={`/admin-dashboard/update-blog/${_id}`}
             className="w-10 h-10 flex items-center justify-center bg-green-500 rounded-full shadow-md hover:bg-green-600 transition-colors"

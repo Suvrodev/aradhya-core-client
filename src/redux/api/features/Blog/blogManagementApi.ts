@@ -50,6 +50,18 @@ const blogManagementApi = baseApi.injectEndpoints({
       },
       invalidatesTags: ["blog"],
     }),
+    updateBlogPin: builder.mutation({
+      query: ({ id, updateData }) => {
+        console.log("id: ", id);
+        console.log("Update data: ", updateData);
+        return {
+          url: `/blog/update/pin/${id}`,
+          method: "PUT",
+          body: updateData,
+        };
+      },
+      invalidatesTags: ["blog"],
+    }),
   }),
 });
 
@@ -59,4 +71,5 @@ export const {
   useGetSpecificBlogQuery,
   useDeleteBlogMutation,
   useUpdateBlogMutation,
+  useUpdateBlogPinMutation,
 } = blogManagementApi;

@@ -51,7 +51,7 @@ const BlogDetail = () => {
 
         {/* Blog Content */}
         <div
-          className="prose prose-invert max-w-none text-white/90"
+          className="prose prose-invert max-w-none bg-white px-4 py-2 rounded-md"
           dangerouslySetInnerHTML={{ __html: blog.content }}
         ></div>
       </div>

@@ -73,8 +73,7 @@ export type TBlog = {
   writer: string;
   category: string;
   createdAt: string;
-  updatedAt: string;
-  __v: number;
+  pin: string;
 };
 
 export type TBatch = {
