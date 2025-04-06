@@ -12,6 +12,8 @@ const courseManagementApi = baseApi.injectEndpoints({
       },
       invalidatesTags: ["course"],
     }),
+
+    ///Course Exists yes thakle ei course gula show korbe (user der janno)
     getAllCourse: builder.query({
       query: () => {
         return {
@@ -21,6 +23,7 @@ const courseManagementApi = baseApi.injectEndpoints({
       },
       providesTags: ["course"],
     }),
+    ///Course Exists matter korbe na (admin der janno)
     getAllCourseByAdmin: builder.query({
       query: () => {
         return {
@@ -30,6 +33,8 @@ const courseManagementApi = baseApi.injectEndpoints({
       },
       providesTags: ["course"],
     }),
+
+    ///Single ekta course
     getSpecificCourse: builder.query({
       query: (id) => {
         return {
@@ -40,6 +45,7 @@ const courseManagementApi = baseApi.injectEndpoints({
       providesTags: ["course"],
     }),
 
+    //use less for loading
     getCourseUnderService: builder.query({
       query: (id) => {
         return {
