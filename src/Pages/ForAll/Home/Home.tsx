@@ -9,6 +9,7 @@ import LiveCourse from "./LiveCourse/LiveCourse";
 import HomeAbout from "./HomeAbout/HomeAbout";
 import Review from "./Review/Review";
 import { useTitle } from "../../../Component/hook/useTitle";
+import HomeBlog from "./HomeBlog/HomeBlog";
 
 const Home = () => {
   useTitle("Home");
@@ -19,6 +20,9 @@ const Home = () => {
       </div>
       <div className="container banner">
         <OurCourses />
+      </div>
+      <div className="container banner">
+        <HomeBlog />
       </div>
       <div className="container banner">
         <FreeSeminer />

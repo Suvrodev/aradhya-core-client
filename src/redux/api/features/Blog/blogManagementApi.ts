@@ -13,9 +13,10 @@ const blogManagementApi = baseApi.injectEndpoints({
       invalidatesTags: ["blog"],
     }),
     getALlBlog: builder.query({
-      query: () => {
+      query: (params) => {
         return {
           url: `/blog`,
+          params: params,
           method: "GET",
         };
       },
