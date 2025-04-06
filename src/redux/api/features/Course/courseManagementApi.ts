@@ -45,7 +45,7 @@ const courseManagementApi = baseApi.injectEndpoints({
       providesTags: ["course"],
     }),
 
-    //use less for loading
+    //Not use less for All Courses *Directly all course link e asle state theke to data dekhate parbe ne
     getCourseUnderService: builder.query({
       query: (id) => {
         return {

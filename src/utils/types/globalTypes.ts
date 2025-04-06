@@ -98,7 +98,6 @@ export type TBatch = {
 };
 
 export type TCourseBox = {
-  _id: string;
   courseId: string;
   refServiceId: string;
   courseTitle: string;

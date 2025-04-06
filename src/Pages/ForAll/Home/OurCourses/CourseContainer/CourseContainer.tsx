@@ -1,44 +1,34 @@
 import { useEffect, useState } from "react";
-import { useGetAllCourseQuery } from "../../../../../redux/api/features/Course/courseManagementApi";
-import { useAppDispatch, useAppSelector } from "../../../../../redux/hook";
-import { TCourseBox } from "../../../../../utils/types/globalTypes";
+import { useAppSelector } from "../../../../../redux/hook";
+import { TCourseBox, TCourse } from "../../../../../utils/types/globalTypes"; // Ensure TCourse is imported
 import CourseBox from "./CourseBox/CourseBox";
-import { setCourse } from "../../../../../redux/api/features/Course/courseSlice";
 
 const CourseContainer = () => {
-  const dispatch = useAppDispatch();
   const { serviceId } = useAppSelector((state) => state.selectService);
-  const { data: CourseData, isLoading } = useGetAllCourseQuery(undefined);
-  const courses = CourseData?.data;
+  const { courses } = useAppSelector((state) => state.courses);
 
   const [targetCourse, setTargetCourse] = useState<TCourseBox[]>([]);
 
-  // Dispatch courses to redux
+  // Filter and map courses to TCourseBox format based on serviceId
   useEffect(() => {
-    if (courses?.length) {
-      dispatch(setCourse(courses));
-    }
-  }, [courses, dispatch]);
+    const mappedCourses: TCourseBox[] = courses.map((course: TCourse) => ({
+      ...course, // Spread properties from TCourse
+      courseDiscount: String(course.courseDiscount), // Convert courseDiscount to string
+    }));
 
-  // Filter courses based on serviceId
-  useEffect(() => {
     if (serviceId === "0") {
-      setTargetCourse(courses);
+      setTargetCourse(mappedCourses);
     } else {
-      const filteredCourses = courses.filter(
+      const filteredCourses = mappedCourses.filter(
         (course: TCourseBox) => course.refServiceId === serviceId
       );
       setTargetCourse(filteredCourses);
     }
   }, [courses, serviceId]);
 
-  if (isLoading) {
-    return <p>Loading...</p>;
-  }
-
   return (
     <div className="grid grid-cols-1 md:grid-cols-4 gap-x-4 gap-y-4 rounded-lg border-[4px] border-white innerShadw p-6">
-      {targetCourse?.map((data: TCourseBox, idx: number) => (
+      {targetCourse.map((data: TCourseBox, idx: number) => (
         <CourseBox key={idx} data={data} number={idx + 1} />
       ))}
     </div>

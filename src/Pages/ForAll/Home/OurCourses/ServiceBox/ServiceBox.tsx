@@ -41,7 +41,7 @@ const ServiceBox = ({ service }: Iprops) => {
   const { name, serviceId } = service;
 
   const handleCategory = (serviceId: string) => {
-    console.log("Category id: ", serviceId);
+    // console.log("Category id: ", serviceId);
     dispatch(selectCategory(serviceId));
   };
 
