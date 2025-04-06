@@ -1,5 +1,7 @@
 import { useEffect, useState } from "react";
 import { UAParser } from "ua-parser-js";
+import { useAppSelector } from "../../redux/hook";
+import { verifyToken } from "../../utils/Fucntion/verifyToken";
 
 interface IpInfo {
   ip: string;
@@ -18,6 +20,14 @@ const TraceUser = () => {
   const [deviceType, setDeviceType] = useState<string>("Desktop");
   const [os, setOs] = useState<string>("Unknown");
   const [browser, setBrowser] = useState<string>("Unknown");
+
+  const { token } = useAppSelector((state) => state.auth);
+  // eslint-disable-next-line @typescript-eslint/no-explicit-any
+  let user: any;
+  if (token) {
+    user = verifyToken(token);
+  }
+  // console.log("User in Trace: ", user);
 
   // Fetch IP
   useEffect(() => {
@@ -99,9 +109,12 @@ const TraceUser = () => {
         Browser: browser,
         Time: time,
         Date: date,
+        name: token ? user?.name : "Not Logged",
+        email: token ? user?.email : "Not Logged",
+        phone: token ? String(user?.phone || "") : "Not Logged",
       };
 
-      console.log("Sending to Sheet:", payload);
+      // console.log("Sending to Sheet:", payload);
 
       fetch(`https://sheetdb.io/api/v1/${import.meta.env.VITE_SPREED_SHEET}`, {
         method: "POST",
@@ -119,7 +132,7 @@ const TraceUser = () => {
           console.error("❌ Error sending to sheet:", err);
         });
     }
-  }, [ipInfo, deviceType, os, browser]);
+  }, [ipInfo, deviceType, os, browser, user, token]);
 
   return null; // No UI needed
 };

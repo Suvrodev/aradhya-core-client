@@ -6,9 +6,9 @@ import BlogBox from "../../AdminDashboard/AdminBlog/AllBlog/BlogBox";
 
 const Blog = () => {
   useTitle("Blog");
-  const { data, isLoading } = useGetALlBlogQuery(undefined);
-  const blogDatas = data?.data;
-
+  const { data: blogDatas, isLoading } = useGetALlBlogQuery(undefined);
+  const blogs = blogDatas?.data;
+  // console.log("Blog Data: ", blogs);
   if (isLoading) {
     return <LoadingPage />;
   }
@@ -26,7 +26,7 @@ const Blog = () => {
 
         {/* Blog Grid */}
         <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-6">
-          {blogDatas?.map((data: TBlog, idx: number) => (
+          {blogs?.map((data: TBlog, idx: number) => (
             <div
               key={idx}
               className="bg-white/10 backdrop-blur-sm rounded-xl shadow-lg hover:shadow-2xl transform transition-all hover:scale-105"
