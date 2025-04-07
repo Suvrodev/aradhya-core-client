@@ -86,7 +86,7 @@ const BlogBox = ({ blog, admin = false }: IProps) => {
       onClick={() => handleGoBlogDetail(_id)}
     >
       {/* Blog Image */}
-      <div className="w-full h-48 overflow-hidden flex-shrink-0">
+      <div className="w-full h-48 overflow-hidden flex-shrink-0 ">
         <img
           src={image}
           alt={title}
@@ -97,7 +97,7 @@ const BlogBox = ({ blog, admin = false }: IProps) => {
       {/* Blog Content */}
       <div className="p-4 flex flex-col flex-grow">
         {/* Title */}
-        <h2 className="text-xl font-bold text-black mb-2">{trimmedTitle}</h2>
+        <h2 className="text-xl font-bold text-black/80 mb-2">{trimmedTitle}</h2>
 
         {/* Category and Writer */}
         <div className="flex flex-wrap gap-2 mb-4">

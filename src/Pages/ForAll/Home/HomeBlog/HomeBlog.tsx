@@ -13,7 +13,7 @@ const HomeBlog = () => {
     return <LoadingPage />;
   }
   return (
-    <div className="min-h-screen bg-gradient-to-br from-teal-500 to-[#262F51] p-4 md:p-8">
+    <div className="min-h-screen bg-gradient-to-br from-teal-500 to-[#262F51] p-4 md:p-8 rounded-md">
       <div className="max-w-7xl mx-auto">
         {/* Header Section */}
         <div className="text-center mb-12">
@@ -37,7 +37,7 @@ const HomeBlog = () => {
           ))}
         </div>
 
-        <div className="my-4 flex justify-center">
+        <div className="mt-10 flex justify-center items-center">
           <Link to={`blog`}>
             <div className="w-[180px]  py-4 bg-white font-semibold text-black text-center text-[16px] shadow-md shadow-gray-700 rounded-lg flex justify-center items-center gap-2">
               <p> Show All Blog</p>

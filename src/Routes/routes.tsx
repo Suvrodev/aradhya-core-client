@@ -37,6 +37,7 @@ import TermsAndConditions from "../Pages/ForAll/TermsAndConditions/TermsAndCondi
 import BlogDetail from "../Pages/AdminDashboard/AdminBlog/AllBlog/BlogDetail/BlogDetail";
 import ForgetPassword from "../Pages/UserInterAction/ForgetPassword/ForgetPassword";
 import Suvrodeb from "../Pages/Us/Suvrodeb/Suvrodeb";
+import InstructorLogin from "../Pages/AInstructorDashboard/InstructorAction/InstructorLogin/InstructorLogin";
 // import EnrollCourse from "../Pages/ForAll/EnrollCourse/EnrollCourse";
 
 export const router = createBrowserRouter([
@@ -83,6 +84,10 @@ export const router = createBrowserRouter([
       {
         path: "forget-password",
         element: <ForgetPassword />,
+      },
+      {
+        path: "instructor-log",
+        element: <InstructorLogin />,
       },
       {
         path: "chk-location",
