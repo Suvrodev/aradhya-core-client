@@ -3,7 +3,7 @@ export type TStudent = {
   name: string;
   email: string;
   image: string;
-  role: "user" | "admin";
+  role: "user" | "admin" | "instructor";
   isBlocked: boolean;
   studentId: string;
   phone: string;

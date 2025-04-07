@@ -6,7 +6,12 @@ import VisibilityOffIcon from "@mui/icons-material/VisibilityOff";
 import { sonarId } from "../../../../utils/Fucntion/sonarId";
 import { toast } from "sonner";
 import { useAppDispatch } from "../../../../redux/hook";
+import { useInstructorLoginMutation } from "../../../../redux/api/features/auth/authApi";
+import { verifyToken } from "../../../../utils/Fucntion/verifyToken";
+import { TStudent } from "../../../../utils/types/globalTypes";
+import { setUser } from "../../../../redux/api/features/auth/authSlice";
 const InstructorLogin = () => {
+  const [instructorLogin] = useInstructorLoginMutation();
   const [isSignUpActive, setIsSignUpActive] = useState(false);
   const dispatch = useAppDispatch();
 
@@ -23,17 +28,17 @@ const InstructorLogin = () => {
     const formData = { email, password };
     console.log("Form Data: ", formData);
 
-    // toast.loading("Loginging", { id: sonarId });
-    // const res = await login(formData).unwrap();
-    // console.log("Res: ", res);
-    // const token = res?.data?.token;
-    // const user: TStudent = verifyToken(token);
-    // if (res?.success) {
-    //   console.log("User: ", user);
-    //   toast.success("Login successfully", { id: sonarId });
-    //   dispatch(setUser({ user, token }));
-    //   navigate(`/${user?.role}-dashboard`);
-    // }
+    toast.loading("Loginging", { id: sonarId });
+    const res = await instructorLogin(formData).unwrap();
+    console.log("Res: ", res);
+    const token = res?.data?.token;
+    const user: TStudent = verifyToken(token);
+    if (res?.success) {
+      console.log("User: ", user);
+      toast.success("Login successfully", { id: sonarId });
+      dispatch(setUser({ user, token }));
+      //   navigate(`/${user?.role}-dashboard`);
+    }
   };
   return (
     <div className="min-h-screen bg-gradient-to-r from-indigo-500 to-pink-500 flex items-center justify-center p-4">
@@ -49,7 +54,7 @@ const InstructorLogin = () => {
           }`}
         >
           {isSignUpActive ? (
-            <InstructorRegistration />
+            <InstructorRegistration setIsSignUpActive={setIsSignUpActive} />
           ) : (
             // Overlay Text (Left by default)
             <div className="h-full flex flex-col justify-center items-center text-center">
@@ -136,18 +141,9 @@ const InstructorLogin = () => {
                   />
                 </div>
                 <div className="flex  flex-row my-2 text-black">
-                  <p className=" w-1/2">
-                    Don't have an account? Go to{" "}
-                    <Link
-                      to={"/registration"}
-                      className="font-bold underline text-blue-600"
-                    >
-                      Registration
-                    </Link>{" "}
-                  </p>
                   <Link
                     to={"/forget-password"}
-                    className="underline flex justify-end w-1/2"
+                    className="underline flex justify-start w-1/2"
                   >
                     Forget Password
                   </Link>

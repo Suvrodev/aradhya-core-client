@@ -4,7 +4,6 @@ const authApi = baseApi.injectEndpoints({
   endpoints: (builder) => ({
     registration: builder.mutation({
       query: (data) => {
-        console.log("Data in redux: ", data);
         return {
           url: "/auth/register",
           method: "POST",
@@ -12,6 +11,17 @@ const authApi = baseApi.injectEndpoints({
         };
       },
     }),
+
+    instructorRegistration: builder.mutation({
+      query: (data) => {
+        return {
+          url: "/i-auth/register",
+          method: "POST",
+          body: data,
+        };
+      },
+    }),
+
     login: builder.mutation({
       query: (userInfo) => ({
         url: "/login",
@@ -19,6 +29,14 @@ const authApi = baseApi.injectEndpoints({
         body: userInfo,
       }),
     }),
+    instructorLogin: builder.mutation({
+      query: (userInfo) => ({
+        url: "/i-login",
+        method: "POST",
+        body: userInfo,
+      }),
+    }),
+
     changePassword: builder.mutation({
       query: ({ id, userPassword }) => {
         console.log("id: ", id);
@@ -54,7 +72,9 @@ const authApi = baseApi.injectEndpoints({
 
 export const {
   useRegistrationMutation,
+  useInstructorRegistrationMutation,
   useLoginMutation,
+  useInstructorLoginMutation,
   useChangePasswordMutation,
   useForgetPasswordMutation,
   useUpdatePasswordAfterOTPMutation,

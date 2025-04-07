@@ -4,8 +4,14 @@ import { sonarId } from "../../../../utils/Fucntion/sonarId";
 import VisibilityIcon from "@mui/icons-material/Visibility";
 import VisibilityOffIcon from "@mui/icons-material/VisibilityOff";
 import { Link } from "react-router";
+import { useInstructorRegistrationMutation } from "../../../../redux/api/features/auth/authApi";
 
-const InstructorRegistration = () => {
+interface IProps {
+  setIsSignUpActive: (value: boolean) => void;
+}
+
+const InstructorRegistration = ({ setIsSignUpActive }: IProps) => {
+  const [instructorRegistration] = useInstructorRegistrationMutation();
   const [showPassword, setShowPassword] = useState(false);
   const [showPasswordConfirm, setShowPasswordConfirm] = useState(false);
   const [acceptTerms, setAcceptTerms] = useState(false);
@@ -21,7 +27,7 @@ const InstructorRegistration = () => {
 
     const form = e.target as HTMLFormElement;
     const formData = {
-      //   name: form.name.value,
+      name: form.namee.value,
       phone: form.phone.value,
       email: form.email.value,
       password: form.password.value,
@@ -33,19 +39,18 @@ const InstructorRegistration = () => {
       return;
     }
 
-    console.log("Form Data: ", formData);
+    // console.log("Form Data: ", formData);
     toast.loading("Creating instructor account", { id: sonarId });
 
-    // Uncomment when ready to implement API call
-    // try {
-    //   const res = await addRegister(formData).unwrap();
-    //   if (res?.success) {
-    //     toast.success("Registration successful", { id: sonarId });
-    //     navigate("/login");
-    //   }
-    // } catch (error) {
-    //   toast.error("Registration failed", { id: sonarId });
-    // }
+    try {
+      const res = await instructorRegistration(formData).unwrap();
+      if (res?.success) {
+        toast.success("Registration successful", { id: sonarId });
+        setIsSignUpActive(false);
+      }
+    } catch {
+      //   toast.error("Registration failed", { id: sonarId });
+    }
   };
 
   return (
@@ -65,8 +70,8 @@ const InstructorRegistration = () => {
           <input
             type="text"
             placeholder="Enter your name"
-            className="input input-bordered w-full bg-gray-100 text-gray-800"
-            name="name"
+            className="input input-bordered w-full bg-gray-100 text-black/40"
+            name="namee"
             required
           />
         </div>
@@ -184,17 +189,6 @@ const InstructorRegistration = () => {
         >
           Register
         </button>
-
-        {/* Login Link */}
-        <p className="text-center text-sm text-gray-600 mt-4">
-          Already have an account?{" "}
-          <Link
-            to="/login"
-            className="text-blue-600 font-medium hover:underline"
-          >
-            Log in here
-          </Link>
-        </p>
       </form>
     </div>
   );
