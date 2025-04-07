@@ -39,6 +39,9 @@ import ForgetPassword from "../Pages/UserInterAction/ForgetPassword/ForgetPasswo
 import Suvrodeb from "../Pages/Us/Suvrodeb/Suvrodeb";
 import InstructorLogin from "../Pages/AInstructorDashboard/InstructorAction/InstructorLogin/InstructorLogin";
 import AdminAllInstructor from "../Pages/AdminDashboard/AdminAllInstructor/AdminAllInstructor";
+import InstructorProtectedRoute from "./ProtectedRoute/InstructorProtectedRoute";
+import InstructorDashboard from "../Pages/AInstructorDashboard/InstructorDashboard";
+import InstructorDashboardHome from "../Pages/AInstructorDashboard/InstructorDashboardHome/InstructorDashboardHome";
 // import EnrollCourse from "../Pages/ForAll/EnrollCourse/EnrollCourse";
 
 export const router = createBrowserRouter([
@@ -100,6 +103,10 @@ export const router = createBrowserRouter([
       // },
     ],
   },
+
+  /**
+   * Admin Route
+   */
   {
     path: "admin-dashboard",
     element: (
@@ -251,7 +258,9 @@ export const router = createBrowserRouter([
       },
     ],
   },
-
+  /**
+   * Student Route
+   */
   {
     path: "student-dashboard",
     element: (
@@ -312,6 +321,74 @@ export const router = createBrowserRouter([
       },
     ],
   },
+
+  /**
+   * Instructor Route
+   */
+  {
+    path: "instructor-dashboard",
+    element: (
+      <InstructorProtectedRoute>
+        <InstructorDashboard />
+      </InstructorProtectedRoute>
+    ),
+    children: [
+      {
+        index: true,
+        element: (
+          <InstructorProtectedRoute>
+            <InstructorDashboardHome />{" "}
+          </InstructorProtectedRoute>
+        ),
+      },
+      {
+        path: "my-profile",
+        element: (
+          <InstructorProtectedRoute>
+            <MyProfile />
+          </InstructorProtectedRoute>
+        ),
+      },
+      {
+        path: "additional-info",
+        element: (
+          <InstructorProtectedRoute>
+            <AdditionalInfo />
+          </InstructorProtectedRoute>
+        ),
+      },
+      {
+        path: "address",
+        element: (
+          <InstructorProtectedRoute>
+            <Address />
+          </InstructorProtectedRoute>
+        ),
+      },
+      {
+        path: "education",
+        element: (
+          <InstructorProtectedRoute>
+            {" "}
+            <Education />
+          </InstructorProtectedRoute>
+        ),
+      },
+      {
+        path: "important-link",
+        element: (
+          <StudentProtectedRoute>
+            {" "}
+            <ImportantLink />
+          </StudentProtectedRoute>
+        ),
+      },
+    ],
+  },
+
+  /**
+   * Login Registration Route
+   */
   {
     path: "login",
     element: <Login />,

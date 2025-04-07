@@ -1,6 +1,6 @@
 import { FormEvent, useState } from "react";
 import InstructorRegistration from "./InstructorRegistration";
-import { Link } from "react-router";
+import { Link, useNavigate } from "react-router";
 import VisibilityIcon from "@mui/icons-material/Visibility";
 import VisibilityOffIcon from "@mui/icons-material/VisibilityOff";
 import { sonarId } from "../../../../utils/Fucntion/sonarId";
@@ -20,6 +20,8 @@ const InstructorLogin = () => {
     setShowPassword(!showPassword);
   };
 
+  const navigate = useNavigate();
+
   const handleLogin = async (event: FormEvent<HTMLFormElement>) => {
     event.preventDefault();
     const Form = event.target as HTMLFormElement;
@@ -37,7 +39,7 @@ const InstructorLogin = () => {
       console.log("User: ", user);
       toast.success("Login successfully", { id: sonarId });
       dispatch(setUser({ user, token }));
-      //   navigate(`/${user?.role}-dashboard`);
+      navigate(`/${user?.role}-dashboard`);
     }
   };
   return (
