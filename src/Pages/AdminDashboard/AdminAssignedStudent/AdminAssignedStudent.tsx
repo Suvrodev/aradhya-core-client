@@ -6,13 +6,11 @@ import { useState } from "react";
 
 const AdminAssignedStudent = () => {
   const [searchTerm, setSearchTerm] = useState<string>(""); // For search
-  const [paymentGateWay, setPaymentGateWay] = useState<string>(""); // For filter by payment gateway
   const [status, setStatus] = useState<string>(""); // For filter by status
   const [sort, setSort] = useState<string>("desc"); // For sorting createdAt
 
   const { data, isLoading } = useGetAllAssignStudentQuery({
     search: searchTerm,
-    paymentGateWay: paymentGateWay,
     status: status,
     sort: sort, // Adding query params to API request
   });
@@ -40,20 +38,7 @@ const AdminAssignedStudent = () => {
         />
       </div>
 
-      <div className="grid grid-cols-1 md:grid-cols-3 gap-x-4">
-        {/* Filter by Payment Gateway */}
-        <div className="my-4 flex justify-center">
-          <select
-            className="w-full px-4 py-2 border border-[#1F2937] bg-[#1F2937] rounded-lg text-white focus:outline-none focus:ring-2 focus:ring-teal-500"
-            value={paymentGateWay}
-            onChange={(e) => setPaymentGateWay(e.target.value)}
-          >
-            <option value="">All Gateways</option>
-            <option value="bKash">bKash</option>
-            <option value="Nagad">Nagad</option>
-          </select>
-        </div>
-
+      <div className="grid grid-cols-1 md:grid-cols-2 gap-x-4">
         {/* Filter by Status */}
         <div className="my-4 flex justify-center">
           <select

@@ -38,6 +38,7 @@ import BlogDetail from "../Pages/AdminDashboard/AdminBlog/AllBlog/BlogDetail/Blo
 import ForgetPassword from "../Pages/UserInterAction/ForgetPassword/ForgetPassword";
 import Suvrodeb from "../Pages/Us/Suvrodeb/Suvrodeb";
 import InstructorLogin from "../Pages/AInstructorDashboard/InstructorAction/InstructorLogin/InstructorLogin";
+import AdminAllInstructor from "../Pages/AdminDashboard/AdminAllInstructor/AdminAllInstructor";
 // import EnrollCourse from "../Pages/ForAll/EnrollCourse/EnrollCourse";
 
 export const router = createBrowserRouter([
@@ -147,6 +148,14 @@ export const router = createBrowserRouter([
         element: (
           <AdminProtectedRoute>
             <AdminAssignedStudent />
+          </AdminProtectedRoute>
+        ),
+      },
+      {
+        path: "all-instructor",
+        element: (
+          <AdminProtectedRoute>
+            <AdminAllInstructor />
           </AdminProtectedRoute>
         ),
       },

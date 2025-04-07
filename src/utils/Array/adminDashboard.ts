@@ -16,6 +16,10 @@ export const adminDashboards = [
     path: "/admin-dashboard/assigned-student",
   },
   {
+    text: "All Instructor",
+    path: "/admin-dashboard/all-instructor",
+  },
+  {
     text: "Service",
     path: "/admin-dashboard/admin-service",
   },

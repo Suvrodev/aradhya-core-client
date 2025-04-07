@@ -25,6 +25,33 @@ export type TStudent = {
   exp: number;
 };
 
+export type TInstructor = {
+  _id: string;
+  name: string;
+  email: string;
+  image: string;
+  role: "instructor";
+  isBlocked: boolean;
+  instructorId: string;
+  phone: string;
+  gender: string;
+  ageRange: string;
+  deviceType: string;
+  internetType: string;
+  areaType: string;
+  presentAddress: string;
+  permanentAddress: string;
+  currentEducation: string;
+  educationInstitute: string;
+  facebookUrl: string;
+  twitterUrl: string;
+  linkedinUrl: string;
+  githubUrl: string;
+  whatsappNumber: string;
+  iat: number;
+  exp: number;
+  status: string;
+};
 export type TAssignedStudent = {
   _id: string;
   studentId: string;

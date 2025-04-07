@@ -11,7 +11,8 @@ interface IProps {
 }
 
 const InstructorRegistration = ({ setIsSignUpActive }: IProps) => {
-  const [instructorRegistration] = useInstructorRegistrationMutation();
+  const [instructorRegistration, { isLoading }] =
+    useInstructorRegistrationMutation();
   const [showPassword, setShowPassword] = useState(false);
   const [showPasswordConfirm, setShowPasswordConfirm] = useState(false);
   const [acceptTerms, setAcceptTerms] = useState(false);
@@ -180,14 +181,14 @@ const InstructorRegistration = ({ setIsSignUpActive }: IProps) => {
         {/* Submit Button */}
         <button
           type="submit"
-          disabled={!acceptTerms}
+          disabled={!acceptTerms || isLoading}
           className={`w-full py-2 px-4 rounded-md text-white font-medium ${
-            acceptTerms
+            acceptTerms && !isLoading
               ? "bg-blue-600 hover:bg-blue-700"
               : "bg-gray-400 cursor-not-allowed"
           } transition-colors`}
         >
-          Register
+          {isLoading ? "Registering..." : "Register"}
         </button>
       </form>
     </div>

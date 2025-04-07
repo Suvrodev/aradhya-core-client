@@ -65,6 +65,7 @@ export const baseApi = createApi({
     "student",
     "assignStudent",
     "promocode",
+    "instructor",
   ],
   endpoints: () => ({}),
 });
