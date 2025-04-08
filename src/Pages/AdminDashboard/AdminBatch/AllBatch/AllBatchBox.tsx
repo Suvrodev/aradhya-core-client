@@ -21,6 +21,7 @@ const AllBatchBox = ({ data }: IProps) => {
     projectnumber,
     instructorname,
     instructorimage,
+    instructorId,
   } = data;
 
   const { data: courseData } = useGetAllCourseQuery(undefined);
@@ -169,6 +170,7 @@ const AllBatchBox = ({ data }: IProps) => {
       </td>
       <td className="py-3 px-4">{classNumber}</td>
       <td className="py-3 px-4">{projectnumber}</td>
+      <td className="py-3 px-4">{instructorId}</td>
       <td className="py-3 px-4">{instructorname}</td>
       <td className="py-3 px-4">
         <img

@@ -2,13 +2,18 @@ import { Modal } from "antd";
 import { Settings } from "lucide-react";
 import { ChangeEvent, FormEvent, useEffect, useState } from "react";
 import { useGetAllCourseQuery } from "../../../../redux/api/features/Course/courseManagementApi";
-import { TBatch, TCourse } from "../../../../utils/types/globalTypes";
+import {
+  TBatch,
+  TCourse,
+  TInstructor,
+} from "../../../../utils/types/globalTypes";
 import { toast } from "sonner";
 import { sonarId } from "../../../../utils/Fucntion/sonarId";
 import {
   useGetJustOneBatchForUpdateQuery,
   useUpdateBatchMutation,
 } from "../../../../redux/api/features/Batch/batchManagementApi";
+import { useGetAllInstructorQuery } from "../../../../redux/api/features/Instructor/instructorManagementApi";
 
 interface IProps {
   batchId: string;
@@ -35,14 +40,14 @@ const UpdateBatch = ({ batchId }: IProps) => {
    * Start Logic From Here
    */
 
-  console.log("Flim Batch Data: ", batchId);
+  console.log("Pass batch id for update: ", batchId);
   const [updateBatch] = useUpdateBatchMutation();
 
   //Fetching batch
   const { data: batchData, isLoading: batchLoading } =
     useGetJustOneBatchForUpdateQuery(batchId);
   const batch: TBatch = batchData?.data;
-  console.log("Xosssssssssssssssssssssssssssss=", batch);
+  console.log("Come batch data in Update:", batch);
 
   ///Fetching all courses
   const { data: CourseData, isLoading: CourseLoading } =
@@ -62,6 +67,33 @@ const UpdateBatch = ({ batchId }: IProps) => {
     const data = event.target.value;
     setUnderCourse(data);
   };
+
+  ///Handle Instructor
+
+  const { data: instructorData, isLoading: instructorLoading } =
+    useGetAllInstructorQuery(undefined);
+  const allInstructors = instructorData?.data;
+  console.log("All Instructors: ", allInstructors);
+
+  const [insId, setInsId] = useState(batch?.instructorId);
+  const [insName, setInsName] = useState(batch?.instructorname);
+  const [insImage, setInsImage] = useState(batch?.instructorimage);
+  const [insFb, setInsFb] = useState(batch?.instructorfb);
+  const handleInstructor = (event: ChangeEvent<HTMLSelectElement>) => {
+    const selectedId = event.target.value;
+    setInsId(selectedId);
+
+    const selectedInstructor = allInstructors?.find(
+      (ins: TInstructor) => ins.instructorId.toString() === selectedId
+    );
+
+    if (selectedInstructor) {
+      setInsName(selectedInstructor.name);
+      setInsImage(selectedInstructor.image);
+      setInsFb(selectedInstructor.facebookUrl);
+    }
+  };
+  console.log("ins id: ", insId);
 
   useEffect(() => {
     if (courses) {
@@ -84,9 +116,9 @@ const UpdateBatch = ({ batchId }: IProps) => {
     const duration = Form.duration.value;
     const classNumber = Form.classNumber.value;
     const projectnumber = Number(Form.projectnumber.value);
-    const instructorname = Form.instructorname.value;
-    const instructorimage = Form.instructorimage.value;
-    const instructorfb = Form.instructorfb.value;
+    // const instructorname = Form.instructorname.value;
+    // const instructorimage = Form.instructorimage.value;
+    // const instructorfb = Form.instructorfb.value;
     const classdays = Form.classdays.value;
     const supportdays = Form.supportdays.value;
     if (!underCourse) {
@@ -96,6 +128,10 @@ const UpdateBatch = ({ batchId }: IProps) => {
 
     if (!batchStatus) {
       toast.error("Batch Status must be needed", { id: sonarId });
+      return;
+    }
+    if (!insId) {
+      toast.error("Instructor must be needed", { id: sonarId });
       return;
     }
 
@@ -117,9 +153,10 @@ const UpdateBatch = ({ batchId }: IProps) => {
       duration,
       classNumber,
       projectnumber,
-      instructorname,
-      instructorimage,
-      instructorfb,
+      instructorId: insId,
+      instructorname: insName,
+      instructorimage: insImage,
+      instructorfb: insFb,
       classdays,
       supportdays,
       batchStatus,
@@ -129,11 +166,11 @@ const UpdateBatch = ({ batchId }: IProps) => {
     toast.loading("Updating Batch", { id: sonarId });
     const res = await updateBatch({ id: batchId, updateData }).unwrap();
     if (res?.status) {
-      toast.success("Batch Updated Successfully", { id: sonarId });
+      toast.success("Batch Updated SuccessfullWy", { id: sonarId });
     }
   };
 
-  if (batchLoading || CourseLoading) {
+  if (batchLoading || CourseLoading || instructorLoading) {
     return <p>Loading</p>;
   }
 
@@ -296,47 +333,23 @@ const UpdateBatch = ({ batchId }: IProps) => {
                 />
               </div>
               <div>
-                <h1 className="block mb-4 text-sm font-medium">
-                  Instructor Name
-                </h1>
-                <input
-                  defaultValue={batch?.instructorname}
-                  type="text"
-                  name="instructorname"
+                <h1 className="block mb-4 text-sm font-medium">Instructor</h1>
+                <select
+                  name=""
                   id=""
+                  onChange={handleInstructor}
+                  value={insId}
                   className="w-full px-4 py-2 bg-gray-700 text-white rounded-lg focus:outline-none focus:ring focus:ring-teal-500 "
-                  placeholder="Instructor Name"
-                  required
-                />
-              </div>
-              <div>
-                <h1 className="block mb-4 text-sm font-medium">
-                  Instructor Image
-                </h1>
-                <input
-                  defaultValue={batch?.instructorimage}
-                  type="text"
-                  name="instructorimage"
-                  id=""
-                  className="w-full px-4 py-2 bg-gray-700 text-white rounded-lg focus:outline-none focus:ring focus:ring-teal-500 "
-                  placeholder="Instructor Image"
-                  required
-                />
-              </div>
-
-              <div>
-                <h1 className="block mb-4 text-sm font-medium">
-                  Instructor Facebook id
-                </h1>
-                <input
-                  defaultValue={batch?.instructorfb}
-                  type="text"
-                  name="instructorfb"
-                  id=""
-                  className="w-full px-4 py-2 bg-gray-700 text-white rounded-lg focus:outline-none focus:ring focus:ring-teal-500 "
-                  placeholder="Instructor Facebook id"
-                  required
-                />
+                >
+                  <option value="" disabled>
+                    Select One
+                  </option>
+                  {allInstructors?.map((ins: TInstructor, idx: number) => (
+                    <option value={ins?.instructorId} key={idx}>
+                      {ins?.name}
+                    </option>
+                  ))}
+                </select>
               </div>
 
               <div>

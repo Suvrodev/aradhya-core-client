@@ -58,6 +58,7 @@ const AllBatch = () => {
               <th className="py-3 px-4 text-left">Batch Status</th>
               <th className="py-3 px-4 text-left">Class Number</th>
               <th className="py-3 px-4 text-left">Project Number</th>
+              <th className="py-3 px-4 text-left">Instructor ID</th>
               <th className="py-3 px-4 text-left">Instructor Name</th>
               <th className="py-3 px-4 text-left">Instructor Image</th>
               <th className="py-3 px-4 text-left">Start Date</th>
