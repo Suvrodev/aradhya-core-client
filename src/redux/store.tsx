@@ -2,6 +2,7 @@ import { configureStore } from "@reduxjs/toolkit";
 import selectServiceReducer from "./api/features/Service/selectServiceSlice";
 import assignStudentReducer from "./api/features/AssignStudent/assignStudentSlice";
 import coursesReducer from "./api/features/Course/courseSlice";
+import instructorReducer from "./api/features/Instructor/instructorSlice";
 import authReducer from "./api/features/auth/authSlice";
 import {
   persistStore,
@@ -30,6 +31,7 @@ export const store = configureStore({
     selectService: selectServiceReducer,
     assignStudent: assignStudentReducer,
     courses: coursesReducer,
+    instructors: instructorReducer,
   },
   middleware: (getDefaultMiddleware) =>
     getDefaultMiddleware({

@@ -54,7 +54,7 @@ const AdminAllInstructor = () => {
   }
   return (
     <div className="pagePadding">
-      <h1 className="text-xl font-bold">All Student</h1>
+      <h1 className="text-xl font-bold">All Instructor</h1>
 
       {/* Simple Search Input */}
       <div className="my-4 flex justify-center">

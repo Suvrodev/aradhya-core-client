@@ -1,17 +1,42 @@
 import "./AdminDashboard.css";
 import MenuIcon from "@mui/icons-material/Menu";
 import WestIcon from "@mui/icons-material/West";
-import { useTitle } from "../../Component/hook/useTitle";
 import { useAppDispatch, useAppSelector } from "../../redux/hook";
 import { Link, Outlet, useLocation } from "react-router";
 import { adminDashboards } from "../../utils/Array/adminDashboard";
 import { logout } from "../../redux/api/features/auth/authSlice";
+import { useGetAllInstructorQuery } from "../../redux/api/features/Instructor/instructorManagementApi";
+import { setInstructor } from "../../redux/api/features/Instructor/instructorSlice";
+import LoadingPage from "../../Component/LoadingPage/LoadingPage";
+import { useEffect } from "react";
+import { useTitle } from "../../Component/hook/useTitle";
 
 const AdminDashboard = () => {
   useTitle("Admin Dashboard");
   const { user } = useAppSelector((state) => state.auth);
   const dispatch = useAppDispatch();
   const location = useLocation()?.pathname;
+
+  /**
+   * Set all course and all instructor in store start
+   */
+
+  const { data, isLoading } = useGetAllInstructorQuery(undefined);
+  const allInstructors = data?.data;
+  useEffect(() => {
+    if (allInstructors) {
+      dispatch(setInstructor(allInstructors));
+    }
+  }, [allInstructors, dispatch]);
+  const { instructors } = useAppSelector((state) => state.instructors);
+  console.log("Instructor from store: ", instructors);
+
+  if (isLoading) {
+    return <LoadingPage />;
+  }
+  /**
+   * Set all course and all instructor in store end
+   */
 
   return (
     <div className="adminDashboardBG">

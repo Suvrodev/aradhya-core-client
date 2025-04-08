@@ -8,8 +8,9 @@ import { useGetAllCourseQuery } from "../../../../redux/api/features/Course/cour
 
 interface IProps {
   data: TBatch;
+  idx: number;
 }
-const AllBatchBox = ({ data }: IProps) => {
+const AllBatchBox = ({ data, idx }: IProps) => {
   const {
     batchId,
     batchName,
@@ -139,7 +140,7 @@ const AllBatchBox = ({ data }: IProps) => {
       // key={idx}
       className=" border-b border-gray-700 hover:bg-gray-700 transition-all duration-300"
     >
-      <td className="py-3 px-4">{0}</td>
+      <td className="py-3 px-4">{idx + 1}</td>
       <td className="py-3 px-4">{batchId}</td>
       <td className="py-3 px-4">{batchName}</td>
       <td className="py-3 px-4">{underCourse}</td>

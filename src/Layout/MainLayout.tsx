@@ -4,7 +4,6 @@ import DesktopHeader from "../Pages/Shared/Header/DesktoHeader/DesktopHeader";
 import MobileHeader from "../Pages/Shared/Header/MobileHeader/MobileHeader";
 import NoticeHeader from "../Pages/Shared/NoticeHeader/NoticeHeader";
 import TraceUser from "../Component/TraceUser/TraceUser";
-import GetAllCourse from "../Component/GetAllCourse/GetAllCourse";
 import FreePalestine from "../Pages/Shared/FreePalestine/FreePalestine";
 
 const Main = () => {
@@ -24,9 +23,9 @@ const Main = () => {
       <div>
         <Footer />
       </div>
-      <div>
+      {/* <div>
         <GetAllCourse />
-      </div>
+      </div> */}
       <div>
         <TraceUser />
       </div>

@@ -1,7 +1,6 @@
 import { Modal } from "antd";
 import { Settings } from "lucide-react";
 import { ChangeEvent, FormEvent, useEffect, useState } from "react";
-import { useGetAllCourseQuery } from "../../../../redux/api/features/Course/courseManagementApi";
 import {
   TBatch,
   TCourse,
@@ -13,7 +12,7 @@ import {
   useGetJustOneBatchForUpdateQuery,
   useUpdateBatchMutation,
 } from "../../../../redux/api/features/Batch/batchManagementApi";
-import { useGetAllInstructorQuery } from "../../../../redux/api/features/Instructor/instructorManagementApi";
+import { useAppSelector } from "../../../../redux/hook";
 
 interface IProps {
   batchId: string;
@@ -39,6 +38,8 @@ const UpdateBatch = ({ batchId }: IProps) => {
   /**
    * Start Logic From Here
    */
+  const { courses } = useAppSelector((state) => state.courses);
+  const { instructors } = useAppSelector((state) => state.instructors);
 
   console.log("Pass batch id for update: ", batchId);
   const [updateBatch] = useUpdateBatchMutation();
@@ -49,13 +50,10 @@ const UpdateBatch = ({ batchId }: IProps) => {
   const batch: TBatch = batchData?.data;
   console.log("Come batch data in Update:", batch);
 
-  ///Fetching all courses
-  const { data: CourseData, isLoading: CourseLoading } =
-    useGetAllCourseQuery(undefined);
-  const courses = CourseData?.data;
-  //   console.log("Courses: ", courses);
+  console.log("Courses: ", courses);
   const [batchStatus, setBatchStatus] = useState(batch?.batchStatus);
   const [underCourse, setUnderCourse] = useState(batch?.underCourse);
+  console.log("----------------------------------undercourse: ", underCourse);
 
   const handleBatchStatus = (event: ChangeEvent<HTMLSelectElement>) => {
     const batchStatus = event.target.value;
@@ -70,10 +68,7 @@ const UpdateBatch = ({ batchId }: IProps) => {
 
   ///Handle Instructor
 
-  const { data: instructorData, isLoading: instructorLoading } =
-    useGetAllInstructorQuery(undefined);
-  const allInstructors = instructorData?.data;
-  console.log("All Instructors: ", allInstructors);
+  console.log("All Instructors: ", instructors);
 
   const [insId, setInsId] = useState(batch?.instructorId);
   const [insName, setInsName] = useState(batch?.instructorname);
@@ -83,9 +78,10 @@ const UpdateBatch = ({ batchId }: IProps) => {
     const selectedId = event.target.value;
     setInsId(selectedId);
 
-    const selectedInstructor = allInstructors?.find(
+    const selectedInstructor = instructors?.find(
       (ins: TInstructor) => ins.instructorId.toString() === selectedId
     );
+    console.log("Select instructor: ", selectedInstructor);
 
     if (selectedInstructor) {
       setInsName(selectedInstructor.name);
@@ -94,15 +90,20 @@ const UpdateBatch = ({ batchId }: IProps) => {
     }
   };
   console.log("ins id: ", insId);
+  console.log("ins name: ", insName);
+  console.log("ins image: ", insImage);
+  console.log("ins fb: ", insFb);
 
   useEffect(() => {
-    if (courses) {
+    if (batch) {
       setUnderCourse(batch?.underCourse);
       setBatchStatus(batch?.batchStatus);
+      setInsId(batch?.instructorId);
+      setInsName(batch?.instructorname);
+      setInsImage(batch?.instructorimage);
+      setInsFb(batch?.instructorfb);
     }
-  }, [courses, batch, underCourse]);
-
-  console.log("Under course:-------------------", underCourse);
+  }, [batch]);
 
   const handleUpdateBatch = async (event: FormEvent<HTMLFormElement>) => {
     event.preventDefault();
@@ -163,6 +164,18 @@ const UpdateBatch = ({ batchId }: IProps) => {
       schedule: scheduleArray,
     };
     console.log("Update Data: ", updateData);
+
+    // Show the update data in a readable format
+    const readableUpdateData = JSON.stringify(updateData, null, 2);
+    const confirmUpdate = window.confirm(
+      `You are about to update the batch with the following data:\n\n${readableUpdateData}\n\nAre you sure you want to continue?`
+    );
+
+    if (!confirmUpdate) {
+      toast.info("Batch update cancelled.", { id: sonarId });
+      return;
+    }
+
     toast.loading("Updating Batch", { id: sonarId });
     const res = await updateBatch({ id: batchId, updateData }).unwrap();
     if (res?.status) {
@@ -170,7 +183,7 @@ const UpdateBatch = ({ batchId }: IProps) => {
     }
   };
 
-  if (batchLoading || CourseLoading || instructorLoading) {
+  if (batchLoading) {
     return <p>Loading</p>;
   }
 
@@ -344,7 +357,7 @@ const UpdateBatch = ({ batchId }: IProps) => {
                   <option value="" disabled>
                     Select One
                   </option>
-                  {allInstructors?.map((ins: TInstructor, idx: number) => (
+                  {instructors?.map((ins: TInstructor, idx: number) => (
                     <option value={ins?.instructorId} key={idx}>
                       {ins?.name}
                     </option>

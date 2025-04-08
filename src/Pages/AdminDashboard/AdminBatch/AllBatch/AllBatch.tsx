@@ -69,7 +69,7 @@ const AllBatch = () => {
           </thead>
           <tbody>
             {batchData?.map((data: TBatch, idx: number) => (
-              <AllBatchBox key={idx} data={data} />
+              <AllBatchBox key={idx} idx={idx} data={data} />
             ))}
           </tbody>
         </table>

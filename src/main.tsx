@@ -10,6 +10,7 @@ import { HelmetProvider } from "react-helmet-async";
 import { PersistGate } from "redux-persist/integration/react";
 import GoTopButton from "./Component/GoTopButton/GoTopButton.tsx";
 import CrispChat from "./Component/Crisp/CrispChat.tsx";
+import GetAllCourse from "./Component/GetAllCourse/GetAllCourse.tsx";
 
 createRoot(document.getElementById("root")!).render(
   <Provider store={store}>
@@ -21,6 +22,7 @@ createRoot(document.getElementById("root")!).render(
         <Toaster />
         <GoTopButton />
         <CrispChat />
+        <GetAllCourse />
       </StrictMode>
     </HelmetProvider>
   </Provider>
