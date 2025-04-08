@@ -1,4 +1,5 @@
 import { useLottie } from "lottie-react";
+import "./Registration.css";
 // import RegAnim from "../../../../public/Reg_Lottie.json";
 import registrationAniamtion from "../../../assets/Lottie/Reg_Lottie.json";
 import { ChangeEvent, FormEvent, useState } from "react";
@@ -83,14 +84,14 @@ const Registration = () => {
             </div>
             <div className="form-control  ">
               <label className="label">
-                <span className="label-text font-bold  text-white">
+                <span className="label-text font-bold  text-white hide-arrows">
                   Phone Number
                 </span>
               </label>
               <input
                 type="number"
                 placeholder="Phone Number"
-                className="input input-bordered bg-gray-700 text-white"
+                className="input input-bordered bg-gray-700 text-white hide-arrows"
                 name="phone"
                 required
               />

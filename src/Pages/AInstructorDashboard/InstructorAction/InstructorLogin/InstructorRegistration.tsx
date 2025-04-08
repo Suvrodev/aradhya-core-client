@@ -85,9 +85,9 @@ const InstructorRegistration = ({ setIsSignUpActive }: IProps) => {
             </span>
           </label>
           <input
-            type="tel"
-            placeholder="Enter phone number"
-            className="input input-bordered w-full bg-gray-100 text-gray-800"
+            type="number"
+            placeholder="Enter phone number "
+            className="input input-bordered w-full bg-gray-100 text-gray-800 hide-arrows"
             name="phone"
             required
           />
