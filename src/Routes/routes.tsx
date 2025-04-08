@@ -47,6 +47,7 @@ import InstructorAdditionalInfo from "../Pages/AInstructorDashboard/InstructorAd
 import InstructorAddress from "../Pages/AInstructorDashboard/InstructorAddress/InstructorAddress";
 import InstructorEducation from "../Pages/AInstructorDashboard/InstructorEducation/InstructorEducation";
 import InstructorImportantLink from "../Pages/AInstructorDashboard/InstructorImportantLink/InstructorImportantLink";
+import InstructorForgetPassword from "../Pages/UserInterAction/InstructorForgetPassword/InstructorForgetPassword";
 // import EnrollCourse from "../Pages/ForAll/EnrollCourse/EnrollCourse";
 
 export const router = createBrowserRouter([
@@ -93,6 +94,10 @@ export const router = createBrowserRouter([
       {
         path: "forget-password",
         element: <ForgetPassword />,
+      },
+      {
+        path: "instructor-forget-password",
+        element: <InstructorForgetPassword />,
       },
       {
         path: "instructor-log",

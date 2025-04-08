@@ -144,7 +144,7 @@ const InstructorLogin = () => {
                 </div>
                 <div className="flex  flex-row my-2 text-black">
                   <Link
-                    to={"/forget-password"}
+                    to={"/instructor-forget-password"}
                     className="underline flex justify-start w-1/2"
                   >
                     Forget Password

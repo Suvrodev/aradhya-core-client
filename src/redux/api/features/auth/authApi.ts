@@ -58,10 +58,29 @@ const authApi = baseApi.injectEndpoints({
         };
       },
     }),
+    forgetInstructorPassword: builder.mutation({
+      query: (email) => {
+        console.log("Email in rtK: ", email);
+        return {
+          url: `/forget-password-ins`,
+          method: "POST",
+          body: email,
+        };
+      },
+    }),
     updatePasswordAfterOTP: builder.mutation({
       query: (data) => {
         return {
           url: `/forget-password/update-password-after-otp`,
+          method: "POST",
+          body: data,
+        };
+      },
+    }),
+    updateInstructorPasswordAfterOTP: builder.mutation({
+      query: (data) => {
+        return {
+          url: `/forget-password-ins/update-password-after-otp`,
           method: "POST",
           body: data,
         };
@@ -77,5 +96,7 @@ export const {
   useInstructorLoginMutation,
   useChangePasswordMutation,
   useForgetPasswordMutation,
+  useForgetInstructorPasswordMutation,
   useUpdatePasswordAfterOTPMutation,
+  useUpdateInstructorPasswordAfterOTPMutation,
 } = authApi;
