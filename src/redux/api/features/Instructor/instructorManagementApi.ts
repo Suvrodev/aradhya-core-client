@@ -43,7 +43,7 @@ const studentManagementApi = baseApi.injectEndpoints({
       invalidatesTags: ["instructor"],
     }),
 
-    updatePassword: builder.mutation({
+    updateInstructorePassword: builder.mutation({
       query: ({ id, updateData }) => {
         return {
           url: `/i-auth/updatepassword/${id}`,
@@ -61,5 +61,5 @@ export const {
   useGetSpecificInstructorQuery,
   useDeleteInstructorMutation,
   useUpdateInstructorMutation,
-  useUpdatePasswordMutation,
+  useUpdateInstructorePasswordMutation,
 } = studentManagementApi;

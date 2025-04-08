@@ -3,7 +3,6 @@ import { FiEdit2 } from "react-icons/fi";
 import { FaUser, FaEnvelope, FaPhone, FaLock } from "react-icons/fa";
 import { useAppSelector } from "../../../redux/hook";
 import { verifyToken } from "../../../utils/Fucntion/verifyToken";
-import { useUpdatePasswordMutation } from "../../../redux/api/features/Student/studentManagementApi";
 import { TInstructor } from "../../../utils/types/globalTypes";
 import LoadingPage from "../../../Component/LoadingPage/LoadingPage";
 import { CornerRightUp, Code, Camera } from "lucide-react";
@@ -12,6 +11,7 @@ import { sonarId } from "../../../utils/Fucntion/sonarId";
 import axios from "axios";
 import {
   useGetSpecificInstructorQuery,
+  useUpdateInstructorePasswordMutation,
   useUpdateInstructorMutation,
 } from "../../../redux/api/features/Instructor/instructorManagementApi";
 
@@ -21,7 +21,7 @@ const imageHostingUrl = `https://api.cloudinary.com/v1_1/${
 
 const InstructorMyProfile = () => {
   const [updateUser] = useUpdateInstructorMutation();
-  const [updatePassword] = useUpdatePasswordMutation();
+  const [updatePassword] = useUpdateInstructorePasswordMutation();
   const { token } = useAppSelector((state) => state.auth);
   // eslint-disable-next-line @typescript-eslint/no-explicit-any
   let user: any;
