@@ -42,6 +42,11 @@ import AdminAllInstructor from "../Pages/AdminDashboard/AdminAllInstructor/Admin
 import InstructorProtectedRoute from "./ProtectedRoute/InstructorProtectedRoute";
 import InstructorDashboard from "../Pages/AInstructorDashboard/InstructorDashboard";
 import InstructorDashboardHome from "../Pages/AInstructorDashboard/InstructorDashboardHome/InstructorDashboardHome";
+import InstructorMyProfile from "../Pages/AInstructorDashboard/InstructorMyProfile/InstructorMyProfile";
+import InstructorAdditionalInfo from "../Pages/AInstructorDashboard/InstructorAdditionalInfo/InstructorAdditionalInfo";
+import InstructorAddress from "../Pages/AInstructorDashboard/InstructorAddress/InstructorAddress";
+import InstructorEducation from "../Pages/AInstructorDashboard/InstructorEducation/InstructorEducation";
+import InstructorImportantLink from "../Pages/AInstructorDashboard/InstructorImportantLink/InstructorImportantLink";
 // import EnrollCourse from "../Pages/ForAll/EnrollCourse/EnrollCourse";
 
 export const router = createBrowserRouter([
@@ -345,7 +350,7 @@ export const router = createBrowserRouter([
         path: "my-profile",
         element: (
           <InstructorProtectedRoute>
-            <MyProfile />
+            <InstructorMyProfile />
           </InstructorProtectedRoute>
         ),
       },
@@ -353,7 +358,7 @@ export const router = createBrowserRouter([
         path: "additional-info",
         element: (
           <InstructorProtectedRoute>
-            <AdditionalInfo />
+            <InstructorAdditionalInfo />
           </InstructorProtectedRoute>
         ),
       },
@@ -361,7 +366,7 @@ export const router = createBrowserRouter([
         path: "address",
         element: (
           <InstructorProtectedRoute>
-            <Address />
+            <InstructorAddress />
           </InstructorProtectedRoute>
         ),
       },
@@ -370,17 +375,16 @@ export const router = createBrowserRouter([
         element: (
           <InstructorProtectedRoute>
             {" "}
-            <Education />
+            <InstructorEducation />
           </InstructorProtectedRoute>
         ),
       },
       {
         path: "important-link",
         element: (
-          <StudentProtectedRoute>
-            {" "}
-            <ImportantLink />
-          </StudentProtectedRoute>
+          <InstructorProtectedRoute>
+            <InstructorImportantLink />
+          </InstructorProtectedRoute>
         ),
       },
     ],

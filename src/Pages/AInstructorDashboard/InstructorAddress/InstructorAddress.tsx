@@ -11,7 +11,7 @@ import {
   useUpdateInstructorMutation,
 } from "../../../redux/api/features/Instructor/instructorManagementApi";
 
-const Address = () => {
+const InstructorAddress = () => {
   const [updateUser] = useUpdateInstructorMutation();
   const { token } = useAppSelector((state) => state.auth);
   // eslint-disable-next-line @typescript-eslint/no-explicit-any
@@ -52,7 +52,7 @@ const Address = () => {
       <div className="flex items-center justify-center min-h-screen p-6">
         <div className="w-full max-w-2xl bg-gray-900 text-white p-8 rounded-2xl shadow-lg relative">
           <h2 className="text-2xl font-bold text-[#00C8FF] border-b border-dashed border-[#004E6A] pb-2">
-            Address Information
+            Address Information (Instructor)
           </h2>
 
           <form onSubmit={handleSubmit} className="mt-6 grid grid-cols-1 gap-4">
@@ -99,4 +99,4 @@ const Address = () => {
   );
 };
 
-export default Address;
+export default InstructorAddress;

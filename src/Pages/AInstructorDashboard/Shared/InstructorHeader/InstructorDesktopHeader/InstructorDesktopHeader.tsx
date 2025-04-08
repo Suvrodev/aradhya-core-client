@@ -4,8 +4,8 @@ import fullLogo from "../../../../../assets/Logo/fullLogo.png";
 import { useState } from "react";
 import { useAppSelector } from "../../../../../redux/hook";
 import { verifyToken } from "../../../../../utils/Fucntion/verifyToken";
-import { useGetSpecificStudentQuery } from "../../../../../redux/api/features/Student/studentManagementApi";
 import { TStudent } from "../../../../../utils/types/globalTypes";
+import { useGetSpecificInstructorQuery } from "../../../../../redux/api/features/Instructor/instructorManagementApi";
 
 const InstructorDesktopHeader = () => {
   const { token } = useAppSelector((state) => state.auth);
@@ -15,7 +15,7 @@ const InstructorDesktopHeader = () => {
     user = verifyToken(token);
   }
 
-  const { data, isLoading } = useGetSpecificStudentQuery(user?.studentId);
+  const { data, isLoading } = useGetSpecificInstructorQuery(user?.studentId);
   const loggedStudent: TStudent = data?.data;
 
   const [openDashboard, setOpenDashboard] = useState(false);

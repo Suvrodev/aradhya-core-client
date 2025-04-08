@@ -19,7 +19,7 @@ const imageHostingUrl = `https://api.cloudinary.com/v1_1/${
   import.meta.env.VITE_CLOUDNARY_API_KEY
 }/image/upload`;
 
-const MyProfile = () => {
+const InstructorMyProfile = () => {
   const [updateUser] = useUpdateInstructorMutation();
   const [updatePassword] = useUpdatePasswordMutation();
   const { token } = useAppSelector((state) => state.auth);
@@ -177,7 +177,7 @@ const MyProfile = () => {
 
           <div className="relative">
             <h2 className="text-2xl font-bold text-[#00C8FF] border-b border-dashed border-[#004E6A] pb-2">
-              My Profile
+              My Profile (Instructor)
             </h2>
             <button
               onClick={toggleEdit}
@@ -293,4 +293,4 @@ const MyProfile = () => {
   );
 };
 
-export default MyProfile;
+export default InstructorMyProfile;

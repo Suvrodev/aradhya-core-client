@@ -1,27 +1,27 @@
 const instructorDashboardArray = [
   {
     title: "Home",
-    path: "/student-dashboard",
+    path: "/instructor-dashboard",
   },
   {
     title: "My Profile",
-    path: "/student-dashboard/my-profile",
+    path: "/instructor-dashboard/my-profile",
   },
   {
     title: "Additional Info",
-    path: "/student-dashboard/additional-info",
+    path: "/instructor-dashboard/additional-info",
   },
   {
     title: "Address",
-    path: "/student-dashboard/address",
+    path: "/instructor-dashboard/address",
   },
   {
     title: "Education",
-    path: "/student-dashboard/education",
+    path: "/instructor-dashboard/education",
   },
   {
     title: "Important Link",
-    path: "/student-dashboard/important-link",
+    path: "/instructor-dashboard/important-link",
   },
 ];
 

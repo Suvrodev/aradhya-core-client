@@ -1,9 +1,9 @@
 import "./InstructorDashboardData.css";
 import { TStudent } from "../../../utils/types/globalTypes";
-import studentDashboardArray from "./InstructorDashboardArray";
-import { Link } from "react-router";
+import { Link, useLocation } from "react-router";
 import { X } from "lucide-react";
 import LogOutButton from "../../../Component/Button/LogOutButton";
+import instructorDashboardArray from "./InstructorDashboardArray";
 
 interface IProps {
   loggedStudent: TStudent;
@@ -16,11 +16,14 @@ const InstructorDashboardData = ({
   setOpenDrawer,
 }: IProps) => {
   // console.log("Logged Student in Student Dashboard: ", loggedStudent);
-  const { name, image, studentId, email, phone } = loggedStudent;
+  const { name, image, studentId, email, phone, role } = loggedStudent;
 
   // console.log("Open Drawer in Dashboard: ", openDrawer);
+
+  const currentPath = useLocation()?.pathname;
+
   return (
-    <div className="bg-gradient-to-br from-teal-500 to-[#262F51] min-h-screen z-20 fixed top-0 md:relative shadow-xl">
+    <div className="bg-gradient-to-br from-purple-500 to-indigo-800 min-h-screen z-20 fixed top-0 md:relative shadow-xl">
       {/* Mobile Close Button */}
       <div className="relative md:hidden w-full">
         <div
@@ -45,6 +48,7 @@ const InstructorDashboardData = ({
             <p className="text-teal-200 text-sm">{studentId}</p>
             <p className="text-teal-200 text-sm">{email}</p>
             <p className="text-teal-200 text-sm">{phone}</p>
+            <p className="text-teal-200 text-sm font-bold">({role})</p>
           </div>
         </div>
 
@@ -61,12 +65,14 @@ const InstructorDashboardData = ({
         </Link>
 
         {/* Navigation Links */}
-        <nav className="w-full space-y-0 mb-2">
-          {studentDashboardArray.map((data, idx) => (
+        <nav className="w-full space-y-1 mb-2">
+          {instructorDashboardArray.map((data, idx) => (
             <Link
               key={idx}
               to={`${data?.path}`}
-              className="block py-2 px-6 rounded-lg hover:bg-teal-600/30 transition-all duration-200 text-teal-100 hover:text-white text-center"
+              className={`block py-2 px-6 rounded-lg hover:bg-indigo-600/70  text-teal-100 hover:text-white text-center ${
+                currentPath == data?.path ? "bg-indigo-600/70" : ""
+              }`}
               onClick={() => setOpenDrawer(!openDrawer)}
             >
               {data?.title}
