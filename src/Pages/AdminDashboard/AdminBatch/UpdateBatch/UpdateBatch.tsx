@@ -235,6 +235,7 @@ const UpdateBatch = ({ batchId }: IProps) => {
                   id=""
                   className="w-full px-4 py-2 bg-gray-700 text-white rounded-lg focus:outline-none focus:ring focus:ring-teal-500 "
                   placeholder="Batch Name"
+                  required
                 />
               </div>
 

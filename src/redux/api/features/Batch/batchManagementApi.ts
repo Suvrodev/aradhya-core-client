@@ -43,7 +43,7 @@ const batchManagementApi = baseApi.injectEndpoints({
       providesTags: ["batch"],
     }),
 
-    //Get just one upcomming batch (Course detaul)
+    //Get just one upcomming batch (Course detail)
     getUpComingBatchUnderCourse: builder.query({
       query: (id) => {
         return {
@@ -59,6 +59,16 @@ const batchManagementApi = baseApi.injectEndpoints({
       query: (id) => {
         return {
           url: `/batch/undercourse/${id}`,
+          method: "GET",
+        };
+      },
+      providesTags: ["batch"],
+    }),
+    //Show  batch for instructor assignation
+    getBatchUnderInstructor: builder.query({
+      query: (id) => {
+        return {
+          url: `/batch/underinstructor/${id}`,
           method: "GET",
         };
       },
@@ -94,6 +104,7 @@ export const {
   useGetJustOneBatchForUpdateQuery,
   useGetUpComingBatchUnderCourseQuery,
   useGetSpecificBatchUnderCourseQuery,
+  useGetBatchUnderInstructorQuery,
   useDeleteBatchMutation,
   useUpdateBatchMutation,
 } = batchManagementApi;

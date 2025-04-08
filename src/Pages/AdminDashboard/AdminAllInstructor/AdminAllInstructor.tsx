@@ -9,6 +9,7 @@ import { Trash2 } from "lucide-react";
 import { toast } from "sonner";
 import { sonarId } from "../../../utils/Fucntion/sonarId";
 import { TInstructor } from "../../../utils/types/globalTypes";
+import InstructorDetail from "./InstructorDetail/InstructorDetail";
 
 const AdminAllInstructor = () => {
   const [deleteStudent] = useDeleteInstructorMutation();
@@ -118,7 +119,9 @@ const AdminAllInstructor = () => {
                     {data?.status}
                   </button>
                 </td>
-                <td className="py-3 px-4">Detail</td>
+                <td className="py-3 px-4">
+                  <InstructorDetail instructorId={Number(data?.instructorId)} />
+                </td>
                 <td className="py-3 px-4">
                   <button
                     className="btn btn-error text-white flex items-center justify-center"

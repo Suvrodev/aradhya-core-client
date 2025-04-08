@@ -28,8 +28,6 @@ const AdminDashboard = () => {
       dispatch(setInstructor(allInstructors));
     }
   }, [allInstructors, dispatch]);
-  const { instructors } = useAppSelector((state) => state.instructors);
-  console.log("Instructor from store: ", instructors);
 
   if (isLoading) {
     return <LoadingPage />;
