@@ -23,9 +23,9 @@ const studentManagementApi = baseApi.injectEndpoints({
     }),
 
     deleteStudent: builder.mutation({
-      query: (id) => {
+      query: (email) => {
         return {
-          url: `/auth/allusers/${id}`,
+          url: `/auth/allusers/${email}`,
           method: "DELETE",
         };
       },
@@ -33,9 +33,9 @@ const studentManagementApi = baseApi.injectEndpoints({
     }),
 
     updateStudent: builder.mutation({
-      query: ({ id, updateData }) => {
+      query: ({ email, updateData }) => {
         return {
-          url: `/auth/allusers/${id}`,
+          url: `/auth/allusers/${email}`,
           method: "PATCH",
           body: updateData,
         };
@@ -44,9 +44,9 @@ const studentManagementApi = baseApi.injectEndpoints({
     }),
 
     updatePassword: builder.mutation({
-      query: ({ id, updateData }) => {
+      query: ({ email, updateData }) => {
         return {
-          url: `/auth/updatepassword/${id}`,
+          url: `/auth/updatepassword/${email}`,
           method: "PATCH",
           body: updateData,
         };

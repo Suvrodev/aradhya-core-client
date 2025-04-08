@@ -177,7 +177,7 @@ const InstructorMyProfile = () => {
 
           <div className="relative">
             <h2 className="text-2xl font-bold text-[#00C8FF] border-b border-dashed border-[#004E6A] pb-2">
-              My Profile (Instructor)
+              My Profile ({loggedStudent?.role})
             </h2>
             <button
               onClick={toggleEdit}

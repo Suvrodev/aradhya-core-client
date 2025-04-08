@@ -26,7 +26,7 @@ const ImportantLink = () => {
     user = verifyToken(token);
   }
 
-  const { data, isLoading } = useGetSpecificStudentQuery(user?.studentId);
+  const { data, isLoading } = useGetSpecificStudentQuery(user?.email);
   const loggedStudent: TStudent = data?.data;
 
   const [facebookUrl, setFacebookUrl] = useState(
@@ -52,7 +52,7 @@ const ImportantLink = () => {
     };
     toast.loading("Updating Important Links", { id: sonarId });
     const res = await updateUser({
-      id: loggedStudent?.studentId,
+      email: loggedStudent?.email,
       updateData,
     }).unwrap();
     if (res?.success) {
@@ -69,7 +69,7 @@ const ImportantLink = () => {
       <div className="flex items-center justify-center min-h-screen p-6">
         <div className="w-full max-w-2xl bg-gray-900 text-white p-8 rounded-2xl shadow-lg relative">
           <h2 className="text-2xl font-bold text-[#00C8FF] border-b border-dashed border-[#004E6A] pb-2">
-            Important Links
+            Important Links ({loggedStudent?.role})
           </h2>
 
           <form

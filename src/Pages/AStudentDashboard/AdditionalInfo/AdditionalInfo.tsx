@@ -2,17 +2,17 @@ import { FormEvent, useState } from "react";
 import { FaUser, FaWifi, FaMobileAlt, FaMapMarkerAlt } from "react-icons/fa";
 import { useAppSelector } from "../../../redux/hook";
 import { verifyToken } from "../../../utils/Fucntion/verifyToken";
-import { TInstructor } from "../../../utils/types/globalTypes";
+import {
+  useGetSpecificStudentQuery,
+  useUpdateStudentMutation,
+} from "../../../redux/api/features/Student/studentManagementApi";
+import { TStudent } from "../../../utils/types/globalTypes";
 import LoadingPage from "../../../Component/LoadingPage/LoadingPage";
 import { toast } from "sonner";
 import { sonarId } from "../../../utils/Fucntion/sonarId";
-import {
-  useGetSpecificInstructorQuery,
-  useUpdateInstructorMutation,
-} from "../../../redux/api/features/Instructor/instructorManagementApi";
 
 const AdditionalInfo = () => {
-  const [updateUser] = useUpdateInstructorMutation();
+  const [updateUser] = useUpdateStudentMutation();
   const { token } = useAppSelector((state) => state.auth);
   // eslint-disable-next-line @typescript-eslint/no-explicit-any
   let user: any;
@@ -20,8 +20,8 @@ const AdditionalInfo = () => {
     user = verifyToken(token);
   }
 
-  const { data, isLoading } = useGetSpecificInstructorQuery(user?.studentId);
-  const loggedStudent: TInstructor = data?.data;
+  const { data, isLoading } = useGetSpecificStudentQuery(user?.email);
+  const loggedStudent: TStudent = data?.data;
 
   const [gender, setGender] = useState(loggedStudent?.gender || "");
   const [ageRange, setAgeRange] = useState(loggedStudent?.ageRange || "");
@@ -43,7 +43,7 @@ const AdditionalInfo = () => {
     console.log("Update Data: ", updateData);
     toast.loading("Updating Additional Info", { id: sonarId });
     const res = await updateUser({
-      id: loggedStudent?.instructorId,
+      email: loggedStudent?.email,
       updateData,
     }).unwrap();
     if (res?.success) {
@@ -60,7 +60,7 @@ const AdditionalInfo = () => {
       <div className="flex items-center justify-center min-h-screen p-6">
         <div className="w-full max-w-2xl bg-gray-900 text-white p-8 rounded-2xl shadow-lg relative">
           <h2 className="text-2xl font-bold text-[#00C8FF] border-b border-dashed border-[#004E6A] pb-2">
-            Additional Information
+            Additional Information ({loggedStudent?.role})
           </h2>
 
           <form

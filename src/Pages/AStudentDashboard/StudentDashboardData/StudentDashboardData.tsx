@@ -1,7 +1,7 @@
 import "./StudentDashboardData.css";
 import { TStudent } from "../../../utils/types/globalTypes";
 import studentDashboardArray from "./studentDashboardArray";
-import { Link } from "react-router";
+import { Link, useLocation } from "react-router";
 import { X } from "lucide-react";
 import LogOutButton from "../../../Component/Button/LogOutButton";
 
@@ -19,6 +19,9 @@ const StudentDashboardData = ({
   const { name, image, studentId, email, phone } = loggedStudent;
 
   // console.log("Open Drawer in Dashboard: ", openDrawer);
+
+  const path = useLocation()?.pathname;
+
   return (
     <div className="bg-gradient-to-br from-teal-500 to-[#262F51] min-h-screen z-20 fixed top-0 md:relative shadow-xl">
       {/* Mobile Close Button */}
@@ -66,7 +69,9 @@ const StudentDashboardData = ({
             <Link
               key={idx}
               to={`${data?.path}`}
-              className="block py-2 px-6 rounded-lg hover:bg-teal-600/30 transition-all duration-200 text-teal-100 hover:text-white text-center"
+              className={`block py-2 px-6 rounded-lg hover:bg-teal-600/30 transition-all duration-200 text-teal-100 hover:text-white text-center ${
+                path == data?.path ? "bg-teal-600" : ""
+              }`}
               onClick={() => setOpenDrawer(!openDrawer)}
             >
               {data?.title}

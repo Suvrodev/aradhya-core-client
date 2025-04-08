@@ -20,7 +20,7 @@ const Education = () => {
     user = verifyToken(token);
   }
 
-  const { data, isLoading } = useGetSpecificStudentQuery(user?.studentId);
+  const { data, isLoading } = useGetSpecificStudentQuery(user?.email);
   const loggedStudent: TStudent = data?.data;
 
   const [currentEducation, setCurrentEducation] = useState(
@@ -35,7 +35,7 @@ const Education = () => {
     const updateData = { currentEducation, educationInstitute };
     toast.loading("Updating Education Information", { id: sonarId });
     const res = await updateUser({
-      id: loggedStudent?.studentId,
+      email: loggedStudent?.email,
       updateData,
     }).unwrap();
     if (res?.success) {
@@ -52,7 +52,7 @@ const Education = () => {
       <div className="flex items-center justify-center min-h-screen p-6">
         <div className="w-full max-w-2xl bg-gray-900 text-white p-8 rounded-2xl shadow-lg relative">
           <h2 className="text-2xl font-bold text-[#00C8FF] border-b border-dashed border-[#004E6A] pb-2">
-            Education Information
+            Education Information ({loggedStudent?.role})
           </h2>
 
           <form onSubmit={handleSubmit} className="mt-6 grid grid-cols-1 gap-4">

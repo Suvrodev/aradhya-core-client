@@ -3,24 +3,24 @@ import { FiEdit2 } from "react-icons/fi";
 import { FaUser, FaEnvelope, FaPhone, FaLock } from "react-icons/fa";
 import { useAppSelector } from "../../../redux/hook";
 import { verifyToken } from "../../../utils/Fucntion/verifyToken";
-import { useUpdatePasswordMutation } from "../../../redux/api/features/Student/studentManagementApi";
-import { TInstructor } from "../../../utils/types/globalTypes";
+import {
+  useGetSpecificStudentQuery,
+  useUpdatePasswordMutation,
+  useUpdateStudentMutation,
+} from "../../../redux/api/features/Student/studentManagementApi";
+import { TStudent } from "../../../utils/types/globalTypes";
 import LoadingPage from "../../../Component/LoadingPage/LoadingPage";
 import { CornerRightUp, Code, Camera } from "lucide-react";
 import { toast } from "sonner";
 import { sonarId } from "../../../utils/Fucntion/sonarId";
 import axios from "axios";
-import {
-  useGetSpecificInstructorQuery,
-  useUpdateInstructorMutation,
-} from "../../../redux/api/features/Instructor/instructorManagementApi";
 
 const imageHostingUrl = `https://api.cloudinary.com/v1_1/${
   import.meta.env.VITE_CLOUDNARY_API_KEY
 }/image/upload`;
 
 const MyProfile = () => {
-  const [updateUser] = useUpdateInstructorMutation();
+  const [updateUser] = useUpdateStudentMutation();
   const [updatePassword] = useUpdatePasswordMutation();
   const { token } = useAppSelector((state) => state.auth);
   // eslint-disable-next-line @typescript-eslint/no-explicit-any
@@ -29,8 +29,8 @@ const MyProfile = () => {
     user = verifyToken(token);
   }
 
-  const { data, isLoading } = useGetSpecificInstructorQuery(user?.studentId);
-  const loggedStudent: TInstructor = data?.data;
+  const { data, isLoading } = useGetSpecificStudentQuery(user?.email);
+  const loggedStudent: TStudent = data?.data;
   // console.log("Logged Student in My Profile: ", loggedStudent);
 
   const [profileImage, setProfileImage] = useState(loggedStudent?.image);
@@ -74,7 +74,7 @@ const MyProfile = () => {
         const updateData = { image: imageUrl };
         toast.loading("Updating Image", { id: sonarId });
         const res = await updateUser({
-          id: loggedStudent?.instructorId,
+          email: loggedStudent?.email,
           updateData,
         }).unwrap();
         console.log("Update Res: ", res);
@@ -100,7 +100,7 @@ const MyProfile = () => {
     // console.log("Update Data:  ", updateData);
     toast.loading("Updating", { id: sonarId });
     const res = await updateUser({
-      id: loggedStudent?.instructorId,
+      id: loggedStudent?.studentId,
       updateData,
     }).unwrap();
     // console.log("Res: ", res);
@@ -127,7 +127,7 @@ const MyProfile = () => {
     // console.log("Update Data: ", updateData);
     toast.loading("Updating Password", { id: sonarId });
     const res = await updatePassword({
-      id: loggedStudent?.instructorId,
+      email: loggedStudent?.email,
       updateData,
     }).unwrap();
     console.log("Res: ", res);
@@ -177,7 +177,7 @@ const MyProfile = () => {
 
           <div className="relative">
             <h2 className="text-2xl font-bold text-[#00C8FF] border-b border-dashed border-[#004E6A] pb-2">
-              My Profile
+              My Profile ({loggedStudent?.role})
             </h2>
             <button
               onClick={toggleEdit}
@@ -219,7 +219,7 @@ const MyProfile = () => {
                 <input
                   type="text"
                   name="studentId"
-                  defaultValue={loggedStudent?.instructorId}
+                  defaultValue={loggedStudent?.studentId}
                   disabled
                   className="w-full p-2 rounded-md bg-gray-700 text-gray-400 cursor-not-allowed"
                 />

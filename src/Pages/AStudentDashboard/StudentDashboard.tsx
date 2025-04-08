@@ -16,8 +16,7 @@ const StudentDashboard = () => {
   if (token) {
     user = verifyToken(token);
   }
-
-  const { data, isLoading } = useGetSpecificStudentQuery(user?.studentId);
+  const { data, isLoading } = useGetSpecificStudentQuery(user?.email);
   const loggedStudent: TStudent = data?.data;
   console.log("Logged Student in Student Main(fetch): ", loggedStudent);
 

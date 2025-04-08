@@ -70,7 +70,7 @@ const InstructorImportantLink = () => {
       <div className="flex items-center justify-center min-h-screen p-6">
         <div className="w-full max-w-2xl bg-gray-900 text-white p-8 rounded-2xl shadow-lg relative">
           <h2 className="text-2xl font-bold text-[#00C8FF] border-b border-dashed border-[#004E6A] pb-2">
-            Important Links (Instructor)
+            Important Links ({loggedStudent?.role})
           </h2>
 
           <form
