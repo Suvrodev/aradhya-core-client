@@ -5,13 +5,17 @@ import AllBatch from "../AllBatch/AllBatch";
 import { useAddBatchMutation } from "../../../../redux/api/features/Batch/batchManagementApi";
 import { useGetAllCourseQuery } from "../../../../redux/api/features/Course/courseManagementApi";
 import LoadingPage from "../../../../Component/LoadingPage/LoadingPage";
-import { TCourse } from "../../../../utils/types/globalTypes";
+import { TCourse, TInstructor } from "../../../../utils/types/globalTypes";
+import { useGetAllInstructorQuery } from "../../../../redux/api/features/Instructor/instructorManagementApi";
 
 const AdminBatch = () => {
   const { data: CourseData, isLoading } = useGetAllCourseQuery(undefined);
   const [addBatch] = useAddBatchMutation();
   const [batchStatus, setBatchStatus] = useState("");
-
+  const { data: instructorData, isLoading: instructorLoading } =
+    useGetAllInstructorQuery(undefined);
+  const allInstructors = instructorData?.data;
+  console.log("All Instructors: ", allInstructors);
   const courses = CourseData?.data;
   // console.log("Courses: ", courses);
 
@@ -20,6 +24,26 @@ const AdminBatch = () => {
     const data = event.target.value;
     setUnderCourse(data);
   };
+
+  const [insId, setInsId] = useState("");
+  const [insName, setInsName] = useState("");
+  const [insImage, setInsImage] = useState("");
+  const [insFb, setInsFb] = useState("");
+  const handleInstructor = (event: ChangeEvent<HTMLSelectElement>) => {
+    const selectedId = event.target.value;
+    setInsId(selectedId);
+
+    const selectedInstructor = allInstructors?.find(
+      (ins: TInstructor) => ins.instructorId.toString() === selectedId
+    );
+
+    if (selectedInstructor) {
+      setInsName(selectedInstructor.name);
+      setInsImage(selectedInstructor.image);
+      setInsFb(selectedInstructor.facebookUrl);
+    }
+  };
+  console.log("ins id: ", insId);
 
   const handleBatchStatus = (event: ChangeEvent<HTMLSelectElement>) => {
     const batchStatus = event.target.value;
@@ -38,9 +62,10 @@ const AdminBatch = () => {
     const duration = Form.duration.value;
     const classNumber = Number(Form.classNumber.value);
     const projectnumber = Number(Form.projectnumber.value);
-    const instructorname = Form.instructorname.value;
-    const instructorimage = Form.instructorimage.value;
-    const instructorfb = Form.instructorfb.value;
+
+    // const instructorname = Form.instructorname.value;
+    // const instructorimage = Form.instructorimage.value;
+    // const instructorfb = Form.instructorfb.value;
     const classdays = Form.classdays.value;
     const supportdays = Form.supportdays.value;
 
@@ -51,6 +76,10 @@ const AdminBatch = () => {
 
     if (!batchStatus) {
       toast.error("Batch Status must be needed", { id: sonarId });
+      return;
+    }
+    if (!insId) {
+      toast.error("Instructor must be needed", { id: sonarId });
       return;
     }
 
@@ -72,9 +101,10 @@ const AdminBatch = () => {
       duration,
       classNumber,
       projectnumber,
-      instructorname,
-      instructorimage,
-      instructorfb,
+      instructorId: insId,
+      instructorname: insName,
+      instructorimage: insImage,
+      instructorfb: insFb,
       classdays,
       supportdays,
       batchStatus,
@@ -88,18 +118,18 @@ const AdminBatch = () => {
     }
   };
 
-  if (isLoading) {
+  if (isLoading || instructorLoading) {
     return <LoadingPage />;
   }
   return (
     <div className="p-5">
       <h1 className="text-2xl font-bold">Admin Batch</h1>
 
-      <div className="mt-4 grid grid-cols-1 md:grid-cols-2 gap-x-4">
+      <div className="mt-4 grid grid-cols-1 md:grid-cols-1 gap-x-4">
         <div className="">
-          <h1 className="font-bold text-xl">Add Batch</h1>
+          <h1 className="font-bold text-xl text-center">Add Batch</h1>
           <form action="" className="mt-4" onSubmit={handleSubmitBatch}>
-            <div className="grid grid-cols-2 gap-4">
+            <div className="grid grid-cols-6 gap-4">
               <div>
                 <h1 className="block mb-4 text-sm font-medium">Batch id</h1>
                 <input
@@ -119,6 +149,7 @@ const AdminBatch = () => {
                   id=""
                   className="w-full px-4 py-2 bg-gray-700 text-white rounded-lg focus:outline-none focus:ring focus:ring-teal-500 "
                   placeholder="Batch Name"
+                  required
                 />
               </div>
               <div>
@@ -219,44 +250,23 @@ const AdminBatch = () => {
                 />
               </div>
               <div>
-                <h1 className="block mb-4 text-sm font-medium">
-                  Instructor Name
-                </h1>
-                <input
-                  type="text"
-                  name="instructorname"
+                <h1 className="block mb-4 text-sm font-medium">Instructor</h1>
+                <select
+                  name=""
                   id=""
+                  onChange={handleInstructor}
+                  value={insId}
                   className="w-full px-4 py-2 bg-gray-700 text-white rounded-lg focus:outline-none focus:ring focus:ring-teal-500 "
-                  placeholder="Instructor Name"
-                  required
-                />
-              </div>
-              <div>
-                <h1 className="block mb-4 text-sm font-medium">
-                  Instructor Image
-                </h1>
-                <input
-                  type="text"
-                  name="instructorimage"
-                  id=""
-                  className="w-full px-4 py-2 bg-gray-700 text-white rounded-lg focus:outline-none focus:ring focus:ring-teal-500 "
-                  placeholder="Instructor Image"
-                  required
-                />
-              </div>
-
-              <div>
-                <h1 className="block mb-4 text-sm font-medium">
-                  Instructor Facebook id
-                </h1>
-                <input
-                  type="text"
-                  name="instructorfb"
-                  id=""
-                  className="w-full px-4 py-2 bg-gray-700 text-white rounded-lg focus:outline-none focus:ring focus:ring-teal-500 "
-                  placeholder="Instructor Facebook id"
-                  required
-                />
+                >
+                  <option value="" disabled>
+                    Select One
+                  </option>
+                  {allInstructors?.map((ins: TInstructor, idx: number) => (
+                    <option value={ins?.instructorId} key={idx}>
+                      {ins?.name}
+                    </option>
+                  ))}
+                </select>
               </div>
 
               <div>
@@ -302,7 +312,7 @@ const AdminBatch = () => {
               </div>
 
               {/*Batch Schedule */}
-              <div className="md:col-span-2">
+              <div className="md:col-span-6">
                 <label className="block font-medium mb-2 text-green-500">
                   Batch Schedule
                 </label>
@@ -314,9 +324,11 @@ const AdminBatch = () => {
                 />
               </div>
             </div>
-            <button className="btn btn-primary text-white mt-4">
-              Add Batch
-            </button>
+            <div className="flex justify-center">
+              <button className="btn w-10/12 mx-auto btn-primary text-white mt-4">
+                Add Batch
+              </button>
+            </div>
           </form>
         </div>
         <div>

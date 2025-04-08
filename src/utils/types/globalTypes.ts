@@ -114,6 +114,7 @@ export type TBatch = {
   duration: string;
   classNumber: number;
   projectnumber: number;
+  instructorId: string;
   instructorname: string;
   instructorimage: string;
   instructorfb: string;

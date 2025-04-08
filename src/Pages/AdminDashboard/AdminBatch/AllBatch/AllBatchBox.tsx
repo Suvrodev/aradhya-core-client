@@ -18,6 +18,9 @@ const AllBatchBox = ({ data }: IProps) => {
     start,
     end,
     classNumber,
+    projectnumber,
+    instructorname,
+    instructorimage,
   } = data;
 
   const { data: courseData } = useGetAllCourseQuery(undefined);
@@ -35,67 +38,120 @@ const AllBatchBox = ({ data }: IProps) => {
     }
   };
   return (
-    <div className="border py-4 px-2 rounded-md relative ">
-      <h1>
-        {" "}
-        <span className="bg-white py-1 px-2 shadow-md text-black rounded-md">
-          Batch id
-        </span>{" "}
-        <span className="ml-4">{batchId}</span>
-      </h1>
-      <div className="mt-4 flex justify-between">
-        <div className="">
-          {underCourse && (
-            <p>
-              {" "}
-              <span className="bg-white py-1 px-2 shadow-md text-black rounded-md">
-                Under Course
-              </span>{" "}
-              <span className="ml-2">{underCourse}</span>
-            </p>
-          )}
-        </div>
-        <div className="">
-          <span className="bg-white py-1 px-2 shadow-md text-black rounded-md">
-            Course Name
-          </span>{" "}
+    // <div className="border py-4 px-2 rounded-md relative ">
+    //   <h1>
+    //     {" "}
+    //     <span className="bg-white py-1 px-2 shadow-md text-black rounded-md">
+    //       Batch id
+    //     </span>{" "}
+    //     <span className="ml-4">{batchId}</span>
+    //   </h1>
+    //   <div className="mt-4 flex justify-between">
+    //     <div className="">
+    //       {underCourse && (
+    //         <p>
+    //           {" "}
+    //           <span className="bg-white py-1 px-2 shadow-md text-black rounded-md">
+    //             Under Course
+    //           </span>{" "}
+    //           <span className="ml-2">{underCourse}</span>
+    //         </p>
+    //       )}
+    //     </div>
+    //     <div className="">
+    //       <span className="bg-white py-1 px-2 shadow-md text-black rounded-md">
+    //         Course Name
+    //       </span>{" "}
+    //       <span className="ml-2">
+    //         {courses?.find((course: TCourse) => course?.courseId == underCourse)
+    //           ?.courseTitle || "Not Found"}
+    //       </span>
+    //     </div>
+    //   </div>
+    //   <div className="mt-4">
+    //     {batchName && (
+    //       <p>
+    //         {" "}
+    //         <span className="bg-white py-1 px-2 shadow-md text-black rounded-md">
+    //           Batch Name
+    //         </span>{" "}
+    //         <span className="ml-2">{batchName}</span>
+    //       </p>
+    //     )}
+    //   </div>
+    //   <div className="mt-4 flex justify-between">
+    //     <p>
+    //       {" "}
+    //       <span className="bg-white py-1 px-2 shadow-md text-black rounded-md">
+    //         start
+    //       </span>{" "}
+    //       <span className="ml-2"> {start}</span>
+    //     </p>
+    //     <p>
+    //       <span className="bg-white py-1 px-2 shadow-md text-black rounded-md">
+    //         End
+    //       </span>{" "}
+    //       <span className="ml-2"> {end}</span>
+    //     </p>
+    //   </div>
+    //   <div className="mt-4 flex justify-between">
+    //     <p>
+    //       <span className="bg-white py-1 px-2 shadow-md text-black rounded-md">
+    //         Batch Status
+    //       </span>{" "}
+    //       <span
+    //         className={`ml-2 py-1 px-2 shadow-md text-white rounded-md ${
+    //           batchStatus === "onGoing"
+    //             ? "bg-purple-500"
+    //             : data?.batchStatus === "upComing"
+    //             ? "bg-green-500"
+    //             : data?.batchStatus === "end"
+    //             ? "bg-red-800"
+    //             : "bg-gray-400" // Default case (optional)
+    //         }`}
+    //       >
+    //         {batchStatus}
+    //       </span>
+    //     </p>
+    //     <p>
+    //       <span className="bg-white py-1 px-2 shadow-md text-black rounded-md">
+    //         Class
+    //       </span>{" "}
+    //       <span className={`ml-2 py-1 px-2 shadow-md text-white rounded-md`}>
+    //         {classNumber}
+    //       </span>
+    //     </p>
+    //   </div>
+
+    //   <div className="absolute top-2 right-2 flex gap-x-2">
+    //     <div>
+    //       <UpdateBatch batchId={batchId} />
+    //     </div>
+
+    //     <div onClick={() => handleDelete(batchId)}>
+    //       <DeleteComponent />
+    //     </div>
+    //   </div>
+    // </div>
+
+    <tr
+      // key={idx}
+      className=" border-b border-gray-700 hover:bg-gray-700 transition-all duration-300"
+    >
+      <td className="py-3 px-4">{0}</td>
+      <td className="py-3 px-4">{batchId}</td>
+      <td className="py-3 px-4">{batchName}</td>
+      <td className="py-3 px-4">{underCourse}</td>
+      <td className="py-3 px-4">
+        {
           <span className="ml-2">
             {courses?.find((course: TCourse) => course?.courseId == underCourse)
               ?.courseTitle || "Not Found"}
           </span>
-        </div>
-      </div>
-      <div className="mt-4">
-        {batchName && (
-          <p>
-            {" "}
-            <span className="bg-white py-1 px-2 shadow-md text-black rounded-md">
-              Batch Name
-            </span>{" "}
-            <span className="ml-2">{batchName}</span>
-          </p>
-        )}
-      </div>
-      <div className="mt-4 flex justify-between">
-        <p>
-          {" "}
-          <span className="bg-white py-1 px-2 shadow-md text-black rounded-md">
-            start
-          </span>{" "}
-          <span className="ml-2"> {start}</span>
-        </p>
-        <p>
-          <span className="bg-white py-1 px-2 shadow-md text-black rounded-md">
-            End
-          </span>{" "}
-          <span className="ml-2"> {end}</span>
-        </p>
-      </div>
-      <div className="mt-4 flex justify-between">
-        <p>
-          <span className="bg-white py-1 px-2 shadow-md text-black rounded-md">
-            Batch Status
-          </span>{" "}
+        }
+      </td>
+      <td className="py-3 px-4">
+        {
           <span
             className={`ml-2 py-1 px-2 shadow-md text-white rounded-md ${
               batchStatus === "onGoing"
@@ -109,27 +165,30 @@ const AllBatchBox = ({ data }: IProps) => {
           >
             {batchStatus}
           </span>
-        </p>
-        <p>
-          <span className="bg-white py-1 px-2 shadow-md text-black rounded-md">
-            Class
-          </span>{" "}
-          <span className={`ml-2 py-1 px-2 shadow-md text-white rounded-md`}>
-            {classNumber}
-          </span>
-        </p>
-      </div>
-
-      <div className="absolute top-2 right-2 flex gap-x-2">
-        <div>
-          <UpdateBatch batchId={batchId} />
-        </div>
-
-        <div onClick={() => handleDelete(batchId)}>
-          <DeleteComponent />
-        </div>
-      </div>
-    </div>
+        }
+      </td>
+      <td className="py-3 px-4">{classNumber}</td>
+      <td className="py-3 px-4">{projectnumber}</td>
+      <td className="py-3 px-4">{instructorname}</td>
+      <td className="py-3 px-4">
+        <img
+          src={instructorimage}
+          className="w-16 h-10 object-cover rounded-md"
+        />
+      </td>
+      <td className="py-3 px-4">{start}</td>
+      <td className="py-3 px-4">{end}</td>
+      <td className="py-3 px-4">
+        <UpdateBatch batchId={batchId} />
+      </td>
+      <td className="py-3 px-4">
+        {
+          <div onClick={() => handleDelete(batchId)}>
+            <DeleteComponent />
+          </div>
+        }
+      </td>
+    </tr>
   );
 };
 
