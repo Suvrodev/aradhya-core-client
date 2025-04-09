@@ -6,6 +6,7 @@ import { verifyToken } from "../../../utils/Fucntion/verifyToken";
 import { TAssignedStudent, TBatch } from "../../../utils/types/globalTypes";
 import "./InstructorDashboardHome.css";
 import { useGetInstructorsAssignStudentQuery } from "../../../redux/api/features/AssignStudent/assignStudentManagementApi";
+import SendNotice from "./SendNotice/SendNotice";
 
 const InstructorDashboardHome = () => {
   const { courses } = useAppSelector((state) => state.courses);
@@ -115,15 +116,18 @@ const InstructorDashboardHome = () => {
                     {batch.duration}
                   </p>
                   {/* Show Student Button */}
-                  <button
-                    onClick={() => {
-                      setSelectedBatch(batch.batchId);
-                      setSelectedCourse(batch.underCourse);
-                    }}
-                    className="bg-blue-500 text-white px-4 py-2 rounded-md mt-4"
-                  >
-                    Show Students
-                  </button>
+                  <div className="flex items-center gap-x-4">
+                    <button
+                      onClick={() => {
+                        setSelectedBatch(batch.batchId);
+                        setSelectedCourse(batch.underCourse);
+                      }}
+                      className="bg-blue-500 text-white px-4 py-2 rounded-md mt-4"
+                    >
+                      Show Students
+                    </button>
+                    <SendNotice batchId={batch?.batchId} />
+                  </div>
                 </div>
               </div>
             ))}

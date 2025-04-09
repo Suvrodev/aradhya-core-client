@@ -94,6 +94,16 @@ const batchManagementApi = baseApi.injectEndpoints({
       },
       invalidatesTags: ["batch"],
     }),
+    updateBatchNotice: builder.mutation({
+      query: ({ id, updateData }) => {
+        return {
+          url: `/batch/batch-notice/${id}`,
+          method: "PATCH",
+          body: updateData,
+        };
+      },
+      invalidatesTags: ["batch"],
+    }),
   }),
 });
 
@@ -107,4 +117,5 @@ export const {
   useGetBatchUnderInstructorQuery,
   useDeleteBatchMutation,
   useUpdateBatchMutation,
+  useUpdateBatchNoticeMutation,
 } = batchManagementApi;

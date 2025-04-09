@@ -121,6 +121,7 @@ export type TBatch = {
   classdays: string;
   supportdays: string;
   batchStatus: string;
+  batchNotice: string;
   schedule: { date: string; topic: string }[];
 };
 
