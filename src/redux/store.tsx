@@ -3,6 +3,7 @@ import selectServiceReducer from "./api/features/Service/selectServiceSlice";
 import assignStudentReducer from "./api/features/AssignStudent/assignStudentSlice";
 import coursesReducer from "./api/features/Course/courseSlice";
 import instructorReducer from "./api/features/Instructor/instructorSlice";
+import batchReducer from "./api/features/Batch/batchSlice";
 import authReducer from "./api/features/auth/authSlice";
 import {
   persistStore,
@@ -32,6 +33,7 @@ export const store = configureStore({
     assignStudent: assignStudentReducer,
     courses: coursesReducer,
     instructors: instructorReducer,
+    batchs: batchReducer,
   },
   middleware: (getDefaultMiddleware) =>
     getDefaultMiddleware({

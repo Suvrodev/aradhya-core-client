@@ -18,7 +18,7 @@ const AdminDashboard = () => {
   const location = useLocation()?.pathname;
 
   /**
-   * Set all course and all instructor in store start
+   * Set all instructor in store start
    */
 
   const { data, isLoading } = useGetAllInstructorQuery(undefined);
@@ -33,7 +33,7 @@ const AdminDashboard = () => {
     return <LoadingPage />;
   }
   /**
-   * Set all course and all instructor in store end
+   * Set all instructor in store end
    */
 
   return (

@@ -54,7 +54,7 @@ const batchManagementApi = baseApi.injectEndpoints({
       providesTags: ["batch"],
     }),
 
-    //Show all batch from admin panner persperctive of course
+    //Show all batch from admin pannel persperctive of course
     getSpecificBatchUnderCourse: builder.query({
       query: (id) => {
         return {

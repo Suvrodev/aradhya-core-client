@@ -9,6 +9,7 @@ import { useGetInstructorsAssignStudentQuery } from "../../../redux/api/features
 
 const InstructorDashboardHome = () => {
   const { courses } = useAppSelector((state) => state.courses);
+  const { batchs } = useAppSelector((state) => state.batchs);
   // console.log("Courses: ", courses);
   const { token } = useAppSelector((state) => state.auth);
   // eslint-disable-next-line @typescript-eslint/no-explicit-any
@@ -78,11 +79,11 @@ const InstructorDashboardHome = () => {
                     {batch.batchId}
                   </p>
                   <p className="text-sm">
-                    <span className="font-medium">Course Name:</span>{" "}
+                    <span className="font-medium">Course id:</span>{" "}
                     {batch.underCourse}
                   </p>
                   <p className="text-sm">
-                    <span className="font-medium">Course id:</span>{" "}
+                    <span className="font-medium">Course Name:</span>{" "}
                     {courses.find(
                       (course) => course.courseId === batch.underCourse
                     )?.courseTitle || "Not found"}
@@ -93,7 +94,7 @@ const InstructorDashboardHome = () => {
                       className={`px-2 py-1 rounded-full text-xs ${
                         batch.batchStatus === "upComing"
                           ? "bg-blue-100 text-blue-800"
-                          : batch.batchStatus === "ongoing"
+                          : batch.batchStatus === "onGoing"
                           ? "bg-green-100 text-green-800"
                           : "bg-gray-100 text-gray-800"
                       }`}
@@ -143,6 +144,7 @@ const InstructorDashboardHome = () => {
                 <th className="px-4 py-2">Email</th>
                 <th className="px-4 py-2">Phone</th>
                 <th className="px-4 py-2">Batch </th>
+                <th className="px-4 py-2">Batch Name </th>
                 <th className="px-4 py-2">Course Code</th>
                 <th className="px-4 py-2">Course Name</th>
                 <th className="px-4 py-2">Status</th>
@@ -155,6 +157,10 @@ const InstructorDashboardHome = () => {
                   <td className="border px-4 py-2">{student.studentEmail}</td>
                   <td className="border px-4 py-2">{student.studentPhone}</td>
                   <td className="border px-4 py-2">{student.batchId}</td>
+                  <td className="border px-4 py-2">
+                    {batchs?.find((c) => c.batchId === student?.batchId)
+                      ?.batchName || "Not Found"}
+                  </td>
                   <td className="border px-4 py-2">{student.courseId}</td>
                   <td className="border px-4 py-2">
                     {courses?.find((c) => c.courseId === student?.courseId)

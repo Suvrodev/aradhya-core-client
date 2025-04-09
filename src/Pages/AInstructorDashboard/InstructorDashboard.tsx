@@ -1,5 +1,5 @@
-import { useState } from "react";
-import { useAppSelector } from "../../redux/hook";
+import { useEffect, useState } from "react";
+import { useAppDispatch, useAppSelector } from "../../redux/hook";
 import { verifyToken } from "../../utils/Fucntion/verifyToken";
 import "./InstructorDashboard.css";
 import { TStudent } from "../../utils/types/globalTypes";
@@ -9,7 +9,10 @@ import InstructorDesktopHeader from "./Shared/InstructorHeader/InstructorDesktop
 import InstructorMobileHeader from "./Shared/InstructorHeader/InstructorMobileHeader/InstructorMobileHeader";
 import InstructorDashboardData from "./InstructorDashboardData/InstructorDashboardData";
 import { useGetSpecificInstructorQuery } from "../../redux/api/features/Instructor/instructorManagementApi";
+import { useGetAllBatchQuery } from "../../redux/api/features/Batch/batchManagementApi";
+import { setBatch } from "../../redux/api/features/Batch/batchSlice";
 const InstructorDashboard = () => {
+  const dispatch = useAppDispatch();
   const { token } = useAppSelector((state) => state.auth);
   // eslint-disable-next-line @typescript-eslint/no-explicit-any
   let user: any;
@@ -24,7 +27,27 @@ const InstructorDashboard = () => {
 
   const [openDrawer, setOpenDrawer] = useState(false);
 
+  /**
+   * Set all instructor in store start
+   */
+
+  const { data: allbatchData, isLoading: batchLoading } =
+    useGetAllBatchQuery(undefined);
+  const allBatchs = allbatchData?.data;
+  useEffect(() => {
+    if (allBatchs) {
+      dispatch(setBatch(allBatchs));
+    }
+  }, [allBatchs, dispatch]);
+
   if (isLoading) {
+    return <LoadingPage />;
+  }
+  /**
+   * Set all instructor in store end
+   */
+
+  if (isLoading || batchLoading) {
     return <LoadingPage />;
   }
   return (
