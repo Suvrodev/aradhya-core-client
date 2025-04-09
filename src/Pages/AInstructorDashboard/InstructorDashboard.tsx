@@ -16,11 +16,11 @@ const InstructorDashboard = () => {
   if (token) {
     user = verifyToken(token);
   }
-  console.log("User in Instructor Dashboard: ", user);
+  // console.log("User in Instructor Dashboard: ", user);
 
   const { data, isLoading } = useGetSpecificInstructorQuery(user?.studentId);
   const loggedStudent: TStudent = data?.data;
-  console.log("Logged Student in Student Main(fetch): ", loggedStudent);
+  // console.log("Logged Student in Student Main(fetch): ", loggedStudent);
 
   const [openDrawer, setOpenDrawer] = useState(false);
 

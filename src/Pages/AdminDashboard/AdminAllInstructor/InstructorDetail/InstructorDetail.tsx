@@ -99,6 +99,11 @@ const InstructorDetail = ({ instructorId }: IProps) => {
                       key={batch.batchId}
                       className="border rounded-lg p-4 hover:shadow-md transition-shadow"
                     >
+                      <h3 className="font-medium text-green-500">
+                        {courses.find(
+                          (course) => course.courseId === batch.underCourse
+                        )?.courseTitle || "Not found"}
+                      </h3>
                       <h3 className="font-medium text-gray-800">
                         {batch.batchName}
                       </h3>

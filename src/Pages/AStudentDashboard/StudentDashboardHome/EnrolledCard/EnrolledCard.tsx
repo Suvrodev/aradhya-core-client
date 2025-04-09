@@ -7,7 +7,7 @@ import {
 } from "../../../../utils/types/globalTypes";
 import { useGetSpecificCourseQuery } from "../../../../redux/api/features/Course/courseManagementApi";
 import { formatDate } from "../../../../utils/Fucntion/convertDate";
-import { useGetSpecificBatchQuery } from "../../../../redux/api/features/Batch/batchManagementApi";
+import { useGetJustOneBatchForUpdateQuery } from "../../../../redux/api/features/Batch/batchManagementApi";
 import CourseSchedule from "./CourseSchedule/CourseSchedule";
 
 interface IProps {
@@ -22,7 +22,7 @@ const EnrolledCard = ({ data }: IProps) => {
   );
 
   const { data: singleBatchData, isLoading: batchLoading } =
-    useGetSpecificBatchQuery(data?.batchId);
+    useGetJustOneBatchForUpdateQuery(data?.batchId);
 
   const batchdetail: TBatch = singleBatchData?.data;
   const courseDetail: TCourse = singleCourseData?.data;

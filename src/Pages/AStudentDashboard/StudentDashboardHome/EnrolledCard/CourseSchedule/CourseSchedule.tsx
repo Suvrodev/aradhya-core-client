@@ -1,6 +1,6 @@
 import { Modal } from "antd";
 import { useState } from "react";
-import { useGetSpecificBatchQuery } from "../../../../../redux/api/features/Batch/batchManagementApi";
+import { useGetJustOneBatchForUpdateQuery } from "../../../../../redux/api/features/Batch/batchManagementApi";
 import { TBatch } from "../../../../../utils/types/globalTypes";
 import "./CourseSchedule.css"; // Import the external CSS
 
@@ -14,7 +14,7 @@ const CourseSchedule = ({ batchId }: IProps) => {
   const showModal = () => setIsModalOpen(true);
   const handleCancel = () => setIsModalOpen(false);
 
-  const { data, isLoading } = useGetSpecificBatchQuery(batchId);
+  const { data, isLoading } = useGetJustOneBatchForUpdateQuery(batchId);
   const batch: TBatch = data?.data;
   const schedule = batch?.schedule;
 

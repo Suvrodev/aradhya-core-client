@@ -58,6 +58,16 @@ const assignStudentManagementApi = baseApi.injectEndpoints({
       providesTags: ["assignStudent"],
     }),
 
+    getInstructorsAssignStudent: builder.query({
+      query: ({ batchId, courseId }: { batchId: string; courseId: string }) => {
+        return {
+          url: `/assign/instructors-assign-student/${batchId}/${courseId}`,
+          method: "GET",
+        };
+      },
+      providesTags: ["assignStudent"],
+    }),
+
     deleteAssignStudent: builder.mutation({
       query: (id) => {
         return {
@@ -85,6 +95,7 @@ export const {
   useGetAllAssignStudentQuery,
   useGetSpecificAssignStdudentQuery,
   useGetOwnCourseOfAssignStudentQuery,
+  useGetInstructorsAssignStudentQuery,
   useDeleteAssignStudentMutation,
   useUpdateAssignStudentMutation,
 } = assignStudentManagementApi;

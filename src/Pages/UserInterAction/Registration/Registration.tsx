@@ -89,9 +89,9 @@ const Registration = () => {
                 </span>
               </label>
               <input
-                type="number"
+                type="tel"
                 placeholder="Phone Number"
-                className="input input-bordered bg-gray-700 text-white hide-arrows"
+                className="input input-bordered bg-gray-700 text-white ha"
                 name="phone"
                 required
               />

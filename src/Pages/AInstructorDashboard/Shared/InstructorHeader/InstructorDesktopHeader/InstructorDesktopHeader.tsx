@@ -22,7 +22,7 @@ const InstructorDesktopHeader = () => {
   const handleDashboard = () => {
     setOpenDashboard(!openDashboard);
   };
-  console.log("Open Dashboard: ", openDashboard);
+  // console.log("Open Dashboard: ", openDashboard);
 
   if (isLoading) {
     return <p>...</p>;

@@ -353,7 +353,7 @@ const UpdateBatch = ({ batchId }: IProps) => {
                   id=""
                   onChange={handleInstructor}
                   value={insId}
-                  className="w-full px-4 py-2 bg-gray-700 text-white rounded-lg focus:outline-none focus:ring focus:ring-teal-500 "
+                  className="w-full px-4 py-2 bg-indigo-800 text-indigo-50 rounded-lg focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:border-transparent transition-all "
                 >
                   <option value="" disabled>
                     Select One
@@ -364,6 +364,63 @@ const UpdateBatch = ({ batchId }: IProps) => {
                     </option>
                   ))}
                 </select>
+              </div>
+
+              <div>
+                <h1 className="block mb-4 text-sm font-medium">
+                  Instructor ID
+                </h1>
+                <input
+                  type="number"
+                  name=""
+                  id=""
+                  value={insId}
+                  className="ha w-full px-4 py-2 bg-indigo-500 text-white font-bold rounded-lg border border-indigo-600 focus:outline-none focus:ring-2 focus:ring-indigo-300 focus:border-transparent transition-all "
+                  placeholder=" Instructor ID"
+                  disabled
+                />
+              </div>
+              <div>
+                <h1 className="block mb-4 text-sm font-medium">
+                  Instructor Name
+                </h1>
+                <input
+                  type="text"
+                  name=""
+                  id=""
+                  value={insName}
+                  className=" w-full px-4 py-2 bg-indigo-500 text-white font-bold rounded-lg border border-indigo-600 focus:outline-none focus:ring-2 focus:ring-indigo-300 focus:border-transparent transition-all "
+                  placeholder=" Instructor Name"
+                  disabled
+                />
+              </div>
+              <div>
+                <h1 className="block mb-4 text-sm font-medium">
+                  Instructor Image url
+                </h1>
+                <input
+                  type="text"
+                  name=""
+                  id=""
+                  value={insImage}
+                  className="w-full px-4 py-2 bg-indigo-500 text-white font-bold rounded-lg border border-indigo-600 focus:outline-none focus:ring-2 focus:ring-indigo-300 focus:border-transparent transition-all "
+                  placeholder=" Instructor Image url"
+                  disabled
+                />
+              </div>
+              <div>
+                <h1 className="block mb-4 text-sm font-medium">
+                  Instructor FB
+                </h1>
+                <input
+                  type="text"
+                  name=""
+                  id=""
+                  value={insFb}
+                  className="w-full px-4 py-2 bg-indigo-500 text-white  rounded-lg border border-indigo-600 focus:outline-none focus:ring-2 focus:ring-indigo-300 focus:border-transparent transition-all "
+                  placeholder="Instructor FB"
+                  disabled
+                />
               </div>
 
               <div>
