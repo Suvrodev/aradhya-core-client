@@ -48,24 +48,11 @@ const InstructorBlog = () => {
         />
       </div>
 
-      <div className="relative z-10">
+      <div className="mb-10">
         <div className="text-center mb-12">
-          <motion.h2
-            initial={{ opacity: 0, y: -20 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.6 }}
-            className="text-5xl font-bold bg-clip-text text-transparent bg-gradient-to-r from-teal-400 via-purple-500 to-pink-500 mb-3"
-          >
+          <h2 className="text-3xl font-bold bg-clip-text text-transparent bg-gradient-to-r from-teal-400 via-purple-500 to-pink-500 mb-3">
             Instructor Blog
-          </motion.h2>
-          <motion.p
-            initial={{ opacity: 0 }}
-            animate={{ opacity: 1 }}
-            transition={{ delay: 0.2, duration: 0.6 }}
-            className="text-gray-400 text-lg"
-          >
-            Craft Your Educational Legacy
-          </motion.p>
+          </h2>
         </div>
 
         {blogDatas?.length === 0 ? (

@@ -14,6 +14,7 @@ import { formatDate } from "../../../../utils/Fucntion/convertDate";
 import { Trash2, CodeXml, Settings } from "lucide-react";
 import CheckIcon from "@mui/icons-material/Check";
 import VideoSettingsIcon from "@mui/icons-material/VideoSettings";
+import HourglassBottomIcon from "@mui/icons-material/HourglassBottom";
 interface IProps {
   blog: TBlog;
   admin?: boolean;
@@ -38,7 +39,7 @@ const BlogBox = ({ blog, admin = false, instructor = false }: IProps) => {
   }, []);
 
   useEffect(() => {
-    const result = title.length > 50 ? title.substring(0, 50) + "..." : title;
+    const result = title.length > 50 ? title.substring(0, 30) + "..." : title;
     setTrimmedTitle(result);
   }, [title]);
 
@@ -158,6 +159,20 @@ const BlogBox = ({ blog, admin = false, instructor = false }: IProps) => {
                 )}
               </div>
             )}
+            {instructor && (
+              <div>
+                {isEnable == "yes" ? (
+                  <button className="flex items-center gap-1 py-1 px-2 bg-gradient-to-r from-green-500 to-green-600 rounded-lg shadow-lg hover:shadow-md hover:from-green-600 hover:to-green-700 text-white text-sm font-medium transition-all duration-200 focus:outline-none focus:ring-2 focus:ring-green-400 focus:ring-opacity-50">
+                    <CheckIcon />
+                    Approved
+                  </button>
+                ) : (
+                  <button className="flex items-center gap-1 py-1 px-2 bg-gradient-to-r from-red-500 to-red-600 rounded-lg shadow-lg hover:shadow-md hover:from-red-600 hover:to-red-700 text-white text-sm font-medium transition-all duration-200 focus:outline-none focus:ring-2 focus:ring-red-400 focus:ring-opacity-50">
+                    <HourglassBottomIcon /> Pending
+                  </button>
+                )}
+              </div>
+            )}
           </div>
         )}
 
@@ -218,15 +233,17 @@ const BlogBox = ({ blog, admin = false, instructor = false }: IProps) => {
               <Settings className="text-white" size={20} />
             </Link>
           )}
-          <button
-            onClick={(e) => {
-              e.stopPropagation(); // Prevent card click event
-              handleDelete(_id);
-            }}
-            className="w-10 h-10 flex items-center justify-center bg-red-500 rounded-full shadow-md hover:bg-red-600 transition-colors"
-          >
-            <Trash2 className="text-white" size={20} />
-          </button>
+          {admin && (
+            <button
+              onClick={(e) => {
+                e.stopPropagation(); // Prevent card click event
+                handleDelete(_id);
+              }}
+              className="w-10 h-10 flex items-center justify-center bg-red-500 rounded-full shadow-md hover:bg-red-600 transition-colors"
+            >
+              <Trash2 className="text-white" size={20} />
+            </button>
+          )}
         </div>
       )}
     </div>
