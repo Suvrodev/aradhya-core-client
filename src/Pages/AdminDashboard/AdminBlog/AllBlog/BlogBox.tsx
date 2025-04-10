@@ -161,8 +161,8 @@ const BlogBox = ({ blog, admin = false, instructor = false }: IProps) => {
           </div>
         )}
 
-        {/* Date */}
-        {(admin || instructor) && (
+        {/* Email */}
+        {admin && (
           <div className="mt-auto">
             <div className="flex items-center gap-2 text-sm text-white/80">
               <span className="bg-green-500 rounded-md py-1 px-3 text-white">
