@@ -1,6 +1,7 @@
 import { Link, useLocation, useNavigate } from "react-router";
 import {
   useDeleteBlogMutation,
+  useUpdateBlogisEnableMutation,
   useUpdateBlogPinMutation,
 } from "../../../../redux/api/features/Blog/blogManagementApi";
 import { TBlog } from "../../../../utils/types/globalTypes";
@@ -18,9 +19,11 @@ interface IProps {
 }
 
 const BlogBox = ({ blog, admin = false }: IProps) => {
+  console.log("Blog: ", blog);
   const [deleteBlog] = useDeleteBlogMutation();
   const [updatePin] = useUpdateBlogPinMutation();
-  const { _id, title, image, category, writer, pin } = blog;
+  const [updateIsEnable] = useUpdateBlogisEnableMutation();
+  const { _id, title, image, category, writer, pin, isEnable } = blog;
   const [trimmedTitle, setTrimmedTitle] = useState("");
   const path = useLocation()?.pathname;
   const navigate = useNavigate();
@@ -77,6 +80,23 @@ const BlogBox = ({ blog, admin = false }: IProps) => {
     }
   };
 
+  const handleMakeBlogEnable = async (id: string) => {
+    const updateData = { isEnable: "yes" };
+    toast.loading("Enabling", { id: sonarId });
+    const res = await updateIsEnable({ id, updateData }).unwrap();
+    if (res?.success) {
+      toast.success("Made Enable", { id: sonarId });
+    }
+  };
+  const handleMakeBlogDisable = async (id: string) => {
+    const updateData = { isEnable: "no" };
+    toast.loading("Disableing", { id: sonarId });
+    const res = await updateIsEnable({ id, updateData }).unwrap();
+    if (res?.success) {
+      toast.success("Made Disable", { id: sonarId });
+    }
+  };
+
   return (
     <div
       data-aos="flip-right"
@@ -108,6 +128,66 @@ const BlogBox = ({ blog, admin = false }: IProps) => {
             By {writer}
           </span>
         </div>
+        {admin && (
+          <div className="flex gap-x-2">
+            <Link to={`/blog/${_id}`}>
+              <button className="flex items-center gap-2 py-1 px-2 bg-gradient-to-r from-teal-500 to-teal-600 rounded-lg shadow-lg hover:shadow-xl hover:from-teal-600 hover:to-teal-700 text-white font-medium transition-all duration-300 transform hover:-translate-y-1 focus:outline-none focus:ring-2 focus:ring-teal-400 focus:ring-opacity-50">
+                <svg
+                  xmlns="http://www.w3.org/2000/svg"
+                  className="h-5 w-5"
+                  viewBox="0 0 20 20"
+                  fill="currentColor"
+                >
+                  <path
+                    fillRule="evenodd"
+                    d="M10 18a8 8 0 100-16 8 8 0 000 16zm1-11a1 1 0 10-2 0v2H7a1 1 0 100 2h2v2a1 1 0 102 0v-2h2a1 1 0 100-2h-2V7z"
+                    clipRule="evenodd"
+                  />
+                </svg>
+                Detail
+              </button>
+            </Link>
+            {isEnable == "yes" ? (
+              <button
+                onClick={() => handleMakeBlogDisable(_id)}
+                className="flex items-center gap-1 py-1 px-2 bg-gradient-to-r from-green-500 to-green-600 rounded-lg shadow-lg hover:shadow-md hover:from-green-600 hover:to-green-700 text-white text-sm font-medium transition-all duration-200 focus:outline-none focus:ring-2 focus:ring-green-400 focus:ring-opacity-50"
+              >
+                <svg
+                  xmlns="http://www.w3.org/2000/svg"
+                  className="h-4 w-4"
+                  viewBox="0 0 20 20"
+                  fill="currentColor"
+                >
+                  <path
+                    fillRule="evenodd"
+                    d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z"
+                    clipRule="evenodd"
+                  />
+                </svg>
+                Enable
+              </button>
+            ) : (
+              <button
+                onClick={() => handleMakeBlogEnable(_id)}
+                className="flex items-center gap-1 py-1 px-2 bg-gradient-to-r from-red-500 to-red-600 rounded-lg shadow-lg hover:shadow-md hover:from-red-600 hover:to-red-700 text-white text-sm font-medium transition-all duration-200 focus:outline-none focus:ring-2 focus:ring-red-400 focus:ring-opacity-50"
+              >
+                <svg
+                  xmlns="http://www.w3.org/2000/svg"
+                  className="h-4 w-4"
+                  viewBox="0 0 20 20"
+                  fill="currentColor"
+                >
+                  <path
+                    fillRule="evenodd"
+                    d="M4.293 4.293a1 1 0 011.414 0L10 8.586l4.293-4.293a1 1 0 111.414 1.414L11.414 10l4.293 4.293a1 1 0 01-1.414 1.414L10 11.414l-4.293 4.293a1 1 0 01-1.414-1.414L8.586 10 4.293 5.707a1 1 0 010-1.414z"
+                    clipRule="evenodd"
+                  />
+                </svg>
+                Disable
+              </button>
+            )}
+          </div>
+        )}
 
         {/* Date */}
         <div className="mt-auto">

@@ -97,10 +97,13 @@ export type TBlog = {
   title: string;
   content: string;
   image: string;
-  writer: string;
   category: string;
-  createdAt: string;
+  writer: string;
+  writerId: string | number;
+  writerEmail: string;
+  isEnable: "yes" | "no";
   pin: string;
+  createdAt: string;
 };
 
 export type TBatch = {

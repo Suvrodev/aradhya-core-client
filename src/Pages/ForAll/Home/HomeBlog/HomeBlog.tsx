@@ -13,7 +13,7 @@ const HomeBlog = () => {
     return <LoadingPage />;
   }
   return (
-    <div className="min-h-screen bg-gradient-to-br from-teal-500 to-[#262F51] p-4 md:p-8 rounded-md">
+    <div className=" bg-gradient-to-br from-teal-500 to-[#262F51] p-4 md:p-8 rounded-md">
       <div className="max-w-7xl mx-auto">
         {/* Header Section */}
         <div className="text-center mb-12">

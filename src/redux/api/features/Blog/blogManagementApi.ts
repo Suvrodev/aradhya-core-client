@@ -22,6 +22,15 @@ const blogManagementApi = baseApi.injectEndpoints({
       },
       providesTags: ["blog"],
     }),
+    getAllBlogByAdmin: builder.query({
+      query: () => {
+        return {
+          url: `/blog/admin`,
+          method: "GET",
+        };
+      },
+      providesTags: ["blog"],
+    }),
     getSpecificBlog: builder.query({
       query: (id) => {
         return {
@@ -63,14 +72,29 @@ const blogManagementApi = baseApi.injectEndpoints({
       },
       invalidatesTags: ["blog"],
     }),
+
+    updateBlogisEnable: builder.mutation({
+      query: ({ id, updateData }) => {
+        console.log("id: ", id);
+        console.log("Update data: ", updateData);
+        return {
+          url: `/blog/update/isEnable/${id}`,
+          method: "PUT",
+          body: updateData,
+        };
+      },
+      invalidatesTags: ["blog"],
+    }),
   }),
 });
 
 export const {
   useAddBlogMutation,
   useGetALlBlogQuery,
+  useGetAllBlogByAdminQuery,
   useGetSpecificBlogQuery,
   useDeleteBlogMutation,
   useUpdateBlogMutation,
   useUpdateBlogPinMutation,
+  useUpdateBlogisEnableMutation,
 } = blogManagementApi;

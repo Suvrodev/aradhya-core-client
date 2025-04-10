@@ -4,8 +4,19 @@ import { useAddBlogMutation } from "../../../../redux/api/features/Blog/blogMana
 import { toast } from "sonner";
 import TextEditor from "../TextEditor/TextEditor";
 import { sonarId } from "../../../../utils/Fucntion/sonarId";
+import { useAppSelector } from "../../../../redux/hook";
+import { verifyToken } from "../../../../utils/Fucntion/verifyToken";
 
 const AddBlog = () => {
+  const { token } = useAppSelector((state) => state.auth);
+  // eslint-disable-next-line @typescript-eslint/no-explicit-any
+  let user: any;
+  if (token) {
+    user = verifyToken(token);
+  }
+
+  console.log("Logged user in blog: ", user);
+
   const [addBlog] = useAddBlogMutation();
   const [category, setCategory] = useState("");
 
@@ -28,7 +39,17 @@ const AddBlog = () => {
     const title = Form.titlee.value;
     const image = Form.image.value;
     const writer = Form.writer.value;
-    const formData = { title, content, image, category, writer };
+    const writerId = user?.studentId;
+    const writerEmail = user?.email;
+    const formData = {
+      title,
+      content,
+      image,
+      category,
+      writer,
+      writerId,
+      writerEmail,
+    };
     console.log("Form Data: ", formData);
     toast.loading("Inserting Blog", { id: sonarId });
     const res = await addBlog(formData).unwrap();

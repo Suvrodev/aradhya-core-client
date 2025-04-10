@@ -1,10 +1,10 @@
 import LoadingPage from "../../../../Component/LoadingPage/LoadingPage";
-import { useGetALlBlogQuery } from "../../../../redux/api/features/Blog/blogManagementApi";
+import { useGetAllBlogByAdminQuery } from "../../../../redux/api/features/Blog/blogManagementApi";
 import { TBlog } from "../../../../utils/types/globalTypes";
 import BlogBox from "./BlogBox";
 
 const AllBlog = () => {
-  const { data, isLoading } = useGetALlBlogQuery(undefined);
+  const { data, isLoading } = useGetAllBlogByAdminQuery(undefined);
   const blogDatas = data?.data;
   // console.log(blogDatas);
   if (isLoading) {
