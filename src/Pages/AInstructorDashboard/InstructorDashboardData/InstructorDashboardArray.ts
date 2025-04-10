@@ -4,6 +4,14 @@ const instructorDashboardArray = [
     path: "/instructor-dashboard",
   },
   {
+    title: "Add Blog",
+    path: "/instructor-dashboard/add-blog",
+  },
+  {
+    title: "My Blog",
+    path: "/instructor-dashboard/my-blog",
+  },
+  {
     title: "My Profile",
     path: "/instructor-dashboard/my-profile",
   },

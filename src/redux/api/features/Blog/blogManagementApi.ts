@@ -31,6 +31,15 @@ const blogManagementApi = baseApi.injectEndpoints({
       },
       providesTags: ["blog"],
     }),
+    getAllBlogByInstructor: builder.query({
+      query: (email) => {
+        return {
+          url: `/blog/instructor/${email}`,
+          method: "GET",
+        };
+      },
+      providesTags: ["blog"],
+    }),
     getSpecificBlog: builder.query({
       query: (id) => {
         return {
@@ -92,6 +101,7 @@ export const {
   useAddBlogMutation,
   useGetALlBlogQuery,
   useGetAllBlogByAdminQuery,
+  useGetAllBlogByInstructorQuery,
   useGetSpecificBlogQuery,
   useDeleteBlogMutation,
   useUpdateBlogMutation,

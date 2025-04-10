@@ -48,6 +48,7 @@ import InstructorAddress from "../Pages/AInstructorDashboard/InstructorAddress/I
 import InstructorEducation from "../Pages/AInstructorDashboard/InstructorEducation/InstructorEducation";
 import InstructorImportantLink from "../Pages/AInstructorDashboard/InstructorImportantLink/InstructorImportantLink";
 import InstructorForgetPassword from "../Pages/UserInterAction/InstructorForgetPassword/InstructorForgetPassword";
+import InstructorBlog from "../Pages/AInstructorDashboard/InstructorBlog/InstructorBlog";
 // import EnrollCourse from "../Pages/ForAll/EnrollCourse/EnrollCourse";
 
 export const router = createBrowserRouter([
@@ -348,6 +349,30 @@ export const router = createBrowserRouter([
         element: (
           <InstructorProtectedRoute>
             <InstructorDashboardHome />{" "}
+          </InstructorProtectedRoute>
+        ),
+      },
+      {
+        path: "add-blog",
+        element: (
+          <InstructorProtectedRoute>
+            <AddBlog />
+          </InstructorProtectedRoute>
+        ),
+      },
+      {
+        path: "my-blog",
+        element: (
+          <InstructorProtectedRoute>
+            <InstructorBlog />
+          </InstructorProtectedRoute>
+        ),
+      },
+      {
+        path: "update-blog/:id",
+        element: (
+          <InstructorProtectedRoute>
+            <UpdateBlog />
           </InstructorProtectedRoute>
         ),
       },
