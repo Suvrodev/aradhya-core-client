@@ -25,7 +25,7 @@ const AdminAssignedStudent = () => {
 
   return (
     <div className="pagePadding">
-      <h1 className="text-xl font-bold">Assigned Student</h1>
+      <h1 className="text-xl font-bold text-center">Assigned Student</h1>
 
       {/* Search Input */}
       <div className="my-4 flex justify-center">

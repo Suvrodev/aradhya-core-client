@@ -2,10 +2,10 @@ import { toast } from "sonner";
 import { TAssignedStudent, TCourse } from "../../../utils/types/globalTypes";
 import { useDeleteAssignStudentMutation } from "../../../redux/api/features/AssignStudent/assignStudentManagementApi";
 import { sonarId } from "../../../utils/Fucntion/sonarId";
-import { useGetAllCourseQuery } from "../../../redux/api/features/Course/courseManagementApi";
 import { Trash2 } from "lucide-react";
 import { formatDate } from "../../../utils/Fucntion/convertDate";
 import AdminAssignStudentUpdate from "./AdminAssignStudentUpdate/AdminAssignStudentUpdate";
+import { useAppSelector } from "../../../redux/hook";
 
 interface IProps {
   data: TAssignedStudent;
@@ -35,8 +35,8 @@ const AdminAssignedStudentTable = ({ data, idx }: IProps) => {
     updatedAt,
   } = data;
   const [deleteAssignStudent] = useDeleteAssignStudentMutation();
-  const { data: allCoursesData, isLoading } = useGetAllCourseQuery(undefined);
-  const allCourses = allCoursesData?.data;
+  const { courses: allCourses } = useAppSelector((state) => state.courses);
+  // const allCourses = allCoursesData?.data;
 
   const handleDelete = async (id: string) => {
     toast.loading("Deleting", { id: sonarId });
@@ -46,15 +46,15 @@ const AdminAssignedStudentTable = ({ data, idx }: IProps) => {
     }
   };
 
-  if (isLoading) {
-    return (
-      <tr>
-        <td colSpan={24} className="text-center py-4">
-          Loading....
-        </td>
-      </tr>
-    );
-  }
+  // if (isLoading) {
+  //   return (
+  //     <tr>
+  //       <td colSpan={24} className="text-center py-4">
+  //         Loading....
+  //       </td>
+  //     </tr>
+  //   );
+  // }
 
   return (
     <tr

@@ -33,7 +33,7 @@ const AllStudent = () => {
   }
   return (
     <div className="pagePadding">
-      <h1 className="text-xl font-bold">All Student</h1>
+      <h1 className="text-xl font-bold text-center">All Students</h1>
 
       {/* Simple Search Input */}
       <div className="my-4 flex justify-center">
