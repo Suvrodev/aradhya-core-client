@@ -33,6 +33,7 @@ const AdminDashboard = () => {
     return <LoadingPage />;
   }
   /**
+   *
    * Set all instructor in store end
    */
 

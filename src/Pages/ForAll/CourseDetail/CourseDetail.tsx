@@ -22,6 +22,7 @@ const CourseDetail = () => {
     course?.courseId
   );
   const batch: TBatch = data?.data;
+  console.log("Batch: ", batch);
 
   // React Slick settings for projects carousel
   const projectSettings = {
@@ -57,9 +58,10 @@ const CourseDetail = () => {
     : "Not specified";
 
   // Calculate discounted price
-  const discountedPrice =
+  const discountedPrice = Math.ceil(
     batch?.coursePrice -
-    (batch?.coursePrice * (batch?.courseDiscount || 0)) / 100;
+      (batch?.coursePrice * (batch?.courseDiscount || 0)) / 100
+  );
 
   return (
     <div className="min-h-screen bg-gradient-to-br from-[#0f2027] via-[#203a43] to-[#2c5364] text-white">
@@ -132,15 +134,17 @@ const CourseDetail = () => {
                     </div>
                     <div className="text-gray-300 text-sm mt-1">Classes</div>
                   </div>
-                  <div className="text-center bg-white/10 p-3 rounded-lg">
-                    <div className="text-3xl font-bold text-teal-400">
-                      {batch?.projectnumber}
+                  {batch?.projectnumber > 0 && (
+                    <div className="text-center bg-white/10 p-3 rounded-lg">
+                      <div className="text-3xl font-bold text-teal-400">
+                        {batch?.projectnumber}
+                      </div>
+                      <div className="text-gray-300 text-sm mt-1">Projects</div>
                     </div>
-                    <div className="text-gray-300 text-sm mt-1">Projects</div>
-                  </div>
+                  )}
                   <div className="text-center bg-white/10 p-3 rounded-lg">
                     <div className="text-3xl font-bold text-teal-400">
-                      {batch?.duration}
+                      {batch?.duration}{" "}
                     </div>
                     <div className="text-gray-300 text-sm mt-1">Duration</div>
                   </div>
@@ -265,7 +269,9 @@ const CourseDetail = () => {
                       </p>
                       <p className="flex items-center">
                         <span className="font-medium w-32">Duration:</span>
-                        <span className="text-gray-300">{batch.duration}</span>
+                        <span className="text-gray-300">
+                          {batch.duration} Month
+                        </span>
                       </p>
                     </div>
                   </div>
@@ -385,6 +391,7 @@ const CourseDetail = () => {
               <div className="space-y-3">
                 <EnrollCourseModal
                   batchId={batch?.batchId}
+                  batchName={batch?.batchName}
                   courseId={course?.courseId}
                   courseTitle={course?.courseTitle}
                   courseDuration={batch?.duration}

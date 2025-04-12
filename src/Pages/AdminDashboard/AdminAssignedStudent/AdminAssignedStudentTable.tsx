@@ -20,6 +20,7 @@ const AdminAssignedStudentTable = ({ data, idx }: IProps) => {
     studentPhone,
     courseId,
     batchId,
+    batchName,
     coursePrice,
     courseDiscount,
     promoCodeStatus,
@@ -70,6 +71,7 @@ const AdminAssignedStudentTable = ({ data, idx }: IProps) => {
       <td className="py-3 px-4">{studentPhone}</td>
       <td className="py-3 px-4">{courseId}</td>
       <td className="py-3 px-4">{batchId}</td>
+      <td className="py-3 px-4">{batchName}</td>
       <td className="py-3 px-4">
         {allCourses?.find((course: TCourse) => course.courseId === courseId)
           ?.courseTitle || "N/A"}

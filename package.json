@@ -16,6 +16,7 @@
     "@mui/icons-material": "^6.4.6",
     "@mui/material": "^6.4.6",
     "@reduxjs/toolkit": "^2.5.1",
+    "@tinymce/tinymce-react": "^6.1.0",
     "@types/swiper": "^5.4.3",
     "antd": "^5.23.2",
     "aos": "^2.3.4",

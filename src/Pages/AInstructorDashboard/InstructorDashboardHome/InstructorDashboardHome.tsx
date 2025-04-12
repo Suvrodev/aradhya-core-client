@@ -141,6 +141,8 @@ const InstructorDashboardHome = () => {
           <h2 className="text-xl font-semibold mb-4 text-gray-800">
             Assigned Students
           </h2>
+
+          <p>Total Student: {assignStudents.length} </p>
           <table className="min-w-full table-auto">
             <thead>
               <tr>

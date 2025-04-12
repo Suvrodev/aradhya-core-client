@@ -7,6 +7,7 @@ import NotLogged from "./NotLogged/NotLogged";
 
 interface IProps {
   batchId: string;
+  batchName: string;
   courseId: string;
   courseTitle: string;
   courseImage: string;
@@ -18,6 +19,7 @@ interface IProps {
 
 const EnrollCourseModal = ({
   batchId,
+  batchName,
   courseId,
   courseTitle,
   courseImage,
@@ -49,8 +51,13 @@ const EnrollCourseModal = ({
   return (
     <div className="">
       <div onClick={showModal}>
-        <button className="bg-purple-600 hover:bg-purple-700 text-white font-bold py-3 px-6 rounded-full transition-all transform hover:scale-105">
+        {/* <button className="bg-purple-600 hover:bg-purple-700 text-white font-bold py-3 px-6 rounded-full transition-all transform hover:scale-105">
           Enroll Now
+        </button> */}
+        <button className="bg-white hover:bg-gray-100 font-bold py-3 px-6 rounded-full transition-all transform hover:scale-105">
+          <span className="bg-gradient-to-r from-teal-400 to-teal-600 text-transparent bg-clip-text">
+            Enroll Now
+          </span>
         </button>
       </div>
       <Modal
@@ -83,6 +90,7 @@ const EnrollCourseModal = ({
               activeStep={activeStep}
               setActiveStep={setActiveStep}
               batchId={batchId}
+              batchName={batchName}
               courseId={courseId}
               courseDuration={courseDuration}
               courseTitle={courseTitle}

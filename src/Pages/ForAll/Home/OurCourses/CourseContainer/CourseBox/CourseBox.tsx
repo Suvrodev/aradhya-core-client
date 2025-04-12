@@ -26,7 +26,7 @@ const CourseBox = ({ data, number }: IProps) => {
         className="w-[960px] h-[180px] rounded-md object-cover"
       />
       <div className={`px-4  h-[200px] relative`}>
-        <h1 className="text-2xl text-left font-bold text-black">
+        <h1 className="text-[20px] text-left font-bold text-black">
           {courseTitle}
         </h1>
         {courseExists == "yes" ? (

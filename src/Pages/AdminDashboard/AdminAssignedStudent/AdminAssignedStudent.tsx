@@ -76,6 +76,7 @@ const AdminAssignedStudent = () => {
               <th className="py-3 px-4 text-left">Phone</th>
               <th className="py-3 px-4 text-left">Course id</th>
               <th className="py-3 px-4 text-left">Batch id</th>
+              <th className="py-3 px-4 text-left">Batch Name</th>
               <th className="py-3 px-4 text-left">Course Name</th>
               <th className="py-3 px-4 text-left">Course Price</th>
               <th className="py-3 px-4 text-left">Course Discount</th>

@@ -21,7 +21,7 @@ const UpdateBlog = () => {
 
   const [category, setCategory] = useState(blog?.category);
   const [content, setContent] = useState<string>(blog?.content);
-  // console.log("Content: ", content);
+  console.log("Content: ", content);
   useEffect(() => {
     if (blog) {
       setCategory(blog?.category);

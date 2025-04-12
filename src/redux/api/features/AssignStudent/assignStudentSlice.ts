@@ -9,6 +9,7 @@ interface AssignStudentState {
   studentPhone: string;
   courseId: string;
   batchId: string;
+  batchName: string;
   coursePrice: number;
   courseDiscount: number;
   promoCodeStatus: string;
@@ -28,6 +29,7 @@ const initialState: AssignStudentState = {
   studentPhone: "",
   courseId: "",
   batchId: "",
+  batchName: "",
   coursePrice: 0,
   courseDiscount: 0,
   promoCodeStatus: "",
@@ -62,6 +64,9 @@ export const selectAssignStudentSlice = createSlice({
     },
     selectBatchId: (state, action: PayloadAction<string>) => {
       state.batchId = action.payload;
+    },
+    selectBatchName: (state, action: PayloadAction<string>) => {
+      state.batchName = action.payload;
     },
     selectCoursePrice: (state, action: PayloadAction<number>) => {
       state.coursePrice = action.payload;
@@ -103,6 +108,7 @@ export const {
   selectAssignStudentPhone,
   selectCourseId,
   selectBatchId,
+  selectBatchName,
   selectCoursePrice,
   selectCourseDiscount,
   selectPromoCodeStatus,

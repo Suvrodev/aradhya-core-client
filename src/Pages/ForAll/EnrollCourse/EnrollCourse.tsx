@@ -6,6 +6,7 @@ import EnrollCourseThirdStep from "./EnrollCourseSteps/EnrollCourseThirdStep";
 
 interface IProps {
   batchId: string;
+  batchName: string;
   courseId: string;
   courseTitle: string;
   courseImage: string;
@@ -19,6 +20,7 @@ interface IProps {
 
 const EnrollCourse = ({
   batchId,
+  batchName,
   courseId,
   courseTitle,
   courseImage,
@@ -37,6 +39,7 @@ const EnrollCourse = ({
         {activeStep == 0 && (
           <EnrollCourseFirstStep
             batchId={batchId}
+            batchName={batchName}
             courseId={courseId}
             courseDuration={courseDuration}
             courseTitle={courseTitle}

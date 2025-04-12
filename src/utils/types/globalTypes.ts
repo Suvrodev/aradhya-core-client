@@ -52,6 +52,7 @@ export type TInstructor = {
   exp: number;
   status: string;
 };
+
 export type TAssignedStudent = {
   _id: string;
   studentId: string;
@@ -60,6 +61,7 @@ export type TAssignedStudent = {
   studentPhone: string;
   courseId: string;
   batchId: string;
+  batchName: string;
   coursePrice: number;
   courseDiscount: number;
   promoCodeStatus: string;
@@ -104,6 +106,18 @@ export type TBlog = {
   isEnable: "yes" | "no";
   pin: string;
   createdAt: string;
+};
+
+export type TOurPeople = {
+  _id: string;
+  image: string;
+  name: string;
+  designation: string;
+  message?: string;
+  course?: string;
+  facebook?: string;
+  portfolio?: string;
+  order: number;
 };
 
 export type TBatch = {

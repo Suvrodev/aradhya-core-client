@@ -1,6 +1,6 @@
 import { baseApi } from "../../baseApi";
 
-const studentManagementApi = baseApi.injectEndpoints({
+const instructorManagementApi = baseApi.injectEndpoints({
   endpoints: (builder) => ({
     getAllInstructor: builder.query({
       query: (params) => {
@@ -62,4 +62,4 @@ export const {
   useDeleteInstructorMutation,
   useUpdateInstructorMutation,
   useUpdateInstructorePasswordMutation,
-} = studentManagementApi;
+} = instructorManagementApi;

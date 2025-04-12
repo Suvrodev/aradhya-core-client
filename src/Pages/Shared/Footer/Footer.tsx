@@ -18,7 +18,7 @@ const Footer = () => {
             {/* Contact Info */}
             <div className="text-center md:text-right flex flex-col gap-1">
               <p className="text-[16px] md:text-[20px]">
-                SIBBARI KHULNA, <br /> BANGLADESH
+                SHIB BARI KHULNA, <br /> BANGLADESH
               </p>
               <p className="text-[16px] md:text-[20px]">+8801745377702</p>
               <p className="text-[16px] md:text-[20px]">

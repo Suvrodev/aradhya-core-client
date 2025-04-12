@@ -15,6 +15,7 @@ import {
   selectAssignStudentName,
   selectAssignStudentPhone,
   selectBatchId,
+  selectBatchName,
   selectCourseDiscount,
   selectCourseId,
   selectCoursePrice,
@@ -27,6 +28,7 @@ import {
 interface IProps {
   batchId: string;
   courseId: string;
+  batchName: string;
   courseDuration: string;
   courseTitle: string;
   courseImage: string;
@@ -39,6 +41,7 @@ interface IProps {
 
 const EnrollCourseFirstStep = ({
   batchId,
+  batchName,
   courseId,
   courseTitle,
   courseImage,
@@ -81,7 +84,7 @@ const EnrollCourseFirstStep = ({
   useEffect(() => {
     const updatedPrice =
       initialTotalPrice - (appliedDiscount / 100) * initialTotalPrice;
-    setTotalPrice(updatedPrice);
+    setTotalPrice(Math.ceil(updatedPrice));
   }, [appliedDiscount, initialTotalPrice]);
 
   const applyCouponCode = () => {
@@ -111,6 +114,7 @@ const EnrollCourseFirstStep = ({
     dispatch(selectAssignStudentPhone(student?.phone));
     dispatch(selectCourseId(courseId));
     dispatch(selectBatchId(batchId));
+    dispatch(selectBatchName(batchName));
     dispatch(selectCoursePrice(coursePrice));
     dispatch(selectCourseDiscount(courseDiscount));
     dispatch(selectPromoCodeStatus(promoData?.promoStatus));
