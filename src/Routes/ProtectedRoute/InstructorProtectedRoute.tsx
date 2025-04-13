@@ -30,7 +30,7 @@ const InstructorProtectedRoute = ({ children }: IProps) => {
   if (!token) {
     return (
       <Navigate
-        to={"/login"}
+        to={"/instructor-log"}
         state={{ from: location }}
         replace={true}
       ></Navigate>

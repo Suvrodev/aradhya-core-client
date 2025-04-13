@@ -2,9 +2,9 @@ import fullLogo from "../../../../../assets/Logo/fullLogo.png";
 import { Link } from "react-router";
 import { useAppSelector } from "../../../../../redux/hook";
 import { verifyToken } from "../../../../../utils/Fucntion/verifyToken";
-import { useGetSpecificStudentQuery } from "../../../../../redux/api/features/Student/studentManagementApi";
 import { TStudent } from "../../../../../utils/types/globalTypes";
 import { Menu } from "lucide-react";
+import { useGetSpecificInstructorQuery } from "../../../../../redux/api/features/Instructor/instructorManagementApi";
 
 interface IProps {
   openDrawer: boolean;
@@ -19,7 +19,7 @@ const InstructorMobileHeader = ({ openDrawer, setOpenDrawer }: IProps) => {
     user = verifyToken(token);
   }
 
-  const { data, isLoading } = useGetSpecificStudentQuery(user?.studentId);
+  const { data, isLoading } = useGetSpecificInstructorQuery(user?.studentId);
   const loggedStudent: TStudent = data?.data;
 
   // console.log("Open Dashboard in Mobile Header: ", openDrawer);

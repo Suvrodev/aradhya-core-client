@@ -54,7 +54,7 @@ const StudentDashboard = () => {
           {/* Mobile Animation */}
           <div
             className={`md:hidden absolute w-full h-full left-0 top-0  ${
-              openDrawer ? "bg-green-400 z-10" : ""
+              openDrawer ? "bg-transparent z-10" : ""
             }`}
             onClick={() => setOpenDrawer(false)}
           >

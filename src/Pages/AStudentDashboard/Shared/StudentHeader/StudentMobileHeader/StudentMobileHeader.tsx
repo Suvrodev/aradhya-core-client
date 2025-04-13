@@ -19,9 +19,8 @@ const StudentMobileHeader = ({ openDrawer, setOpenDrawer }: IProps) => {
     user = verifyToken(token);
   }
 
-  const { data, isLoading } = useGetSpecificStudentQuery(user?.studentId);
+  const { data, isLoading } = useGetSpecificStudentQuery(user?.email);
   const loggedStudent: TStudent = data?.data;
-
   // console.log("Open Dashboard in Mobile Header: ", openDrawer);
 
   if (isLoading) {
