@@ -48,6 +48,14 @@ const UpdateCourse = () => {
   const [courseExists, setCourseExists] = useState<string>(
     specificCourse?.courseExists
   );
+
+  const [remainingChars, setRemainingChars] = useState<number>(
+    specificCourse?.courseDescription.length
+  );
+  const handleDescriptionChange = (e: ChangeEvent<HTMLTextAreaElement>) => {
+    setRemainingChars(550 - e.target.value.length);
+  };
+
   useEffect(() => {
     if (serviceNameSelect) {
       setRefServiceId(serviceNameSelect?.serviceId);
@@ -361,7 +369,7 @@ const UpdateCourse = () => {
               ></input>
             </div>
             {/* Description */}
-            <div className="md:col-span-4">
+            {/* <div className="md:col-span-4">
               <label className="block font-medium mb-2 text-gray-300">
                 Description
               </label>
@@ -373,6 +381,26 @@ const UpdateCourse = () => {
                 placeholder="Enter course description"
                 required
               ></textarea>
+            </div> */}
+
+            {/* Description */}
+            <div className="md:col-span-4">
+              <label className="block font-medium mb-2 text-gray-300">
+                Description
+              </label>
+              <textarea
+                name="courseDescription"
+                className="w-full p-3 bg-gray-700 border border-gray-600 rounded-lg text-white placeholder-gray-400 focus:outline-none focus:ring-2 focus:ring-blue-500 transition-all"
+                rows={4}
+                placeholder="Enter course description (max 500 characters)"
+                maxLength={550}
+                required
+                defaultValue={specificCourse?.courseDescription}
+                onChange={handleDescriptionChange}
+              />
+              <div className={`text-right text-sm mt-1  "text-gray-400"`}>
+                Characters remaining: {remainingChars}/550
+              </div>
             </div>
 
             {/* Course Passes */}

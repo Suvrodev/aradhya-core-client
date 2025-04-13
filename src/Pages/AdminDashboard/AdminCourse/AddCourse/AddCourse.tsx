@@ -19,6 +19,10 @@ const AddCourse = () => {
   );
   const [refServiceId, setRefServiceId] = useState<string>("");
   const [courseExists, setCourseExists] = useState<string>("yes");
+  const [remainingChars, setRemainingChars] = useState<number>(500);
+  const handleDescriptionChange = (e: ChangeEvent<HTMLTextAreaElement>) => {
+    setRemainingChars(550 - e.target.value.length);
+  };
 
   const handleCourseExists = (event: ChangeEvent<HTMLSelectElement>) => {
     const res = event.target.value;
@@ -314,7 +318,7 @@ const AddCourse = () => {
               ></input>
             </div>
             {/* Description */}
-            <div className="md:col-span-4">
+            {/* <div className="md:col-span-4">
               <label className="block font-medium mb-2 text-gray-300">
                 Description
               </label>
@@ -326,6 +330,26 @@ const AddCourse = () => {
                 required
                 defaultValue={"Description"}
               ></textarea>
+            </div> */}
+
+            {/* Description */}
+            <div className="md:col-span-4">
+              <label className="block font-medium mb-2 text-gray-300">
+                Description
+              </label>
+              <textarea
+                name="courseDescription"
+                className="w-full p-3 bg-gray-700 border border-gray-600 rounded-lg text-white placeholder-gray-400 focus:outline-none focus:ring-2 focus:ring-blue-500 transition-all"
+                rows={4}
+                placeholder="Enter course description (max 500 characters)"
+                maxLength={550}
+                required
+                defaultValue={"Description"}
+                onChange={handleDescriptionChange}
+              />
+              <div className={`text-right text-sm mt-1  "text-gray-400"`}>
+                Characters remaining: {remainingChars}/550
+              </div>
             </div>
 
             {/* Course Passes */}
