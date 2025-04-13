@@ -16,8 +16,10 @@ import { TStudent } from "../../../utils/types/globalTypes";
 import LoadingPage from "../../../Component/LoadingPage/LoadingPage";
 import { toast } from "sonner";
 import { sonarId } from "../../../utils/Fucntion/sonarId";
+import { useTitle } from "../../../Component/hook/useTitle";
 
 const ImportantLink = () => {
+  useTitle(`Important Link`);
   const [updateUser] = useUpdateStudentMutation();
   const { token } = useAppSelector((state) => state.auth);
   // eslint-disable-next-line @typescript-eslint/no-explicit-any

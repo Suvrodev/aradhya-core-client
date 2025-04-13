@@ -1,3 +1,4 @@
+import { useTitle } from "../../../Component/hook/useTitle";
 import { useGetOwnCourseOfAssignStudentQuery } from "../../../redux/api/features/AssignStudent/assignStudentManagementApi";
 import { useAppSelector } from "../../../redux/hook";
 import { verifyToken } from "../../../utils/Fucntion/verifyToken";
@@ -12,7 +13,7 @@ const StudentDashboardHome = () => {
   if (token) {
     user = verifyToken(token);
   }
-  console.log("User in Home: ", user);
+  useTitle(`${user?.name} Dashboard`);
 
   const { data, isLoading } = useGetOwnCourseOfAssignStudentQuery(user?.email);
 

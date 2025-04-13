@@ -7,6 +7,7 @@ import { TAssignedStudent, TBatch } from "../../../utils/types/globalTypes";
 import "./InstructorDashboardHome.css";
 import { useGetInstructorsAssignStudentQuery } from "../../../redux/api/features/AssignStudent/assignStudentManagementApi";
 import SendNotice from "./SendNotice/SendNotice";
+import { useTitle } from "../../../Component/hook/useTitle";
 
 const InstructorDashboardHome = () => {
   const { courses } = useAppSelector((state) => state.courses);
@@ -18,7 +19,7 @@ const InstructorDashboardHome = () => {
   if (token) {
     instructor = verifyToken(token);
   }
-  // console.log("Instructor in Home: ", instructor);
+  useTitle(`${instructor?.name} Dashboard`);
 
   const { data: batchData, isLoading: batchLoading } =
     useGetBatchUnderInstructorQuery(instructor?.studentId);

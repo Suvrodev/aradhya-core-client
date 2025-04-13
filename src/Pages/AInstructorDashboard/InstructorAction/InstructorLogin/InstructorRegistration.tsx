@@ -5,12 +5,14 @@ import VisibilityIcon from "@mui/icons-material/Visibility";
 import VisibilityOffIcon from "@mui/icons-material/VisibilityOff";
 import { Link } from "react-router";
 import { useInstructorRegistrationMutation } from "../../../../redux/api/features/auth/authApi";
+import { useTitle } from "../../../../Component/hook/useTitle";
 
 interface IProps {
   setIsSignUpActive: (value: boolean) => void;
 }
 
 const InstructorRegistration = ({ setIsSignUpActive }: IProps) => {
+  useTitle("Instructor Registration");
   const [instructorRegistration, { isLoading }] =
     useInstructorRegistrationMutation();
   const [showPassword, setShowPassword] = useState(false);
@@ -87,7 +89,7 @@ const InstructorRegistration = ({ setIsSignUpActive }: IProps) => {
           <input
             type="number"
             placeholder="Enter phone number "
-            className="input input-bordered w-full bg-gray-100 text-gray-800 hide-arrows"
+            className="input input-bordered w-full bg-gray-100 text-gray-800 hide-arrows ha"
             name="phone"
             required
           />

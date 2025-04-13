@@ -14,12 +14,14 @@ import { CornerRightUp, Code, Camera } from "lucide-react";
 import { toast } from "sonner";
 import { sonarId } from "../../../utils/Fucntion/sonarId";
 import axios from "axios";
+import { useTitle } from "../../../Component/hook/useTitle";
 
 const imageHostingUrl = `https://api.cloudinary.com/v1_1/${
   import.meta.env.VITE_CLOUDNARY_API_KEY
 }/image/upload`;
 
 const MyProfile = () => {
+  useTitle(`Student Profile`);
   const [updateUser] = useUpdateStudentMutation();
   const [updatePassword] = useUpdatePasswordMutation();
   const { token } = useAppSelector((state) => state.auth);

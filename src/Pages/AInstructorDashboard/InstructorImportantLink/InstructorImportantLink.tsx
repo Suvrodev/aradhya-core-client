@@ -17,8 +17,10 @@ import {
   useGetSpecificInstructorQuery,
   useUpdateInstructorMutation,
 } from "../../../redux/api/features/Instructor/instructorManagementApi";
+import { useTitle } from "../../../Component/hook/useTitle";
 
 const InstructorImportantLink = () => {
+  useTitle(`Important Link`);
   const [updateUser] = useUpdateInstructorMutation();
   const { token } = useAppSelector((state) => state.auth);
   // eslint-disable-next-line @typescript-eslint/no-explicit-any

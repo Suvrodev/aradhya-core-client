@@ -14,6 +14,7 @@ import {
   useUpdateInstructorePasswordMutation,
   useUpdateInstructorMutation,
 } from "../../../redux/api/features/Instructor/instructorManagementApi";
+import { useTitle } from "../../../Component/hook/useTitle";
 
 const imageHostingUrl = `https://api.cloudinary.com/v1_1/${
   import.meta.env.VITE_CLOUDNARY_API_KEY
@@ -28,6 +29,7 @@ const InstructorMyProfile = () => {
   if (token) {
     user = verifyToken(token);
   }
+  useTitle(`${user?.name} Profile`);
 
   const { data, isLoading } = useGetSpecificInstructorQuery(user?.studentId);
   const loggedStudent: TInstructor = data?.data;

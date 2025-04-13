@@ -10,7 +10,9 @@ import { useInstructorLoginMutation } from "../../../../redux/api/features/auth/
 import { verifyToken } from "../../../../utils/Fucntion/verifyToken";
 import { TStudent } from "../../../../utils/types/globalTypes";
 import { setUser } from "../../../../redux/api/features/auth/authSlice";
+import { useTitle } from "../../../../Component/hook/useTitle";
 const InstructorLogin = () => {
+  useTitle("Instructor Login");
   const [instructorLogin] = useInstructorLoginMutation();
   const [isSignUpActive, setIsSignUpActive] = useState(false);
   const dispatch = useAppDispatch();
