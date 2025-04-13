@@ -1,3 +1,4 @@
+import { useTitle } from "../../../Component/hook/useTitle";
 import LoadingPage from "../../../Component/LoadingPage/LoadingPage";
 import { useGetAllAssignStudentQuery } from "../../../redux/api/features/AssignStudent/assignStudentManagementApi";
 import { TAssignedStudent } from "../../../utils/types/globalTypes";
@@ -5,6 +6,7 @@ import AdminAssignedStudentTable from "./AdminAssignedStudentTable";
 import { useState } from "react";
 
 const AdminAssignedStudent = () => {
+  useTitle("Admin-Assign Student");
   const [searchTerm, setSearchTerm] = useState<string>(""); // For search
   const [status, setStatus] = useState<string>(""); // For filter by status
   const [sort, setSort] = useState<string>("desc"); // For sorting createdAt

@@ -7,8 +7,10 @@ import { useGetAllCourseQuery } from "../../../../redux/api/features/Course/cour
 import LoadingPage from "../../../../Component/LoadingPage/LoadingPage";
 import { TCourse, TInstructor } from "../../../../utils/types/globalTypes";
 import { useGetAllInstructorQuery } from "../../../../redux/api/features/Instructor/instructorManagementApi";
+import { useTitle } from "../../../../Component/hook/useTitle";
 
 const AdminBatch = () => {
+  useTitle("Admin-Batch");
   const { data: CourseData, isLoading } = useGetAllCourseQuery(undefined);
   const [addBatch] = useAddBatchMutation();
   const [batchStatus, setBatchStatus] = useState("");

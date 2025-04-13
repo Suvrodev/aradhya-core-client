@@ -1,4 +1,7 @@
+import { useTitle } from "../../Component/hook/useTitle";
+
 const AdminDashboardHome = () => {
+  useTitle("Admin Home");
   return (
     <div className="min-h-screen bg-gradient-to-br from-gray-800 via-gray-900 to-black text-white py-12">
       <div className="container mx-auto px-4">

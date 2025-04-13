@@ -7,8 +7,10 @@ import LoadingPage from "../../../Component/LoadingPage/LoadingPage";
 import { TPromoCode } from "../../../utils/types/globalTypes";
 import { toast } from "sonner";
 import { sonarId } from "../../../utils/Fucntion/sonarId";
+import { useTitle } from "../../../Component/hook/useTitle";
 
 const AdminPromocode = () => {
+  useTitle("Admin-Promocode");
   const [updatePromo] = useUpdatePromoCodeMutation();
   const { data, isLoading } = useGetSpecificPromoCodeQuery(
     import.meta.env.VITE_PROMOCODE_ID

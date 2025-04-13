@@ -10,8 +10,10 @@ import TextEditor from "./TextEditor/TextEditor";
 import { blogCategories } from "../../../utils/Array/blogCategoryArray";
 import { TBlog } from "../../../utils/types/globalTypes";
 import { sonarId } from "../../../utils/Fucntion/sonarId";
+import { useTitle } from "../../../Component/hook/useTitle";
 
 const UpdateBlog = () => {
+  useTitle("Admin-Update Blog");
   const [updateBlog] = useUpdateBlogMutation();
   const { id } = useParams();
   // console.log("id: ", id);

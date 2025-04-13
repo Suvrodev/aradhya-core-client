@@ -1,9 +1,11 @@
+import { useTitle } from "../../../../Component/hook/useTitle";
 import LoadingPage from "../../../../Component/LoadingPage/LoadingPage";
 import { useGetAllBlogByAdminQuery } from "../../../../redux/api/features/Blog/blogManagementApi";
 import { TBlog } from "../../../../utils/types/globalTypes";
 import BlogBox from "./BlogBox";
 
 const AllBlog = () => {
+  useTitle("Admin-All Blog");
   const { data, isLoading } = useGetAllBlogByAdminQuery(undefined);
   const blogDatas = data?.data;
   // console.log(blogDatas);

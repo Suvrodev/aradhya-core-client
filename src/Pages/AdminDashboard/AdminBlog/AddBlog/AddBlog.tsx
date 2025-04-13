@@ -6,8 +6,10 @@ import TextEditor from "../TextEditor/TextEditor";
 import { sonarId } from "../../../../utils/Fucntion/sonarId";
 import { useAppSelector } from "../../../../redux/hook";
 import { verifyToken } from "../../../../utils/Fucntion/verifyToken";
+import { useTitle } from "../../../../Component/hook/useTitle";
 
 const AddBlog = () => {
+  useTitle("Admin-Add Blog");
   const { token } = useAppSelector((state) => state.auth);
   // eslint-disable-next-line @typescript-eslint/no-explicit-any
   let user: any;

@@ -3,8 +3,10 @@ import { toast } from "sonner";
 import { sonarId } from "../../../utils/Fucntion/sonarId";
 import AdminAllService from "./AdminAllService/AdminAllService";
 import { ChangeEvent, FormEvent, useState } from "react";
+import { useTitle } from "../../../Component/hook/useTitle";
 
 const AdminService = () => {
+  useTitle("Admin-Service");
   const [addService] = useAddServiceMutation();
 
   const [serviceExists, setServiceExists] = useState("yes");

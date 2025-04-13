@@ -3,8 +3,10 @@ import { useAddOurPeopleMutation } from "../../../redux/api/features/OurPeople/o
 import { toast } from "sonner";
 import { sonarId } from "../../../utils/Fucntion/sonarId";
 import OurAllPeople from "./OurAllPeople/OurAllPeople";
+import { useTitle } from "../../../Component/hook/useTitle";
 
 const AdminOurPeople = () => {
+  useTitle("Admin-Our People");
   const [addOurPeople] = useAddOurPeopleMutation();
   const [showForm, setShowForm] = useState(false);
   const [formData, setFormData] = useState({

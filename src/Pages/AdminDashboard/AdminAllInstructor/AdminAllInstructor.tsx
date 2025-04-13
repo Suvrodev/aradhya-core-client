@@ -10,8 +10,10 @@ import { toast } from "sonner";
 import { sonarId } from "../../../utils/Fucntion/sonarId";
 import { TInstructor } from "../../../utils/types/globalTypes";
 import InstructorDetail from "./InstructorDetail/InstructorDetail";
+import { useTitle } from "../../../Component/hook/useTitle";
 
 const AdminAllInstructor = () => {
+  useTitle("Admin-All Instructor");
   const [deleteStudent] = useDeleteInstructorMutation();
   const [makeEnableOrDisable] = useUpdateInstructorMutation();
   const [searchTerm, setSearchTerm] = useState("");

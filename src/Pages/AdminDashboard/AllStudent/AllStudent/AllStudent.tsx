@@ -9,8 +9,10 @@ import { useState } from "react";
 import { toast } from "sonner";
 import { sonarId } from "../../../../utils/Fucntion/sonarId";
 import AssignStudent from "../AssignStudent/AssignStudent";
+import { useTitle } from "../../../../Component/hook/useTitle";
 
 const AllStudent = () => {
+  useTitle("Admin-All Student");
   const [deleteStudent] = useDeleteStudentMutation();
   const [searchTerm, setSearchTerm] = useState("");
   const { data, isLoading } = useGetAllStudentQuery(

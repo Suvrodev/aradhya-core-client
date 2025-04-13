@@ -10,8 +10,10 @@ import { useGetAllServiceQuery } from "../../../../redux/api/features/Service/se
 import TextEditor from "../../AdminBlog/TextEditor/TextEditor";
 import { TCourse, TService } from "../../../../utils/types/globalTypes";
 import LoadingPage from "../../../../Component/LoadingPage/LoadingPage";
+import { useTitle } from "../../../../Component/hook/useTitle";
 
 const UpdateCourse = () => {
+  useTitle("Admin-Update Course");
   const { id } = useParams();
   // console.log("Course id: ", id);
   const { data: CourseData, isLoading } = useGetSpecificCourseQuery(id);

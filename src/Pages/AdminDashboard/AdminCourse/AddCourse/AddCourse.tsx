@@ -5,8 +5,10 @@ import TextEditor from "../../AdminBlog/TextEditor/TextEditor";
 import { toast } from "sonner";
 import { sonarId } from "../../../../utils/Fucntion/sonarId";
 import { useAddCourseMutation } from "../../../../redux/api/features/Course/courseManagementApi";
+import { useTitle } from "../../../../Component/hook/useTitle";
 
 const AddCourse = () => {
+  useTitle("Admin-Add Course");
   const [addCourse] = useAddCourseMutation();
   const { data } = useGetAllServiceQuery(undefined);
   const services = data?.data;
