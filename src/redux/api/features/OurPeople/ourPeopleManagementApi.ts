@@ -22,6 +22,16 @@ const ourPeopleManagementApi = baseApi.injectEndpoints({
       },
       providesTags: ["ourPeople"],
     }),
+    getAllOurPeopleWithMessage: builder.query({
+      query: (params) => {
+        return {
+          url: `/people/wm`,
+          params: params,
+          method: "GET",
+        };
+      },
+      providesTags: ["ourPeople"],
+    }),
 
     getSpecificOurPeople: builder.query({
       query: (id) => {
@@ -58,6 +68,7 @@ const ourPeopleManagementApi = baseApi.injectEndpoints({
 export const {
   useAddOurPeopleMutation,
   useGetAllOurPeopleQuery,
+  useGetAllOurPeopleWithMessageQuery,
   useGetSpecificOurPeopleQuery,
   useDeleteOurPeopleMutation,
   useUpdateOurPeopleMutation,

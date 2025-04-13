@@ -22,7 +22,7 @@ interface IProps {
 }
 
 const BlogBox = ({ blog, admin = false, instructor = false }: IProps) => {
-  console.log("Blog: ", blog);
+  // console.log("Blog: ", blog);
   const [deleteBlog] = useDeleteBlogMutation();
   const [updatePin] = useUpdateBlogPinMutation();
   const [updateIsEnable] = useUpdateBlogisEnableMutation();

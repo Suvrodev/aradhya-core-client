@@ -1,14 +1,13 @@
-import axios from "axios";
-import { useEffect, useState } from "react";
 import ReviewBox from "./ReviewBox";
+import { useGetAllOurPeopleWithMessageQuery } from "../../../../redux/api/features/OurPeople/ourPeopleManagementApi";
+import { TOurPeople } from "../../../../utils/types/globalTypes";
 
 const Review = () => {
-  const [comments, setComments] = useState([]);
-  useEffect(() => {
-    axios.get("review.json").then((res) => {
-      setComments(res.data);
-    });
-  }, []);
+  const { data, isLoading } = useGetAllOurPeopleWithMessageQuery(undefined);
+  const peoples = data?.data;
+  if (isLoading) {
+    return <span className="loading loading-spinner text-success"></span>;
+  }
   return (
     <div className="mb-4">
       <h1 className="text-4xl text-center">
@@ -16,8 +15,8 @@ const Review = () => {
       </h1>
 
       <div className="grid grid-cols-1 md:grid-cols-3 gap-5 mt-10">
-        {comments.map((c, idx) => (
-          <ReviewBox key={idx} c={c} />
+        {peoples.map((people: TOurPeople, idx: number) => (
+          <ReviewBox key={idx} people={people} />
         ))}
       </div>
     </div>

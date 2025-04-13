@@ -47,14 +47,14 @@ const InstructorLogin = () => {
   return (
     <div className="min-h-screen bg-gradient-to-r from-indigo-500 to-pink-500 flex items-center justify-center p-4">
       {/* Main Container */}
-      <div className="relative w-full max-w-4xl bg-white shadow-2xl rounded-2xl overflow-hidden flex flex-col md:flex-row h-auto md:h-[650px]">
+      <div className="relative w-full max-w-4xl bg-white shadow-2xl rounded-3xl overflow-hidden flex flex-col md:flex-row h-auto md:h-[650px]">
         {/* Start From Here */}
         {/* Left Side - Swaps between overlay and form */}
         <div
           className={`w-full md:w-1/2 p-8 transition-all duration-700 ease-in-out ${
             isSignUpActive
               ? "bg-white"
-              : "bg-gradient-to-br from-purple-400 to-purple-800 text-white rounded-r-3xl" // Purple gradient
+              : "bg-gradient-to-br from-purple-400 to-purple-800 text-white rounded-b-3xl md:rounded-r-3xl" // Purple gradient
           }`}
         >
           {isSignUpActive ? (
@@ -78,7 +78,7 @@ const InstructorLogin = () => {
         <div
           className={`w-full md:w-1/2 p-8 transition-all duration-700 ease-in-out ${
             isSignUpActive
-              ? "bg-gradient-to-br from-indigo-600 to-pink-600 text-white rounded-l-3xl"
+              ? "bg-gradient-to-br from-indigo-600 to-pink-600 text-white rounded-t-3xl md:rounded-l-3xl"
               : "bg-white"
           }`}
         >

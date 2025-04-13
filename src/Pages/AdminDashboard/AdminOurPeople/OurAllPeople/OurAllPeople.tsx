@@ -14,10 +14,10 @@ const OurAllPeople = () => {
   return (
     <div className="py-12 px-4   ">
       <div className="text-center mb-12">
-        <h1 className="text-4xl font-bold text-transparent bg-clip-text bg-gradient-to-r from-purple-600 to-pink-600 mb-4">
+        <h1 className="text-5xl font-extrabold text-transparent bg-clip-text bg-gradient-to-r from-teal-400 to-teal-700 mb-6 text-center">
           Meet Our Team
         </h1>
-        <p className="text-lg text-gray-600 max-w-2xl mx-auto">
+        <p className="text-xl text-white max-w-2xl mx-auto text-center leading-relaxed font-medium">
           The talented individuals who make our organization great
         </p>
       </div>

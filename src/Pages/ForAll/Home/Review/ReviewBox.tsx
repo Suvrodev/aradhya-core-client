@@ -1,21 +1,17 @@
+import { TOurPeople } from "../../../../utils/types/globalTypes";
+
 interface IProps {
-  c: {
-    Course: string;
-    name: string;
-    image: string;
-    comment: string;
-  };
+  people: TOurPeople;
 }
 
-const ReviewBox = ({ c }: IProps) => {
-  const { Course, name, image, comment } = c;
-
+const ReviewBox = ({ people }: IProps) => {
+  const { name, course, image, message } = people;
   return (
     <div className="bg-white p-6 rounded-xl shadow-lg hover:shadow-xl transition-all duration-300 border border-gray-100 h-[320px] md:h-[300px] flex flex-col relative group">
       {/* Review Text */}
       <div className="flex-1 overflow-hidden">
         <p className="text-gray-700 italic text-lg leading-relaxed">
-          "{comment}"
+          "{message}"
         </p>
       </div>
 
@@ -26,13 +22,15 @@ const ReviewBox = ({ c }: IProps) => {
       <div className="flex items-center gap-4">
         {/* Avatar */}
         <div className="w-12 h-12 rounded-full bg-gradient-to-br from-teal-500 to-[#262F51] flex items-center justify-center shadow-md group-hover:scale-110 transition-transform">
-          <span className="text-white font-bold text-lg">{image}</span>
+          <span className="text-white font-bold text-lg">
+            <img src={image} alt="" className="rounded-full" />
+          </span>
         </div>
 
         {/* Name and Course */}
         <div>
           <h3 className="text-lg font-semibold text-gray-900">{name}</h3>
-          <p className="text-sm text-teal-600 font-medium">{Course}</p>
+          <p className="text-sm text-teal-600 font-medium">{course}</p>
         </div>
       </div>
 

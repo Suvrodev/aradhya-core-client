@@ -281,7 +281,7 @@ const AdminOurPeople = () => {
                   </svg>
                 </div>
                 <input
-                  type="number"
+                  type="tel"
                   name="order"
                   placeholder="0"
                   value={formData.order}

@@ -7,11 +7,21 @@ import {
   FaNetworkWired,
 } from "react-icons/fa";
 import { useTitle } from "../../../Component/hook/useTitle";
+import { useGetAllOurPeopleQuery } from "../../../redux/api/features/OurPeople/ourPeopleManagementApi";
+import { TOurPeople } from "../../../utils/types/globalTypes";
+import PeopleBox from "../../AdminDashboard/AdminOurPeople/PeopleBox/PeopleBox";
 
 const AboutUs = () => {
   useTitle("About us");
+
+  const { data, isLoading } = useGetAllOurPeopleQuery(undefined);
+  const ourPeoples = data?.data;
+
+  if (isLoading) {
+    return <span className="loading loading-spinner text-neutral"></span>;
+  }
   return (
-    <div className="min-h-screen flex items-center justify-center bg-gradient-to-br from-teal-500 to-[#262F51] p-4">
+    <div className="min-h-screen flex flex-col items-center justify-center bg-gradient-to-br from-teal-500 to-[#262F51] p-4">
       <section className="w-full max-w-6xl bg-white/10 backdrop-blur-lg rounded-2xl shadow-2xl overflow-hidden p-8">
         {/* Header Section */}
         <div className="text-center mb-12">
@@ -27,7 +37,7 @@ const AboutUs = () => {
         <div className="flex justify-center mb-12">
           <div className="bg-white/20 backdrop-blur-sm rounded-lg p-6 shadow-lg">
             <img
-              src={logo} // Replace with your logo path
+              src={logo}
               alt="AradhyaCore Logo"
               className="w-48 h-48 object-contain"
             />
@@ -48,7 +58,7 @@ const AboutUs = () => {
         </div>
 
         {/* Services Section */}
-        <div className="bg-white/10 backdrop-blur-sm rounded-lg p-8">
+        <div className="bg-white/10 backdrop-blur-sm rounded-lg p-8 mb-12">
           <h2 className="text-2xl font-bold text-white mb-6">Our Services</h2>
           <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
             {/* Graphics Design */}
@@ -87,7 +97,7 @@ const AboutUs = () => {
               </p>
             </div>
 
-            {/* Programming (C, C++, Python) */}
+            {/* Programming */}
             <div className="bg-white/20 backdrop-blur-sm rounded-lg p-6 text-white hover:scale-105 transition-transform duration-300">
               <FaCode className="text-4xl mb-4 text-teal-300" />
               <h3 className="text-xl font-bold mb-2">Programming</h3>
@@ -116,7 +126,29 @@ const AboutUs = () => {
           </div>
         </div>
 
-        {/* Footer Section */}
+        {/* Team Section */}
+        <div className="bg-white/10 backdrop-blur-sm rounded-lg p-8">
+          <div className="text-center mb-12">
+            <h2 className="text-4xl font-bold text-white mb-4">
+              Meet Our Team
+            </h2>
+            <p className="text-lg text-white/80 max-w-2xl mx-auto">
+              The talented individuals who make{" "}
+              <span className="bg-gradient-to-r from-teal-300 via-teal-w00 to-teal-200 bg-clip-text text-transparent font-bold animate-gradient bg-300% animate-gradient-x">
+                Aradhya Core
+              </span>{" "}
+              organization great
+            </p>
+          </div>
+
+          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6  ">
+            {ourPeoples?.map((people: TOurPeople, idx: number) => (
+              <PeopleBox key={idx} people={people} />
+            ))}
+          </div>
+        </div>
+
+        {/* Footer */}
         <div className="text-center mt-12">
           <p className="text-white/80">
             © 2023 <span className="font-bold text-teal-300">AradhyaCore</span>.
