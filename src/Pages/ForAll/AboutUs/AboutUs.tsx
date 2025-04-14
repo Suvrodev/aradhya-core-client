@@ -147,14 +147,6 @@ const AboutUs = () => {
             ))}
           </div>
         </div>
-
-        {/* Footer */}
-        <div className="text-center mt-12">
-          <p className="text-white/80">
-            © 2023 <span className="font-bold text-teal-300">AradhyaCore</span>.
-            All rights reserved.
-          </p>
-        </div>
       </section>
     </div>
   );

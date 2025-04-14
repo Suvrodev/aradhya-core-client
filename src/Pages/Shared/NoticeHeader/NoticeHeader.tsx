@@ -7,6 +7,7 @@ import { TPromoCode } from "../../../utils/types/globalTypes";
 import goCall from "../../../utils/Fucntion/goCall";
 import sendEmail from "../../../utils/Fucntion/sendEmail";
 import goLink from "../../../utils/Fucntion/goLink";
+import { Link } from "react-router";
 
 const NoticeHeader = () => {
   // Retrieve promocode
@@ -82,12 +83,16 @@ const NoticeHeader = () => {
                 {promoData?.promoCode || "PROMO123"}
               </span>
             </motion.div>
-            <a
-              href="#"
-              className="text-white/80 hover:text-teal-300 transition-colors duration-300"
+
+            <Link
+              to="#"
+              className="text-white hover:text-teal-300 transition-colors"
+              onClick={() => {
+                goLink("https://www.facebook.com/aradhyacorebd");
+              }}
             >
-              <FaFacebookF className="w-4 h-4" />
-            </a>
+              <FaFacebookF />
+            </Link>
             <a
               href="#"
               className="text-white/80 hover:text-teal-300 transition-colors duration-300"

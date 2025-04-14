@@ -32,9 +32,7 @@ const Footer = () => {
                 to="#"
                 className="text-white hover:text-teal-300 transition-colors"
                 onClick={() => {
-                  goLink(
-                    "https://www.facebook.com/profile.php?id=61572660471299"
-                  );
+                  goLink("https://www.facebook.com/aradhyacorebd");
                 }}
               >
                 <FaFacebookF />
