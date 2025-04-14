@@ -63,7 +63,7 @@ const InstructorMobileHeader = ({ openDrawer, setOpenDrawer }: IProps) => {
           </div>
 
           <div className="w-1/3 flex items-center  justify-start h-full">
-            <Link to={"/student-dashboard"}>
+            <Link to={"/instructor-dashboard"}>
               {" "}
               <img src={fullLogo} alt="" className="w-full md:w-4/12" />
             </Link>

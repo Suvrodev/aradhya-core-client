@@ -17,9 +17,6 @@ const AboutUs = () => {
   const { data, isLoading } = useGetAllOurPeopleQuery(undefined);
   const ourPeoples = data?.data;
 
-  if (isLoading) {
-    return <span className="loading loading-spinner text-neutral"></span>;
-  }
   return (
     <div className="min-h-screen flex flex-col items-center justify-center bg-gradient-to-br from-teal-500 to-[#262F51] p-4">
       <section className="w-full max-w-6xl bg-white/10 backdrop-blur-lg rounded-2xl shadow-2xl overflow-hidden p-8">
@@ -127,26 +124,32 @@ const AboutUs = () => {
         </div>
 
         {/* Team Section */}
-        <div className="bg-white/10 backdrop-blur-sm rounded-lg p-8">
-          <div className="text-center mb-12">
-            <h2 className="text-4xl font-bold text-white mb-4">
-              Meet Our Team
-            </h2>
-            <p className="text-lg text-white/80 max-w-2xl mx-auto">
-              The talented individuals who make{" "}
-              <span className="bg-gradient-to-r from-teal-300 via-teal-w00 to-teal-200 bg-clip-text text-transparent font-bold animate-gradient bg-300% animate-gradient-x">
-                Aradhya Core
-              </span>{" "}
-              organization great
-            </p>
+        {isLoading ? (
+          <div>
+            <span className="loading loading-spinner text-neutral"></span>;
           </div>
+        ) : (
+          <div className="bg-white/10 backdrop-blur-sm rounded-lg p-8">
+            <div className="text-center mb-12">
+              <h2 className="text-4xl font-bold text-white mb-4">
+                Meet Our Team
+              </h2>
+              <p className="text-lg text-white/80 max-w-2xl mx-auto">
+                The talented individuals who make{" "}
+                <span className="bg-gradient-to-r from-teal-300 via-teal-w00 to-teal-200 bg-clip-text text-transparent font-bold animate-gradient bg-300% animate-gradient-x">
+                  Aradhya Core
+                </span>{" "}
+                organization great
+              </p>
+            </div>
 
-          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6  ">
-            {ourPeoples?.map((people: TOurPeople, idx: number) => (
-              <PeopleBox key={idx} people={people} />
-            ))}
+            <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6  ">
+              {ourPeoples?.map((people: TOurPeople, idx: number) => (
+                <PeopleBox key={idx} people={people} />
+              ))}
+            </div>
           </div>
-        </div>
+        )}
       </section>
     </div>
   );
