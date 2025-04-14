@@ -40,6 +40,9 @@ const UpdateCourse = () => {
   const [computerConfiguration, setComputerConfiguration] = useState<string>(
     specificCourse?.computerConfiguration
   );
+  const [description, setDescription] = useState(
+    specificCourse?.courseDescription
+  );
 
   const [refServiceId, setRefServiceId] = useState<string>(
     specificCourse?.refServiceId
@@ -49,18 +52,12 @@ const UpdateCourse = () => {
     specificCourse?.courseExists
   );
 
-  const [remainingChars, setRemainingChars] = useState<number>(
-    specificCourse?.courseDescription.length
-  );
-  const handleDescriptionChange = (e: ChangeEvent<HTMLTextAreaElement>) => {
-    setRemainingChars(550 - e.target.value.length);
-  };
-
   useEffect(() => {
     if (serviceNameSelect) {
       setRefServiceId(serviceNameSelect?.serviceId);
       setComputerConfiguration(specificCourse?.computerConfiguration);
       setCourseExists(specificCourse.courseExists);
+      setDescription(specificCourse.courseDescription);
     }
   }, [CourseData, serviceData, serviceNameSelect, specificCourse]);
 
@@ -88,7 +85,6 @@ const UpdateCourse = () => {
     const courseId = Form.courseId.value;
     const courseTitle = Form.courseTitle.value;
     const courseImage = Form.courseImage.value;
-    const courseDescription = Form.courseDescription.value;
     const coursePrice = Form.coursePrice.value;
     const courseDiscount = Form.courseDiscount?.value;
     const courseDiscountReason = Form.courseDiscountReason?.value;
@@ -118,7 +114,7 @@ const UpdateCourse = () => {
       courseId,
       courseTitle,
       courseImage,
-      courseDescription,
+      courseDescription: description,
       coursePrice: Number(coursePrice),
       courseDiscount: Number(courseDiscount),
       courseDiscountReason,
@@ -388,7 +384,7 @@ const UpdateCourse = () => {
               <label className="block font-medium mb-2 text-gray-300">
                 Description
               </label>
-              <textarea
+              {/* <textarea
                 name="courseDescription"
                 className="w-full p-3 bg-gray-700 border border-gray-600 rounded-lg text-white placeholder-gray-400 focus:outline-none focus:ring-2 focus:ring-blue-500 transition-all"
                 rows={4}
@@ -400,7 +396,8 @@ const UpdateCourse = () => {
               />
               <div className={`text-right text-sm mt-1  "text-gray-400"`}>
                 Characters remaining: {remainingChars}/550
-              </div>
+              </div> */}
+              <TextEditor content={description} setContent={setDescription} />
             </div>
 
             {/* Course Passes */}

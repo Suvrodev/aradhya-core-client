@@ -78,9 +78,13 @@ const CourseDetail = () => {
               <h1 className="text-3xl md:text-4xl font-bold mb-4 bg-gradient-to-r from-teal-400 to-teal-600 bg-clip-text text-transparent">
                 {course?.courseTitle}
               </h1>
-              <p className="text-gray-300 text-lg leading-relaxed">
+              {/* <p className="text-gray-300 text-lg leading-relaxed">
                 {course?.courseDescription}
-              </p>
+              </p> */}
+              <p
+                className="text-gray-300 text-lg leading-relaxed"
+                dangerouslySetInnerHTML={{ __html: course.courseDescription }}
+              ></p>
             </div>
 
             {/* YouTube Video */}
@@ -382,9 +386,13 @@ const CourseDetail = () => {
                 <h1 className="text-3xl md:text-4xl font-bold mb-4 bg-gradient-to-r from-teal-400 to-teal-600 bg-clip-text text-transparent">
                   {course?.courseTitle}
                 </h1>
-                <p className="text-gray-300 text-lg leading-relaxed">
+                {/* <p className="text-gray-300 text-lg leading-relaxed">
                   {course?.courseDescription}
-                </p>
+                </p> */}
+                <p
+                  className="text-gray-300 text-lg leading-relaxed"
+                  dangerouslySetInnerHTML={{ __html: course.courseDescription }}
+                ></p>
               </div>
 
               {/* Action Buttons */}

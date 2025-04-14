@@ -19,11 +19,7 @@ const AddCourse = () => {
   );
   const [refServiceId, setRefServiceId] = useState<string>("");
   const [courseExists, setCourseExists] = useState<string>("yes");
-  const [remainingChars, setRemainingChars] = useState<number>(500);
-  const handleDescriptionChange = (e: ChangeEvent<HTMLTextAreaElement>) => {
-    setRemainingChars(550 - e.target.value.length);
-  };
-
+  const [description, setDescription] = useState("");
   const handleCourseExists = (event: ChangeEvent<HTMLSelectElement>) => {
     const res = event.target.value;
     setCourseExists(res);
@@ -49,7 +45,7 @@ const AddCourse = () => {
     const courseId = Form.courseId.value;
     const courseTitle = Form.courseTitle.value;
     const courseImage = Form.courseImage.value;
-    const courseDescription = Form.courseDescription.value;
+    // const courseDescription = Form.courseDescription.value;
     const coursePrice = Form.coursePrice.value;
     const courseDiscount = Form.courseDiscount?.value;
     const courseDiscountReason = Form.courseDiscountReason?.value;
@@ -78,7 +74,7 @@ const AddCourse = () => {
       courseId,
       courseTitle,
       courseImage,
-      courseDescription,
+      courseDescription: description,
       coursePrice: Number(coursePrice),
       courseDiscount: Number(courseDiscount),
       courseDiscountReason,
@@ -337,7 +333,7 @@ const AddCourse = () => {
               <label className="block font-medium mb-2 text-gray-300">
                 Description
               </label>
-              <textarea
+              {/* <textarea
                 name="courseDescription"
                 className="w-full p-3 bg-gray-700 border border-gray-600 rounded-lg text-white placeholder-gray-400 focus:outline-none focus:ring-2 focus:ring-blue-500 transition-all"
                 rows={4}
@@ -349,7 +345,8 @@ const AddCourse = () => {
               />
               <div className={`text-right text-sm mt-1  "text-gray-400"`}>
                 Characters remaining: {remainingChars}/550
-              </div>
+              </div> */}
+              <TextEditor content={description} setContent={setDescription} />
             </div>
 
             {/* Course Passes */}
