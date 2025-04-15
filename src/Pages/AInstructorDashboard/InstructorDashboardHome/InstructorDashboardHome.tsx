@@ -122,6 +122,7 @@ const InstructorDashboardHome = () => {
                       onClick={() => {
                         setSelectedBatch(batch.batchId);
                         setSelectedCourse(batch.underCourse);
+                        console.log("Show Student");
                       }}
                       className="bg-blue-500 text-white px-4 py-2 rounded-md mt-4"
                     >

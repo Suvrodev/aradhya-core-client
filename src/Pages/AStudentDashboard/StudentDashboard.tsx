@@ -40,8 +40,8 @@ const StudentDashboard = () => {
         />
       </div>
 
-      <div className="">
-        <div className="flex relative ">
+      <div className="static">
+        <div className="flex  ">
           {/* Left Side for Desktop */}
           <div className={`hidden md:block md:w-[18%]  sticky top-0`}>
             <StudentDashboardData
@@ -53,7 +53,7 @@ const StudentDashboard = () => {
 
           {/* Mobile Animation */}
           <div
-            className={`md:hidden absolute w-full h-full left-0 top-0  ${
+            className={`md:hidden absolute w-full h-full left-0 top-0   ${
               openDrawer ? "bg-transparent z-10" : ""
             }`}
             onClick={() => setOpenDrawer(false)}
