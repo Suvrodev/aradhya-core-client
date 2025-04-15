@@ -376,7 +376,7 @@ const CourseDetail = () => {
               <img
                 src={course?.courseImage}
                 alt={course?.courseTitle}
-                className="w-full h-64 object-cover hover:scale-105 transition-transform duration-500"
+                className="w-full h-64 hover:scale-105 transition-transform duration-500"
               />
             </div>
 
