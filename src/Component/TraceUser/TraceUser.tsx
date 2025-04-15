@@ -124,9 +124,9 @@ const TraceUser = () => {
         },
         body: JSON.stringify(payload),
       })
-        // .then((res) => res.json())
+        .then((res) => res.json())
         // .then((data) => {
-        //     console.log("✅ Data sent to Sheet:", data);
+        //   console.log("✅ Data sent to Sheet:", data);
         // })
         .catch((err) => {
           console.error("❌ Error sending to sheet:", err);

@@ -60,8 +60,8 @@ const AdminAssignedStudentTable = ({ data, idx }: IProps) => {
   return (
     <tr
       key={idx}
-      className={`border-b  hover:bg-purple-500 transition-all duration-300 ${
-        idx % 2 ? "bg-gray-700" : "bg-gray-500"
+      className={`border-b hover:bg-purple-500 transition-all duration-300 ${
+        !status ? "bg-red-500" : idx % 2 ? "bg-gray-700" : "bg-gray-500"
       }`}
     >
       <td className="py-3 px-4">{idx + 1}</td>

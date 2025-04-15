@@ -6,6 +6,8 @@ import {
   Paintbrush,
   Network,
   Layers,
+  Film,
+  Box,
 } from "lucide-react";
 import { selectCategory } from "../../../../../redux/api/features/Service/selectServiceSlice";
 import { useAppSelector } from "../../../../../redux/hook";
@@ -27,6 +29,10 @@ const getServiceIcon = (name: string) => {
       return <BookOpen size={20} className="text-orange-500" />;
     case "Netwroking":
       return <Network size={20} className="text-red-500" />;
+    case "3D":
+      return <Box size={20} className="text-indigo-500" />; // Using Box icon for 3D
+    case "Film And Media":
+      return <Film size={20} className="text-yellow-500" />;
     default:
       return <Layers size={20} className="text-gray-500" />;
   }
