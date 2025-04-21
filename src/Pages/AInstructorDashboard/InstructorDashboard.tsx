@@ -11,6 +11,7 @@ import InstructorDashboardData from "./InstructorDashboardData/InstructorDashboa
 import { useGetSpecificInstructorQuery } from "../../redux/api/features/Instructor/instructorManagementApi";
 import { useGetAllBatchQuery } from "../../redux/api/features/Batch/batchManagementApi";
 import { setBatch } from "../../redux/api/features/Batch/batchSlice";
+import { logout } from "../../redux/api/features/auth/authSlice";
 const InstructorDashboard = () => {
   const dispatch = useAppDispatch();
   const { token } = useAppSelector((state) => state.auth);
@@ -23,7 +24,11 @@ const InstructorDashboard = () => {
 
   const { data, isLoading } = useGetSpecificInstructorQuery(user?.studentId);
   const loggedStudent: TStudent = data?.data;
-  // console.log("Logged Student in Student Main(fetch): ", loggedStudent);
+
+  useEffect(() => {
+    if (loggedStudent?.status == "disable") dispatch(logout());
+  }, [dispatch, loggedStudent]);
+  console.log("Logged Student in Instructor Dasdboard(fetch): ", loggedStudent);
 
   const [openDrawer, setOpenDrawer] = useState(false);
 

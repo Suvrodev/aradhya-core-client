@@ -212,7 +212,7 @@ const InstructorForgetPassword = () => {
 
               {/* Go to Login Button */}
               <Link
-                to="/login"
+                to="/instructor-log"
                 className="inline-flex items-center justify-center px-6 py-3 bg-teal-500 text-white font-semibold rounded-lg hover:bg-teal-600 transition-all transform hover:scale-105"
               >
                 Go to Login

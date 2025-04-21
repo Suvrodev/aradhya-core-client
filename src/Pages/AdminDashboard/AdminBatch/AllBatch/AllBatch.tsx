@@ -10,7 +10,7 @@ const AllBatch = () => {
   const courses = courseData?.data;
   //   console.log("Courses: ", courses);
 
-  const [selectCourse, setSelectCourse] = useState("cg-201");
+  const [selectCourse, setSelectCourse] = useState("101");
   const handleCourse = (event: ChangeEvent<HTMLSelectElement>) => {
     const res = event?.target?.value;
     setSelectCourse(res);

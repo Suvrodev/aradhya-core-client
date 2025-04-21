@@ -19,7 +19,7 @@ const InstructorProtectedRoute = ({ children }: IProps) => {
   if (token) {
     user = verifyToken(token);
   }
-  // console.log("Token User: ", user);
+  // console.log("By Breaking Token of user-instructor: ", user);
 
   useEffect(() => {
     if (!token || user?.role !== "instructor") {
@@ -37,6 +37,15 @@ const InstructorProtectedRoute = ({ children }: IProps) => {
     );
   }
   if (user?.role !== "instructor") {
+    return (
+      <Navigate
+        to={"/login"}
+        state={{ from: location }}
+        replace={true}
+      ></Navigate>
+    );
+  }
+  if (user?.status !== "enable") {
     return (
       <Navigate
         to={"/login"}

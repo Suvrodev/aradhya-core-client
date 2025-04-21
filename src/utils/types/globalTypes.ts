@@ -21,6 +21,7 @@ export type TStudent = {
   linkedinUrl: string;
   githubUrl: string;
   whatsappNumber: string;
+  status?: string;
   iat: number;
   exp: number;
 };

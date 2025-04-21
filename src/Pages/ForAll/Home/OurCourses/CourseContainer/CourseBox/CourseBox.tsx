@@ -48,21 +48,21 @@ const CourseBox = ({ data, number }: IProps) => {
               </div>
               <div className=" flex items-start justify-end ">
                 <p className="text-[20px] text-right text-red-500 font-bold flex flex-col justify-start ">
+                  <span className="relative left-[3px]">
+                    <span className="bg-red-500 rounded-md text-white px-2 animPercent">
+                      {data?.courseDiscount}%
+                    </span>{" "}
+                    {/* Discount */}
+                  </span>
                   <span className="flex justify-end relative">
                     <span className="myLineThrough"></span>
                     <span className="text-black ">OFF</span>
-                  </span>
-                  <span className="relative left-[3px]">
-                    <span className="bg-red-500 rounded-md text-white px-2 animPercent">
-                      {data?.courseDiscount} %
-                    </span>{" "}
-                    Discount
                   </span>
                 </p>
               </div>
             </div>
             <Link to={`/course-detail/${courseId}`}>
-              <div className="w-[180px]  py-4 bg-white font-semibold text-black text-center text-[16px] shadow-md shadow-gray-700 absolute right-3 bottom-[10px] rounded-lg flex justify-center items-center gap-2">
+              <div className="w-[160px]  py-4 bg-white font-semibold text-black text-center text-[16px] shadow-md shadow-gray-700 absolute right-3 bottom-[10px] rounded-lg flex justify-center items-center gap-2">
                 <p> বিস্তারিত দেখি</p>
                 <span>
                   <KeyboardDoubleArrowRightIcon />{" "}

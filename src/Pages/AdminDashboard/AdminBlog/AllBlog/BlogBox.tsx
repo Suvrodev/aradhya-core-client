@@ -58,7 +58,7 @@ const BlogBox = ({ blog, admin = false, instructor = false }: IProps) => {
   };
 
   const handleGoBlogDetail = (_id: string) => {
-    if (path != "/blog") {
+    if (path != "/blog" && path != "/") {
       console.log("in admin or Home");
       return;
     }
