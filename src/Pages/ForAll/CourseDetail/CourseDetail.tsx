@@ -58,7 +58,7 @@ const CourseDetail = () => {
     : "Not specified";
 
   // Calculate discounted price
-  const discountedPrice = Math.ceil(
+  const discountedPrice = Math.floor(
     batch?.coursePrice -
       (batch?.coursePrice * (batch?.courseDiscount || 0)) / 100
   );

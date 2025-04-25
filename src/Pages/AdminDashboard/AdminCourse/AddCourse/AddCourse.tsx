@@ -43,6 +43,7 @@ const AddCourse = () => {
     }
 
     const courseId = Form.courseId.value;
+    const courseOrder = Form.courseOrder.value;
     const courseTitle = Form.courseTitle.value;
     const courseImage = Form.courseImage.value;
     // const courseDescription = Form.courseDescription.value;
@@ -72,6 +73,7 @@ const AddCourse = () => {
     const formData = {
       refServiceId,
       courseId,
+      courseOrder,
       courseTitle,
       courseImage,
       courseDescription: description,
@@ -122,6 +124,20 @@ const AddCourse = () => {
                 placeholder="Enter course id"
                 required
                 defaultValue={"c-1"}
+              />
+            </div>
+
+            {/*Course Order*/}
+            <div>
+              <label className="block font-medium mb-2 text-gray-300">
+                Course Order
+              </label>
+              <input
+                type="tel"
+                name="courseOrder"
+                className="w-full p-3 bg-teal-700 border border-gray-600 rounded-lg text-white placeholder-gray-400 focus:outline-none focus:ring-2 focus:ring-blue-500 transition-all"
+                placeholder="Enter course Order"
+                required
               />
             </div>
             {/* Service id */}
@@ -197,7 +213,7 @@ const AddCourse = () => {
                 Discount (%)
               </label>
               <input
-                type="number"
+                type="tel"
                 name="courseDiscount"
                 className="w-full p-3 bg-gray-700 border border-gray-600 rounded-lg text-white placeholder-gray-400 focus:outline-none focus:ring-2 focus:ring-blue-500 transition-all"
                 placeholder="Enter discount"
@@ -239,7 +255,7 @@ const AddCourse = () => {
             {/* Course Duration */}
             <div>
               <label className="block font-medium mb-2 text-gray-300">
-                Course Duration
+                Course Duration (String like 2+)
               </label>
               <input
                 type="text"
@@ -247,21 +263,20 @@ const AddCourse = () => {
                 className="w-full p-3 bg-gray-700 border border-gray-600 rounded-lg text-white placeholder-gray-400 focus:outline-none focus:ring-2 focus:ring-blue-500 transition-all"
                 placeholder="Enter duration (e.g., 3 months)"
                 required
-                defaultValue={"3 Month+"}
+                defaultValue={"3+"}
               />
             </div>
 
             {/* Project Number */}
             <div>
               <label className="block font-medium mb-2 text-gray-300">
-                Project Number
+                Project Number (Optional)
               </label>
               <input
                 type="text"
                 name="courseProjectNumber"
                 className="w-full p-3 bg-gray-700 border border-gray-600 rounded-lg text-white placeholder-gray-400 focus:outline-none focus:ring-2 focus:ring-blue-500 transition-all"
                 placeholder="Enter number of projects"
-                required
                 defaultValue={"30+"}
               />
             </div>

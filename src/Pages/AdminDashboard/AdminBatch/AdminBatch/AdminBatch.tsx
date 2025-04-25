@@ -176,7 +176,7 @@ const AdminBatch = () => {
               <div>
                 <h1 className="block mb-4 text-sm font-medium">Course Price</h1>
                 <input
-                  type="number"
+                  type="tel"
                   name="coursePrice"
                   id=""
                   className="w-full px-4 py-2 bg-gray-700 text-white rounded-lg focus:outline-none focus:ring focus:ring-teal-500 "
@@ -188,7 +188,7 @@ const AdminBatch = () => {
                   Course Discount
                 </h1>
                 <input
-                  type="number"
+                  type="tel"
                   name="courseDiscount"
                   id=""
                   className="w-full px-4 py-2 bg-gray-700 text-white rounded-lg focus:outline-none focus:ring focus:ring-teal-500 "
@@ -217,13 +217,15 @@ const AdminBatch = () => {
                 />
               </div>
               <div>
-                <h1 className="block mb-4 text-sm font-medium">Duration</h1>
+                <h1 className="block mb-4 text-sm font-medium">
+                  Duration(string)
+                </h1>
                 <input
                   type="text"
                   name="duration"
                   id=""
                   className="w-full px-4 py-2 bg-gray-700 text-white rounded-lg focus:outline-none focus:ring focus:ring-teal-500 "
-                  placeholder="Duration"
+                  placeholder="3 Month"
                   required
                 />
               </div>
@@ -231,7 +233,7 @@ const AdminBatch = () => {
               <div>
                 <h1 className="block mb-4 text-sm font-medium">Class Number</h1>
                 <input
-                  type="number"
+                  type="tel"
                   name="classNumber"
                   id=""
                   className="w-full px-4 py-2 bg-gray-700 text-white rounded-lg focus:outline-none focus:ring focus:ring-teal-500 "
@@ -244,7 +246,7 @@ const AdminBatch = () => {
                   Project Number
                 </h1>
                 <input
-                  type="number"
+                  type="tel"
                   name="projectnumber"
                   id=""
                   className="w-full px-4 py-2 bg-gray-700 text-white rounded-lg focus:outline-none focus:ring focus:ring-teal-500 "

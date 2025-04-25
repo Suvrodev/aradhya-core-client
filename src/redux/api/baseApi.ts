@@ -41,7 +41,8 @@ const baseQueryWithRefreshToken: BaseQueryFn<
     toast.error(result?.error?.data?.message, { id: sonarId });
   }
   if (result?.error?.status === 400) {
-    toast.error(result?.error?.data?.message, { id: sonarId });
+    // toast.error(result?.error?.data?.message, { id: sonarId });
+    toast.error(result?.error?.data?.error[0]?.message, { id: sonarId });
   }
 
   if (result.error?.status === 401) {

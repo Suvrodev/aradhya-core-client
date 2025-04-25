@@ -83,6 +83,7 @@ const UpdateCourse = () => {
     }
 
     const courseId = Form.courseId.value;
+    const courseOrder = Form.courseOrder.value;
     const courseTitle = Form.courseTitle.value;
     const courseImage = Form.courseImage.value;
     const coursePrice = Form.coursePrice.value;
@@ -112,6 +113,7 @@ const UpdateCourse = () => {
     const updateData = {
       refServiceId,
       courseId,
+      courseOrder,
       courseTitle,
       courseImage,
       courseDescription: description,
@@ -172,6 +174,20 @@ const UpdateCourse = () => {
                 placeholder="Enter course id"
                 required
                 disabled
+              />
+            </div>
+            {/*Course Order*/}
+            <div>
+              <label className="block font-medium mb-2 text-gray-300">
+                Course Order
+              </label>
+              <input
+                type="tel"
+                name="courseOrder"
+                defaultValue={specificCourse?.courseOrder}
+                className="w-full p-3 bg-teal-700 border border-gray-600 rounded-lg text-white placeholder-gray-400 focus:outline-none focus:ring-2 focus:ring-blue-500 transition-all"
+                placeholder="Enter course Order"
+                required
               />
             </div>
             {/* Service id */}
@@ -312,7 +328,6 @@ const UpdateCourse = () => {
                 defaultValue={specificCourse?.courseProjectNumber}
                 className="w-full p-3 bg-gray-700 border border-gray-600 rounded-lg text-white placeholder-gray-400 focus:outline-none focus:ring-2 focus:ring-blue-500 transition-all"
                 placeholder="Enter number of projects"
-                required
               />
             </div>
 

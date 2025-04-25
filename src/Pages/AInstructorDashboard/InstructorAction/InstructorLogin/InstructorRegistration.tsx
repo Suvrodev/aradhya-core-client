@@ -47,6 +47,7 @@ const InstructorRegistration = ({ setIsSignUpActive }: IProps) => {
 
     try {
       const res = await instructorRegistration(formData).unwrap();
+      console.log("Res: ", res);
       if (res?.success) {
         toast.success("Registration successful", { id: sonarId });
         setIsSignUpActive(false);

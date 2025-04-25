@@ -41,10 +41,12 @@ const CourseBox = ({ data, number }: IProps) => {
                   <h1 className="font-bold  ">Class </h1>
                   <p>{data?.courseClassNumber} </p>
                 </div>
-                <div className="flex gap-x-2 ">
-                  <h1 className="font-bold ">Project</h1>
-                  <p>{data?.courseProjectNumber} </p>
-                </div>
+                {data?.courseProjectNumber && (
+                  <div className="flex gap-x-2 ">
+                    <h1 className="font-bold ">Project</h1>
+                    <p>{data?.courseProjectNumber} </p>
+                  </div>
+                )}
               </div>
               <div className=" flex items-start justify-end ">
                 <p className="text-[20px] text-right text-red-500 font-bold flex flex-col justify-start ">

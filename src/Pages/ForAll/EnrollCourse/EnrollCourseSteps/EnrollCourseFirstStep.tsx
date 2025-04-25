@@ -84,7 +84,7 @@ const EnrollCourseFirstStep = ({
   useEffect(() => {
     const updatedPrice =
       initialTotalPrice - (appliedDiscount / 100) * initialTotalPrice;
-    setTotalPrice(Math.ceil(updatedPrice));
+    setTotalPrice(Math.floor(updatedPrice));
   }, [appliedDiscount, initialTotalPrice]);
 
   const applyCouponCode = () => {

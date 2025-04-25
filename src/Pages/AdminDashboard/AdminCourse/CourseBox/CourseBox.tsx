@@ -15,6 +15,7 @@ const CourseBox = ({ course }: IProps) => {
     courseImage,
     courseClassNumber,
     courseProjectNumber,
+    courseOrder,
   } = course;
 
   const handleDelete = async (id: string) => {
@@ -39,6 +40,9 @@ const CourseBox = ({ course }: IProps) => {
         <h2 className="text-xl font-bold text-black mb-2">{courseTitle}</h2>
 
         <p className="text-sm text-[#8A9BB8] mb-4">Course ID: {courseId}</p>
+        <p className="text-sm text-[#8A9BB8] mb-4">
+          Course Order: {courseOrder}
+        </p>
 
         <div className="flex justify-between items-center text-[#8A9BB8]">
           <div className="flex items-center">

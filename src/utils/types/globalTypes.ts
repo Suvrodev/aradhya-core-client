@@ -153,6 +153,7 @@ export type TCourseBox = {
   courseProjectNumber: number;
   courseExists: string;
   courseDiscount: string;
+  courseOrder: number;
 };
 export type TCourse = {
   _id: string;
@@ -181,6 +182,7 @@ export type TCourse = {
   jobposition: string[]; // Included jobposition
   projects: string[]; // Included projects
   neededSoftware: { image: string; title: string }[]; // Included neededSoftware
+  courseOrder: number;
   createdAt: string;
   updatedAt: string;
   __v: number;
