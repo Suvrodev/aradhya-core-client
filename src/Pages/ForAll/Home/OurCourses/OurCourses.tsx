@@ -5,6 +5,7 @@ import { useGetAllServiceQuery } from "../../../../redux/api/features/Service/se
 import CourseContainer from "./CourseContainer/CourseContainer";
 import ServiceBox from "./ServiceBox/ServiceBox";
 import { TService } from "../../../../utils/types/globalTypes";
+import ServiceBoxSKL from "./ServiceBox/ServiceBoxSKL";
 
 const OurCourses = () => {
   const scrollRef = useRef<HTMLDivElement>(null);
@@ -27,8 +28,28 @@ const OurCourses = () => {
     }
   };
 
+  // const isLoadings = true;
+
   if (isLoading) {
-    return <p>Loading...</p>;
+    return (
+      <div>
+        <div className="w-full md:w-1/2 h-[30px] mx-auto mb-10 skelitonAC "></div>
+        <div className="grid grid-cols-1 md:grid-cols-4 gap-x-4">
+          <div>
+            <ServiceBoxSKL />
+          </div>
+          <div className="hidden md:block">
+            <ServiceBoxSKL />
+          </div>
+          <div className="hidden md:block">
+            <ServiceBoxSKL />
+          </div>
+          <div className="hidden md:block">
+            <ServiceBoxSKL />
+          </div>
+        </div>
+      </div>
+    );
   }
 
   return (
@@ -56,18 +77,17 @@ const OurCourses = () => {
         {/* Left & Right Navigation Buttons (Placed Outside) */}
         <button
           onClick={scrollLeft}
-          className="absolute left-0 top-1/2 -translate-y-1/2 p-1 primaryBgColor rounded-full shadow-md hover:bg-gray-200 z-10"
+          className="absolute left-0 top-1/2 -translate-y-1/2 p-1 primaryBgColor rounded-full shadow-md hover:bg-gray-200 z-0"
         >
           <ChevronLeft size={30} className="text-white" />
         </button>
         <button
           onClick={scrollRight}
-          className="absolute right-0 top-1/2 -translate-y-1/2 p-0 primaryBgColor rounded-full shadow-md hover:bg-gray-200 z-10"
+          className="absolute right-0 top-1/2 -translate-y-1/2 p-0 primaryBgColor rounded-full shadow-md hover:bg-gray-200 z-0"
         >
           <ChevronRight size={30} className="text-white" />
         </button>
       </div>
-
       <div className="mt-4 courseBackground">
         <CourseContainer />
       </div>

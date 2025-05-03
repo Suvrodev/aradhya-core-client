@@ -15,7 +15,7 @@ const Review = () => {
       </h1>
 
       <div className="grid grid-cols-1 md:grid-cols-3 gap-5 mt-10">
-        {peoples.map((people: TOurPeople, idx: number) => (
+        {peoples?.map((people: TOurPeople, idx: number) => (
           <ReviewBox key={idx} people={people} />
         ))}
       </div>

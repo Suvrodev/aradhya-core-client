@@ -8,6 +8,7 @@ export const blogCategories = [
   "Motion Graphics",
   "Game Developing",
   "UnReal engine",
+  "Netwrorking",
   "C",
   "C++",
   "Python",

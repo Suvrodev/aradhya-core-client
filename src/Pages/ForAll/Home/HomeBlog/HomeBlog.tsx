@@ -1,17 +1,14 @@
 import { Link } from "react-router";
-import LoadingPage from "../../../../Component/LoadingPage/LoadingPage";
 import { useGetALlBlogQuery } from "../../../../redux/api/features/Blog/blogManagementApi";
 import { TBlog } from "../../../../utils/types/globalTypes";
 import BlogBox from "../../../AdminDashboard/AdminBlog/AllBlog/BlogBox";
 import KeyboardDoubleArrowRightIcon from "@mui/icons-material/KeyboardDoubleArrowRight";
+import BlogBoxSkl from "../../../AdminDashboard/AdminBlog/AllBlog/BlogBoxSkl";
 
 const HomeBlog = () => {
   const { data: blogDatas, isLoading } = useGetALlBlogQuery({ pin: "yes" });
   const blogs = blogDatas?.data;
   // console.log("Blog Data: ", blogs);
-  if (isLoading) {
-    return <LoadingPage />;
-  }
   return (
     <div className=" bg-gradient-to-br from-teal-500 to-[#262F51] p-4 md:p-8 rounded-md">
       <div className="max-w-7xl mx-auto">
@@ -26,6 +23,16 @@ const HomeBlog = () => {
         </div>
 
         {/* Blog Grid */}
+
+        {isLoading && (
+          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-6">
+            <BlogBoxSkl />
+            <BlogBoxSkl />
+            <BlogBoxSkl />
+            <BlogBoxSkl />
+          </div>
+        )}
+
         <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-6">
           {blogs?.map((data: TBlog, idx: number) => (
             <div
