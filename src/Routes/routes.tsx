@@ -50,6 +50,7 @@ import InstructorImportantLink from "../Pages/AInstructorDashboard/InstructorImp
 import InstructorForgetPassword from "../Pages/UserInterAction/InstructorForgetPassword/InstructorForgetPassword";
 import InstructorBlog from "../Pages/AInstructorDashboard/InstructorBlog/InstructorBlog";
 import AdminOurPeople from "../Pages/AdminDashboard/AdminOurPeople/AdminOurPeople";
+import PrivecyPolicy from "../Pages/ForAll/TermsAndConditions/PrivecyPolicy/PrivecyPolicy";
 // import EnrollCourse from "../Pages/ForAll/EnrollCourse/EnrollCourse";
 
 export const router = createBrowserRouter([
@@ -104,6 +105,10 @@ export const router = createBrowserRouter([
       {
         path: "instructor-log",
         element: <InstructorLogin />,
+      },
+      {
+        path: "privacy-policy",
+        element: <PrivecyPolicy />,
       },
       {
         path: "chk-location",
