@@ -70,16 +70,25 @@ const Footer = () => {
               <Link to="#" className="hover:text-teal-300 transition-colors">
                 Free Seminar
               </Link>
-              <Link to="#" className="hover:text-teal-300 transition-colors">
+              <Link
+                to="/about-us"
+                className="hover:text-teal-300 transition-colors"
+              >
                 Mentor
               </Link>
-              <Link to="#" className="hover:text-teal-300 transition-colors">
+              {/* <Link to="#" className="hover:text-teal-300 transition-colors">
                 Success Story
-              </Link>
-              <Link to="#" className="hover:text-teal-300 transition-colors">
+              </Link> */}
+              <Link
+                to="/login"
+                className="hover:text-teal-300 transition-colors"
+              >
                 Admission
               </Link>
-              <Link to="#" className="hover:text-teal-300 transition-colors">
+              <Link
+                to="/blog"
+                className="hover:text-teal-300 transition-colors"
+              >
                 Blog
               </Link>
               <Link to="#" className="hover:text-teal-300 transition-colors">
@@ -103,7 +112,10 @@ const Footer = () => {
               OTHERS
             </h3>
             <ul className="mt-3 text-sm md:text-lg flex flex-col items-center md:items-end gap-y-1">
-              <Link to="#" className="hover:text-teal-300 transition-colors">
+              <Link
+                to="/about-us"
+                className="hover:text-teal-300 transition-colors"
+              >
                 About Us
               </Link>
               <Link to="#" className="hover:text-teal-300 transition-colors">
@@ -118,7 +130,10 @@ const Footer = () => {
               <Link to="#" className="hover:text-teal-300 transition-colors">
                 Student Feedback
               </Link>
-              <Link to="#" className="hover:text-teal-300 transition-colors">
+              <Link
+                to="/contact"
+                className="hover:text-teal-300 transition-colors"
+              >
                 Contact
               </Link>
             </ul>
