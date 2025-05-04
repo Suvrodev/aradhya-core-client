@@ -1,6 +1,6 @@
 import { useParams } from "react-router";
 import { useGetSpecificBlogQuery } from "../../../../../redux/api/features/Blog/blogManagementApi";
-import LoadingPage from "../../../../../Component/LoadingPage/LoadingPage";
+import BlogDetailLoading from "./BlogDetailLoading";
 
 const BlogDetail = () => {
   const { id } = useParams();
@@ -9,7 +9,7 @@ const BlogDetail = () => {
   const blog = data?.data;
 
   if (isLoading) {
-    return <LoadingPage />;
+    return <BlogDetailLoading />;
   }
 
   if (!blog) {

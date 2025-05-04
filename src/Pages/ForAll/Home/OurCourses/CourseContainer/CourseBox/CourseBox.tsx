@@ -73,105 +73,122 @@ const CourseBox = ({ data, number }: IProps) => {
             </Link>
           </div>
         ) : (
-          <div className="relative h-[120px] md:h-[160px] w-full flex items-center justify-center p-4 overflow-hidden">
-            {/* Animated glowing gradient background */}
-            <div className="absolute inset-0 z-0">
-              <motion.div
-                initial={{ x: -150, y: -150 }}
-                animate={{ x: [0, 100, -100, 0], y: [0, 100, -100, 0] }}
-                transition={{
-                  duration: 20,
-                  repeat: Infinity,
-                  ease: "linear",
-                }}
-                className="absolute w-[300px] h-[300px]  rounded-full blur-[100px] "
-              />
-              <motion.div
-                initial={{ x: 100, y: -100 }}
-                animate={{ x: [0, -120, 120, 0], y: [0, 120, -120, 0] }}
-                transition={{
-                  duration: 25,
-                  repeat: Infinity,
-                  ease: "linear",
-                }}
-                className="absolute w-[250px] h-[250px]  rounded-full blur-[90px]"
-              />
+          <div className="relative h-[120px] md:h-[160px] w-full flex items-center justify-center overflow-hidden bg-white/10">
+            {/* Subtle horizontal animation bars */}
+            <div className="absolute inset-0 flex flex-col justify-center space-y-4">
+              {[...Array(3)].map((_, i) => (
+                <motion.div
+                  key={i}
+                  className="h-[1px] bg-gradient-to-r from-transparent via-teal-400/20 to-transparent"
+                  initial={{ opacity: 0, x: i % 2 === 0 ? -100 : 100 }}
+                  animate={{
+                    opacity: [0, 0.8, 0],
+                    x: [i % 2 === 0 ? -100 : 100, 0, i % 2 === 0 ? 100 : -100],
+                  }}
+                  transition={{
+                    duration: 6 + i * 2,
+                    repeat: Infinity,
+                    ease: "linear",
+                    delay: i * 0.5,
+                  }}
+                />
+              ))}
             </div>
 
-            {/* Foreground content */}
-            <motion.div
-              initial={{ opacity: 0, scale: 0.95 }}
-              animate={{ opacity: 1, scale: 1 }}
-              transition={{ duration: 0.7, ease: "easeOut" }}
-              className="relative z-10     rounded-2xl  px-6 py-5 w-full max-w-sm flex flex-col items-center"
-            >
-              <motion.div
-                animate={{
-                  rotate: [0, 8, -8, 0],
-                  y: [0, -6, 0],
-                }}
-                transition={{
-                  duration: 5,
-                  repeat: Infinity,
-                  ease: "easeInOut",
-                }}
-                className="w-12 h-12 bg-gradient-to-br from-purple-500 to-teal-400 rounded-xl flex items-center justify-center shadow-md mb-4"
-              >
-                <svg
-                  className="w-6 h-6 text-white"
-                  fill="none"
-                  stroke="currentColor"
-                  viewBox="0 0 24 24"
+            {/* Main content */}
+            <div className="relative z-10 flex flex-col items-center p-4">
+              {/* Professional "COMING SOON" text with left-to-right animation */}
+              <div className="relative overflow-hidden">
+                <motion.div
+                  initial={{ x: -50, opacity: 0 }}
+                  animate={{ x: 0, opacity: 1 }}
+                  transition={{ duration: 0.8 }}
+                  className="flex items-center"
                 >
-                  <path
-                    strokeLinecap="round"
-                    strokeLinejoin="round"
-                    strokeWidth="2"
-                    d="M12 8v4l3 3m6-3a9 9 0 11-18 0 9 9 0 0118 0z"
+                  <motion.span
+                    className="text-xl font-bold tracking-widest text-gray-800"
+                    animate={{
+                      backgroundSize: ["100% 2px", "0% 2px", "100% 2px"],
+                      backgroundPosition: ["0% 100%", "0% 100%", "100% 100%"],
+                    }}
+                    transition={{
+                      duration: 3,
+                      repeat: Infinity,
+                      ease: "linear",
+                    }}
+                    style={{
+                      backgroundImage:
+                        "linear-gradient(to right, #7c3aed, #0d9488)",
+                      backgroundRepeat: "no-repeat",
+                      backgroundSize: "0% 2px",
+                      backgroundPosition: "0% 100%",
+                    }}
+                  >
+                    COMING SOON
+                  </motion.span>
+
+                  <motion.div
+                    className="ml-2 w-2 h-2 bg-teal-500 rounded-full"
+                    animate={{
+                      scale: [1, 1.2, 1],
+                      opacity: [0.8, 1, 0.8],
+                    }}
+                    transition={{
+                      duration: 2,
+                      repeat: Infinity,
+                      ease: "easeInOut",
+                    }}
                   />
-                </svg>
-              </motion.div>
+                </motion.div>
+              </div>
 
-              {/* Headline */}
-              <motion.h1
-                initial={{ y: 10, opacity: 0 }}
-                animate={{ y: 0, opacity: 1 }}
-                transition={{ delay: 0.2, duration: 0.5 }}
-                className="text-xl md:text-2xl font-semibold bg-clip-text text-transparent bg-gradient-to-r from-purple-600 to-teal-500 mb-1 text-center"
-              >
-                Coming Soon
-              </motion.h1>
-
-              {/* Subtitle */}
-              <motion.p
-                initial={{ y: 10, opacity: 0 }}
-                animate={{ y: 0, opacity: 1 }}
-                transition={{ delay: 0.3, duration: 0.5 }}
-                className="text-sm text-gray-800 text-center mb-3"
-              >
-                Premium course in development. Stay tuned.
-              </motion.p>
-
-              {/* Progress bar */}
+              {/* Professional progress indicator */}
               <motion.div
-                className="w-full h-2 bg-gray-300/40 rounded-full overflow-hidden"
+                className="w-40 h-[2px] bg-gray-300/50 mt-4 relative overflow-hidden"
                 initial={{ opacity: 0 }}
                 animate={{ opacity: 1 }}
-                transition={{ delay: 0.4 }}
+                transition={{ delay: 0.5 }}
               >
                 <motion.div
-                  className="h-full bg-gradient-to-r from-purple-500 to-teal-400 rounded-full"
+                  className="absolute top-0 left-0 h-full bg-gradient-to-r from-purple-500 to-teal-400"
                   initial={{ width: 0 }}
-                  animate={{ width: "65%" }}
+                  animate={{
+                    width: ["0%", "100%"],
+                    left: ["0%", "100%"],
+                  }}
                   transition={{
-                    duration: 2,
+                    duration: 2.5,
                     repeat: Infinity,
                     repeatType: "reverse",
                     ease: "easeInOut",
                   }}
                 />
+
+                {/* Glow effect */}
+                <motion.div
+                  className="absolute top-0 h-full w-10 bg-white/30"
+                  animate={{
+                    left: ["-10%", "110%"],
+                  }}
+                  transition={{
+                    duration: 3.5,
+                    repeat: Infinity,
+                    ease: "linear",
+                    delay: 0.3,
+                  }}
+                />
               </motion.div>
-            </motion.div>
+
+              {/* Minimal status text */}
+              <motion.p
+                className="text-xs text-gray-600 mt-2 tracking-wider"
+                initial={{ opacity: 0 }}
+                animate={{ opacity: 1 }}
+                transition={{ delay: 0.8 }}
+              >
+                PREMIUM COURSE IN DEVELOPMENT
+              </motion.p>
+            </div>
           </div>
         )}
       </div>

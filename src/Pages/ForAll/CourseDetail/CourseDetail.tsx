@@ -1,7 +1,6 @@
 import { useParams } from "react-router";
 import { useGetSpecificCourseQuery } from "../../../redux/api/features/Course/courseManagementApi";
 import { useTitle } from "../../../Component/hook/useTitle";
-import LoadingPage from "../../../Component/LoadingPage/LoadingPage";
 import { TBatch, TCourse } from "../../../utils/types/globalTypes";
 import ReactPlayer from "react-player/youtube";
 import EnrollCourseModal from "../EnrollCourse/EnrollCourseModal/EnrollCourseModal";
@@ -10,6 +9,7 @@ import Slider from "react-slick";
 import "slick-carousel/slick/slick.css";
 import "slick-carousel/slick/slick-theme.css";
 import { useGetUpComingBatchUnderCourseQuery } from "../../../redux/api/features/Batch/batchManagementApi";
+import CourseDetailLoading from "./CourseDetailLoading";
 
 const CourseDetail = () => {
   useTitle("Course Detail");
@@ -38,7 +38,7 @@ const CourseDetail = () => {
     cssEase: "linear",
   };
 
-  if (isLoading || batchLoading) return <LoadingPage />;
+  if (isLoading || batchLoading) return <CourseDetailLoading />;
 
   // Format date to DD/MMM/YYYY (01/Jan/2025)
   const formatDate = (dateString: string) => {
