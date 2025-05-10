@@ -14,7 +14,7 @@ const DesktopHeader = () => {
   return (
     <div className={`bgColor `}>
       <div className="flex  items-center justify-between  max-w-[82rem]  mx-auto  ">
-        <div className="flex items-center  justify-start w-[33%] gap-4 py-4 ">
+        <div className="flex items-center  justify-start w-[33%] gap-5 py-4 ">
           <Link to={"/home"}>
             {" "}
             <img src={headerImage} alt="" className="w-[50px] " />

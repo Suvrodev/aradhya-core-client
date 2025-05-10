@@ -73,7 +73,7 @@ const CourseBox = ({ data, number }: IProps) => {
             </Link>
           </div>
         ) : (
-          <div className="relative h-[120px] md:h-[160px] w-full flex items-center justify-center overflow-hidden bg-white/10">
+          <div className="relative h-[120px] md:h-[160px] w-full flex items-center justify-center overflow-hidden ">
             {/* Subtle horizontal animation bars */}
             <div className="absolute inset-0 flex flex-col justify-center space-y-4">
               {[...Array(3)].map((_, i) => (

@@ -60,6 +60,10 @@ export const adminDashboards = [
     text: "Promo code",
     path: "/admin-dashboard/promo-code",
   },
+  {
+    text: "QR Code Generator",
+    path: "/admin-dashboard/qrcode-generator",
+  },
   // {
   //   text: "About Page",
   //   path: "/admin-dashboard/create-about",

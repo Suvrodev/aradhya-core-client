@@ -31,6 +31,10 @@ const instructorDashboardArray = [
     title: "Important Link",
     path: "/instructor-dashboard/important-link",
   },
+  {
+    title: "Qr Code Generator",
+    path: "/instructor-dashboard/qrcode-generator",
+  },
 ];
 
 export default instructorDashboardArray;

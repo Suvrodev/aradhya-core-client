@@ -51,6 +51,7 @@ import InstructorForgetPassword from "../Pages/UserInterAction/InstructorForgetP
 import InstructorBlog from "../Pages/AInstructorDashboard/InstructorBlog/InstructorBlog";
 import AdminOurPeople from "../Pages/AdminDashboard/AdminOurPeople/AdminOurPeople";
 import PrivecyPolicy from "../Pages/ForAll/TermsAndConditions/PrivecyPolicy/PrivecyPolicy";
+import QRCodeGenerator from "../Pages/AdminDashboard/QRCodeGenerator/QRCodeGenerator";
 // import EnrollCourse from "../Pages/ForAll/EnrollCourse/EnrollCourse";
 
 export const router = createBrowserRouter([
@@ -282,6 +283,15 @@ export const router = createBrowserRouter([
           </AdminProtectedRoute>
         ),
       },
+      {
+        path: "qrcode-generator",
+        element: (
+          <AdminProtectedRoute>
+            {" "}
+            <QRCodeGenerator />
+          </AdminProtectedRoute>
+        ),
+      },
     ],
   },
   /**
@@ -429,6 +439,16 @@ export const router = createBrowserRouter([
         element: (
           <InstructorProtectedRoute>
             <InstructorImportantLink />
+          </InstructorProtectedRoute>
+        ),
+      },
+
+      {
+        path: "qrcode-generator",
+        element: (
+          <InstructorProtectedRoute>
+            {" "}
+            <QRCodeGenerator />
           </InstructorProtectedRoute>
         ),
       },
