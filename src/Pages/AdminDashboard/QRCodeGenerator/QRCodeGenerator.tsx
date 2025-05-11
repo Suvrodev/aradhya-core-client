@@ -22,7 +22,7 @@ const QRCodeGenerator = () => {
   };
 
   return (
-    <div className="min-h-screen flex items-center justify-center p-4 bg-gradient-to-br from-teal-500 via-teal-600 to-[#262F51]">
+    <div className="min-h-screen flex items-center justify-center p-4 ">
       <div className="bg-white/10 backdrop-blur-sm rounded-xl shadow-2xl w-full max-w-md text-center p-8 border border-white/20">
         <h1 className="text-3xl font-bold text-white mb-6">
           QR Code Generator
@@ -52,7 +52,7 @@ const QRCodeGenerator = () => {
               />
             </div>
 
-            <div className="flex justify-center mb-6 p-4 bg-white rounded-lg">
+            <div className="flex justify-center mb-6 p-4  rounded-lg">
               <QRCodeCanvas
                 value={text}
                 size={256}
