@@ -30,6 +30,15 @@ const promoCodeManagementApi = baseApi.injectEndpoints({
       },
       providesTags: ["promocode"],
     }),
+    getSpecificPromoCodeBasedOnPromoCode: builder.query({
+      query: (promocode) => {
+        return {
+          url: `/promo/promocode/${promocode}`,
+          method: "GET",
+        };
+      },
+      providesTags: ["promocode"],
+    }),
 
     deletePromoCode: builder.mutation({
       query: (id) => {
@@ -42,6 +51,9 @@ const promoCodeManagementApi = baseApi.injectEndpoints({
     }),
     updatePromoCode: builder.mutation({
       query: ({ id, updateData }) => {
+        console.log("In RTK Query------------");
+        console.log("id: ", id);
+        console.log("Update Data: ", updateData);
         return {
           url: `/promo/${id}`,
           method: "PATCH",
@@ -57,6 +69,7 @@ export const {
   useAddPromocodeMutation,
   useGetAllPromocodeQuery,
   useGetSpecificPromoCodeQuery,
+  useGetSpecificPromoCodeBasedOnPromoCodeQuery,
   useDeletePromoCodeMutation,
   useUpdatePromoCodeMutation,
 } = promoCodeManagementApi;

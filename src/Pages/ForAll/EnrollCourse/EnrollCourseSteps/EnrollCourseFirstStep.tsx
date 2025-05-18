@@ -5,7 +5,7 @@ import { useAppSelector } from "../../../../redux/hook";
 import { calculateDiscountedPrice } from "../../../../utils/Fucntion/calculateDiscount";
 import { verifyToken } from "../../../../utils/Fucntion/verifyToken";
 import { TPromoCode } from "../../../../utils/types/globalTypes";
-import { useGetSpecificPromoCodeQuery } from "../../../../redux/api/features/PromoCode/promoCodeManagementApi";
+import { useGetSpecificPromoCodeBasedOnPromoCodeQuery } from "../../../../redux/api/features/PromoCode/promoCodeManagementApi";
 
 import { useDispatch } from "react-redux";
 import {
@@ -54,12 +54,6 @@ const EnrollCourseFirstStep = ({
 }: IProps) => {
   const dispatch = useDispatch();
 
-  //Retrive promocode
-  const { data: promocodeData, isLoading: PromoLoading } =
-    useGetSpecificPromoCodeQuery(import.meta.env.VITE_PROMOCODE_ID);
-  const promoData: TPromoCode = promocodeData?.data;
-  // console.log("Promo data: ", promoData);
-
   //Distructure Token
   const { token } = useAppSelector((state) => state.auth);
   let student: any;
@@ -74,6 +68,12 @@ const EnrollCourseFirstStep = ({
   const [errorMessage, setErrorMessage] = useState("");
   const [successMessage, setSuccessMessage] = useState("");
   const [totalPrice, setTotalPrice] = useState<number>(0); // New state for total price
+
+  //Retrive promocode
+  const { data: promocodeData, isLoading: PromoLoading } =
+    useGetSpecificPromoCodeBasedOnPromoCodeQuery(promoCode);
+  const promoData: TPromoCode = promocodeData?.data;
+  // console.log("Promo data: ", promoData);
 
   const initialTotalPrice = calculateDiscountedPrice(
     coursePrice,

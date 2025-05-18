@@ -9,6 +9,7 @@ import { toast } from "sonner";
 import { sonarId } from "../../../utils/Fucntion/sonarId";
 import { useTitle } from "../../../Component/hook/useTitle";
 import MixingPromoCode from "./MixingPromoCode/MixingPromoCode";
+import AllPromocode from "./AllPromocode/AllPromocode";
 
 const AdminPromocode = () => {
   useTitle("Admin-Promocode");
@@ -57,8 +58,8 @@ const AdminPromocode = () => {
   }
   return (
     <div className="pagePadding">
-      <div className="flex flex-col md:flex-row items-start justify-center gap-10">
-        <div className="mt-4 w-full md:w-1/2 ">
+      <div className="flex flex-col  items-start  gap-10">
+        <div className="mt-4 w-1/2 ">
           <h1 className="text-xl font-bold">Promo Code</h1>
           <form onSubmit={handlePromocodeSubmit} className="mt-10">
             <div className="w-full flex flex-col gap-4">
@@ -96,7 +97,7 @@ const AdminPromocode = () => {
                   type="number"
                   name="promoPercent"
                   defaultValue={promoData?.promoPercent}
-                  className="w-full px-4 py-2 bg-gray-700 text-white rounded-lg focus:outline-none focus:ring focus:ring-teal-500"
+                  className="w-full px-4 py-2 bg-gray-700 text-white rounded-lg focus:outline-none focus:ring focus:ring-teal-500 ha"
                 />
               </div>
               <div className="">
@@ -124,9 +125,12 @@ const AdminPromocode = () => {
         </div>
 
         {/* Add PromoCode */}
-        <div className="mt-4 w-full md:w-1/2">
-          <h1 className="text-xl font-bold">Mixing Promocode</h1>
-          <MixingPromoCode />
+        <div className="mt-4 w-full">
+          <div className="border-2 border-white rounded-md p-4">
+            <h1 className="text-xl font-bold">Mixing Promocode</h1>
+            <MixingPromoCode />
+            <AllPromocode />
+          </div>
         </div>
       </div>
     </div>

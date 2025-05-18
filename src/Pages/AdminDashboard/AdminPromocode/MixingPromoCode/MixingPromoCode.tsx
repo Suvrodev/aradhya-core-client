@@ -33,19 +33,17 @@ const MixingPromoCode = () => {
   };
 
   return (
-    <div className="p-4">
-      <h1 className="text-2xl font-bold mb-4">Mixing Promocode</h1>
-
+    <div className="">
       <button
         onClick={handleOpenModal}
-        className="bg-blue-600 text-white px-4 py-2 rounded hover:bg-blue-700"
+        className="bg-blue-600 text-white px-4 py-2 rounded hover:bg-blue-700 mt-4"
       >
         Add Promocode
       </button>
 
       {isModalOpen && (
         <div className="fixed inset-0 z-50 bg-black bg-opacity-60 flex items-center justify-center">
-          <div className="bg-gradient-to-br from-teal-500 to-[#262F51] text-white p-6 rounded-xl w-[350px] shadow-2xl relative">
+          <div className="bg-gradient-to-br from-teal-500 to-[#262F51] text-white p-6 rounded-xl w-[450px] shadow-2xl relative">
             <h2 className="text-xl font-semibold mb-4 text-white">
               Add Promocode
             </h2>
@@ -76,9 +74,9 @@ const MixingPromoCode = () => {
                   Promo Code Percent
                 </label>
                 <input
-                  type="tel"
+                  type="number"
                   name="promoPercent"
-                  className="w-full border border-white/20 bg-white/10 px-3 py-2 rounded text-white"
+                  className="w-full border border-white/20 bg-white/10 px-3 py-2 rounded text-white ha"
                 />
               </div>
 
