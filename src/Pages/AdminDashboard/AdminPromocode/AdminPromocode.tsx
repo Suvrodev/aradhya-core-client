@@ -8,6 +8,7 @@ import { TPromoCode } from "../../../utils/types/globalTypes";
 import { toast } from "sonner";
 import { sonarId } from "../../../utils/Fucntion/sonarId";
 import { useTitle } from "../../../Component/hook/useTitle";
+import MixingPromoCode from "./MixingPromoCode/MixingPromoCode";
 
 const AdminPromocode = () => {
   useTitle("Admin-Promocode");
@@ -56,69 +57,77 @@ const AdminPromocode = () => {
   }
   return (
     <div className="pagePadding">
-      <div className="mt-4">
-        <h1 className="text-xl font-bold">Promo Code</h1>
-        <form onSubmit={handlePromocodeSubmit} className="mt-10">
-          <div className="w-full md:w-1/2 flex flex-col gap-4">
-            <div>
-              <label className="block mb-2 text-sm font-medium">
-                Promo code ID
-              </label>
-              <input
-                type="text"
-                defaultValue={promoData?.promoId}
-                name="promoId"
-                className="w-full px-4 py-2 bg-gray-700 text-white rounded-lg focus:outline-none focus:ring focus:ring-teal-500"
-                disabled
-              />
-            </div>
+      <div className="flex flex-col md:flex-row items-start justify-center gap-10">
+        <div className="mt-4 w-full md:w-1/2 ">
+          <h1 className="text-xl font-bold">Promo Code</h1>
+          <form onSubmit={handlePromocodeSubmit} className="mt-10">
+            <div className="w-full flex flex-col gap-4">
+              <div>
+                <label className="block mb-2 text-sm font-medium">
+                  Promo code ID
+                </label>
+                <input
+                  type="text"
+                  defaultValue={promoData?.promoId}
+                  name="promoId"
+                  className="w-full px-4 py-2 bg-gray-700 text-white rounded-lg focus:outline-none focus:ring focus:ring-teal-500"
+                  disabled
+                />
+              </div>
 
-            <div className="">
-              <label className="block mb-2 text-sm font-medium">
-                Promo Code
-              </label>
-              <input
-                type="text"
-                name="promocode"
-                defaultValue={promoData?.promoCode}
-                className="w-full px-4 py-2 bg-gray-700 text-white rounded-lg focus:outline-none focus:ring focus:ring-teal-500"
-                required
-              />
-            </div>
+              <div className="">
+                <label className="block mb-2 text-sm font-medium">
+                  Promo Code
+                </label>
+                <input
+                  type="text"
+                  name="promocode"
+                  defaultValue={promoData?.promoCode}
+                  className="w-full px-4 py-2 bg-gray-700 text-white rounded-lg focus:outline-none focus:ring focus:ring-teal-500"
+                  required
+                />
+              </div>
 
-            <div className="">
-              <label className="block mb-2 text-sm font-medium">
-                Promo Code Percent
-              </label>
-              <input
-                type="number"
-                name="promoPercent"
-                defaultValue={promoData?.promoPercent}
-                className="w-full px-4 py-2 bg-gray-700 text-white rounded-lg focus:outline-none focus:ring focus:ring-teal-500"
-              />
+              <div className="">
+                <label className="block mb-2 text-sm font-medium">
+                  Promo Code Percent
+                </label>
+                <input
+                  type="number"
+                  name="promoPercent"
+                  defaultValue={promoData?.promoPercent}
+                  className="w-full px-4 py-2 bg-gray-700 text-white rounded-lg focus:outline-none focus:ring focus:ring-teal-500"
+                />
+              </div>
+              <div className="">
+                <label className="block mb-2 text-sm font-medium">
+                  Promo Code Status
+                </label>
+                <select
+                  name="promoStatus"
+                  id="promoStatus"
+                  value={promoStatus}
+                  onChange={handlePromoStatus}
+                  className="w-full px-4 py-2 bg-gray-700 text-white rounded-lg focus:outline-none focus:ring focus:ring-teal-500"
+                >
+                  <option value="yes">yes</option>
+                  <option value="no">no</option>
+                </select>
+              </div>
+              <div>
+                <button className="btn btn-primary text-white">
+                  Update Promocode
+                </button>
+              </div>
             </div>
-            <div className="">
-              <label className="block mb-2 text-sm font-medium">
-                Promo Code Status
-              </label>
-              <select
-                name="promoStatus"
-                id="promoStatus"
-                value={promoStatus}
-                onChange={handlePromoStatus}
-                className="w-full px-4 py-2 bg-gray-700 text-white rounded-lg focus:outline-none focus:ring focus:ring-teal-500"
-              >
-                <option value="yes">yes</option>
-                <option value="no">no</option>
-              </select>
-            </div>
-            <div>
-              <button className="btn btn-primary text-white">
-                Update Promocode
-              </button>
-            </div>
-          </div>
-        </form>
+          </form>
+        </div>
+
+        {/* Add PromoCode */}
+        <div className="mt-4 w-full md:w-1/2">
+          <h1 className="text-xl font-bold">Mixing Promocode</h1>
+          <MixingPromoCode />
+        </div>
       </div>
     </div>
   );
