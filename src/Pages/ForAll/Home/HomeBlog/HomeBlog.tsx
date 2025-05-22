@@ -8,7 +8,7 @@ import BlogBoxSkl from "../../../AdminDashboard/AdminBlog/AllBlog/BlogBoxSkl";
 const HomeBlog = () => {
   const { data: blogDatas, isLoading } = useGetALlBlogQuery({ pin: "yes" });
   const blogs = blogDatas?.data;
-  // console.log("Blog Data: ", blogs);
+  console.log("Home Blog Data: ", blogs);
   return (
     <div className=" bg-gradient-to-br from-teal-500 to-[#262F51] p-4 md:p-8 rounded-md">
       <div className="max-w-7xl mx-auto">

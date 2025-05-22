@@ -1,3 +1,4 @@
+// src/pages/AboutUs/AboutUs.tsx
 import logo from "../../../assets/Logo/logo.png";
 import {
   FaPaintBrush,
@@ -5,11 +6,16 @@ import {
   FaGamepad,
   FaCode,
   FaNetworkWired,
+  FaWordpress,
 } from "react-icons/fa";
+import { SiCisco, SiAdobeaftereffects, SiFigma } from "react-icons/si";
+import { FaCube, FaPalette, FaChartLine } from "react-icons/fa";
+
 import { useTitle } from "../../../Component/hook/useTitle";
 import { useGetAllOurPeopleQuery } from "../../../redux/api/features/OurPeople/ourPeopleManagementApi";
 import { TOurPeople } from "../../../utils/types/globalTypes";
 import PeopleBox from "../../AdminDashboard/AdminOurPeople/PeopleBox/PeopleBox";
+import AboutServiceBox from "./AboutServiceBox";
 
 const AboutUs = () => {
   useTitle("About us");
@@ -58,75 +64,73 @@ const AboutUs = () => {
         <div className="bg-white/10 backdrop-blur-sm rounded-lg p-8 mb-12">
           <h2 className="text-2xl font-bold text-white mb-6">Our Services</h2>
           <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
-            {/* Graphics Design */}
-            <div className="bg-white/20 backdrop-blur-sm rounded-lg p-6 text-white hover:scale-105 transition-transform duration-300">
-              <FaPaintBrush className="text-4xl mb-4 text-teal-300" />
-              <h3 className="text-xl font-bold mb-2">Graphics Design</h3>
-              <p className="text-sm text-white/80">
-                Creating stunning visuals for branding, marketing, and more.
-              </p>
-            </div>
-
-            {/* Motion Graphics */}
-            <div className="bg-white/20 backdrop-blur-sm rounded-lg p-6 text-white hover:scale-105 transition-transform duration-300">
-              <FaFilm className="text-4xl mb-4 text-teal-300" />
-              <h3 className="text-xl font-bold mb-2">Motion Graphics</h3>
-              <p className="text-sm text-white/80">
-                Bringing ideas to life with dynamic animations and videos.
-              </p>
-            </div>
-
-            {/* 3D Animation */}
-            <div className="bg-white/20 backdrop-blur-sm rounded-lg p-6 text-white hover:scale-105 transition-transform duration-300">
-              <FaFilm className="text-4xl mb-4 text-teal-300" />
-              <h3 className="text-xl font-bold mb-2">3D Animation</h3>
-              <p className="text-sm text-white/80">
-                Crafting immersive 3D experiences for games, films, and more.
-              </p>
-            </div>
-
-            {/* Game Development */}
-            <div className="bg-white/20 backdrop-blur-sm rounded-lg p-6 text-white hover:scale-105 transition-transform duration-300">
-              <FaGamepad className="text-4xl mb-4 text-teal-300" />
-              <h3 className="text-xl font-bold mb-2">Game Development</h3>
-              <p className="text-sm text-white/80">
-                Designing and developing engaging games for all platforms.
-              </p>
-            </div>
-
-            {/* Programming */}
-            <div className="bg-white/20 backdrop-blur-sm rounded-lg p-6 text-white hover:scale-105 transition-transform duration-300">
-              <FaCode className="text-4xl mb-4 text-teal-300" />
-              <h3 className="text-xl font-bold mb-2">Programming</h3>
-              <p className="text-sm text-white/80">
-                Teaching and developing in C, C++, Python, and more.
-              </p>
-            </div>
-
-            {/* ICT for 11-12 */}
-            <div className="bg-white/20 backdrop-blur-sm rounded-lg p-6 text-white hover:scale-105 transition-transform duration-300">
-              <FaCode className="text-4xl mb-4 text-teal-300" />
-              <h3 className="text-xl font-bold mb-2">ICT for 11-12</h3>
-              <p className="text-sm text-white/80">
-                Comprehensive ICT education for high school students.
-              </p>
-            </div>
-
-            {/* Networking */}
-            <div className="bg-white/20 backdrop-blur-sm rounded-lg p-6 text-white hover:scale-105 transition-transform duration-300">
-              <FaNetworkWired className="text-4xl mb-4 text-teal-300" />
-              <h3 className="text-xl font-bold mb-2">Networking</h3>
-              <p className="text-sm text-white/80">
-                Building and managing robust network infrastructures.
-              </p>
-            </div>
+            <AboutServiceBox
+              icon={<FaPaintBrush className="text-white" />}
+              title="Graphics Design"
+              description="Stunning visuals for branding and promotions."
+            />
+            <AboutServiceBox
+              icon={<SiAdobeaftereffects className="text-white" />}
+              title="Motion Graphics"
+              description="Dynamic animation for storytelling and ads."
+            />
+            <AboutServiceBox
+              icon={<FaCube className="text-white" />} // Changed from FaFilm to FaCube for 3D
+              title="3D Fundamentals"
+              description="Complete training in 3D design and animation."
+            />
+            <AboutServiceBox
+              icon={<FaPalette className="text-white" />} // Changed for Modeling & Texturing
+              title="Modeling & Texturing"
+              description="Game-ready asset creation with real-time optimization."
+            />
+            <AboutServiceBox
+              icon={<FaGamepad className="text-white" />}
+              title="Game Development"
+              description="Creating interactive games for diverse platforms."
+            />
+            <AboutServiceBox
+              icon={<FaFilm className="text-white" />} // Changed from SiAdobepremierepro
+              title="Video Editing"
+              description="Zero to Hero course in cinematic editing."
+            />
+            <AboutServiceBox
+              icon={<FaNetworkWired className="text-white" />} // Changed from SiMikrotik
+              title="MikroTik & OLT"
+              description="Professional router and fiber network configuration."
+            />
+            <AboutServiceBox
+              icon={<SiCisco className="text-white" />}
+              title="CCNA"
+              description="Cisco Certified Network Associate training."
+            />
+            <AboutServiceBox
+              icon={<FaCode className="text-white" />}
+              title="C, C++, Python"
+              description="Learn programming from fundamentals to OOP."
+            />
+            <AboutServiceBox
+              icon={<FaChartLine className="text-white" />} // Added for Digital Marketing
+              title="Digital Marketing"
+              description="Master online marketing, SEO, and analytics."
+            />
+            <AboutServiceBox
+              icon={<FaWordpress className="text-white" />}
+              title="WordPress"
+              description="Website building with themes, plugins, and CMS."
+            />
+            <AboutServiceBox
+              icon={<SiFigma className="text-white" />}
+              title="UI/UX Designing"
+              description="Design engaging and intuitive user experiences."
+            />
           </div>
         </div>
 
         {/* Team Section */}
         {isLoading ? (
           <div>
-            <span className="loading loading-spinner text-neutral"></span>;
+            <span className="loading loading-spinner text-neutral"></span>
           </div>
         ) : (
           <div className="bg-white/10 backdrop-blur-sm rounded-lg p-8">
@@ -136,14 +140,14 @@ const AboutUs = () => {
               </h2>
               <p className="text-lg text-white/80 max-w-2xl mx-auto">
                 The talented individuals who make{" "}
-                <span className="bg-gradient-to-r from-teal-300 via-teal-w00 to-teal-200 bg-clip-text text-transparent font-bold animate-gradient bg-300% animate-gradient-x">
+                <span className="bg-gradient-to-r from-teal-300 via-teal-500 to-teal-200 bg-clip-text text-transparent font-bold animate-gradient bg-300% animate-gradient-x">
                   Aradhya Core
                 </span>{" "}
                 organization great
               </p>
             </div>
 
-            <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6  ">
+            <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
               {ourPeoples?.map((people: TOurPeople, idx: number) => (
                 <PeopleBox key={idx} people={people} />
               ))}

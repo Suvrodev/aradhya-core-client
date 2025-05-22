@@ -52,7 +52,6 @@ import InstructorBlog from "../Pages/AInstructorDashboard/InstructorBlog/Instruc
 import AdminOurPeople from "../Pages/AdminDashboard/AdminOurPeople/AdminOurPeople";
 import PrivecyPolicy from "../Pages/ForAll/TermsAndConditions/PrivecyPolicy/PrivecyPolicy";
 import QRCodeGenerator from "../Pages/AdminDashboard/QRCodeGenerator/QRCodeGenerator";
-import CustomTextEditor from "../Pages/AdminDashboard/AdminBlog/TextEditor/CustomTextEditor";
 import TiptapTextEditor from "../Pages/AdminDashboard/AdminBlog/TextEditor/TiptapTextEditor";
 // import EnrollCourse from "../Pages/ForAll/EnrollCourse/EnrollCourse";
 
