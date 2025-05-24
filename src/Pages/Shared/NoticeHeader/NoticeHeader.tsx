@@ -8,6 +8,7 @@ import goCall from "../../../utils/Fucntion/goCall";
 import sendEmail from "../../../utils/Fucntion/sendEmail";
 import goLink from "../../../utils/Fucntion/goLink";
 import { Link } from "react-router";
+import { phone1, phone2 } from "../../../utils/Fucntion/phone";
 
 const NoticeHeader = () => {
   // Retrieve promocode
@@ -45,8 +46,8 @@ const NoticeHeader = () => {
             >
               <FaPhoneAlt className="text-teal-300 text-sm" />
               <span className="text-[10px] md:text-sm font-medium selectable-text">
-                <span onClick={() => goCall("01951912997")}> 01951912997</span>,
-                <span onClick={() => goCall("01745377702")}> 01745377702</span>
+                <span onClick={() => goCall(`${phone1}`)}> {phone1}</span>,
+                <span onClick={() => goCall(`${phone2}`)}> {phone2}</span>
               </span>
             </motion.div>
             <motion.div

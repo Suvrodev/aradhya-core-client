@@ -6,6 +6,7 @@ import { sonarId } from "../../../utils/Fucntion/sonarId";
 import emailjs from "@emailjs/browser";
 import { PhoneOutgoing } from "lucide-react";
 import { useTitle } from "../../../Component/hook/useTitle";
+import { phone1, phone2 } from "../../../utils/Fucntion/phone";
 
 const Contact = () => {
   useTitle("Contact");
@@ -99,11 +100,11 @@ const Contact = () => {
                 <div className="flex flex-col gap-2">
                   <div className="flex items-center gap-2">
                     <PhoneOutgoing className="h-5 w-5 text-white" />
-                    <p className="text-sm font-bold">01745377702</p>
+                    <p className="text-sm font-bold">{phone1}</p>
                   </div>
                   <div className="flex items-center gap-2">
                     <PhoneOutgoing className="h-5 w-5 text-white" />
-                    <p className="text-sm font-bold">01951912997</p>
+                    <p className="text-sm font-bold">{phone2}</p>
                   </div>
                 </div>
               </div>

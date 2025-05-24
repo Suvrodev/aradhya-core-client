@@ -2,6 +2,7 @@ import { FaFacebookF, FaTwitter, FaYoutube, FaInstagram } from "react-icons/fa";
 import fullLogo from "../../../assets/Logo/fullLogo.png";
 import { Link } from "react-router";
 import goLink from "../../../utils/Fucntion/goLink";
+import { phone1 } from "../../../utils/Fucntion/phone";
 
 const Footer = () => {
   return (
@@ -20,7 +21,7 @@ const Footer = () => {
               <p className="text-[16px] md:text-[20px]">
                 SHIB BARI KHULNA, <br /> BANGLADESH
               </p>
-              <p className="text-[16px] md:text-[20px]">+8801745377702</p>
+              <p className="text-[16px] md:text-[20px]">{phone1}</p>
               <p className="text-[16px] md:text-[20px]">
                 support@aradhyacore.com
               </p>
