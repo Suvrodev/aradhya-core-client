@@ -24,10 +24,10 @@ const AboutUs = () => {
   const ourPeoples = data?.data;
 
   return (
-    <div className="min-h-screen flex flex-col items-center justify-center bg-gradient-to-br from-teal-500 to-[#262F51] p-4">
-      <section className="w-full max-w-6xl bg-white/10 backdrop-blur-lg rounded-2xl shadow-2xl overflow-hidden p-8">
+    <div className="min-h-screen flex flex-col items-center justify-center bg-gradient-to-br from-teal-500 to-[#262F51] p-2 md:p-4">
+      <section className="w-full max-w-6xl bg-white/10 backdrop-blur-lg rounded-2xl shadow-2xl overflow-hidden px-2 py-8 pt- md:p-8">
         {/* Header Section */}
-        <div className="text-center mb-12">
+        <div className="text-center mb-12  ">
           <h1 className="text-4xl font-bold text-white mb-4">
             About AradhyaCore
           </h1>
@@ -37,7 +37,7 @@ const AboutUs = () => {
         </div>
 
         {/* Logo Section */}
-        <div className="flex justify-center mb-12">
+        <div className="flex justify-center mb-12 ">
           <div className="bg-white/20 backdrop-blur-sm rounded-lg p-6 shadow-lg">
             <img
               src={logo}
@@ -48,15 +48,38 @@ const AboutUs = () => {
         </div>
 
         {/* About Us Section */}
-        <div className="bg-white/10 backdrop-blur-sm rounded-lg p-8 mb-12">
+        <div className="backdrop-blur-sm rounded-lg p-8 mb-12">
           <h2 className="text-2xl font-bold text-white mb-6">Who We Are</h2>
-          <p className="text-white/80 leading-relaxed">
+          <p className="text-white/80 leading-relaxed mb-4">
             Welcome to{" "}
-            <span className="font-bold text-teal-300">AradhyaCore</span>, your
-            trusted IT center for cutting-edge technology solutions and creative
-            services. We are dedicated to providing high-quality education and
-            services in various fields of IT and design, helping individuals and
-            businesses achieve their goals.
+            <span className="font-bold text-teal-300">Aradhya Core</span>, a
+            next-generation skill-based learning platform where we transform
+            potential into performance through purposeful, career-oriented
+            education.
+          </p>
+          <p className="text-white/80 leading-relaxed mb-4">
+            Our mission is to build a confident, industry-ready generation
+            through high-quality, hands-on training across creative, technical,
+            and digital domains. All our courses are crafted by experts,
+            delivered through live interactive classes, and supported by
+            personalized mentorship.
+          </p>
+          <p className="text-white/80 leading-relaxed mb-4">
+            We offer comprehensive courses in: <br />
+            <span className="text-teal-200">
+              Graphics Design, Motion Graphics, 3D Fundamentals, Advanced
+              Modeling for Real-Time Games, Video Editing, MikroTik & OLT, CCNA,
+              C & C++ (Basic to Advanced), Python (Basic to Advanced), Digital
+              Marketing, UI/UX Design, WordPress, and Game Development.
+            </span>
+          </p>
+          <p className="text-white/80 leading-relaxed mb-4">
+            We’re not just an institute—we are a thriving community of learners,
+            creators, and future leaders growing together with integrity,
+            excellence, and vision.
+          </p>
+          <p className="text-white font-semibold italic">
+            Learn with purpose. Grow with confidence. Welcome to Aradhya Core.
           </p>
         </div>
 

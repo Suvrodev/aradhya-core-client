@@ -1,4 +1,9 @@
-import { FaFacebookF, FaTwitter, FaYoutube, FaInstagram } from "react-icons/fa";
+import {
+  FaFacebookF,
+  FaInstagram,
+  FaLinkedinIn,
+  FaYoutube,
+} from "react-icons/fa";
 import fullLogo from "../../../assets/Logo/fullLogo.png";
 import { Link } from "react-router";
 import goLink from "../../../utils/Fucntion/goLink";
@@ -41,20 +46,29 @@ const Footer = () => {
               <Link
                 to="#"
                 className="text-white hover:text-teal-300 transition-colors"
-              >
-                <FaTwitter />
-              </Link>
-              <Link
-                to="#"
-                className="text-white hover:text-teal-300 transition-colors"
-              >
-                <FaYoutube />
-              </Link>
-              <Link
-                to="#"
-                className="text-white hover:text-teal-300 transition-colors"
+                onClick={() => {
+                  goLink("https://www.instagram.com/aradhyacorebd/");
+                }}
               >
                 <FaInstagram />
+              </Link>
+              <Link
+                to="#"
+                className="text-white hover:text-teal-300 transition-colors"
+                onClick={() => {
+                  goLink("https://www.linkedin.com/company/aradhyacore");
+                }}
+              >
+                <FaLinkedinIn />
+              </Link>
+              <Link
+                to="#"
+                className="text-white hover:text-teal-300 transition-colors"
+                onClick={() => {
+                  goLink("https://www.youtube.com/@AradhyaCorebd");
+                }}
+              >
+                <FaYoutube />
               </Link>
             </div>
           </div>

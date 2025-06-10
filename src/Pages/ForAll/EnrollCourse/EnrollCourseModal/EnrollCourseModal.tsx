@@ -54,7 +54,7 @@ const EnrollCourseModal = ({
         {/* <button className="bg-purple-600 hover:bg-purple-700 text-white font-bold py-3 px-6 rounded-full transition-all transform hover:scale-105">
           Enroll Now
         </button> */}
-        <button className="bg-white hover:bg-gray-100 font-bold py-3 px-6 rounded-full transition-all transform hover:scale-105">
+        <button className="bg-white hover:bg-gray-100 w-full font-bold py-3 px-6 rounded-full transition-all transform hover:scale-105">
           <span className="bg-gradient-to-r from-teal-400 to-teal-600 text-transparent bg-clip-text">
             Enroll Now
           </span>

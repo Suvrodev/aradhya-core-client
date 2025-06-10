@@ -4,6 +4,7 @@ import { useAddAssignStudentMutation } from "../../../../redux/api/features/Assi
 import { useAppSelector } from "../../../../redux/hook";
 import { toast } from "sonner";
 import { sonarId } from "../../../../utils/Fucntion/sonarId";
+import BKashImage from "./BKashImage/BKashImage";
 
 interface IProps {
   activeStep: number;
@@ -93,7 +94,7 @@ const EnrollCourseSecondStep = ({ activeStep, setActiveStep }: IProps) => {
               onClick={() => goCall("01609593186")}
               className="text-blue-400 hover:text-blue-300 cursor-pointer underline"
             >
-              01609593186
+              01982069967
             </span>{" "}
             এই নাম্বারে{" "}
             <span className="text-[#EC0C71] font-semibold">bKash</span> এ{" "}
@@ -111,10 +112,7 @@ const EnrollCourseSecondStep = ({ activeStep, setActiveStep }: IProps) => {
 
         {/* Payment Procesure Image */}
         <div className="bg-purple-900/50 p-6 rounded-lg shadow-lg border border-purple-700 mb-6">
-          <img
-            src="https://i.ibb.co.com/x832LqQ8/b-Kash-Transaction.png"
-            alt=""
-          />
+          <BKashImage />
         </div>
 
         {/* Warning Message */}

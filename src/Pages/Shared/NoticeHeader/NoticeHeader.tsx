@@ -1,4 +1,11 @@
-import { FaFacebookF, FaYoutube, FaPhoneAlt, FaTag } from "react-icons/fa";
+import {
+  FaFacebookF,
+  FaYoutube,
+  FaPhoneAlt,
+  FaTag,
+  FaInstagram,
+  FaLinkedinIn,
+} from "react-icons/fa";
 import { Mail } from "lucide-react";
 
 import { motion } from "framer-motion";
@@ -94,12 +101,33 @@ const NoticeHeader = () => {
             >
               <FaFacebookF />
             </Link>
-            <a
-              href="#"
-              className="text-white/80 hover:text-teal-300 transition-colors duration-300"
+            <Link
+              to="#"
+              className="text-white hover:text-teal-300 transition-colors"
+              onClick={() => {
+                goLink("https://www.instagram.com/aradhyacorebd/");
+              }}
             >
-              <FaYoutube className="w-4 h-4" />
-            </a>
+              <FaInstagram />
+            </Link>
+            <Link
+              to="#"
+              className="text-white hover:text-teal-300 transition-colors"
+              onClick={() => {
+                goLink("https://www.linkedin.com/company/aradhyacore");
+              }}
+            >
+              <FaLinkedinIn />
+            </Link>
+            <Link
+              to="#"
+              className="text-white hover:text-teal-300 transition-colors"
+              onClick={() => {
+                goLink("https://www.youtube.com/@AradhyaCorebd");
+              }}
+            >
+              <FaYoutube />
+            </Link>
           </div>
 
           {/* Mobile Device ---------------------------------------------------------------------------------------------------------- */}
@@ -153,7 +181,38 @@ const NoticeHeader = () => {
                 whileHover={{ y: -2 }}
                 whileTap={{ scale: 0.9 }}
               >
-                <FaYoutube className="w-4 h-4" />
+                <FaInstagram
+                  className="w-4 h-4"
+                  onClick={() =>
+                    goLink("https://www.instagram.com/aradhyacorebd/")
+                  }
+                />
+              </motion.a>
+              <motion.a
+                href="#"
+                className="text-white/90 hover:text-teal-300 transition-colors duration-300"
+                whileHover={{ y: -2 }}
+                whileTap={{ scale: 0.9 }}
+              >
+                <FaLinkedinIn
+                  className="w-4 h-4"
+                  onClick={() =>
+                    goLink("https://www.linkedin.com/company/aradhyacore")
+                  }
+                />
+              </motion.a>
+              <motion.a
+                href="#"
+                className="text-white/90 hover:text-teal-300 transition-colors duration-300"
+                whileHover={{ y: -2 }}
+                whileTap={{ scale: 0.9 }}
+              >
+                <FaYoutube
+                  className="w-4 h-4"
+                  onClick={() =>
+                    goLink("https://www.youtube.com/@AradhyaCorebd")
+                  }
+                />
               </motion.a>
             </motion.div>
           </div>

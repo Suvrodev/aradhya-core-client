@@ -67,7 +67,7 @@ const CourseDetail = () => {
     <div className="min-h-screen bg-gradient-to-br from-[#0f2027] via-[#203a43] to-[#2c5364] text-white">
       <div className="flex flex-col-reverse md:flex-row">
         {/* Left Side (60%) - Content */}
-        <div className="w-full lg:w-[60%] p-6 lg:p-8">
+        <div className="w-full lg:w-[60%] p-2 md:p-8">
           <motion.div
             initial={{ opacity: 0, y: 20 }}
             animate={{ opacity: 1, y: 0 }}
@@ -89,11 +89,11 @@ const CourseDetail = () => {
 
             {/* YouTube Video */}
             {course?.courseYoutubeVideo && (
-              <div className="bg-white/10 backdrop-blur-md rounded-2xl shadow-2xl p-6 border border-white/10">
+              <div className="bg-white/10 backdrop-blur-md rounded-2xl shadow-2xl p-2 md:p-6 border border-white/10">
                 <h2 className="text-2xl font-bold mb-6 text-teal-400">
                   YouTube Video
                 </h2>
-                <div className="w-full h-[450px] rounded-xl overflow-hidden">
+                <div className="w-full h-[250px] md:h-[450px] rounded-xl overflow-hidden">
                   <ReactPlayer
                     url={course.courseYoutubeVideo}
                     controls={true}
@@ -369,7 +369,7 @@ const CourseDetail = () => {
         </div>
 
         {/* Right Side (40%) - Fixed Sidebar */}
-        <div className="w-full lg:w-[40%] bg-gradient-to-b from-[#0a161b] to-[#162d35] p-6 lg:p-8 lg:sticky md:top-20 lg:h-screen ">
+        <div className="w-full lg:w-[40%] bg-gradient-to-b from-[#0a161b] to-[#162d35] p-2 lg:px-8 lg:sticky md:top-20 lg:h-screen ">
           <div className="space-y-6">
             {/* Course Image */}
             <div className="rounded-xl overflow-hidden shadow-2xl border-2 border-white/10">
@@ -395,8 +395,94 @@ const CourseDetail = () => {
                 ></p>
               </div>
 
+              {/* Enrollment Deadline */}
+              {batch?.start && (
+                <div className="flex flex-col md:flex-row items-center gap-4">
+                  <div className="w-full md:w-1/2 bg-red-900/20 backdrop-blur-sm rounded-xl  p-4 md:p-2 shadow-xl border border-red-500/30">
+                    <div className="flex  items-center justify-between">
+                      <div>
+                        <h4 className="text-sm font-semibold text-red-300">
+                          Enrollment Ends
+                        </h4>
+                        <p className="text-white font-medium">
+                          {formattedEnrollmentLastDate}
+                        </p>
+                      </div>
+                      <div className="bg-red-500/80 text-white px-3 py-1 rounded-full text-sm font-bold">
+                        Hurry Up!
+                      </div>
+                    </div>
+                  </div>
+                  <div className="w-full md:w-1/2 bg-purple-900/20 backdrop-blur-sm rounded-xl p-4 md:p-2 shadow-xl border border-purple-500/30">
+                    <div className="flex items-center justify-between">
+                      <div>
+                        <h4 className="text-sm font-semibold text-White">
+                          Class Start From
+                        </h4>
+                        <p className="text-white font-medium">
+                          {formatDate(batch.start)}
+                        </p>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              )}
+            </div>
+
+            {/* Compact Pricing Section */}
+            <div className="flex items-center gap-x-4">
+              <div className="w-full flex flex-col md:flex-row gap-4  bg-white/5  backdrop-blur-sm rounded-xl p-4 md:p-2 shadow-xl border border-white/10">
+                <div className="w-full md:w-1/2">
+                  <div className="">
+                    <div className="flex justify-between items-center mb-2">
+                      <h3 className="text-lg font-bold text-teal-400">
+                        Course Fee
+                      </h3>
+                      {batch?.courseDiscount > 0 && (
+                        <span className="bg-teal-600/30 text-teal-300 px-2 py-1 rounded-full text-xs font-bold">
+                          {batch.courseDiscount}% OFF
+                        </span>
+                      )}
+                    </div>
+                  </div>
+
+                  <div className="flex items-end justify-between">
+                    {batch?.courseDiscount > 0 ? (
+                      <>
+                        <div>
+                          <span className="text-gray-400 text-sm line-through">
+                            ৳{batch?.coursePrice}
+                          </span>
+                          <span className="text-teal-400 text-xl font-bold ml-2">
+                            ৳{discountedPrice}
+                          </span>
+                        </div>
+                      </>
+                    ) : (
+                      <span className="text-teal-400 text-xl font-bold">
+                        ৳{batch?.coursePrice}
+                      </span>
+                    )}
+                  </div>
+                </div>
+
+                <div className=" w-full md:w-1/2 space-y-3 flex items-center justify-center ">
+                  <EnrollCourseModal
+                    batchId={batch?.batchId}
+                    batchName={batch?.batchName}
+                    courseId={course?.courseId}
+                    courseTitle={course?.courseTitle}
+                    courseDuration={batch?.duration}
+                    courseImage={course?.courseImage}
+                    courseStartDate={batch?.start || "Upcoming"}
+                    coursePrice={batch?.coursePrice}
+                    courseDiscount={batch?.courseDiscount || 0}
+                  />
+                </div>
+              </div>
+
               {/* Action Buttons */}
-              <div className="space-y-3">
+              {/* <div className="space-y-3">
                 <EnrollCourseModal
                   batchId={batch?.batchId}
                   batchName={batch?.batchName}
@@ -408,57 +494,7 @@ const CourseDetail = () => {
                   coursePrice={batch?.coursePrice}
                   courseDiscount={batch?.courseDiscount || 0}
                 />
-              </div>
-
-              {/* Enrollment Deadline */}
-              {batch?.start && (
-                <div className="bg-red-900/20 backdrop-blur-sm rounded-xl p-4 shadow-xl border border-red-500/30">
-                  <div className="flex items-center justify-between">
-                    <div>
-                      <h4 className="text-sm font-semibold text-red-300">
-                        Enrollment Ends
-                      </h4>
-                      <p className="text-white font-medium">
-                        {formattedEnrollmentLastDate}
-                      </p>
-                    </div>
-                    <div className="bg-red-500/80 text-white px-3 py-1 rounded-full text-sm font-bold">
-                      Hurry Up!
-                    </div>
-                  </div>
-                </div>
-              )}
-            </div>
-
-            {/* Compact Pricing Section */}
-            <div className="bg-white/5 backdrop-blur-sm rounded-xl p-4 shadow-xl border border-white/10">
-              <div className="flex justify-between items-center mb-2">
-                <h3 className="text-lg font-bold text-teal-400">Course Fee</h3>
-                {batch?.courseDiscount > 0 && (
-                  <span className="bg-teal-600/30 text-teal-300 px-2 py-1 rounded-full text-xs font-bold">
-                    {batch.courseDiscount}% OFF
-                  </span>
-                )}
-              </div>
-
-              <div className="flex items-end justify-between">
-                {batch?.courseDiscount > 0 ? (
-                  <>
-                    <div>
-                      <span className="text-gray-400 text-sm line-through">
-                        ৳{batch?.coursePrice}
-                      </span>
-                      <span className="text-teal-400 text-xl font-bold ml-2">
-                        ৳{discountedPrice}
-                      </span>
-                    </div>
-                  </>
-                ) : (
-                  <span className="text-teal-400 text-xl font-bold">
-                    ৳{batch?.coursePrice}
-                  </span>
-                )}
-              </div>
+              </div> */}
             </div>
 
             {/* Batch Information */}

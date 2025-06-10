@@ -70,7 +70,7 @@ const PeopleBox = ({ people, admin = false }: IProps) => {
       )}
 
       {/* Profile Image with Teal Overlay */}
-      <div className="h-80 overflow-hidden relative">
+      <div className="h-72 md:h-80 overflow-hidden relative">
         <img
           src={people.image || "https://i.ibb.co/d4rvmWjR/logged-User.png"}
           alt={people.name}
