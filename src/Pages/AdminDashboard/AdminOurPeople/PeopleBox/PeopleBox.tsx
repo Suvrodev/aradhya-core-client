@@ -5,6 +5,7 @@ import { useDeleteOurPeopleMutation } from "../../../../redux/api/features/OurPe
 import { TOurPeople } from "../../../../utils/types/globalTypes";
 import { sonarId } from "../../../../utils/Fucntion/sonarId";
 import UpdateOurPeople from "../UpdateOurPeople/UpdateOurPeople";
+import { Link } from "react-router";
 
 interface IProps {
   people: TOurPeople;
@@ -83,12 +84,27 @@ const PeopleBox = ({ people, admin = false }: IProps) => {
       <div className="p-6 bg-gradient-to-b from-white to-teal-50">
         {/* Name and Designation */}
         <div className="mb-4">
-          <h3 className="text-xl font-bold text-gray-900 leading-tight professional-heading">
+          <h3 className="text-xl font-bold text-gray-900 leading-tight ">
             {people.name}
           </h3>
           <p className="text-sm font-semibold text-transparent bg-clip-text bg-gradient-to-r from-teal-500 to-teal-700">
             {people.designation}
           </p>
+
+          <Link
+            to={`/instructor-detail/${people?.instructorId}`}
+            className="inline-block mt-3"
+          >
+            <button className="px-4 py-2 text-sm font-semibold text-white bg-gradient-to-r from-teal-500 to-teal-700 rounded-md shadow-md hover:from-teal-600 hover:to-teal-800 transition-all duration-300 ease-in-out">
+              View Details
+            </button>
+          </Link>
+
+          {admin && (
+            <p className="text-sm font-semibold text-green-500 bg-white  py-1 rounded-md shadow-sm  underline">
+              {people.email}
+            </p>
+          )}
         </div>
 
         {/* Course */}
@@ -179,6 +195,28 @@ const PeopleBox = ({ people, admin = false }: IProps) => {
                 </svg>
                 <span className="absolute -bottom-6 left-1/2 transform -translate-x-1/2 text-xs font-medium text-teal-600 opacity-0 group-hover:opacity-100 transition-opacity">
                   Portfolio
+                </span>
+              </a>
+            )}
+
+            {/* YouTube */}
+            {people.youtube && (
+              <a
+                href={people.youtube}
+                target="_blank"
+                rel="noopener noreferrer"
+                className="group relative p-3 bg-teal-50 rounded-xl shadow-sm hover:shadow-md transition-all duration-300 hover:bg-gradient-to-br from-red-500 to-red-600"
+              >
+                <svg
+                  className="w-5 h-5 text-red-600 group-hover:text-white"
+                  fill="currentColor"
+                  viewBox="0 0 24 24"
+                >
+                  <path d="M19.615 3.184c-1.205-.444-6.615-.444-6.615-.444s-5.41 0-6.615.444a3.584 3.584 0 00-2.384 2.394C3.556 7.383 3.556 12 3.556 12s0 4.617.445 6.422a3.584 3.584 0 002.384 2.394c1.205.444 6.615.444 6.615.444s5.41 0 6.615-.444a3.584 3.584 0 002.384-2.394C20.444 16.617 20.444 12 20.444 12s0-4.617-.445-6.422a3.584 3.584 0 00-2.384-2.394zM9.778 15.556v-7.11l6.222 3.555-6.222 3.555z" />
+                </svg>
+
+                <span className="absolute -bottom-6 left-1/2 transform -translate-x-1/2 text-xs font-medium text-red-600 opacity-0 group-hover:opacity-100 transition-opacity">
+                  YouTube
                 </span>
               </a>
             )}

@@ -53,6 +53,7 @@ import AdminOurPeople from "../Pages/AdminDashboard/AdminOurPeople/AdminOurPeopl
 import PrivecyPolicy from "../Pages/ForAll/TermsAndConditions/PrivecyPolicy/PrivecyPolicy";
 import QRCodeGenerator from "../Pages/AdminDashboard/QRCodeGenerator/QRCodeGenerator";
 import TiptapTextEditor from "../Pages/AdminDashboard/AdminBlog/TextEditor/TiptapTextEditor";
+import InstructorDetail from "../Pages/ForAll/InstructorDetail/InstructorDetail";
 // import EnrollCourse from "../Pages/ForAll/EnrollCourse/EnrollCourse";
 
 export const router = createBrowserRouter([
@@ -79,6 +80,10 @@ export const router = createBrowserRouter([
       {
         path: "about-us",
         element: <AboutUs />,
+      },
+      {
+        path: "instructor-detail/:instructorId",
+        element: <InstructorDetail />,
       },
       {
         path: "blog",

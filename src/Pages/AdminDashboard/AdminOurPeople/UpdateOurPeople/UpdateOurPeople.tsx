@@ -117,6 +117,75 @@ const UpdateOurPeople = ({ data }: IProps) => {
             </h2>
 
             <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
+              {/* Instructor Id */}
+              <div className="relative ">
+                <label className="block text-sm font-semibold text-gray-800 mb-2">
+                  Instructor ID <span className="text-red-500">*</span>
+                </label>
+                <div className="relative">
+                  <div className="absolute inset-y-0 left-0 flex items-center pl-3 pointer-events-none">
+                    <svg
+                      className="w-5 h-5 text-green-500"
+                      fill="none"
+                      stroke="currentColor"
+                      viewBox="0 0 24 24"
+                    >
+                      <path
+                        strokeLinecap="round"
+                        strokeLinejoin="round"
+                        strokeWidth="2"
+                        d="M16 12H8m8 0l-4-4m4 4l-4 4m8-8v10a2 2 0 01-2 2H6a2 2 0 01-2-2V8a2 2 0 012-2h2"
+                      />
+                    </svg>
+                  </div>
+                  <input
+                    type="text"
+                    name="instructorId"
+                    value={formData.instructorId}
+                    onChange={handleChange}
+                    placeholder="e.g. INSTR-00123"
+                    className="w-full pl-10 pr-4 py-3 rounded-xl border border-green-200 focus:border-green-400 focus:ring-2 focus:ring-green-200 bg-green-50 text-gray-800 placeholder-green-400 font-medium transition-all outline-none shadow-sm"
+                    required
+                  />
+                </div>
+                <p className="text-xs text-gray-500 mt-1 pl-1">
+                  Unique identifier for the instructor (auto-generated or
+                  manual).
+                </p>
+              </div>
+              {/* Email */}
+              <div className="relative">
+                <label className="block text-sm font-medium text-gray-700 mb-1.5">
+                  Email Address
+                </label>
+                <div className="relative">
+                  <div className="absolute inset-y-0 left-0 flex items-center pl-3 pointer-events-none">
+                    <svg
+                      className="w-5 h-5 text-lime-400"
+                      fill="none"
+                      stroke="currentColor"
+                      viewBox="0 0 24 24"
+                    >
+                      <path
+                        strokeLinecap="round"
+                        strokeLinejoin="round"
+                        strokeWidth="2"
+                        d="M16 12H8m8 0l-4-4m4 4l-4 4m8-8v10a2 2 0 01-2 2H6a2 2 0 01-2-2V8a2 2 0 012-2h2"
+                      />
+                    </svg>
+                  </div>
+                  <input
+                    type="email"
+                    name="email"
+                    placeholder="example@email.com"
+                    value={formData.email}
+                    onChange={handleChange}
+                    className="w-full pl-10 pr-4 py-2.5 rounded-xl border-2 border-lime-100 focus:border-lime-300 focus:ring-2 focus:ring-lime-200 bg-lime-50 text-gray-800 placeholder-lime-300 transition-all outline-none"
+                    required
+                  />
+                </div>
+              </div>
+
               {/* Image URL */}
               <div className="relative">
                 <label className="block text-sm font-medium text-gray-700 mb-1.5">
@@ -306,6 +375,32 @@ const UpdateOurPeople = ({ data }: IProps) => {
                 </div>
               </div>
 
+              {/* YouTube Video URL */}
+              <div className="relative">
+                <label className="block text-sm font-medium text-gray-700 mb-1.5">
+                  YouTube Video URL
+                </label>
+                <div className="relative">
+                  <div className="absolute inset-y-0 left-0 flex items-center pl-3 pointer-events-none">
+                    <svg
+                      className="w-5 h-5 text-red-500"
+                      fill="currentColor"
+                      viewBox="0 0 24 24"
+                    >
+                      <path d="M10 15l5.19-3L10 9v6zm12-3a9 9 0 11-18 0 9 9 0 0118 0z" />
+                    </svg>
+                  </div>
+                  <input
+                    type="text"
+                    name="youtube"
+                    placeholder="https://youtube.com/watch?v=..."
+                    value={formData.youtube}
+                    onChange={handleChange}
+                    className="w-full pl-10 pr-4 py-2.5 rounded-xl border-2 border-red-100 focus:border-red-300 focus:ring-2 focus:ring-red-200 bg-red-50 text-gray-800 placeholder-red-300 transition-all outline-none"
+                  />
+                </div>
+              </div>
+
               {/* Order */}
               <div className="relative">
                 <label className="block text-sm font-medium text-gray-700 mb-1.5">
@@ -338,6 +433,51 @@ const UpdateOurPeople = ({ data }: IProps) => {
                   />
                 </div>
               </div>
+            </div>
+
+            {/*Specialized Area */}
+            <div className="relative">
+              <label className="block text-sm font-medium text-gray-700 mb-1.5">
+                Specialized Area
+              </label>
+              <textarea
+                name="specializedArea"
+                placeholder="Packaging Design#Brand Identity Design#Pblishing Design"
+                value={formData.specializedArea}
+                onChange={handleChange}
+                rows={3}
+                className="w-full px-4 py-2.5 rounded-xl border-2 border-purple-100 focus:border-purple-300 focus:ring-2 focus:ring-purple-200 bg-purple-50 text-gray-800 placeholder-purple-300 transition-all outline-none resize-none"
+              ></textarea>
+            </div>
+
+            {/* Eduactional Qualification */}
+            <div className="relative">
+              <label className="block text-sm font-medium text-gray-700 mb-1.5">
+                Education Qualification
+              </label>
+              <textarea
+                name="education"
+                placeholder="BSC in CSE# MBA"
+                value={formData.education}
+                onChange={handleChange}
+                rows={3}
+                className="w-full px-4 py-2.5 rounded-xl border-2 border-orange-100 focus:border-orange-300 focus:ring-2 focus:ring-orange-200 bg-orange-50 text-gray-800 placeholder-orange-300 transition-all outline-none resize-none"
+              ></textarea>
+            </div>
+
+            {/* Work Experience */}
+            <div className="relative">
+              <label className="block text-sm font-medium text-gray-700 mb-1.5">
+                Work Experience
+              </label>
+              <textarea
+                name="workExperience"
+                placeholder="BSC in CSE# MBA"
+                value={formData.workExperience}
+                onChange={handleChange}
+                rows={3}
+                className="w-full px-4 py-2.5 rounded-xl border-2 border-teal-100 focus:border-teal-300 focus:ring-2 focus:ring-teal-200 bg-teal-50 text-gray-800 placeholder-orange-300 transition-all outline-none resize-none"
+              ></textarea>
             </div>
 
             {/* Message */}

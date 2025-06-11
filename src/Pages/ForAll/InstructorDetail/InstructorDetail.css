@@ -1,0 +1,17 @@
+@keyframes wave {
+  0% {
+    background-position-x: 0;
+  }
+  100% {
+    background-position-x: 1200px;
+  }
+}
+
+.animate-\[wave_12s_linear_infinite\] {
+  animation: wave 12s linear infinite;
+}
+
+/* Smooth transitions for all animated elements */
+* {
+  transition: all 0.3s ease;
+}

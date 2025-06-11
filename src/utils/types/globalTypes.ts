@@ -110,7 +110,9 @@ export type TBlog = {
 };
 
 export type TOurPeople = {
+  instructorId: string;
   _id: string;
+  email: string;
   image: string;
   name: string;
   designation: string;
@@ -118,7 +120,11 @@ export type TOurPeople = {
   course?: string;
   facebook?: string;
   portfolio?: string;
+  youtube?: string;
   order: number;
+  specializedArea: string;
+  education: string;
+  workExperience: string;
 };
 
 export type TBatch = {
