@@ -13,7 +13,7 @@ import {
 import { useTitle } from "../../../Component/hook/useTitle";
 
 const InstructorAdditionalInfo = () => {
-  useTitle(` Additional Info`);
+  useTitle(` Additional Info - Instructor`);
   const [updateUser] = useUpdateInstructorMutation();
   const { token } = useAppSelector((state) => state.auth);
   // eslint-disable-next-line @typescript-eslint/no-explicit-any
@@ -25,6 +25,8 @@ const InstructorAdditionalInfo = () => {
   const { data, isLoading } = useGetSpecificInstructorQuery(user?.studentId);
   const loggedStudent: TInstructor = data?.data;
 
+  // console.log("Logged Instructor in Additional Info: ", loggedStudent);
+
   const [gender, setGender] = useState(loggedStudent?.gender || "");
   const [ageRange, setAgeRange] = useState(loggedStudent?.ageRange || "");
   const [device, setDevice] = useState(loggedStudent?.deviceType || "");
@@ -32,6 +34,7 @@ const InstructorAdditionalInfo = () => {
     loggedStudent?.internetType || ""
   );
   const [areaType, setAreaType] = useState(loggedStudent?.areaType || "");
+  const [bloodGroup, setBloodGroup] = useState(loggedStudent?.bloodGroup || "");
 
   const handleSubmit = async (event: FormEvent<HTMLFormElement>) => {
     event.preventDefault();
@@ -41,6 +44,7 @@ const InstructorAdditionalInfo = () => {
       deviceType: device,
       internetType,
       areaType,
+      bloodGroup,
     };
     console.log("Update Data: ", updateData);
     toast.loading("Updating Additional Info", { id: sonarId });
@@ -176,6 +180,30 @@ const InstructorAdditionalInfo = () => {
                 <option value="">Select Area Type</option>
                 <option value="City">City</option>
                 <option value="Village">Village</option>
+              </select>
+            </div>
+
+            {/* Blood Group */}
+            <div className="flex flex-col space-y-2">
+              <div className="flex items-center space-x-3">
+                <FaUser className="text-[#00C8FF]" />
+                <span className="text-gray-300">Blood Group</span>
+              </div>
+              <select
+                name="bloodGroup"
+                value={bloodGroup}
+                onChange={(e) => setBloodGroup(e.target.value)}
+                className="w-full p-2 rounded-md bg-gray-800 focus:ring-2 ring-[#00C8FF] outline-none"
+              >
+                <option value="">Select Blood Group</option>
+                <option value="A+">A+</option>
+                <option value="A-">A-</option>
+                <option value="B+">B+</option>
+                <option value="B-">B-</option>
+                <option value="AB+">AB+</option>
+                <option value="AB-">AB-</option>
+                <option value="O+">O+</option>
+                <option value="O-">O-</option>
               </select>
             </div>
 

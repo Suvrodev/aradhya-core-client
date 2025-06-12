@@ -13,7 +13,7 @@ import { sonarId } from "../../../utils/Fucntion/sonarId";
 import { useTitle } from "../../../Component/hook/useTitle";
 
 const AdditionalInfo = () => {
-  useTitle(`Additional Info`);
+  useTitle(`Additional Info - Student`);
   const [updateUser] = useUpdateStudentMutation();
   const { token } = useAppSelector((state) => state.auth);
   // eslint-disable-next-line @typescript-eslint/no-explicit-any
@@ -24,6 +24,7 @@ const AdditionalInfo = () => {
 
   const { data, isLoading } = useGetSpecificStudentQuery(user?.email);
   const loggedStudent: TStudent = data?.data;
+  console.log("Logged Student----: ", loggedStudent);
 
   const [gender, setGender] = useState(loggedStudent?.gender || "");
   const [ageRange, setAgeRange] = useState(loggedStudent?.ageRange || "");

@@ -40,6 +40,7 @@ export type TInstructor = {
   deviceType: string;
   internetType: string;
   areaType: string;
+  bloodGroup?: string;
   presentAddress: string;
   permanentAddress: string;
   currentEducation: string;

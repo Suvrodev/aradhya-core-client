@@ -13,8 +13,10 @@ import {
 import ReactPlayer from "react-player/youtube";
 import { TOurPeople } from "../../../utils/types/globalTypes";
 import { motion } from "framer-motion";
+import { useTitle } from "../../../Component/hook/useTitle";
 
 const InstructorDetail = () => {
+  useTitle("Instructor Detail");
   const { instructorId } = useParams();
   const { data, isLoading } = useGetSpecificOurPeopleQuery(instructorId);
   const instructor: TOurPeople = data?.data;
