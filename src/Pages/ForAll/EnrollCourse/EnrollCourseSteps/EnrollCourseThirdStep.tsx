@@ -62,14 +62,14 @@ const EnrollCourseThirdStep = () => {
             className="flex items-center justify-center px-4 py-2 bg-purple-800/50 rounded-lg hover:bg-purple-800/70 transition-colors duration-300 text-sm sm:text-base"
           >
             <span className="mr-2">📞</span>
-            Support Team Number-1: 015
+            Support Team Number-1: 01342434695
           </a>
           <a
             href="tel:017"
             className="flex items-center justify-center px-4 py-2 bg-purple-800/50 rounded-lg hover:bg-purple-800/70 transition-colors duration-300 text-sm sm:text-base"
           >
             <span className="mr-2">📞</span>
-            Support Team Number-2: 017
+            Support Team Number-2: 01951912997
           </a>
         </div>
       </div>
