@@ -17,6 +17,7 @@ export const authSlice = createSlice({
   reducers: {
     setUser: (state, action) => {
       const { user, token } = action.payload;
+      console.log("User in Redux: ", user);
       state.user = user;
       state.token = token;
     },

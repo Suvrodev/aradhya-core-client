@@ -4,6 +4,11 @@ import { useEffect, useState } from "react";
 import { useGoogleRegistrationMutation } from "../../redux/api/features/auth/authApi";
 import { toast } from "sonner";
 import { sonarId } from "../../utils/Fucntion/sonarId";
+import { useAppDispatch } from "../../redux/hook";
+import { useLocation, useNavigate } from "react-router";
+import { TStudent } from "../../utils/types/globalTypes";
+import { verifyToken } from "../../utils/Fucntion/verifyToken";
+import { setUser } from "../../redux/api/features/auth/authSlice";
 
 type GoogleUser = {
   given_name: string;
@@ -19,8 +24,13 @@ type ToDBUSer = {
 };
 
 const GoogleLoginn = () => {
+  const dispatch = useAppDispatch();
   const [addUser] = useGoogleRegistrationMutation();
-  const [user, setUser] = useState<ToDBUSer | null>(null);
+  const [googleUser, setGoogleUser] = useState<ToDBUSer | null>(null);
+
+  const path = useLocation()?.pathname;
+  console.log("Path: ", path);
+  const navigate = useNavigate();
 
   // eslint-disable-next-line @typescript-eslint/no-explicit-any
   const handleSuccess = (credentialResponse: any) => {
@@ -29,25 +39,33 @@ const GoogleLoginn = () => {
       console.log("Decoded JWT:", decoded);
       const { given_name, family_name, email, picture } = decoded;
       const name = given_name + " " + family_name;
-      setUser({ name, email, picture });
+      setGoogleUser({ name, email, picture });
     }
   };
 
   useEffect(() => {
-    if (user) {
-      console.log("User: ", user);
+    if (googleUser) {
+      console.log("Google User: ", googleUser);
       const createUser = async () => {
         toast.loading("Logining...", { id: sonarId });
-        const res = await addUser(user).unwrap();
+        const res = await addUser(googleUser).unwrap();
         console.log("Res: ", res);
         if (res?.success) {
+          console.log("--------------");
+          const token = res?.data;
+          const loggedUser: TStudent = verifyToken(token);
+          console.log("Logged User: ", loggedUser);
           toast.success("Login Successfully", { id: sonarId });
+          dispatch(setUser({ user: loggedUser, token }));
+          if (path === "/login") {
+            navigate(`/${loggedUser?.role}-dashboard`);
+          }
         }
       };
 
       createUser();
     }
-  }, [user, addUser]);
+  }, [googleUser, addUser, dispatch, navigate, path]);
 
   return (
     <div className=" ">

@@ -1,4 +1,5 @@
 import { Link } from "react-router";
+import GoogleLoginn from "../../../../../Component/GoogleLoginn/GoogleLoginn";
 
 const NotLogged = () => {
   return (
@@ -21,15 +22,27 @@ const NotLogged = () => {
         to="/login"
         className="relative inline-flex items-center justify-center px-8 py-3 overflow-hidden font-medium text-white bg-gradient-to-br from-purple-600 to-pink-500 rounded-full group transition-all transform hover:scale-105"
       >
-        {/* Button Text */}
-        <span className="relative z-10 text-lg font-semibold">Login</span>
+        <span className="relative z-10 text-lg font-semibold">Login Page</span>
 
-        {/* Hover Effect */}
         <div className="absolute inset-0 bg-gradient-to-br from-pink-500 to-purple-600 opacity-0 group-hover:opacity-100 transition-opacity duration-300"></div>
-
-        {/* Shine Effect */}
         <div className="absolute top-0 left-0 w-full h-full bg-white/10 backdrop-blur-sm opacity-0 group-hover:opacity-100 transition-opacity duration-300"></div>
       </Link>
+
+      {/* Separator & Google Login */}
+      <div className="my-6 w-full max-w-xs">
+        <div className="flex items-center gap-4">
+          <hr className="flex-grow border-t border-gray-400" />
+          <span className="text-sm text-gray-200 whitespace-nowrap">
+            Or login with Google
+          </span>
+          <hr className="flex-grow border-t border-gray-400" />
+        </div>
+
+        <div className="mt-4 flex justify-center">
+          {/* 👇 Insert your Google login component here */}
+          <GoogleLoginn />
+        </div>
+      </div>
     </div>
   );
 };
