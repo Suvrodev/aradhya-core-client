@@ -48,7 +48,7 @@ const AboutUs = () => {
         </div>
 
         {/* About Us Section */}
-        <div className="backdrop-blur-sm rounded-lg p-8 mb-12">
+        <div className="bg-white/10 backdrop-blur-sm rounded-lg p-8 mb-12">
           <h2 className="text-2xl font-bold text-white mb-6">Who We Are</h2>
           <p className="text-white/80 leading-relaxed mb-4">
             Welcome to{" "}

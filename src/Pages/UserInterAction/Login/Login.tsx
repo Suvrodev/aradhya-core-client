@@ -14,6 +14,7 @@ import { verifyToken } from "../../../utils/Fucntion/verifyToken";
 import { setUser } from "../../../redux/api/features/auth/authSlice";
 import { useTitle } from "../../../Component/hook/useTitle";
 import { TStudent } from "../../../utils/types/globalTypes";
+import GoogleLoginn from "../../../Component/GoogleLoginn/GoogleLoginn";
 const Login = () => {
   useTitle("Login");
   const dispatch = useAppDispatch();
@@ -118,6 +119,21 @@ const Login = () => {
               </Link>
             </div>
           </form>
+
+          {/* Login By Google */}
+          <div className="my-6">
+            <div className="flex items-center gap-4">
+              <hr className="flex-grow border-t border-gray-500" />
+              <span className="text-sm text-gray-400 whitespace-nowrap">
+                Or login with
+              </span>
+              <hr className="flex-grow border-t border-gray-500" />
+            </div>
+
+            <div className="mt-4 flex justify-center">
+              <GoogleLoginn />
+            </div>
+          </div>
         </div>
       </div>
 

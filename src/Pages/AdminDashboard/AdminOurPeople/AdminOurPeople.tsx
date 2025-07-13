@@ -82,7 +82,7 @@ const AdminOurPeople = () => {
                 Instructor ID <span className="text-red-500">*</span>
               </label>
               <div className="relative">
-                <div className="absolute inset-y-0 left-0 flex items-center pl-3 pointer-events-none">
+                <div className="absolute inset-y-0 left-0 flex items-center pl-3 pointer-events-none  ">
                   <svg
                     className="w-5 h-5 text-green-500"
                     fill="none"
@@ -103,7 +103,7 @@ const AdminOurPeople = () => {
                   value={formData.instructorId}
                   onChange={handleChange}
                   placeholder="e.g. INSTR-00123"
-                  className="w-full pl-10 pr-4 py-3 rounded-xl border border-green-200 focus:border-green-400 focus:ring-2 focus:ring-green-200 bg-green-50 text-gray-800 placeholder-green-400 font-medium transition-all outline-none shadow-sm"
+                  className="w-full pl-10 pr-4 py-3 rounded-xl border border-green-200 focus:border-purple-600 focus:ring-2  bg-green-50 text-gray-800 placeholder-green-400 font-medium transition-all outline-none shadow-sm"
                   required
                 />
               </div>

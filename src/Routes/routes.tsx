@@ -54,6 +54,7 @@ import PrivecyPolicy from "../Pages/ForAll/TermsAndConditions/PrivecyPolicy/Priv
 import QRCodeGenerator from "../Pages/AdminDashboard/QRCodeGenerator/QRCodeGenerator";
 import TiptapTextEditor from "../Pages/AdminDashboard/AdminBlog/TextEditor/TiptapTextEditor";
 import InstructorDetail from "../Pages/ForAll/InstructorDetail/InstructorDetail";
+import GoogleLoginn from "../Component/GoogleLoginn/GoogleLoginn";
 // import EnrollCourse from "../Pages/ForAll/EnrollCourse/EnrollCourse";
 
 export const router = createBrowserRouter([
@@ -124,6 +125,10 @@ export const router = createBrowserRouter([
       {
         path: "cte",
         element: <TiptapTextEditor />,
+      },
+      {
+        path: "gl",
+        element: <GoogleLoginn />,
       },
       // {
       //   path: "enroll-course",

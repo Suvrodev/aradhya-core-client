@@ -255,7 +255,7 @@ const EnrollCourseFirstStep = ({
             <h1 className="text-[18px]">
               Total Price: {totalPrice}৳{" "}
               <span className="text-[12px] text-green-500">
-                (এই Ammount টাই আমাদের bKash/Nagad এ send money করুন)
+                (এই Ammount টাই আমাদের bKash এ send money করুন)
               </span>
             </h1>
           </div>

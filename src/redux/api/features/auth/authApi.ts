@@ -2,6 +2,15 @@ import { baseApi } from "../../baseApi";
 
 const authApi = baseApi.injectEndpoints({
   endpoints: (builder) => ({
+    googleRegistration: builder.mutation({
+      query: (data) => {
+        return {
+          url: "/google-auth/register",
+          method: "POST",
+          body: data,
+        };
+      },
+    }),
     registration: builder.mutation({
       query: (data) => {
         return {
@@ -90,6 +99,7 @@ const authApi = baseApi.injectEndpoints({
 });
 
 export const {
+  useGoogleRegistrationMutation,
   useRegistrationMutation,
   useInstructorRegistrationMutation,
   useLoginMutation,
