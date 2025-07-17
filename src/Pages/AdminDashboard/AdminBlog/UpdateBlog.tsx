@@ -192,11 +192,49 @@ const UpdateBlog = () => {
     setCategory(e.target.value);
   };
 
+  // const handleImageChange = async (event: ChangeEvent<HTMLInputElement>) => {
+  //   const file = event.target.files?.[0];
+  //   if (!file) return;
+
+  //   setIsImageUploading(true);
+
+  //   const formData = new FormData();
+  //   formData.append("file", file);
+  //   formData.append("upload_preset", import.meta.env.VITE_ClOUDNARY_PRESET);
+  //   formData.append("cloud_name", import.meta.env.VITE_CLOUDNARY_API_KEY);
+
+  //   try {
+  //     toast.loading("Uploading Image", { id: sonarId });
+  //     const response = await axios.post(imageHostingUrl, formData);
+  //     const newImageUrl = response.data.url;
+  //     console.log("Cloudnary Response: ", response);
+
+  //     // Update the image URL in state
+  //     setImageUrl(newImageUrl);
+
+  //     // Immediately update the blog with new image
+  //     const updateData = { image: newImageUrl };
+  //     const res = await updateBlog({ id, updateData }).unwrap();
+
+  //     if (res?.success) {
+  //       toast.success("Image Updated Successfully", { id: sonarId });
+  //     }
+  //   } catch (error) {
+  //     console.error("Image Upload Error:", error);
+  //     toast.error("Failed to upload image", { id: sonarId });
+  //     // Revert to previous image if upload fails
+  //     setImageUrl(blog?.image || "");
+  //   } finally {
+  //     setIsImageUploading(false);
+  //   }
+  // };
+
   const handleImageChange = async (event: ChangeEvent<HTMLInputElement>) => {
     const file = event.target.files?.[0];
     if (!file) return;
 
     setIsImageUploading(true);
+
     const formData = new FormData();
     formData.append("file", file);
     formData.append("upload_preset", import.meta.env.VITE_ClOUDNARY_PRESET);
@@ -205,14 +243,20 @@ const UpdateBlog = () => {
     try {
       toast.loading("Uploading Image", { id: sonarId });
       const response = await axios.post(imageHostingUrl, formData);
-      const newImageUrl = response.data.url;
-      console.log("Cloudnary Response: ", response);
+
+      // Use public_id to build WebP format URL
+      const publicId = response.data.public_id;
+      const finalWebpUrl = `https://res.cloudinary.com/${
+        import.meta.env.VITE_CLOUDNARY_API_KEY
+      }/image/upload/f_webp/${publicId}.webp`;
+
+      console.log("WebP URL: ", finalWebpUrl);
 
       // Update the image URL in state
-      setImageUrl(newImageUrl);
+      setImageUrl(finalWebpUrl);
 
-      // Immediately update the blog with new image
-      const updateData = { image: newImageUrl };
+      // Immediately update the blog with the WebP image URL
+      const updateData = { image: finalWebpUrl };
       const res = await updateBlog({ id, updateData }).unwrap();
 
       if (res?.success) {
@@ -281,6 +325,7 @@ const UpdateBlog = () => {
         <div className="space-y-2">
           <label className="text-sm font-medium text-white">Content</label>
           <TextEditor content={content} setContent={setContent} />
+          {/* <CustomTextEditor htmlOutput={content} setHtmlOutput={setContent} /> */}
         </div>
 
         {/* Image Upload */}

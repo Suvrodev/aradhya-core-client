@@ -1,4 +1,4 @@
-import freeSeminerImage from "../../../../assets/freeSeminer/free-seminer.jpeg";
+import freeSeminerImage from "../../../../assets/freeSeminer/free-seminer.webp";
 import SeminerSecondPortion from "./SeminerSecondPortion/SeminerSecondPortion";
 
 const FreeSeminer = () => {

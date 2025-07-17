@@ -1,5 +1,5 @@
 import { useNavigate } from "react-router";
-import corporateImage from "../../../../assets/homeAbout/homeAbout.jpg";
+import corporateImage from "../../../../assets/homeAbout/homeAbout.webp";
 
 const HomeAbout = () => {
   const navigate = useNavigate();
