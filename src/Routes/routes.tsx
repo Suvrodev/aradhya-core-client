@@ -484,11 +484,5 @@ export const router = createBrowserRouter([
   {
     path: "pritom",
     element: <PritomLayout />,
-    children: [
-      // {
-      //   path: "p",
-      //   element: <Pritom />,
-      // },
-    ],
   },
 ]);

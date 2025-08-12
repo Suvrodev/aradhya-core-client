@@ -27,7 +27,8 @@ const InstructorDetail = () => {
 
   if (!instructor) {
     return (
-      <div className="bg-gradient-to-br from-teal-500 to-[#262F51] min-h-screen flex items-center justify-center text-white">
+      // <div className="bg-gradient-to-br from-teal-500 to-[#262F51] min-h-screen flex items-center justify-center text-white">
+      <div className="bg-gradient-to-br from-[#262F51] to-teal-600 min-h-screen flex items-center justify-center text-white">
         <div className="text-center py-20">
           <h2 className="text-3xl font-bold">Instructor not found</h2>
           <p className="mt-4 text-xl">

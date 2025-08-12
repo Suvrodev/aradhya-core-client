@@ -4,13 +4,13 @@ import DesktopHeader from "../Pages/Shared/Header/DesktoHeader/DesktopHeader";
 import MobileHeader from "../Pages/Shared/Header/MobileHeader/MobileHeader";
 import NoticeHeader from "../Pages/Shared/NoticeHeader/NoticeHeader";
 import TraceUser from "../Component/TraceUser/TraceUser";
-import FreePalestine from "../Pages/Shared/FreePalestine/FreePalestine";
+// import FreePalestine from "../Pages/Shared/FreePalestine/FreePalestine";
 
 const Main = () => {
   return (
     <div>
       <NoticeHeader />
-      <FreePalestine />
+      {/* <FreePalestine /> */}
       <div className="hidden md:block  sticky top-0 z-10">
         <DesktopHeader />
       </div>

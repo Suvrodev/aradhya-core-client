@@ -133,7 +133,9 @@ interface IProps {
 
 const BannerContent = ({ banner }: IProps) => {
   return (
-    <div className="relative flex flex-col-reverse md:flex-row items-center gap-2 md:gap-6 bg-gradient-to-r from-[#0f2027] via-[#203a43] to-[#2c5364] p-[12px] md:p-8 rounded-lg shadow-xl h-full text-white overflow-hidden">
+    // <div className="relative flex flex-col-reverse md:flex-row items-center gap-2 md:gap-6 bg-gradient-to-r from-[#0f2027] via-[#203a43] to-[#2c5364] p-[12px] md:p-8 rounded-lg shadow-xl h-full text-white overflow-hidden">
+    <div className="relative flex flex-col-reverse md:flex-row items-center gap-2 md:gap-6 bg-gradient-to-br from-[#262F51] to-teal-600 p-[12px] md:p-8 rounded-lg shadow-xl h-full text-white overflow-hidden">
+      {/* <div className="relative flex flex-col-reverse md:flex-row items-center gap-2 md:gap-6 bg-[#EBF4FE] p-[12px] md:p-8 rounded-lg shadow-xl h-full text-white overflow-hidden"> */}
       {/* <div className="relative flex flex-col-reverse md:flex-row items-center gap-6 md:gap-6 bg-white innerShadw p-[12px] md:p-8 rounded-lg shadow-xl h-full text-white overflow-hidden"> */}
       {/* --- Background Glow Effects --- */}
       <div className="absolute inset-0 overflow-hidden pointer-events-none">
