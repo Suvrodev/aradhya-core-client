@@ -55,6 +55,7 @@ import QRCodeGenerator from "../Pages/AdminDashboard/QRCodeGenerator/QRCodeGener
 import TiptapTextEditor from "../Pages/AdminDashboard/AdminBlog/TextEditor/TiptapTextEditor";
 import InstructorDetail from "../Pages/ForAll/InstructorDetail/InstructorDetail";
 import GoogleLoginn from "../Component/GoogleLoginn/GoogleLoginn";
+import SeminarRegistration from "../Component/SeminarRegistration/SeminarRegistration";
 // import EnrollCourse from "../Pages/ForAll/EnrollCourse/EnrollCourse";
 
 export const router = createBrowserRouter([
@@ -129,6 +130,10 @@ export const router = createBrowserRouter([
       {
         path: "gl",
         element: <GoogleLoginn />,
+      },
+      {
+        path: "seminer-reg",
+        element: <SeminarRegistration />,
       },
       // {
       //   path: "enroll-course",
