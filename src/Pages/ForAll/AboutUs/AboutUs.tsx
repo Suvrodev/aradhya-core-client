@@ -16,9 +16,28 @@ import { useGetAllOurPeopleQuery } from "../../../redux/api/features/OurPeople/o
 import { TOurPeople } from "../../../utils/types/globalTypes";
 import PeopleBox from "../../AdminDashboard/AdminOurPeople/PeopleBox/PeopleBox";
 import AboutServiceBox from "./AboutServiceBox";
+import { useLocation } from "react-router";
+import useGTMEvent from "../../../Component/hook/useGTMEvent";
 
 const AboutUs = () => {
   useTitle("About us");
+
+  const location = useLocation();
+
+  // useEffect(() => {
+  //   window.dataLayer = window.dataLayer || [];
+  //   window.dataLayer.push({
+  //     event: "page_view",
+  //     page_path: location.pathname,
+  //     page_title: "About Us",
+  //   });
+  // }, [location]);
+
+  useGTMEvent("page_view", {
+    page_path: location.pathname,
+    page_title: "About Us",
+    content_type: "static_page",
+  });
 
   const { data, isLoading } = useGetAllOurPeopleQuery(undefined);
   const ourPeoples = data?.data;

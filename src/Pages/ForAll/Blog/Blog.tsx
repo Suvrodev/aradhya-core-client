@@ -1,14 +1,23 @@
+import { useLocation } from "react-router";
 import { useTitle } from "../../../Component/hook/useTitle";
 import { useGetALlBlogQuery } from "../../../redux/api/features/Blog/blogManagementApi";
 import { TBlog } from "../../../utils/types/globalTypes";
 import BlogBox from "../../AdminDashboard/AdminBlog/AllBlog/BlogBox";
 import BlogBoxSkl from "../../AdminDashboard/AdminBlog/AllBlog/BlogBoxSkl";
+import useGTMEvent from "../../../Component/hook/useGTMEvent";
 
 const Blog = () => {
   useTitle("Blog");
   const { data: blogDatas, isLoading } = useGetALlBlogQuery(undefined);
   const blogs = blogDatas?.data;
   // console.log("Blog Data: ", blogs);
+
+  const location = useLocation();
+  useGTMEvent("page_view", {
+    page_path: location.pathname,
+    page_title: "Blog",
+    content_type: "static_page",
+  });
 
   return (
     <div className="min-h-screen bg-gradient-to-br from-teal-500 to-[#262F51] p-4 md:p-8">

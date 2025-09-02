@@ -7,9 +7,18 @@ import emailjs from "@emailjs/browser";
 import { PhoneOutgoing } from "lucide-react";
 import { useTitle } from "../../../Component/hook/useTitle";
 import { phone1, phone2 } from "../../../utils/Fucntion/phone";
+import { useLocation } from "react-router";
+import useGTMEvent from "../../../Component/hook/useGTMEvent";
 
 const Contact = () => {
   useTitle("Contact");
+
+  const location = useLocation();
+  useGTMEvent("page_view", {
+    page_path: location.pathname,
+    page_title: "Contact",
+    content_type: "static_page",
+  });
   const form = useRef<HTMLFormElement>(null);
   const [loading, setLoading] = useState(false);
 

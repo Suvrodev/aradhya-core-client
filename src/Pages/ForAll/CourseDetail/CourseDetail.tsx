@@ -1,4 +1,4 @@
-import { useParams } from "react-router";
+import { useLocation, useParams } from "react-router";
 import { useGetSpecificCourseQuery } from "../../../redux/api/features/Course/courseManagementApi";
 import { useTitle } from "../../../Component/hook/useTitle";
 import { TBatch, TCourse } from "../../../utils/types/globalTypes";
@@ -10,6 +10,8 @@ import "slick-carousel/slick/slick.css";
 import "slick-carousel/slick/slick-theme.css";
 import { useGetUpComingBatchUnderCourseQuery } from "../../../redux/api/features/Batch/batchManagementApi";
 import CourseDetailLoading from "./CourseDetailLoading";
+import useGTMEvent from "../../../Component/hook/useGTMEvent";
+import { discountedPrice } from "../../../utils/Fucntion/discountedPrice";
 
 const CourseDetail = () => {
   useTitle("Course Detail");
@@ -38,6 +40,61 @@ const CourseDetail = () => {
     cssEase: "linear",
   };
 
+  /**
+   * For Google Tag Manager Start
+   */
+
+  const location = useLocation();
+
+  // useGTMEvent("view_item", {
+  //   page_path: location.pathname, // optional
+  //   page_title: course?.courseTitle, // optional
+  //   ecommerce: {
+  //     items:
+  //       course && batch
+  //         ? [
+  //             {
+  //               item_id: id,
+  //               item_name: course.courseTitle,
+  //               price: discountedPrice(batch.coursePrice, batch.courseDiscount),
+  //               quantity: 1,
+  //             },
+  //           ]
+  //         : [],
+  //   },
+  // });
+
+  useGTMEvent("view_item", {
+    page_path: location.pathname,
+    page_title: course?.courseTitle || "Course Detail",
+    value:
+      course && batch
+        ? discountedPrice(batch.coursePrice, batch.courseDiscount)
+        : 0,
+    currency: "BDT",
+    ecommerce: {
+      currency: "BDT",
+      value: batch
+        ? discountedPrice(batch.coursePrice, batch.courseDiscount)
+        : 0,
+      items:
+        course && batch
+          ? [
+              {
+                item_id: id,
+                item_name: course.courseTitle,
+                price: discountedPrice(batch.coursePrice, batch.courseDiscount),
+                quantity: 1,
+                currency: "BDT",
+              },
+            ]
+          : [],
+    },
+  });
+  /**
+   * For Google Tag Manager End
+   */
+
   if (isLoading || batchLoading) return <CourseDetailLoading />;
 
   // Format date to DD/MMM/YYYY (01/Jan/2025)
@@ -58,10 +115,10 @@ const CourseDetail = () => {
     : "Not specified";
 
   // Calculate discounted price
-  const discountedPrice = Math.floor(
-    batch?.coursePrice -
-      (batch?.coursePrice * (batch?.courseDiscount || 0)) / 100
-  );
+  // const discountedPrice = Math.floor(
+  //   batch?.coursePrice -
+  //     (batch?.coursePrice * (batch?.courseDiscount || 0)) / 100
+  // );
 
   return (
     <div className="min-h-screen bg-gradient-to-br from-[#0f2027] via-[#203a43] to-[#2c5364] text-white">
@@ -460,7 +517,11 @@ const CourseDetail = () => {
                             ৳{batch?.coursePrice}
                           </span>
                           <span className="text-teal-400 text-xl font-bold ml-2">
-                            ৳{discountedPrice}
+                            ৳
+                            {discountedPrice(
+                              batch?.coursePrice,
+                              batch?.courseDiscount
+                            )}
                           </span>
                         </div>
                       </>

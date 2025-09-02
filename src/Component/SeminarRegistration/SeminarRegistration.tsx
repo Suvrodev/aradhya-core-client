@@ -1,14 +1,16 @@
 /* eslint-disable @typescript-eslint/no-explicit-any */
-"use client";
 
+import "./SeminarRegistration.css";
 import { useState, useRef, useEffect } from "react";
 import { toast } from "sonner";
 import { sonarId } from "../../utils/Fucntion/sonarId";
 import { UAParser } from "ua-parser-js";
+import { useTitle } from "../hook/useTitle";
 
 const API_URL = "https://sheetdb.io/api/v1/rdtogn8tdhsvs";
 
 const SeminarRegistration = () => {
+  useTitle("Free Seminer");
   const [showOtherInput, setShowOtherInput] = useState(false);
   const otherInputRef = useRef<HTMLInputElement | null>(null);
   const [isSubmitting, setIsSubmitting] = useState(false);
@@ -124,10 +126,22 @@ const SeminarRegistration = () => {
     "w-full rounded-lg px-4 py-3 text-white placeholder-gray-300 focus:outline-none focus:ring-2 focus:ring-[#166F74]";
 
   return (
-    <div className="min-h-screen bg-white flex justify-center items-center py-10 px-4">
-      <div className="w-full max-w-2xl bg-white shadow-xl rounded-xl overflow-hidden border border-gray-200">
+    <div className="relative min-h-screen flex justify-center items-center py-10 px-4">
+      <div
+        className="absolute inset-0 bg-cover bg-center"
+        style={{
+          backgroundImage:
+            "url('https://res.cloudinary.com/dd5tdfhio/image/upload/v1756076645/bg-1_se3syv.webp')",
+          opacity: 0.5, // sudhu image er opacity
+          zIndex: 0,
+        }}
+      ></div>
+
+      <div className="relative  w-full max-w-2xl bg-white shadow-xl rounded-xl overflow-hidden border border-gray-200">
         <div className="bg-[#166F74] text-white p-8 relative">
-          <h2 className="text-3xl font-bold mb-2">Contact Information</h2>
+          <h2 className="text-3xl font-bold mb-2">
+            Contact Information With Student
+          </h2>
           <p className="text-green-100">Free Seminar Registration Form</p>
         </div>
 

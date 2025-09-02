@@ -1,14 +1,23 @@
+import { useLocation } from "react-router";
 import { useTitle } from "../../../../Component/hook/useTitle";
 import LoadingPage from "../../../../Component/LoadingPage/LoadingPage";
 import { useGetAllCourseByAdminQuery } from "../../../../redux/api/features/Course/courseManagementApi";
 import { TCourseBox } from "../../../../utils/types/globalTypes";
 import CourseBox from "../CourseBox/CourseBox";
+import useGTMEvent from "../../../../Component/hook/useGTMEvent";
 
 const AllCourses = () => {
   useTitle("All Course");
   const { data, isLoading } = useGetAllCourseByAdminQuery(undefined);
   const courses = data?.data;
   //   console.log(courses);
+
+  const location = useLocation();
+  useGTMEvent("page_view", {
+    page_path: location.pathname,
+    page_title: "All Course",
+    content_type: "static_page",
+  });
 
   if (isLoading) {
     return <LoadingPage />;
