@@ -24,6 +24,8 @@ import {
   selectPromoCodeStatus,
   selectPromoPercent,
 } from "../../../../redux/api/features/AssignStudent/assignStudentSlice";
+import LoggedUserForm from "./StudentDetailForm/LoggedUserForm/LoggedUserForm";
+import NotLoggedUserForm from "./StudentDetailForm/NotLoggedUserForm/NotLoggedUserForm";
 
 interface IProps {
   batchId: string;
@@ -152,12 +154,17 @@ const EnrollCourseFirstStep = ({
         </div>
       </div>
 
-      <div className="w-full">
+      {token ? (
+        <LoggedUserForm student={student} batchId={batchId} />
+      ) : (
+        <NotLoggedUserForm batchId={batchId} />
+      )}
+
+      {/* <div className="w-full">
         <h1 className="text-3xl font-bold text-center my-4 underline underline-offset-4">
           Student Detail
         </h1>
         <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
-          {/* Student ID */}
           <div className="flex items-center gap-4">
             <label className="text-sm font-medium text-gray-300 mb-1 w-32">
               Student ID
@@ -170,7 +177,6 @@ const EnrollCourseFirstStep = ({
             />
           </div>
 
-          {/* Student Name */}
           <div className="flex items-center gap-4">
             <label className="text-sm font-medium text-gray-300 mb-1 w-32">
               Student Name
@@ -183,7 +189,6 @@ const EnrollCourseFirstStep = ({
             />
           </div>
 
-          {/* Batch ID */}
           <div className="flex items-center gap-4">
             <label className="text-sm font-medium text-gray-300 mb-1 w-32">
               Batch ID
@@ -196,7 +201,6 @@ const EnrollCourseFirstStep = ({
             />
           </div>
 
-          {/* Student Email */}
           <div className="flex items-center gap-4">
             <label className="text-sm font-medium text-gray-300 mb-1 w-32">
               Student Email
@@ -209,7 +213,7 @@ const EnrollCourseFirstStep = ({
             />
           </div>
         </div>
-      </div>
+      </div> */}
 
       <div className="w-full h-full">
         <h1 className="text-3xl font-bold text-center my-4 underline underline-offset-4">
