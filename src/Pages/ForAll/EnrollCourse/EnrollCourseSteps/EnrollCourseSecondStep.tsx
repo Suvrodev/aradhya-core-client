@@ -78,6 +78,26 @@ const EnrollCourseSecondStep = ({ activeStep, setActiveStep }: IProps) => {
     }
   };
 
+  const [copied, setCopied] = useState(false);
+  const BKASH_NUMBER = "01982069967";
+  const handleCopyBkash = async () => {
+    try {
+      await navigator.clipboard.writeText(BKASH_NUMBER);
+      setCopied(true);
+      setTimeout(() => setCopied(false), 2000);
+    } catch {
+      // Fallback for older browsers
+      const textarea = document.createElement("textarea");
+      textarea.value = BKASH_NUMBER;
+      document.body.appendChild(textarea);
+      textarea.select();
+      document.execCommand("copy");
+      document.body.removeChild(textarea);
+      setCopied(true);
+      setTimeout(() => setCopied(false), 2000);
+    }
+  };
+
   return (
     <div className="flex flex-col items-center justify-center min-h-screen bg-gradient-to-br from-purple-900 to-indigo-900 text-white px-4 py-8 sm:px-10 sm:py-12">
       {/* Transaction Details Section */}
@@ -128,14 +148,35 @@ const EnrollCourseSecondStep = ({ activeStep, setActiveStep }: IProps) => {
           </p>
         </div>
         <div className="grid grid-cols-1 gap-4 mt-6">
-          <h1 className="font-medium">
+          <h2 className="font-medium">
             Your Student id:{" "}
             <span className="font-bold text-green-500">{studentIdSlice}</span>{" "}
-          </h1>
-          <h1 className="font-medium">
+          </h2>
+          <h2 className="font-medium">
             Your Total Price:{" "}
             <span className="font-bold text-green-500">{finalPriceSlice}</span>{" "}
-          </h1>
+          </h2>
+          <h2 className="font-medium">
+            <span className="text-pink-500">bKash Number: </span>
+            <span className="font-bold text-green-500">
+              {BKASH_NUMBER}
+            </span>{" "}
+            <button
+              type="button"
+              onClick={handleCopyBkash}
+              className={`inline-flex items-center justify-center rounded-md px-2 py-1text-sm font-semibold transition
+      ${
+        copied
+          ? "bg-green-600 text-white"
+          : "bg-gray-700 text-white hover:bg-gray-600"
+      }
+      border border-gray-600`}
+              aria-live="polite"
+            >
+              {copied ? "Copied" : "Copy"}
+            </button>
+          </h2>
+
           {/* Payment Way Dropdown */}
           {/* <div className="flex flex-col md:flex-row items-start md:items-center gap-4">
             <label className="text-sm font-medium text-gray-300 mb-1 w-32">
