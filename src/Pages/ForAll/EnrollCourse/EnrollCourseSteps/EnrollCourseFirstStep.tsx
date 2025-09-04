@@ -18,6 +18,7 @@ import {
   selectBatchName,
   selectCourseDiscount,
   selectCourseId,
+  selectCourseName,
   selectCoursePrice,
   selectFinalPrice,
   selectPromoCode,
@@ -115,6 +116,7 @@ const EnrollCourseFirstStep = ({
     dispatch(selectAssignStudentEmail(student?.email));
     dispatch(selectAssignStudentPhone(student?.phone));
     dispatch(selectCourseId(courseId));
+    dispatch(selectCourseName(courseTitle));
     dispatch(selectBatchId(batchId));
     dispatch(selectBatchName(batchName));
     dispatch(selectCoursePrice(coursePrice));

@@ -54,6 +54,7 @@ const GoogleLoginn = () => {
           console.log("--------------");
           const token = res?.data;
           const loggedUser: TStudent = verifyToken(token);
+          console.log("Logged user token: ", token);
           console.log("Logged User: ", loggedUser);
           toast.success("Login Successfully", { id: sonarId });
           dispatch(setUser({ user: loggedUser, token }));
