@@ -8,7 +8,7 @@ import { PhoneOutgoing } from "lucide-react";
 import { useTitle } from "../../../Component/hook/useTitle";
 import { phone1, phone2 } from "../../../utils/Fucntion/phone";
 import { useLocation } from "react-router";
-import useGTMEvent from "../../../Component/hook/useGTMEvent";
+import useGTMEvent from "../../../Component/hook/ForGoogleTag/useGTMEvent";
 
 const Contact = () => {
   useTitle("Contact");

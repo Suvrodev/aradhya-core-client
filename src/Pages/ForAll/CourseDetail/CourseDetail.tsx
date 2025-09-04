@@ -1,4 +1,4 @@
-import { useLocation, useParams } from "react-router";
+import { useParams } from "react-router";
 import { useGetSpecificCourseQuery } from "../../../redux/api/features/Course/courseManagementApi";
 import { useTitle } from "../../../Component/hook/useTitle";
 import { TBatch, TCourse } from "../../../utils/types/globalTypes";
@@ -10,8 +10,9 @@ import "slick-carousel/slick/slick.css";
 import "slick-carousel/slick/slick-theme.css";
 import { useGetUpComingBatchUnderCourseQuery } from "../../../redux/api/features/Batch/batchManagementApi";
 import CourseDetailLoading from "./CourseDetailLoading";
-import useGTMEvent from "../../../Component/hook/useGTMEvent";
+import useGTMEvent from "../../../Component/hook/ForGoogleTag/useGTMEvent";
 import { discountedPrice } from "../../../utils/Fucntion/discountedPrice";
+import { useMemo } from "react";
 
 const CourseDetail = () => {
   useTitle("Course Detail");
@@ -44,35 +45,81 @@ const CourseDetail = () => {
    * For Google Tag Manager Start
    */
 
-  const location = useLocation();
+  // const location = useLocation();
 
-  useGTMEvent("view_item", {
-    page_path: location.pathname,
-    page_title: course?.courseTitle || "Course Detail",
-    value:
-      course && batch
-        ? discountedPrice(batch.coursePrice, batch.courseDiscount)
-        : 0,
-    currency: "BDT",
-    ecommerce: {
-      currency: "BDT",
-      value: batch
-        ? discountedPrice(batch.coursePrice, batch.courseDiscount)
-        : 0,
-      items:
-        course && batch
-          ? [
-              {
-                item_id: id,
-                item_name: course.courseTitle,
-                price: discountedPrice(batch.coursePrice, batch.courseDiscount),
-                quantity: 1,
-                currency: "BDT",
-              },
-            ]
-          : [],
-    },
-  });
+  // useGTMEvent("view_item", {
+  //   page_path: location.pathname,
+  //   page_title: course?.courseTitle || "Course Detail",
+  //   value:
+  //     course && batch
+  //       ? discountedPrice(batch.coursePrice, batch.courseDiscount)
+  //       : 0,
+  //   currency: "BDT",
+  //   ecommerce: {
+  //     currency: "BDT",
+  //     value: batch
+  //       ? discountedPrice(batch.coursePrice, batch.courseDiscount)
+  //       : 0,
+  //     items:
+  //       course && batch
+  //         ? [
+  //             {
+  //               item_id: id,
+  //               item_name: course.courseTitle,
+  //               price: discountedPrice(batch.coursePrice, batch.courseDiscount),
+  //               quantity: 1,
+  //               currency: "BDT",
+  //             },
+  //           ]
+  //         : [],
+  //   },
+  // });
+
+  // useGTMEvent("view_item", {
+  //   ecommerce: {
+  //     currency: "BDT",
+  //     value:
+  //       course && batch
+  //         ? discountedPrice(batch.coursePrice, batch.courseDiscount)
+  //         : 0,
+  //     items:
+  //       course && batch
+  //         ? [
+  //             {
+  //               item_id: id, // তোমার batch id
+  //               item_name: course.courseTitle, // course title
+  //               price: discountedPrice(batch.coursePrice, batch.courseDiscount),
+  //               stocklevel: null, // এখন null রাখছি
+  //               google_business_vertical: "education", // retail এর বদলে education দিতে পারো
+  //               id: batch.batchId, // duplicate রাখলাম
+  //             },
+  //           ]
+  //         : [],
+  //   },
+  // });
+
+  const gtmData = useMemo(() => {
+    if (!course || !batch) return null;
+
+    return {
+      ecommerce: {
+        currency: "BDT",
+        value: discountedPrice(batch.coursePrice, batch.courseDiscount),
+        items: [
+          {
+            item_id: id, // batch id
+            item_name: course.courseTitle,
+            price: discountedPrice(batch.coursePrice, batch.courseDiscount),
+            google_business_vertical: "education",
+            id: batch.batchId,
+          },
+        ],
+      },
+    };
+  }, [course, batch, id]);
+
+  // তারপর useGTMEvent কল করো
+  useGTMEvent("view_item", gtmData || {});
   /**
    * For Google Tag Manager End
    */

@@ -17,7 +17,7 @@ import { TOurPeople } from "../../../utils/types/globalTypes";
 import PeopleBox from "../../AdminDashboard/AdminOurPeople/PeopleBox/PeopleBox";
 import AboutServiceBox from "./AboutServiceBox";
 import { useLocation } from "react-router";
-import useGTMEvent from "../../../Component/hook/useGTMEvent";
+import useGTMEvent from "../../../Component/hook/ForGoogleTag/useGTMEvent";
 
 const AboutUs = () => {
   useTitle("About us");

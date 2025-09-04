@@ -4,7 +4,7 @@ import LoadingPage from "../../../../Component/LoadingPage/LoadingPage";
 import { useGetAllCourseByAdminQuery } from "../../../../redux/api/features/Course/courseManagementApi";
 import { TCourseBox } from "../../../../utils/types/globalTypes";
 import CourseBox from "../CourseBox/CourseBox";
-import useGTMEvent from "../../../../Component/hook/useGTMEvent";
+import useGTMEvent from "../../../../Component/hook/ForGoogleTag/useGTMEvent";
 
 const AllCourses = () => {
   useTitle("All Course");

@@ -4,7 +4,7 @@ import { useGetALlBlogQuery } from "../../../redux/api/features/Blog/blogManagem
 import { TBlog } from "../../../utils/types/globalTypes";
 import BlogBox from "../../AdminDashboard/AdminBlog/AllBlog/BlogBox";
 import BlogBoxSkl from "../../AdminDashboard/AdminBlog/AllBlog/BlogBoxSkl";
-import useGTMEvent from "../../../Component/hook/useGTMEvent";
+import useGTMEvent from "../../../Component/hook/ForGoogleTag/useGTMEvent";
 
 const Blog = () => {
   useTitle("Blog");
