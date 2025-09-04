@@ -166,11 +166,11 @@ const ThankYou = () => {
         aria-hidden="true"
       />
       {/* Dark overlay */}
-      <div className="absolute inset-0 bg-black/50 backdrop-blur-sm" />
+      <div className="absolute inset-0 bg-black/20 backdrop-blur-sm" />
 
       {/* Content */}
-      <div className="relative w-full max-w-2xl">
-        <div className="rounded-2xl shadow-2xl bg-white/95 backdrop-blur-md border border-white/30 overflow-hidden">
+      <div className="relative h-[50px] md:h-auto w-full max-w-2xl -top-[250px] md:-top-10">
+        <div className="h-[550px] md:h-auto rounded-2xl shadow-2xl bg-white/95 backdrop-blur-md border border-white/30 overflow-hidden">
           {/* Gradient header strip */}
           <div className="h-2 bg-gradient-to-r from-[#166F74] to-[#25D366]" />
 
@@ -258,7 +258,7 @@ const ThankYou = () => {
             </div>
 
             {/* Back link */}
-            <div className="mt-10 pt-4 border-t border-gray-100">
+            <div className="mt-4 md:mt-10 pt-4 border-t border-gray-100">
               <Link
                 to="/"
                 className="inline-flex items-center text-[#166F74] hover:text-[#25D366] font-medium transition-colors duration-200"
