@@ -20,6 +20,15 @@ const authApi = baseApi.injectEndpoints({
         };
       },
     }),
+    newRegistration: builder.mutation({
+      query: (data) => {
+        return {
+          url: "/auth/register-new",
+          method: "POST",
+          body: data,
+        };
+      },
+    }),
 
     instructorRegistration: builder.mutation({
       query: (data) => {
@@ -101,6 +110,7 @@ const authApi = baseApi.injectEndpoints({
 export const {
   useGoogleRegistrationMutation,
   useRegistrationMutation,
+  useNewRegistrationMutation,
   useInstructorRegistrationMutation,
   useLoginMutation,
   useInstructorLoginMutation,

@@ -2,11 +2,19 @@ import { FormEvent, useState } from "react";
 import VisibilityIcon from "@mui/icons-material/Visibility";
 import VisibilityOffIcon from "@mui/icons-material/VisibilityOff";
 import GoogleLoginn from "../../../../../../Component/GoogleLoginn/GoogleLoginn";
+import { useNewRegistrationMutation } from "../../../../../../redux/api/features/auth/authApi";
+import { toast } from "sonner";
+import { sonarId } from "../../../../../../utils/Fucntion/sonarId";
+import { verifyToken } from "../../../../../../utils/Fucntion/verifyToken";
+import { useDispatch } from "react-redux";
+import { setUser } from "../../../../../../redux/api/features/auth/authSlice";
 
 interface IProps {
   batchId: string;
 }
 const NotLoggedUserForm = ({ batchId }: IProps) => {
+  const dispatch = useDispatch();
+  const [doRegistration] = useNewRegistrationMutation();
   const [showPassword, setShowPassword] = useState(false);
 
   const handleShowPassword = () => {
@@ -15,28 +23,25 @@ const NotLoggedUserForm = ({ batchId }: IProps) => {
 
   const handleRegistration = async (event: FormEvent<HTMLFormElement>) => {
     event.preventDefault();
-    //   const Form = event.target as HTMLFormElement;
-    //   const name = Form.namee.value;
-    //   const phone = Form.phone.value;
-    //   const email = Form.email.value;
-    //   const password = Form.password.value;
-    //   const confirmPassword = Form.confirmPassword.value;
-    //   if (password != confirmPassword) {
-    //     toast.error("Password and Confirm Password Doesn't Matched", {
-    //       id: sonarId,
-    //     });
-    //     return;
-    //   }
+    const Form = event.target as HTMLFormElement;
+    const name = Form.namee.value;
+    const phone = Form.phone.value;
+    const email = Form.email.value;
+    const password = Form.password.value;
 
-    //   const formData = { name, phone, email, password };
-    //   console.log("Form Data: ", formData);
-    //   toast.loading("Creating User", { id: sonarId });
-    //   const res = await addRegister(formData).unwrap();
-    //   console.log("Res: ", res);
-    //   if (res?.success) {
-    //     toast.success("Registration successfully", { id: sonarId });
-    //     navigate("/login");
-    //   }
+    const formData = { name, phone, email, password };
+    console.log("Form Data: ", formData);
+    toast.loading("Creating User", { id: sonarId });
+    const res = await doRegistration(formData).unwrap();
+    console.log("Res: ", res);
+    if (res?.success) {
+      toast.success("Successfull", { id: sonarId });
+      const token = res?.data?.accessToken;
+      console.log("Come Token: ", token);
+      const user = verifyToken(token);
+      console.log("user: ", user);
+      dispatch(setUser({ user, token }));
+    }
   };
   return (
     <div className="w-full">
@@ -97,12 +102,24 @@ const NotLoggedUserForm = ({ batchId }: IProps) => {
         >
           <div className="form-control  ">
             <label className="label">
+              <span className="label-text font-bold  text-white">Batch id</span>
+            </label>
+            <input
+              defaultValue={batchId}
+              type="text"
+              placeholder=" Name"
+              className="px-4 py-1 bg-gray-700 text-white border border-gray-600 rounded-md w-full disabled:text-gray-400"
+              disabled
+            />
+          </div>
+          <div className="form-control  ">
+            <label className="label">
               <span className="label-text font-bold  text-white">Name</span>
             </label>
             <input
               type="text"
               placeholder=" Name"
-              className="px-4 py-2 bg-gray-700 text-white border border-gray-600 rounded-md w-full disabled:text-gray-400"
+              className="px-4 py-1 bg-gray-700 text-white border border-gray-600 rounded-md w-full disabled:text-gray-400"
               name="namee"
               required
             />
@@ -116,7 +133,7 @@ const NotLoggedUserForm = ({ batchId }: IProps) => {
             <input
               type="number"
               placeholder="Phone Number"
-              className="px-4 py-2 bg-gray-700 text-white border border-gray-600 rounded-md w-full disabled:text-gray-400"
+              className="px-4 py-1 bg-gray-700 text-white border border-gray-600 rounded-md w-full disabled:text-gray-400"
               name="phone"
               required
             />
@@ -128,7 +145,7 @@ const NotLoggedUserForm = ({ batchId }: IProps) => {
             <input
               type="email"
               placeholder="email"
-              className="px-4 py-2 bg-gray-700 text-white border border-gray-600 rounded-md w-full disabled:text-gray-400"
+              className="px-4 py-1 bg-gray-700 text-white border border-gray-600 rounded-md w-full disabled:text-gray-400"
               name="email"
               required
             />
@@ -138,24 +155,30 @@ const NotLoggedUserForm = ({ batchId }: IProps) => {
             <label className="label font-bold">
               <span className="label-text  text-white">Password</span>
             </label>
-            <input
-              type={showPassword ? "text" : "password"}
-              placeholder="password"
-              className="px-4 py-2 bg-gray-700 text-white border border-gray-600 rounded-md w-full disabled:text-gray-400"
-              name="password"
-              required
-            />
+            <div className="relative">
+              <input
+                type={showPassword ? "text" : "password"}
+                placeholder="password"
+                className="px-4 py-1 bg-gray-700 text-white border border-gray-600 rounded-md w-full disabled:text-gray-400"
+                name="password"
+                required
+              />
 
-            <div
-              onClick={handleShowPassword}
-              className="absolute right-10 bottom-3"
-            >
-              {showPassword ? <VisibilityIcon /> : <VisibilityOffIcon />}
+              <div
+                onClick={handleShowPassword}
+                className="absolute right-10 top-1/2 -translate-y-1/2"
+              >
+                {showPassword ? (
+                  <VisibilityIcon fontSize="small" />
+                ) : (
+                  <VisibilityOffIcon fontSize="small" />
+                )}
+              </div>
             </div>
           </div>
 
           <div className="form-control mt-6">
-            <input type="submit" className="btn btn-primary" value="Submit" />
+            <input type="submit" className="applyCoupon" value="Submit" />
           </div>
         </form>
 
