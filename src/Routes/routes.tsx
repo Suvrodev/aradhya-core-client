@@ -57,6 +57,7 @@ import InstructorDetail from "../Pages/ForAll/InstructorDetail/InstructorDetail"
 import GoogleLoginn from "../Component/GoogleLoginn/GoogleLoginn";
 import SeminarRegistration from "../Component/SeminarRegistration/SeminarRegistration";
 import CountDown from "../Pages/Shared/CountDown/CountDown";
+import ThankYou from "../Component/SeminarRegistration/ThankYou/ThankYou";
 // import EnrollCourse from "../Pages/ForAll/EnrollCourse/EnrollCourse";
 
 export const router = createBrowserRouter([
@@ -135,6 +136,10 @@ export const router = createBrowserRouter([
       {
         path: "seminer-reg",
         element: <SeminarRegistration />,
+      },
+      {
+        path: "thank-you",
+        element: <ThankYou />,
       },
       {
         path: "count",

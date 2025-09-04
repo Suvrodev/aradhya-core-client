@@ -46,24 +46,6 @@ const CourseDetail = () => {
 
   const location = useLocation();
 
-  // useGTMEvent("view_item", {
-  //   page_path: location.pathname, // optional
-  //   page_title: course?.courseTitle, // optional
-  //   ecommerce: {
-  //     items:
-  //       course && batch
-  //         ? [
-  //             {
-  //               item_id: id,
-  //               item_name: course.courseTitle,
-  //               price: discountedPrice(batch.coursePrice, batch.courseDiscount),
-  //               quantity: 1,
-  //             },
-  //           ]
-  //         : [],
-  //   },
-  // });
-
   useGTMEvent("view_item", {
     page_path: location.pathname,
     page_title: course?.courseTitle || "Course Detail",

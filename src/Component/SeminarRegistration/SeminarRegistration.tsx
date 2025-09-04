@@ -6,6 +6,7 @@ import { toast } from "sonner";
 import { sonarId } from "../../utils/Fucntion/sonarId";
 import { UAParser } from "ua-parser-js";
 import { useTitle } from "../hook/useTitle";
+import { useNavigate } from "react-router";
 
 const API_URL = "https://sheetdb.io/api/v1/rdtogn8tdhsvs";
 
@@ -14,6 +15,7 @@ const SeminarRegistration = () => {
   const [showOtherInput, setShowOtherInput] = useState(false);
   const otherInputRef = useRef<HTMLInputElement | null>(null);
   const [isSubmitting, setIsSubmitting] = useState(false);
+  const navigate = useNavigate();
 
   const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
@@ -104,6 +106,16 @@ const SeminarRegistration = () => {
         toast.success("Data Submitted Successfully", { id: sonarId });
         form.reset();
         setShowOtherInput(false);
+
+        // ⬇️ Redirect to Thank You page with optional state
+        navigate("/thank-you", {
+          replace: true,
+          state: {
+            name: data.name || "",
+            course:
+              (data.course === "other" ? data.otherCourse : data.course) || "",
+          },
+        });
       } else {
         console.error(await res.text());
         toast.error("Failed to submit form", { id: sonarId });
